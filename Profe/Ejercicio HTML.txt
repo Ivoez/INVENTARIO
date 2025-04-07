@@ -1,0 +1,15 @@
+Diseño de Página Web - Ejercicio HTML + CSS + Bootstrap
+Se deberá entregar el archivo vía git, en la carpeta armada para cada uno de ustedes.
+Fecha de entrega: 12-04-2025 a las 12:00 hs
+
+Estructura:
+1. Encabezado con menú de navegación (Fondo de color, Logo a la izquierda, Ítems alineados a la
+derecha).
+2. Sección Principal (Imagen a la izquierda, Texto a la derecha, Botón de acción).
+3. Sección de Contenido (Tres columnas con íconos y texto, fondos diferenciados).
+4. Pie de Página (3 columnas Telefono - Copyright - email).
+
+Nota:
+
+Son libres de elegir colores y textos (vale el lroen impsun). Solo deben trabajar con Bootstrap, CSS y 
+logiamente respetar las etiquetas semánticas de HTML
