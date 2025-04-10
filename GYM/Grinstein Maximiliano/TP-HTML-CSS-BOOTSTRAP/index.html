@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicio HTML+CSS+BOOTSTRAP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="bg-primary text-white py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <img src="https://yt3.googleusercontent.com/HbPB9APPHJTcROVswdG9bRTymu9Nqwtwqa2gshu98hGDlC9iSJlLbd58nKxnBgcaThHywvjDz5s=s900-c-k-c0x00ffffff-no-rj" alt="Logo" class="logo">
+      <nav>
+        <ul class="nav">
+          <li class="nav-item"><a href="#" class="nav-link text-white">Inicio</a></li>
+          <li class="nav-item"><a href="#" class="nav-link text-white">Servicios</a></li>
+          <li class="nav-item"><a href="#" class="nav-link text-white">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="container my-5">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img src="data:image/png;base64,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" class="img-fluid" alt="Imagen principal">
+      </div>
+      <div class="col-md-6">
+        <h2>Bienvenidos a Correo Argentino. <br>Tu envío, en buenas manos. <br> </h2>
+        <p>Ofrecemos soluciones digitales innovadoras pensadas para optimizar procesos, mejorar la experiencia del usuario y potenciar el crecimiento de tu negocio.</p>
+        <a href="#" class="btn btn-primary">Saber más</a>
+      </div>
+    </div>
+  </main>
+  <section class="container my-5">
+    <div class="row text-center">
+      <div class="col-md-4 bg-light p-4">
+        <i class="bi bi-envelope" style="font-size: 2rem;"></i>
+        <h4>¿Qué ofrecemos?</h4>
+        <p>Ofrecemos envíos nacionales e internacionales, logística personalizada para empresas, seguimiento en tiempo real y entregas exprés.</p>
+      </div>
+      <div class="col-md-4 bg-secondary text-white p-4">
+        <i class="bi bi-lightning-charge" style="font-size: 2rem;"></i>
+        <h4>Rápido y seguro</h4>
+        <p>Garantizamos entregas en tiempo y forma, con protocolos de seguridad que protegen tus paquetes en cada etapa del trayecto.</p>
+      </div>
+      <div class="col-md-4 bg-light p-4">
+        <i class="bi bi-truck" style="font-size: 2rem;"></i>
+        <h4>Rastrea tu envío</h4>
+        <p>Ingresá el código de seguimiento para conocer en qué etapa del proceso se encuentra tu paquete, desde el origen hasta la entrega final.</p>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-dark text-white py-4">
+    <div class="container d-flex justify-content-between">
+      <p>📞 Tel: 123-456-789</p>
+      <p> 📧correoarg@miweb.com</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
