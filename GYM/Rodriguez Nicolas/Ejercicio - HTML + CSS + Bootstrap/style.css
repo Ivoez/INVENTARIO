@@ -1,0 +1,20 @@
+header {
+    background-color: #7A1D2D;
+}
+
+.navbar-nav {
+    background-color: #7A1D2D; 
+}
+
+.logo {
+    height: 80px;
+    width: 80px;
+}
+
+.nav-link{
+    color: white;
+}
+
+main {
+        margin-top: 50px;
+}
