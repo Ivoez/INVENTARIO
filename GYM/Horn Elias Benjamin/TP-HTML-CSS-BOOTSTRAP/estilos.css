@@ -1,0 +1,39 @@
+/* Encabezado */
+header {
+  background-color: #004085;
+  color: white;
+}
+
+header .nav-link {
+  color: white !important;
+}
+
+/* Sección principal */
+.main-section {
+  padding: 60px 0;
+}
+
+/* Cards de servicios */
+.card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  margin-top: 10px;
+}
+
+.content-section {
+  background-color: #f8f9fa;
+}
+
+/* Pie de página */
+footer {
+  background-color: #002752;
+  color: white;
+  padding: 20px 0;
+}
+
+footer .col {
+  text-align: center;
+}
