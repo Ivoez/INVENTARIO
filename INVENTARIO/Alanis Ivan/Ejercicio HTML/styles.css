@@ -1,0 +1,40 @@
+body {
+    background-image: url('https://img.freepik.com/foto-gratis/interior-gran-almacen-distribucion-estantes-apilados-paletas-productos-listos-mercado_342744-1481.jpg?t=st=1744466002~exp=1744469602~hmac=2c9ea673218a4d8584a832dfed8e2277454f3288e2f6e821739644757e8cc933&w=1380');
+    background-size: cover;
+
+
+    
+
+    .logo {
+        position: absolute; 
+        top: 20px; 
+        right: 20px; 
+        width: 100px; 
+        height: 100px; 
+        background-image: url('https://imgs.search.brave.com/GBQnfGN8HMvcCFpKrEHqLl7QAngOjg4wwD7BzpNnXRU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tYXJr/ZXRwbGFjZS5jYW52/YS5jb20vRUFFNG0t/M2JObTAvMS8wLzE2/MDB3L2NhbnZhLWJs/YW5jby1uYXJhbmph/LXBsYW5vLWlsdXN0/cmF0aXZvLXNlcnZp/Y2lvLXRyYW5zcG9y/dGUtbG9nb3RpcG8t/cnpuVkNNR09ZcVEu/anBn'); 
+        background-size: cover; 
+        background-position: center; 
+        border-radius: 50%; 
+        border: 3px solid #007BFF; 
+    }
+
+
+    
+
+
+
+
+    .buttons-container {
+        position: absolute; /* Posiciona el menú de forma independiente */
+        top: 100px; /* Ajusta la distancia desde la parte superior */
+        left: 20px; /* Desplaza la sección hacia la izquierda */
+        display: flex;
+        flex-direction: column; /* Organiza los botones en formato vertical (columna) */
+        gap: 50px; /* Espaciado entre los botones */
+    }
+
+
+
+   
+   
+}
