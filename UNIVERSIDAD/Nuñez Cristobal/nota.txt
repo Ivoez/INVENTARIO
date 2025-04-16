@@ -1,0 +1,4 @@
+Buen trabajo,solo tenes que prestar atencion a como armar las rutas de las imagenes para quw no se
+compan, en tu caso la ruta la hiciste contemplando tu disco C y logicamnete la gente después no tiene acceso.
+
+La nota es un 7

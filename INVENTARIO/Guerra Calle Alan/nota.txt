@@ -1,0 +1,3 @@
+Alan si bien la estructura lz respetaste pero hubo un problema en la imagen.
+Cuando trabajas con imagenes que vienen desde un link tenes que verificar que realmente exista esa imagen.
+La nota es un 6

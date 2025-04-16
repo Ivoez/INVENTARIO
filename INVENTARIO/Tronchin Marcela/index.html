@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página Web (TP HTML)</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <style>
+    
+    .encabezado {
+      background-color: #e955d3;
+      color: rgb(85, 88, 215);
+      padding: 1rem;
+    }
+    .contenido-iconos {
+      padding: 2rem 1rem;
+    }
+    .footer {
+      background-color: #a02cb2;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    .nav-link {
+      color: rgb(95, 232, 212) !important;
+    }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO - MENU -->
+  <header class="encabezado d-flex justify-content-between align-items-center px-4">
+    <div class="logo">
+      <h4>LOGO</h4>
+    </div>
+    <nav>
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- PRINCIPAL -->
+  <section class="container my-5">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img src="https://via.placeholder.com/500x300" alt="Imagen principal" class="img-fluid rounded">
+      </div>
+      <div class="col-md-6">
+        <h2>Bienvenido!</h2>
+        <p>Estamos para ayudarte en tu proyecto</p>
+        <a href="#" class="btn btn-primary">Saber más</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO -->
+  <section class="contenido-iconos bg-light">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-md-4">
+          <div class="p-3 bg-white rounded shadow-sm h-100">
+            <i class="bi bi-laptop fs-1 text-primary"></i>
+            <h5 class="mt-3">PAGINAS</h5>
+            <p>Te ayudamos a crear páginas útiles y modernas</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 bg-white rounded shadow-sm h-100">
+            <i class="bi bi-phone fs-1 text-success"></i>
+            <h5 class="mt-3">APP</h5>
+            <p>Te ayudamos a crear TU PROPIA APP</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 bg-white rounded shadow-sm h-100">
+            <i class="bi bi-gear fs-1 text-danger"></i>
+            <h5 class="mt-3">SOPORTE</h5>
+            <p>ANTE CUALQUIER EVENTUALIDAD ESTAMOS PARA AYUDARTE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIE -->
+  <footer class="footer mt-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <p>📞 Tel: 1136769363</p>
+        </div>
+        <div class="col-md-4">
+          <p>© 2025 Empresa</p>
+        </div>
+        <div class="col-md-4">
+          <p>✉️ mail@empresa.com</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

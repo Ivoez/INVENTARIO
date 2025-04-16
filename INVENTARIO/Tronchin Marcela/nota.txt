@@ -1,0 +1,5 @@
+Marcela, si bien lograste respetar la estructura pero no tenes aplicado el logo (como imagen) 
+Y la imagen que quisiste poner en el cuerpo de la web, lo hiciste a travéz de un link. Ese link está roto 
+no existe imagen. Siempre hay que confirmar que la imagen exista.
+
+la nota es un 4

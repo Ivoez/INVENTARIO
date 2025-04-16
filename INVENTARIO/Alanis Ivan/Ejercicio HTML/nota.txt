@@ -1,0 +1,8 @@
+Ivan que pasó?
+
+No está respetada la estructura, el Encabezado era en el header, de hecho vi la etiqueta <header></header>
+vacía en tu html.
+
+Se nota un esfuerzo pero falto cumplir con la consigna.
+
+La nota es 4
