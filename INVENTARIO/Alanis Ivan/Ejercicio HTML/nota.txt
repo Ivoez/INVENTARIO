@@ -6,3 +6,6 @@ vacía en tu html.
 Se nota un esfuerzo pero falto cumplir con la consigna.
 
 La nota es 4
+
+-------------------------------------------------------------------------------------------------
+Hola profe, si, la verdad que habia entendido mal la consigna y fui por el camino mas largo sin usar las plantillas de bootstrap, despues de repasar un poco lo visto pude realizar nuevamente el tp a modo de practica y para que me queden claro conceptos que no habia utilizado. Saludos.
