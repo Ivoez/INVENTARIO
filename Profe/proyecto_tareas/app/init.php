@@ -1,8 +1,6 @@
 <?php
 session_start();
-  
-  
-  
+    
   // se cargan las librerías
   require_once 'config/config.php';
 

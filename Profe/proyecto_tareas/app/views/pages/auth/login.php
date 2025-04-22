@@ -48,7 +48,7 @@
                                         mi contraseña</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="<?php echo RUTA_URL;?>/AuthController/register"">Soy Nuevo</a>
+                                    <a class="small" href="<?php echo RUTA_URL;?>/AuthController/register">Soy Nuevo</a>
                                     </div>
                                 </div>
                             </div>

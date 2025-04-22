@@ -10,5 +10,5 @@
    // Ruta url
 
    define('RUTA_URL','http://localhost/appweb_caba_1c_2025/INVENTARIO');
-   define('NOMBRESITIO','FRAMEWORK PHP - MVC');
+   define('NOMBRESITIO','Inventario');
 ?>
