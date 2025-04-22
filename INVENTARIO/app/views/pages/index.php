@@ -42,6 +42,6 @@ require RUTA_APP .'/views/layout/header.php';
 </main>
 
 <?php 
-// Incluimos el archivo footer.php que contiene el pie de página y scripts necesarios
+// Incluimos el archivo footer.php que contiene el pie de pagina y scripts necesarios
 require RUTA_APP .'/views/layout/footer.php'; 
 ?>
