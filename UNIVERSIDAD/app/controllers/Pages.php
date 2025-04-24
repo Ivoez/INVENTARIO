@@ -8,7 +8,7 @@
         public function index(){
             
             $data = [
-                "title" => "Bienvenidos a UNLZ - APPWEB"
+                "title" => "Bienvenidos al Campus de la Universidad mas picante del condado",
             ];
             $this->view('pages/index',$data);
         }
