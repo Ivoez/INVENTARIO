@@ -38,6 +38,54 @@
 
   <!-- Carreras -->
 
+  <div class="container text-center py-5">
+  <div class="row justify-content-center g-5">
+    <!-- IMAGEN 1 -->
+    <div class="col-md-4 position-relative image-wrapper">
+      <img src="img/ImagenGrado.jpeg" alt="CarreraGrado" class="img-fluid custom-img">
+      <div class="overlay-text"> Carreras de Grado </div> 
+    </div>
+    <!-- IMAGEN 2 -->
+    <div class="col-md-4 position-relative image-wrapper">
+      <img src="img/ImagenPostGrado.jpg" alt="PostGrado" class="img-fluid custom-img">
+      <div class="overlay-text"> Carreras de Post-Grado </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- ESTILO IMAGENES Y TEXTO -->
+<style>
+  .custom-img{ 
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .image-wrapper:hover .custom-img{
+    transform: scale(1.05);
+  }
+
+  .position-relative{
+    position: relative;
+    overflow: hidden;
+  }
+
+  .overlay-text{
+    position: absolute;
+    top: 70%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  </style>
 
 
 
