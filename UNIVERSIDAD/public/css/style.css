@@ -1,0 +1,12 @@
+#navegadorPaginaPrincipal{
+    background-color:  rgb( 113, 128, 255 ) ;
+}
+.nav-link{
+    color:aliceblue;
+
+}
+/* color de fondo de los navlink*/
+.nav-link:hover{
+    background-color: rgb( 45, 51, 105)
+}
+

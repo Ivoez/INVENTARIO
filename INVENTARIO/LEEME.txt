@@ -1,0 +1,8 @@
+-Nota de Nahuel: Realice la estructura general de la pagina, similar al ejemplo que paso profe. 
+La misma contiene un Encabezado con menú de navegación (logo e inicio de sesion).
+Una Sección Principal con (titulo centrado arriba, descripcion en el lado izq e imagen en el lado derecho).
+El Pie de Página contiene un (texto con la fecha actual).
+Modifique los archivos de la carpeta (views/layout/) 'footer.php' y 'header.php', ademas del 'index.php' de la carpeta (views/pages).
+Tambien agregue una carpeta img para agregar las imagenes, esta se encuentra en (public/img).
+A cada imagen agregada le puse al comienzo "img_", si van a agregar o modificar alguna, usen esas iniciales al comienzo.
+*ESTA PAGINA ES DE PRUEBA, SE PUEDE MODIFICAR TODO Y MEJORARLA*

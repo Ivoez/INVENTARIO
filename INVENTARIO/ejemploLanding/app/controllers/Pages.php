@@ -8,7 +8,7 @@
         public function index(){
             
             $data = [
-                "title" => "Bienvenido"
+                "title" => "Bienvenidos a UNLZ - APPWEB"
             ];
             $this->view('pages/index',$data);
         }
