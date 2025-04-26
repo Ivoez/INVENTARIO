@@ -1,15 +1,15 @@
 <?php require RUTA_APP .'/views/layout/header.php';?>
 
 <div class="text-center mb-5">
-    <h1>Bienvenido al GYM</h1>
-    <p>Un espacio ideal para entrenar y superarse.</p>
+    <h1>Bienvenido a nuestro GYM</h1>
+    <p>Tu espacio ideal para entrenar y superarte.</p>
 </div>
 
 <div class="container my-5">
   <div class="row text-center">
     <div class="col-md-4 mb-4">
       <div class="card h-100">
-        <img src="public/img/stockimg-landing-1.jpg" class="card-img-top" alt="Disciplina">
+        <img src="public/img/imagenlanding1.jpg" class="card-img-top" alt="Disciplina">
         <div class="card-body">
           <h5 class="card-title">Disciplina</h5>
           <p class="card-text">La constancia es la clave para alcanzar tus metas.</p>
@@ -19,7 +19,7 @@
 
     <div class="col-md-4 mb-4">
       <div class="card h-100">
-        <img src="public/img/stockimg-landing-3.jpg" class="card-img-top" alt="Superación">
+        <img src="public/img/imagenlanding3.jpg" class="card-img-top" alt="Superación">
         <div class="card-body">
           <h5 class="card-title">Superación</h5>
           <p class="card-text">Cada día es una oportunidad para ser mejor que ayer.</p>
@@ -29,7 +29,7 @@
 
     <div class="col-md-4 mb-4">
       <div class="card h-100">
-        <img src="public/img/stockimg-landing-2.jpg" class="card-img-top" alt="Comunidad">
+        <img src="public/img/imagenlanding2.jpg" class="card-img-top" alt="Comunidad">
         <div class="card-body">
           <h5 class="card-title">Comunidad</h5>
           <p class="card-text">Entrená en un ambiente motivador y acompañado.</p>
