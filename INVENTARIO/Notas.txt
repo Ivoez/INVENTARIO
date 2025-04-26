@@ -1,0 +1,2 @@
+---NOTAS 2DO LANDING PAGE---
+En el ejemplo hay otro enfoque de como organizar la estructura del proyecto, use un poco de css para tener mas organizado lo que es diseno y que cada parte de la pagina tenga su apartado en el .css, separado del index, tambien use bootstrap pero lo implemente directo en el index. Si bien es parecido al ejemplo de nahuel, era para tambien tener una idea de como se puede organizar y que cualquier idea que tengan o modifiquen lo puedan hacer directo en esta carpeta hasta ya tener la base y que esa sea la main para trabajar en conjunto. 
