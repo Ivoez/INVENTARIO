@@ -4,54 +4,60 @@
 <!--Header -->
 <header>
     <!--Navegador -->
-        <nav id="navegadorPaginaPrincipal" class="navbar navbar-expand-lg px-3">
+        <nav id="navegadorPaginaPrincipal" class="navbar navbar-expand-lg py-2 px-3 mb-1">
             <div class="dropdown me-5">
               <a class="user-icon" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false" style="color:rgb(3, 40, 66);">
-                <img src="<?php echo RUTA_URL; ?>/img/logoUniversidad.png" alt="LogoIzq" class="me-2 rounded-circle" style="width: 50px; height: 50px;">
+                <img src="<?php echo RUTA_URL; ?>/img/logoUniversidad.png" alt="LogoIzq" class="me-2 rounded-circle" style="width: 40px; height: 40px;">
               </a>
             </div> 
             <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ms-auto"> 
+              <ul class="navbar-nav ms-auto mb-0"> 
                 <li class="nav-item">
-                  <a class="nav-link active text-white" href="">Ingresar</a>
+                  <a class="nav-link active text-white small" href="">Ingresar</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="#informacion">Informacion</a>
+                  <a class="nav-link text-white small" href="#informacion">Informacion</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="#piePagina">Contactanos</a>
+                  <a class="nav-link text-white small" href="#piePagina">Contactanos</a>
                 </li>
               </ul>
             </div>
           </nav>
 </header>
     <!--imagen con carusel -->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide mb-3" style="max-height: 300px; overflow: hidden;">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-      <img src="img/Universidad.jpg" class="d-block w-100" alt="..." style="height: 500px;">
-      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 50px;">
+      <img src="img/Universidad.jpg" class="d-block w-100" alt="..." style="height: 300px;">
+      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 24px;">
         <h5>UNIVERSIDAD TECNOLOGICA NACIONAL</h5>
         <p>"Formamos líderes del futuro en un mundo digital en constante evolución.</p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="img/estudiante.jpeg" class="d-block w-100" alt="..." style="height: 500px;">
-      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 30px;">
+      <img src="img/estudiante.jpeg" class="d-block w-100" alt="..." style="height: 300px;">
+      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 20px;">
         <h5>INCRIPCIONES ABIERTAS</h5>
         <p>"Inscríbete hoy y comienza tu viaje hacia un futuro brillante."</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="img/grupo.jpg" class="d-block w-100" alt="..." style="height: 500px;">
-      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 30px;">
+      <img src="img/grupo.jpg" class="d-block w-100" alt="..." style="height: 300px;">
+      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 20px;">
         <h5>TU FUTURO ESTA AQUÍ</h5>
         <p>"Desarrolla tus habilidades en un entorno que fomenta la creatividad y la colaboración.".</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="img/cursos.png" class="d-block w-100" alt="..." style="height: 300px;">
+      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 20px;">
       </div>
     </div>
   </div>
@@ -65,11 +71,11 @@
   </button>
 </div>
 
-    <h3><?php echo $data['title']; ?></h3>
+    <h3 class="text-center mb-0"><?php echo $data['title']; ?></h3>
 
   <!-- Carreras -->
 
-  <div class="container text-center py-5">
+  <div class="container text-center py-4">
   <div class="row justify-content-center g-5">
     <!-- IMAGEN 1 -->
     <div class="col-md-4 position-relative image-wrapper">
@@ -85,6 +91,12 @@
       </a>
       <div class="overlay-text"> Carreras de Post-Grado </div>
     </div>
+    <!-- IMAGEN 3 -->
+    <div class="col-md-4 position-relative image-wrapper">
+      <a href="https://getbootstrap.com/docs/5.3/layout/grid/" target="_blank"> 
+        <img src="img/ImagenCursos.jpg" alt="Cursos" class="img-fluid custom-img">
+      </a>
+      <div class="overlay-text"> Cursos a distancia </div>
     </div>
   </div>
 </div>
