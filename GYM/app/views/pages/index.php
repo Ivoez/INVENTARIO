@@ -1,4 +1,4 @@
-<?php require RUTA_APP .'/views/layout/header.php';?>
+<?php require RUTA_APP .'/views/layout/landing/header.php';?>
 
 <div class="text-center mb-5">
     <h1>Bienvenido a nuestro GYM</h1>
@@ -40,10 +40,13 @@
 </div>
 
 <div class="text-center mb-5">
-    <h2>Unite a nuestra familia!</h2>
+    <h2>No sos parte?
+    <a href="#">Unite a nuestra familia!</a>
+    </h2>
 </div>
 
-<div class="row justify-content-center mb-5">
+
+<!-- <div class="row justify-content-center mb-5">
     <div class="col-md-4 text-center mb-3">
         <a href="#" class="btn btn-primary btn-lg w-100">Registrarse como Socio</a>
     </div>
@@ -52,6 +55,6 @@
         <a href="#" class="btn btn-secondary btn-lg w-100">Acceder como Administrador</a>
         </div>
     </div>
-</div>
+</div> -->
 
-<?php require RUTA_APP .'/views/layout/footer.php';?>
+<?php require RUTA_APP .'/views/layout/landing/footer.php';?>
