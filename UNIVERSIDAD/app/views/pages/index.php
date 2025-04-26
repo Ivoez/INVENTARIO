@@ -26,42 +26,47 @@
           </nav>
 </header>
     <!--imagen con carusel -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="..." alt="First slide">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="img/Universidad.jpg" class="d-block w-100" alt="..." style="height: 500px;">
+      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 50px;">
+        <h5>UNIVERSIDAD TECNOLOGICA NACIONAL</h5>
+        <p>"Formamos líderes del futuro en un mundo digital en constante evolución.</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="img/estudiante.jpeg" class="d-block w-100" alt="..." style="height: 500px;">
+      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 30px;">
+        <h5>INCRIPCIONES ABIERTAS</h5>
+        <p>"Inscríbete hoy y comienza tu viaje hacia un futuro brillante."</p>
+      </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Third slide">
+      <img src="img/grupo.jpg" class="d-block w-100" alt="..." style="height: 500px;">
+      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 30px;">
+        <h5>TU FUTURO ESTA AQUÍ</h5>
+        <p>"Desarrolla tus habilidades en un entorno que fomenta la creatividad y la colaboración.".</p>
+      </div>
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
-
-
-
-
-
-
 
     <h3><?php echo $data['title']; ?></h3>
 
-    
   <!-- Carreras -->
 
   <div class="container text-center py-5">
