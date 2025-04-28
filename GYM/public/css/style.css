@@ -4,45 +4,117 @@
     margin-right: 10px;
   }
 
-.card-img-top {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
-}
-
 .card {
+  height: 100%;
   box-shadow: 0 4px 12px black;
   border: none;
+  overflow: hidden;
+  box-shadow: -1px 1px 2px #D2FF1F,
+  1px 1px 2px #D2FF1F,
+  1px -1px 0 #D2FF1F,
+  -1px -1px 0 #D2FF1F,
+  0px 0px 15px #D2FF1F;
 }
 
-.card-body {
-  padding: 30px;
+.card-img-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.card-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.5s ease;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+.card-overlay h5 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card-overlay p {
+  font-size: 1rem;
+}
+
+.card-img-container:hover img {
+  transform: scale(1.1) rotateY(180deg);
+  filter: blur(4px) brightness(70%);
+}
+
+.card-img-container:hover .card-overlay {
+  opacity: 1;
 }
 
 body {
-  background-color: lightgray;
-  background: radial-gradient(circle at center, white 60%, #bdc3c7 80%, #2c3e50 100%);
+  background-color: #120100;
+  background-image: url("https://www.transparenttextures.com/patterns/black-scales.png");
 }
 
-p, h5 {
+p, h5, .overlay-text {
   font-size: 1.2rem;
   font-family: 'Roboto', sans-serif;
 }
 
-h1, h2, .card-title {
+p {
+  color: white;
+}
+
+h1, h2, .overlay-title {
   font-family: 'Bebas Neue', sans-serif;
   font-weight: normal;
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 5rem;
+  padding-bottom: 35px;
+  color: #4d4d4d;
+  font-weight: 700;
+  text-shadow: -1px 1px 2px #D2FF1F,
+  1px 1px 2px #D2FF1F,
+  1px -1px 0 #D2FF1F,
+  -1px -1px 0 #D2FF1F,
+  0px 0px 15px #D2FF1F;
 }
 
 h2 {
   font-size: 2.5rem;
 }
 
-.card-title {
+.text-valores, .text-ubi {
+  font-size: 4rem;
+  color: #4d4d4d;
+  font-weight: 700;
+  text-shadow: -1px 1px 2px #D2FF1F,
+  1px 1px 2px #D2FF1F,
+  1px -1px 0 #D2FF1F,
+  -1px -1px 0 #D2FF1F,
+  0px 0px 15px #D2FF1F;
+}
+
+.overlay-title {
   font-size: 2rem;
 }
 
@@ -51,20 +123,13 @@ h2 {
   border: none;
   padding: 12px 24px;
   font-weight: lighter;
-}
-
-.btn-primary {
-  background-color: #555555;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem;
-  box-shadow: 0 4px 12px black;
-}
-
-.btn-secondary {
-  background-color: #777777;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem;
-  box-shadow: 0 4px 12px black;
+  background-color: #D2FF1F;
+  color: black;
+  box-shadow: -1px 1px 2px #D2FF1F,
+  1px 1px 2px #D2FF1F,
+  1px -1px 0 #D2FF1F,
+  -1px -1px 0 #D2FF1F,
+  0px 0px 15px #D2FF1F;
 }
 
 .call-to-action {
@@ -77,10 +142,15 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: -1px 1px 2px #D2FF1F,
+  1px 1px 2px #D2FF1F,
+  1px -1px 0 #D2FF1F,
+  -1px -1px 0 #D2FF1F,
+  0px 0px 15px #D2FF1F;
 }
 
 .overlay-text {
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 20px 40px;
   border-radius: 10px;
@@ -88,7 +158,7 @@ h2 {
 }
 
 .call-to-action h2 a {
-  color: lime;
+  color: #D2FF1F;
   text-decoration: none;
 }
 
