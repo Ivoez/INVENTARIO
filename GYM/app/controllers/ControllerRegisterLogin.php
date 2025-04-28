@@ -1,7 +1,6 @@
 <?php
     class AuthController extends BaseController{
 
-        /* Función para llamar a la vista registro con blanqueo de errores*/
         public function register(){
                 $data = [
                     'error_tipo'=>'',
@@ -12,9 +11,7 @@
             $this->view('pages/auth/register',$data);
         }
 
-        /* Función que toma los datos del formulario, hace las verificaciones y los envía al modelo*/
         public function registrarUsuario(){
-         //   die('arranca la funcion registrar usuario');
             if ($_SERVER['REQUEST_METHOD']=='POST'){
                 $nombre_apellido = $_POST['nombre_apellido'];
                 $dni = $_POST['dni'];
@@ -123,7 +120,47 @@
         }
 
     }
-        /* Método para cerrar la sesión */
+
+    public function login() {
+        $data = [
+            'error_login' => '',
+            'dni' => '',
+        ];
+        $this->view('pages/login', $data);
+    }
+    
+
+        public function loginUsuario(){
+            $data = [
+                'dni' => $_POST['dni'],
+            ];
+        
+            $usuario = $this->authModel->buscar_por_dni($data);
+        
+            if ($usuario) {
+                if ($_POST['password'] == $usuario->pass) {
+                    $_SESSION['id'] = $usuario->id;
+                    $_SESSION['nombre'] = $usuario->nombre;
+                    
+                    $this->view('pages/login', $data);
+                } else {
+                    $data = [
+                        'error_login' => '<div class="alert alert-danger" role="alert">
+                        DNI o contraseña incorrectos.
+                        </div>',
+                    ];
+                    $this->view('pages/auth/login', $data);
+                }
+            } else {
+                $data = [
+                    'error_login' => '<div class="alert alert-danger" role="alert">
+                    DNI o contraseña incorrectos.
+                    </div>',
+                ];
+                $this->view('pages/login', $data);
+            }
+        }
+        
         public function logout()
         {
             session_unset();
@@ -131,5 +168,7 @@
             
             $this->view('pages/index');
         }  
+
+
    }  
 ?>
