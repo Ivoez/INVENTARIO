@@ -1,18 +1,26 @@
+
+/*Nav*/
 #navegadorPaginaPrincipal{
-    background-color:  rgb( 113, 128, 255 ) ;
+    background-color:  #D3E4F7;
+
 }
-.nav-link{
-    color: aliceblue;
+#navegadorPaginaPrincipal .nav-link{
+    font-size: 1.3rem;
+    font-weight: 500; /* Semi bold */
+    letter-spacing: 0.5px; /* Espacio entre letras */
+    padding: 0.8rem 1.2rem;
+    color: #033e8c;
 }
+
 /* color de fondo de los navlink*/
 .nav-link:hover{
-    background-color: rgb(5, 20, 155)
+    background-color: #98a5b3;
 }
 
 
 #footerinfo{
-    background-color:  rgb( 113,128, 255 ) ;
-    color: rgb(0, 0, 0); 
+    background-color:  #D3E4F7;
+    color: #033e8c; 
 }
 
 
@@ -20,3 +28,100 @@
 #btn{
     color:  rgb( 113, 128, 255 ) ;
 }
+
+/* Primera sección: Info de la universidad */
+.seccion-universidad {
+    background: rgb(192, 248, 236); /* Degradado azul muy claro */
+    padding: 60px 20px;
+    border-radius: 15px;
+    box-shadow: 0 30px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.seccion-universidad h2 {
+    font-size: 2.5rem;
+    color: #033e8c;
+    font-weight: bold;
+}
+
+.seccion-universidad p {
+    color:  #033e8c;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.seccion-universidad .btn-primary {
+    background-color:  rgb( 113,128, 255 ) ;
+    border: none;
+    font-size: 1.1rem;
+    padding: 10px 25px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.seccion-universidad .btn-primary:hover {
+    background-color: rgb(5, 20, 155)
+}
+
+/* Segunda sección: Programas académicos */
+.seccion-contenedor {
+    background: rgb(192, 248, 236); /* Fondo gris clarito */
+    padding: 60px 20px;
+    border-radius: 15px;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.10);
+    margin-bottom: 50px;
+}
+
+.seccion-contenedor h2 {
+    font-size: 2.5rem;
+    color:  #033e8c;
+    font-weight: bold;
+}
+
+.seccion-contenedor p {
+    color:  #033e8c;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.seccion-contenedor h4 {
+    font-size: 1.5rem;
+    color:  #033e8c;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.seccion-contenedor .row > div {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+}
+
+.seccion-contenedor .row > div:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+/* carrusel */
+#carouselExampleDark {
+    max-height: 500px;
+    overflow: hidden;
+    border-radius: 15px; /* Opcional: bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  }
+  
+  /* Imágenes dentro del carrusel */
+  #carouselExampleDark .carousel-item img {
+    height: 500px;
+    object-fit: cover; /* Ajusta la imagen manteniendo buen encuadre */
+  }
+  
+  /* Texto del caption */
+  #carouselExampleDark .carousel-caption {
+    font-size: 1.3rem;
+    background: rgba(0, 0, 0, 0.4); /* Fondo negro semi-transparente detrás del texto */
+    padding: 10px 20px;
+    border-radius: 10px;
+  }

@@ -1,63 +1,35 @@
 <?php require RUTA_APP .'/views/layout/header.php';?>
 
   
-<!--Header -->
-<header>
-    <!--Navegador -->
-        <nav id="navegadorPaginaPrincipal" class="navbar navbar-expand-lg py-2 px-3 mb-1">
-            <div class="dropdown me-5">
-              <a class="user-icon" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false" style="color:rgb(3, 40, 66);">
-                <img src="<?php echo RUTA_URL; ?>/img/logoUniversidad.png" alt="LogoIzq" class="me-2 rounded-circle" style="width: 40px; height: 40px;">
-              </a>
-            </div> 
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ms-auto mb-0"> 
-                <li class="nav-item">
-                  <a class="nav-link active text-white small" href="">Ingresar</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white small" href="#informacion">Informacion</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white small" href="#piePagina">Contactanos</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-</header>
+
     <!--imagen con carusel -->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide mb-3" style="max-height: 300px; overflow: hidden;">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide mb-3">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+   <!--<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>-->
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-      <img src="img/Universidad.jpg" class="d-block w-100" alt="..." style="height: 300px;">
+      <img src="img/cursos.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 24px;">
-        <h5>UNIVERSIDAD TECNOLOGICA NACIONAL</h5>
-        <p>"Formamos líderes del futuro en un mundo digital en constante evolución.</p>
+        <h5>PROGRAMAS ACADÉMICOS DE EXCELENCIA</h5>
+        <p>"En la Universidad Tecnológica Nacional, ofrecemos una amplia variedad de cursos diseñados para transformar tu futuro profesional. Adquiere habilidades avanzadas en tecnología, ciencia e innovación con una formación que te prepara para liderar en un mundo digital en constante cambio".</p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="img/estudiante.jpeg" class="d-block w-100" alt="..." style="height: 300px;">
+      <img src="img/estudiante.jpeg" class="d-block w-100" alt="..." >
       <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 20px;">
         <h5>INCRIPCIONES ABIERTAS</h5>
         <p>"Inscríbete hoy y comienza tu viaje hacia un futuro brillante."</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="img/grupo.jpg" class="d-block w-100" alt="..." style="height: 300px;">
+      <img src="img/grupo.jpg" class="d-block w-100" alt="..." >
       <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 20px;">
         <h5>TU FUTURO ESTA AQUÍ</h5>
         <p>"Desarrolla tus habilidades en un entorno que fomenta la creatividad y la colaboración.".</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="img/cursos.png" class="d-block w-100" alt="..." style="height: 300px;">
-      <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 20px;">
       </div>
     </div>
   </div>
@@ -104,11 +76,12 @@
 <style>
   .custom-img{ 
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
+    margin-top: 50px;
   }
 
   .image-wrapper:hover .custom-img{
@@ -138,10 +111,10 @@
 
   <!--universidad info -->
 
-  <section class="container my-5">
+  <section class="container my-5 seccion-universidad">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <!-- Aquí podés insertar una imagen tecnológica: campus moderno, estudiantes en laboratorio, etc. -->
+        <img src="img/Universidad.jpg" alt="Cursos" class="img-fluid custom-img">
         </div>
         <div class="col-md-6">
             <h2 class="mb-3">Universidad Tecnologica Nacional: Innovación que transforma</h2>
@@ -151,7 +124,7 @@
     </div>
 </section>
 
-<section class="container my-5">
+<section class="container my-5 seccion-contenedor">
     <div class="text-center mb-4">
         <h2>Programas Académicos en Ciencia y Tecnología</h2>
         <p>Desarrollamos talento para liderar la transformación digital y la innovación en la industria moderna.</p>
