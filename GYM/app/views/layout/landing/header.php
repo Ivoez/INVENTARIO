@@ -33,7 +33,7 @@
             <a class="nav-link" href="#">Actividades</a>
           </li>
         </ul>
-        <a href="#" class="btn btn-success">Registrarse</a>
+        <a href="aca hay que llamar al controlador y el metodo" class="btn btn-success">Registrarse</a>
       </div>
     </div>
   </nav>
