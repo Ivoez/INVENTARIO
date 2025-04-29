@@ -5,7 +5,6 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/style.css">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
    <!--Icono de la pestaña -->
    <link rel="icon" href="<?php echo RUTA_URL?>/img/logoUniversidad.png" type="image/x-icon">
    <title><?php echo NOMBRESITIO;?> </title>
@@ -17,9 +16,9 @@
     <!--Navegador -->
         <nav id="navegadorPaginaPrincipal" class="navbar navbar-expand-lg py-2 px-3 mb-1">
             <div class="dropdown me-5">
-              <a class="user-icon" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="<?php echo RUTA_URL; ?>/img/logoUniversidad.png" alt="LogoIzq" class="me-2 rounded-circle" style="width: 60px; height: 60x;">
-              </a>
+            <a class="user-icon" href="<?php echo RUTA_URL; ?>" role="button" id="userMenu">
+             <img src="<?php echo RUTA_URL; ?>/img/logoUniversidad.png" alt="LogoIzq" class="me-2 rounded-circle" style="width: 60px; height: 60px;">
+            </a>
             </div> 
 
                     <!-- Botón hamburguesa -->

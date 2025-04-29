@@ -65,7 +65,7 @@
     </div>
     <!-- IMAGEN 3 -->
     <div class="col-md-4 position-relative image-wrapper">
-      <a href="https://getbootstrap.com/docs/5.3/layout/grid/" target="_blank"> 
+    <a href="<?php echo RUTA_URL; ?>/Pages/Info" target="_blank">
         <img src="img/ImagenCursos.jpg" alt="Cursos" class="img-fluid custom-img">
       </a>
       <div class="overlay-text"> Cursos a distancia </div>
