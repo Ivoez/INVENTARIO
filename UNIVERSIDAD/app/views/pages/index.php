@@ -58,7 +58,7 @@
     </div>
     <!-- IMAGEN 2 -->
     <div class="col-md-4 position-relative image-wrapper">
-      <a href="https://getbootstrap.com/docs/5.3/layout/grid/" target="_blank"> 
+      <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" target="_blank"> 
         <img src="img/ImagenPostGrado.jpg" alt="PostGrado" class="img-fluid custom-img">
       </a>
       <div class="overlay-text"> Carreras de Post-Grado </div>

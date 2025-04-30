@@ -23,6 +23,13 @@
             
         }
 
+        public function infoPostGrado(){
+
+            $data = ["title" => "Carreras de Post-Grado"];
+
+            $this ->view('pages/infoPostGrado', $data);
+        }
+
         
    }
    
