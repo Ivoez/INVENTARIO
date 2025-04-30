@@ -2,7 +2,7 @@
 
 <div class="text-center mb-5">
   <h1>BIENVENIDO A GYM-UNLZ!</h1>
-  <p>Tu espacio ideal para entrenar y superarte!</p>
+  <p class="text-sub">Tu espacio ideal para entrenar y superarte!</p>
 </div>
 
 <div class="text-center mb-5">
