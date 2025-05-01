@@ -33,6 +33,16 @@
             $this ->view('pages/infoPostGrado', $data);
         }
 
+        public function infoCarrerasDeGrado(){
+
+            $data = ["title" => "Carreras de Grado"];
+
+            $data['page'] = 'infoCarrerasDeGrado'; 
+
+
+            $this ->view('pages/infoCarrerasDeGrado', $data);
+        }
+
         
    }
    

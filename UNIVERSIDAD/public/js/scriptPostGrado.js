@@ -1,10 +1,10 @@
 const postGradoCourses = [
     {
         id: 'carrera1',
-        title: 'Ingenieria de Sistemas',
+        title: 'Ingenieria en Sistemas de Informacion',
         image: '../public/img/IngenieriaDeSistemas.jpg',
         thumb: '../public/img/IngenieriaDeSistemas.jpg',
-        description: 'La Ingeniería de Sistemas es una disciplina multidisciplinaria que se enfoca en el diseño, desarrollo, implementación y gestión de sistemas complejos, que pueden ser de hardware, software, sistemas de información, o incluso procesos de negocios.'
+        description: 'La Ingeniería en Sistemas de Información se enfoca en el desarrollo, implementación y gestión de sistemas que procesan y administran información. Los ingenieros en esta área combinan conocimientos de tecnología y negocio para crear soluciones que optimizan la toma de decisiones en las organizaciones. Su trabajo incluye el diseño de bases de datos, la programación de aplicaciones, y la integración de tecnologías emergentes, garantizando que los sistemas sean eficientes, seguros y alineados con las necesidades del usuario.'
     },
     {
         id: 'carrera2',
