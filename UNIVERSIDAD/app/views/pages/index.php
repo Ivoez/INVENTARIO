@@ -51,7 +51,7 @@
   <div class="row justify-content-center g-5">
     <!-- IMAGEN 1 -->
     <div class="col-md-4 position-relative image-wrapper">
-      <a href="https://getbootstrap.com/docs/5.3/layout/grid/" target="_blank">
+      <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" target="_blank">
         <img src="img/ImagenGrado.jpeg" alt="CarreraGrado" class="img-fluid custom-img">
       </a>
       <div class="overlay-text"> Carreras de Grado </div> 

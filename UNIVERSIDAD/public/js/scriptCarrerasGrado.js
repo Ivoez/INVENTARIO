@@ -27,14 +27,14 @@ const postGradoCourses = [
         image: '../public/img/Ing-Iing-industrial.jpg',
         thumb: '../public/img/Ing-Iing-industrial.jpg',
         description: 'La Ingeniería Industrial busca optimizar procesos y sistemas en entornos productivos y organizacionales. Los ingenieros industriales analizan y mejoran la eficiencia de las operaciones, gestionando recursos humanos, materiales y tecnológicos para maximizar la productividad y reducir costos.'
-    }
+    },
     {
         id: 'carrera5',
         title: 'Ingenieria Mecanica',
         image: '../public/img/Ing-Mecanica.jpg',
         thumb: '../public/img/Ing-Mecanica.jpg',
         description: 'La Ingeniería Mecánica se ocupa del diseño, análisis y fabricación de maquinaria y componentes mecánicos. Los ingenieros mecánicos aplican principios de física y materiales para crear soluciones innovadoras en diversas industrias, desde automotriz hasta aeroespacial.'
-    }
+    },   
     {
         id: 'carrera6',
         title: 'Ingenieria Civil',
