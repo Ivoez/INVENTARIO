@@ -13,9 +13,8 @@
    <script src="<?php echo RUTA_URL; ?>/public/js/main.js"></script>
 <?php endif; ?>
 
-<?php if ($data['page'] !== 'infoCarrerasDeGrado'): ?>
-   <script src="<?php echo RUTA_URL; ?>/public/js/main.js"></script>
-<?php endif; ?>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
 

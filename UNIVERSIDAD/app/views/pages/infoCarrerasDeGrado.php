@@ -8,7 +8,7 @@
 </head>
  
   <div class="container my-5">
-    <div class="row" id="courseContainer">
+    <div class="row" id="CarrerasDeGradoContainer">
       <!-- Los cursos se generan automáticamente en esta parte -->
     </div>
   </div>
@@ -16,9 +16,9 @@
   <!-- Sidebar (Menu lateral) -->
   <div id="mySidebar" class="sidebar" aria-hidden="true">
     <a href="javascript:void(0)" class="closebtn" onclick="closeCourse()">&times;</a>
-    <h3 id="courseTitle"></h3>
-    <img id="courseImage" class="course-image" src="" alt="">
-    <p id="courseDescription"></p>
+    <h3 id="CarrerasDeGradoTitle"></h3>
+    <img id="CarrerasDeGradoTitle" class="CarrerasDeGrado-image" src="" alt="">
+    <p id="CarrerasDeGradoTitleDescription"></p>
   </div>
 
   <!-- Ruta JS -->
