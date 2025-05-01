@@ -1,10 +1,5 @@
 <?php require RUTA_APP .'/views/layout/header.php'; ?>
 
-<head>
-  <link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/infoStyle.css">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <title><?php echo $data['title']; ?></title>
-</head>
 
 <div class="container my-5">
   <div class="row" id="postGradoContainer"></div>
@@ -19,6 +14,6 @@
 </div>
 
 <!-- Archivo JS que contiene la lógica -->
-<script src="<?php echo RUTA_URL?>/public/js/scriptPostGrado.js"></script>
 
+<script src="<?php echo RUTA_URL?>/public/js/scriptPostGrado.js"></script>
 <?php require RUTA_APP .'/views/layout/footer.php'; ?>

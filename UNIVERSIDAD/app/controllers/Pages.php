@@ -27,6 +27,9 @@
 
             $data = ["title" => "Carreras de Post-Grado"];
 
+            $data['page'] = 'infoPostGrado'; 
+
+
             $this ->view('pages/infoPostGrado', $data);
         }
 
