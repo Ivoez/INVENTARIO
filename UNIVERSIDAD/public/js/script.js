@@ -93,3 +93,4 @@ const courses = [
       sidebar.style.display = 'none';
     }, 500);
   }
+  
