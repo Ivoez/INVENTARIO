@@ -1,31 +1,29 @@
-/* Estilos del sidebar */
 .sidebar {
   position: fixed;
-  right: -100%; /* Inicialmente el sidebar está fuera de la pantalla */
+  right: -100%;
   top: 0;
-  height: 100%; /* Ocupa toda la altura de la ventana */
-  width: 300px; /* Ancho del sidebar */
-  background-color: #343a40; /* Fondo oscuro */
-  color: white; /* Texto blanco */
-  overflow-y: auto; /* Permite hacer scroll si el contenido es largo */
-  transition: right 0.3s ease; /* Transición suave para el desplazamiento del sidebar */
-  z-index: 1050; /* Asegura que el sidebar esté encima de otros elementos */
-}
-
-/* Estilos cuando el sidebar está visible (agregando la clase .show) */
-.sidebar.show {
-  right: 0; /* Mueve el sidebar a la vista (posición 0 desde la derecha) */
-}
-
-/* Estilos del botón de cierre */
-.sidebar .closebtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 36px;
+  height: 100%;
+  width: 300px;
+  background-color: #343a40;
   color: white;
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  z-index: 1050;
+}
+
+.sidebar.show {
+  right: 0;
+}
+
+.closebtn {
+  font-size: 30px;
+  margin-left: auto;
+  display: block;
+  text-align: right;
+  padding: 10px;
   cursor: pointer;
 }
+
 
 /* Estilo opcional para las imágenes dentro del sidebar */
 .CarreraDeGrado-image {
