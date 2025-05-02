@@ -66,28 +66,19 @@ CarrerasDeGrado.forEach(course => {
 });
 
 // Muestra el sidebar con la información detallada
-function openCourse(carreraId) {
-  const carrera = CarrerasDeGrado.find(c => c.id === carreraId);
-  const sidebar = document.getElementById('mySidebar');
-
-  if (carrera) {
-      sidebar.style.display = 'block';
-      setTimeout(() => {
-          sidebar.classList.add('show');
-      }, 10);
-      sidebar.setAttribute('aria-hidden', 'false');
-
-      document.getElementById('courseTitle').innerText = carrera.title;
-      document.getElementById('courseImage').src = carrera.image;
-      document.getElementById('courseImage').alt = carrera.title;
-      document.getElementById('courseDescription').innerText = carrera.description;
-  }
+function openCourse(title, imageSrc, description) {
+  document.getElementById('courseTitle').innerText = title;
+  document.getElementById('courseImage').src = imageSrc;
+  document.getElementById('courseDescription').innerText = description;
+  document.getElementById('mySidebar').classList.add('show');
+  document.querySelector('.overlay').style.display = 'block';
 }
 
 function closeCourse() {
-  const sidebar = document.getElementById('mySidebar');
-  sidebar.classList.remove('show');
-  sidebar.setAttribute('aria-hidden', 'true');
+  document.getElementById('mySidebar').classList.remove('show');
+  document.querySelector('.overlay').style.display = 'none';
+}
+
 
   setTimeout(() => {
       sidebar.style.display = 'none';

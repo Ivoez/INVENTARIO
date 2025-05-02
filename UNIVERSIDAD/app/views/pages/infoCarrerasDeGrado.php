@@ -6,6 +6,7 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <title class="text-center mb-0"><?php echo $data['title']; ?></title>
 </head>
+<body>
  
 <div id="CarrerasDeGradoContainer" class="row"></div>
 <!-- Fondo opaco (overlay) -->
