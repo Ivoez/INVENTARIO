@@ -179,22 +179,3 @@
     margin-top: 20px;
   }
   
-  #postGradoContainer {
-    background: #f9f9f9; /* color claro para ver el bloque */
-    min-height: 500px;   /* fuerza el espacio mínimo */
-  }
-
-  .card {
-    border: 1px solid #ccc;
-  }
-  
-  .container, .row, .col-md-4 {
-    border: 1px dashed #aaa;
-  }
-
-  body, html {
-    height: auto !important;
-    overflow: visible !important;
-  }
-  
-  
