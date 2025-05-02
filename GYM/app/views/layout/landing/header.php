@@ -1,3 +1,7 @@
+<?php
+  $css = isset($estiloPagina) ? $estiloPagina : 'style.css';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="public/css/style.css" />
+  <link rel="stylesheet" href="<?php echo RUTA_URL . '/public/css/' . $css; ?>" />
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
