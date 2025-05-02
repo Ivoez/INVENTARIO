@@ -51,4 +51,7 @@
   display: block;
 }
 
+#navegadorPaginaPrincipal {
+  z-index: 1040; /* Menor que el sidebar */
+}
   
