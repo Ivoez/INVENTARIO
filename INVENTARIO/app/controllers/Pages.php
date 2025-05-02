@@ -13,7 +13,18 @@
             $this->view('pages/index',$data);
         }
 
-        
+        /* FUNCION PARA LUEGO REALIZAR LOS REGISTROS */
+        public function login(){
+            
+            $data = [
+                "title" => "Pagina login"
+            ];
+            $this->view('pages/Login',$data);
+        }
+
+
+
+
    }
    
 ?>

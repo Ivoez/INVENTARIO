@@ -16,4 +16,31 @@
 
    <title><?php echo NOMBRESITIO;?> </title>
 </head>
+
+<header>
+
+<!--barra de navegacion-->
+
+<nav class="navbar-custom "> <!-- FALTARIA AGREGAR LOGO SIN QUE ESTE AFECTA A LAS DIMENSIONES DE LA NAVBAR-->
+  
+<div     
+    class = "container-fluid">
+    <h1 class="navbar-title text-white" id="logoTitle">Logística RST</h1>  
+</div>
+
+<!--boton sign in-->
+
+<a href="<?php echo RUTA_URL; ?>/Pages/Login" class="boton-animado">Sign in / Log In</a>
+
+
+
+</nav>
+    
+
+
+</header>
+
+
+
+
 <body>
