@@ -65,31 +65,25 @@ const courses = [
     courseContainer.appendChild(col);
   });
    // ejecuta el sidebar al hacer clic en una tarjeta
-  function openCourse(courseId) {
-    const course = courses.find(c => c.id === courseId); // Buscamos el curso por ID
-    console.log(course); //verifica si se obtiene el curso correcto
-    const sidebar = document.getElementById('mySidebar');
+   function openCourse(courseId) {
+    const course = courses.find(c => c.id === courseId);
+    console.log(course); // Verifica si se obtiene el curso correctamente
+
     if (course) {
-      sidebar.style.display = 'block'; // Mostramos el sidebar (antes de animar)
+        document.getElementById('courseTitle').innerText = course.title;
+        document.getElementById('courseImage').src = course.image;
+        document.getElementById('courseDescription').innerText = course.description;
 
-      // realentizamos el CSS de la animación asi se activa correctamente
-      setTimeout(() => {
-        sidebar.classList.add('show'); // Aplica clase que mueve el sidebar visible
-      }, 10);
-
-      sidebar.setAttribute('aria-hidden', 'false'); // Mejora accesibilidad
-     
-      document.getElementById('courseTitle').innerText = course.title;
-      document.getElementById('courseImage').src = course.image;
-      document.getElementById('courseImage').alt = course.title;
-      document.getElementById('courseDescription').innerText = course.description;
-      
-      //console.log('Imagen del curso:', course.image); // Verifica la ruta de la imagen
-    
-    }else {
-      console.error('Curso no encontrado:', courseId); // Manejo de error si el curso no se encuentra 
+        const sidebar = document.getElementById('mySidebar');
+        sidebar.style.display = 'block';
+        setTimeout(() => {
+            sidebar.classList.add('show');
+        }, 10);
+        sidebar.setAttribute('aria-hidden', 'false');
+    } else {
+        console.error('Curso no encontrado:', courseId);
     }
-  }
+}
   // Cerrar el sidebar
   function closeCourse() {
     const sidebar = document.getElementById('mySidebar');
