@@ -2,7 +2,9 @@
 
 
 <div class="container my-5">
-  <div class="row" id="postGradoContainer"></div>
+  <div class="row" id="postGradoContainer">
+
+  </div>
 </div>
 
 <!-- Sidebar que se muestra al hacer clic -->

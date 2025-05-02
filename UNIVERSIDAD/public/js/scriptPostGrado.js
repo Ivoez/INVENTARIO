@@ -30,15 +30,15 @@ const postGradoCourses = [
     {
         id: 'carrera5',
         title: 'Licenciatura en Robotica',
-        image: '../public/img/TecnologiaDeLaInformacion.jpeg',
-        thumb: '../public/img/TecnologiaDeLaInformacion.jpeg',
+        image: '../public/img/Lic-Robotica.jpg',
+        thumb: '../public/img/Lic-Robotica.jpg',
         description: 'La Licenciatura en Robótica es una carrera interdisciplinaria que combina conocimientos de ingeniería, informática y automatización para diseñar, construir y mantener sistemas robóticos. Esta disciplina aborda tanto los aspectos teóricos como prácticos de la robótica, preparando a los estudiantes para enfrentar los desafíos en un campo en constante evolución.'
     },
     {
         id: 'carrera6',
         title: 'Mestria en Inteligencia Artificial',
-        image: '../public/img/TecnologiaDeLaInformacion.jpeg',
-        thumb: '../public/img/TecnologiaDeLaInformacion.jpeg',
+        image: '../public/img/MaestEnIntArt.jpg',
+        thumb: '../public/img/MaestEnIntArt.jpg',
         description: 'La Maestría en Inteligencia Artificial (IA) es un programa avanzado diseñado para formar expertos en el desarrollo y aplicación de tecnologías que simulan la inteligencia humana. Esta combina maestría teoría, práctica y ética en el uso de la IA, preparando a los estudiantes para abordar problemas complejos en diversas industrias.'
     },
   ];
@@ -86,5 +86,7 @@ const postGradoCourses = [
       sidebar.style.display = 'none';
     }, 500);
   }
-  
+ 
+  console.log("Cantidad de carreras cargadas: ", document.querySelectorAll('.card').length);
+
   
