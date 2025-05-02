@@ -6,7 +6,7 @@
    <link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/style.css">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-   <link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/style.css">
+   <link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/infoStyle.css">
    <!--Icono de la pestaña -->
    <link rel="icon" href="<?php echo RUTA_URL?>/img/logoUniversidad.png" type="image/x-icon">
    <title><?php echo NOMBRESITIO;?> </title>
