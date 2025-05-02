@@ -35,8 +35,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto mb-0"> 
                 <li class="nav-item">
-                  <a class="nav-link " href="">Ingresar</a>
-                </li>
+                <li class="nav-item">
+                <li class="nav-item">
+                <li class="nav-item">
+            <a class="nav-link" href="<?php echo RUTA_URL; ?>/usuarios/login">Ingresar</a>
+            </li>
+
+              </li>
+
+
+              </li>
                 <li class="nav-item">
                   <a class="nav-link  " href="#universidadInfo">Informacion</a>
                 </li>

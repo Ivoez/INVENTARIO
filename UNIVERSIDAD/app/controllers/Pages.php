@@ -1,49 +1,41 @@
 <?php
-    class Pages extends BaseController{
-         
-        public function __construct(){
-            
-        }
+class Pages extends BaseController {
 
-        public function index(){
-            
-            $data = [
-                "title" => "Bienvenido"
-            ];
-            $this->view('pages/index',$data);
-        }
+    public function __construct() {
+        // Constructor vacío por ahora
+    }
 
-        /* Función para llamar a la vista info */
-        public function Info(){
+    public function index() {
+        $data = [
+            "title" => "Bienvenido"
+        ];
+        $this->view('pages/index', $data);
+    }
 
-            $data = [
-                "title" => "Información"
-            ];
-            $this->view('pages/info',$data);
-            
-        }
+    /* Función para llamar a la vista info */
+    public function Info() {
+        $data = [
+            "title" => "Información"
+        ];
+        $this->view('pages/info', $data);
+    }
 
-        public function infoPostGrado(){
+    // Función infoPostGrado combinada
+    public function infoPostGrado() {
+        $data = [
+            "title" => "Carreras de Post-Grado",
+            "page" => "infoPostGrado"
+        ];
+        $this->view('pages/infoPostGrado', $data);
+    }
 
-            $data = ["title" => "Carreras de Post-Grado"];
-
-            $data['page'] = 'infoPostGrado'; 
-
-
-            $this ->view('pages/infoPostGrado', $data);
-        }
-
-        public function infoCarrerasDeGrado(){
-
-            $data = ["title" => "Carreras de Grado"];
-
-            $data['page'] = 'infoCarrerasDeGrado'; 
-
-
-            $this ->view('pages/infoCarrerasDeGrado', $data);
-        }
-
-        
-   }
-   
+    // Función infoCarrerasDeGrado
+    public function infoCarrerasDeGrado() {
+        $data = [
+            "title" => "Carreras de Grado",
+            "page" => "infoCarrerasDeGrado"
+        ];
+        $this->view('pages/infoCarrerasDeGrado', $data);
+    }
+}
 ?>
