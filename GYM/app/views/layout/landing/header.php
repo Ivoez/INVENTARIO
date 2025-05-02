@@ -33,20 +33,17 @@
             <a class="nav-link" href="#">Actividades</a>
           </li>
         </ul>
-        <button data-mdb-ripple-init href="" type="button" class="btn btn-outline-light btn-rounded">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-            </path>
-          <svg>
-          <span class="btn-text">Registrarse</span>
-          <span class="btn-circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-            </path>
+
+        <a href="/appweb_caba_1c_2025/GYM/public/register" target="" class="btn btn-outline-light btn-rounded d-flex align-items-center">
+          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/>
           </svg>
-        </button>
+          <span class="btn-text ms-2">Registrarse</span>
+          <span class="btn-circle ms-2"></span>
+          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/>
+          </svg>
+        </a>
       </div>
     </div>
   </nav>

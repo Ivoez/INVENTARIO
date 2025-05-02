@@ -1,8 +1,9 @@
 <?php
-require 'gym.sql';
+//require 'gym.sql';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre_apellido = trim($_POST["nombre_apellido"];
+    $nombre_apellido = trim($_POST["nombre_apellido"]);
     $dni = trim($_POST["dni"]);
     $email = trim($_POST["email"]);
     $celular = trim($_POST["celular"]);
@@ -24,8 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $message = '<div class="alert alert-warning">Por favor completa todos los campos.</div>';
     }
-}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
