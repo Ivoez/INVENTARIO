@@ -6,51 +6,67 @@
 
 
 
-<header>
 
-<!--barra de navegacion-->
-
-<nav class="navbar-custom "> <!-- FALTARIA AGREGAR LOGO SIN QUE ESTE AFECTA A LAS DIMENSIONES DE LA NAVBAR-->
-  
-<div     
-    class = "container-fluid">
-    <h1 class="text-white">Inventario S.A</h1>  
-</div>
-
-<!--boton sign in-->
-
-<button class="boton-animado">Sign in</button>
-
-</nav>
-    
-
-</header>
 
 
 <main class="main">
 
-        <!--texto centrado-->
+        <!--Posicion Texto-->
+        <section class="texto-aislado">
+        <div class="container texto-contenedor">
+        <div class="texto-interno">
 
-    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
-    <div class="w-40 text-white text-center fs-4 texto-centro">
-
-    <p>
-        Ofrecemos un servicio de alta calidad enfocado en tus necesidades.</p> Nuestro objetivo es brindarte la mejor </p>experiencia <p>con profesionalismo y atención personalizada.</p>
+    <p >
+        Ofrecemos un servicio de alta calidad enfocado en tus necesidades.
+        Nuestro objetivo es brindarte la mejor experiencia 
+        con profesionalismo y atención personalizada.
     </p>
-    
-    </div>
+        </div>
+        </div>
+        </section>
    <!--Imagen logo a la derecha del texto -->
 
-    <img src="<?php echo RUTA_URL; ?>/Imagenes/LogoIndex.jpg" alt="Imagen del servicio" class="img-fluid rounded shadow mt-4" style="max-width: 100%; width: 250px; height: auto;">
-     </div>
+   
+     </div> 
 
+     <section class="container my-5 text-white texto-centro">
+    <div class="text-center mb-5 ">
+        <!-- Título principal (conserva su estilo individual) -->
+         <section class = "texto-aislado">
+        <h2 class="texto-interno mb-4"> ¿Por qué elegir Logística RST?</h2>
+        <p class="mt-1 texto-interno">Más de 20 años de trayectoria garantizan nuestra calidad y experiencia.</p>
+        </section>
+    </div>
     
+    <div class="row text-center">
+        <!-- Tarjeta 1 (con efecto completo) -->
+        <div class="col-md-4 mb-4 tarjeta-destacada"> <!-- ¡Clase nueva aquí! -->
+            <h4 class="mb-2">Rapidez</h4>
+            <p>Capacidad de responder y entregar en tiempos competitivos.</p>
+        </div>
+        
+        <!-- Tarjeta 2 (con efecto completo) -->
+        <div class="col-md-4 mb-4 tarjeta-destacada"> <!-- ¡Clase nueva aquí! -->
+            <h4 class="mb-2">Eficiencia</h4>
+            <p>Optimización de recursos para reducir costos y errores.</p>
+        </div>
+        
+        <!-- Tarjeta 3 (con efecto completo) -->
+        <div class="col-md-4 mb-4 tarjeta-destacada"> <!-- ¡Clase nueva aquí! -->
+            <h4 class="mb-2">Confiabilidad</h4>
+            <p>Seguridad y trazabilidad en cada etapa del proceso.</p>
+        </div>
+    </div>
+</section>
 
 
 
-    
+
+
 
 </main>
+
+
 
 
 
