@@ -87,6 +87,6 @@ const postGradoCourses = [
     }, 500);
   }
  
-  console.log("Cantidad de carreras cargadas: ", document.querySelectorAll('.card').length);
+  //console.log("Cantidad de carreras cargadas: ", document.querySelectorAll('.card').length);
 
   

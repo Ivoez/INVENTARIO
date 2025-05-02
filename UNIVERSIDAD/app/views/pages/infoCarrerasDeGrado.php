@@ -10,17 +10,18 @@
  
 <div id="CarrerasDeGradoContainer" class="row"></div>
 <!-- Fondo opaco (overlay) -->
-
-
+<div class="card" role="button" tabindex="0" onclick="openCourse('${course.id}')" 
+onkeypress="if(event.key === 'Enter') openCourse('${course.id}')">
 <!-- Sidebar (Menu lateral) -->
 <div id="mySidebar" class="sidebar" aria-hidden="true">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeCourse()">&times;</a>
-    <h3 id="courseTitle"></h3> <!-- Corregido id -->
-    <img id="courseImage" class="CarreraDeGrado-image" src="" alt=""> <!-- Corregido id -->
-    <p id="courseDescription"></p> <!-- Corregido id -->
+  <a href="javascript:void(0)" class="closebtn" onclick="closeCourse()">&times;</a>
+  <h3 id="courseTitle"></h3>
+  <img id="courseImage" class="course-image" src="" alt="">
+  <p id="courseDescription"></p>
 </div>
 <div class="overlay" onclick="closeCourse()"></div>
 
   <!-- Ruta JS -->
 <script src="<?php echo RUTA_URL?>/public/js/scriptCarrerasGrado.js"></script>
+
 <?php require RUTA_APP .'/views/layout/footer.php';?>

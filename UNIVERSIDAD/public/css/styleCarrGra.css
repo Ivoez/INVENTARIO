@@ -44,12 +44,23 @@
   display: none; /* Oculto por defecto */
 }
 
-/* Cuando el sidebar está visible, mostramos el overlay */
-.sidebar.show + .overlay {
-  display: block;
-}
+
 
 #navegadorPaginaPrincipal {
   z-index: 1040; /* Menor que el sidebar */
 }
   
+.sidebar {
+  display: none; /* O cambiar a display: block; cuando se abra */
+  position: fixed;
+  /* Otras propiedades de estilo */
+}
+
+/* Cuando el sidebar está visible, mostramos el overlay */
+.sidebar.show + .overlay {
+  display: block;
+}
+
+.sidebar.show {
+  display: block; /* Esto debe permitir que el menú se muestre */
+}

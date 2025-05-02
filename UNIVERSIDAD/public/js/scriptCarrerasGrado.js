@@ -41,7 +41,7 @@ const CarrerasDeGrado = [
     thumb: '../public/img/Ing-Civil.jpg',
     description: 'La Ingeniería Civil se enfoca en el diseño, construcción y mantenimiento de infraestructuras, como edificios, puentes y caminos. Los ingenieros civiles aplican principios científicos y matemáticos para resolver problemas relacionados con la construcción y el medio ambiente, garantizando la seguridad y funcionalidad de los proyectos.'
   }
-];
+  ];
 
 // Obtenemos el contenedor donde se insertarán los cursos
 const Container = document.getElementById('CarrerasDeGradoContainer');
@@ -83,4 +83,7 @@ function closeCourse() {
   setTimeout(() => {
       sidebar.style.display = 'none';
   }, 300);
-}
+
+  const card = document.querySelector('.card');
+card.addEventListener('click', () => openCourse('carrera1'));
+
