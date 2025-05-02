@@ -42,19 +42,21 @@
         <!-- Tarjeta 1 (con efecto completo) -->
         <div class="col-md-4 mb-4 tarjeta-destacada"> <!-- ¡Clase nueva aquí! -->
             <h4 class="mb-2">Rapidez</h4>
-            <p>Capacidad de responder y entregar en tiempos competitivos.</p>
+            <p>Procesamiento ágil de datos e inventario en tiempo real para una toma de decisiones más rápida.
+            </p>
         </div>
         
         <!-- Tarjeta 2 (con efecto completo) -->
         <div class="col-md-4 mb-4 tarjeta-destacada"> <!-- ¡Clase nueva aquí! -->
             <h4 class="mb-2">Eficiencia</h4>
-            <p>Optimización de recursos para reducir costos y errores.</p>
+            <p>Automatización de tareas repetitivas y minimización de errores humanos para una gestión optimizada.
+            </p>
         </div>
         
         <!-- Tarjeta 3 (con efecto completo) -->
         <div class="col-md-4 mb-4 tarjeta-destacada"> <!-- ¡Clase nueva aquí! -->
             <h4 class="mb-2">Confiabilidad</h4>
-            <p>Seguridad y trazabilidad en cada etapa del proceso.</p>
+            <p>Sistema seguro con historial de movimientos, acceso controlado y respaldo constante de la información.</p>
         </div>
     </div>
 </section>
