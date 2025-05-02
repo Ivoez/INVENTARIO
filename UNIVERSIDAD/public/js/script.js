@@ -67,6 +67,7 @@ const courses = [
    // ejecuta el sidebar al hacer clic en una tarjeta
   function openCourse(courseId) {
     const course = courses.find(c => c.id === courseId); // Buscamos el curso por ID
+    console.log(course); //verifica si se obtiene el curso correcto
     const sidebar = document.getElementById('mySidebar');
     if (course) {
       sidebar.style.display = 'block'; // Mostramos el sidebar (antes de animar)
@@ -83,7 +84,7 @@ const courses = [
       document.getElementById('courseImage').alt = course.title;
       document.getElementById('courseDescription').innerText = course.description;
       
-      console.log('Imagen del curso:', course.image); // Verifica la ruta de la imagen
+      //console.log('Imagen del curso:', course.image); // Verifica la ruta de la imagen
     
     }else {
       console.error('Curso no encontrado:', courseId); // Manejo de error si el curso no se encuentra 
