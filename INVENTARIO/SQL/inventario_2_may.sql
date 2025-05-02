@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2025 a las 18:54:13
+-- Tiempo de generación: 02-05-2025 a las 19:27:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -107,6 +107,8 @@ CREATE TABLE `usuario` (
 --
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`id_empleado`),
+  ADD UNIQUE KEY `unique_dni_empleado` (`DNI_empleado`),
+  ADD UNIQUE KEY `unique_email_personal_empleado` (`email_personal_empleado`),
   ADD KEY `FK_empleado_usuario` (`usuario_id`),
   ADD KEY `FK_empleado_estado_empleado` (`estado_empleado_id`),
   ADD KEY `FK_empleado_grupo_sanguineo` (`grupo_sanguineo_id`);
@@ -115,25 +117,30 @@ ALTER TABLE `empleado`
 -- Indices de la tabla `estado_empleado`
 --
 ALTER TABLE `estado_empleado`
-  ADD PRIMARY KEY (`id_estado_empleado`);
+  ADD PRIMARY KEY (`id_estado_empleado`),
+  ADD UNIQUE KEY `unique_nombre_estado_empleado` (`nombre_estado_empleado`);
 
 --
 -- Indices de la tabla `grupo_sanguineo`
 --
 ALTER TABLE `grupo_sanguineo`
-  ADD PRIMARY KEY (`id_grupo_sanguineo`);
+  ADD PRIMARY KEY (`id_grupo_sanguineo`),
+  ADD UNIQUE KEY `unique_inicial_grupo_sanguineo` (`id_grupo_sanguineo`);
 
 --
 -- Indices de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  ADD PRIMARY KEY (`id_tipo_usuario`);
+  ADD PRIMARY KEY (`id_tipo_usuario`),
+  ADD UNIQUE KEY `unique_nombre_tipo_usuario` (`id_tipo_usuario`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `unique_nombre_usuario` (`nombre_usuario`),
+  ADD UNIQUE KEY `unique_email_usuario` (`email_usuario`),
   ADD KEY `FK_usuario_tipo_usuario` (`tipo_usuario_id`);
 
 --

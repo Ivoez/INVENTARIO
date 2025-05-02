@@ -28,51 +28,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Registro</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Login / Register</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo RUTA_URL; ?>/public/css/styleregister.css">
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-lg">
-                <div class="card-body">
-                    <h3 class="card-title mb-4 text-center">Registrarse</h3>
+<input type="radio" name="panel" id="sign-in-toggle" checked hidden>
+<input type="radio" name="panel" id="sign-up-toggle" hidden>
 
-                    <?php if (!empty($message)) echo $message; ?>
+<div class="container">
+<div class="form-container sign-up-container">
+    <form action="#">
+    <h1>Crear cuenta!</h1>
+    <span>Usa tu mail para registrarte!</span>
+    <input type="text" placeholder="Nombre" />
+    <input type="text" placeholder="Apellido" />
+    <input type="text" placeholder="DNI" />
+    <input type="email" placeholder="Email" />
+    <input type="text" placeholder="Número de celular" />
+    <input type="password" placeholder="Contraseña" />
+    <input type="password" placeholder="Ingrese nuevamente su contraseña" />
+    <button>REGISTRARSE!</button>
+    </form>
+</div>
 
-                    <form method="POST">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Correo electrónico</label>
-                            <input type="email" name="email" class="form-control" id="email" required>
-                        </div>
+<div class="form-container sign-in-container">
+    <form action="#">
+    <h1>Iniciar Sesion!</h1>
+    <span>Ingresa tu DNI para acceder a tu cuenta!</span>
+    <input type="text" placeholder="DNI" />
+    <input type="password" placeholder="Contraseña" />
+    <a href="#">¿Olvidaste tu contraseña?</a>
+    <button>INICIAR SESION!</button>
+    </form>
+</div>
 
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Nombre de usuario</label>
-                            <input type="text" name="username" class="form-control" id="username" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" name="password" class="form-control" id="password" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
-                    </form>
-
-                    <div class="mt-3 text-center">
-                        <a href="login.php">¿Ya tienes cuenta? Iniciar sesión</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="overlay-container">
+    <div class="overlay">
+    <div class="overlay-panel overlay-left">
+        <h1>Hola devuelta!</h1>
+        <p>Accede con tu información personal para conectarte!</p>
+        <label for="sign-in-toggle" class="ghost btn">INICIAR SESION!</label>
     </div>
+    <div class="overlay-panel overlay-right">
+        <h1>Bienvenido!</h1>
+        <p>Pasanos tus datos y sumate a nuestra familia!</p>
+        <label for="sign-up-toggle" class="ghost btn">REGISTRARSE!</label>
+    </div>
+    </div>
+</div>
 </div>
 
 </body>
