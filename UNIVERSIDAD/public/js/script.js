@@ -75,13 +75,18 @@ const courses = [
       setTimeout(() => {
         sidebar.classList.add('show'); // Aplica clase que mueve el sidebar visible
       }, 10);
-      
+
       sidebar.setAttribute('aria-hidden', 'false'); // Mejora accesibilidad
      
       document.getElementById('courseTitle').innerText = course.title;
       document.getElementById('courseImage').src = course.image;
       document.getElementById('courseImage').alt = course.title;
       document.getElementById('courseDescription').innerText = course.description;
+      
+      console.log('Imagen del curso:', course.image); // Verifica la ruta de la imagen
+    
+    }else {
+      console.error('Curso no encontrado:', courseId); // Manejo de error si el curso no se encuentra 
     }
   }
   // Cerrar el sidebar
