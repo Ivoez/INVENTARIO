@@ -75,7 +75,9 @@ const courses = [
       setTimeout(() => {
         sidebar.classList.add('show'); // Aplica clase que mueve el sidebar visible
       }, 10);
+      
       sidebar.setAttribute('aria-hidden', 'false'); // Mejora accesibilidad
+     
       document.getElementById('courseTitle').innerText = course.title;
       document.getElementById('courseImage').src = course.image;
       document.getElementById('courseImage').alt = course.title;
@@ -93,4 +95,3 @@ const courses = [
       sidebar.style.display = 'none';
     }, 500);
   }
-  
