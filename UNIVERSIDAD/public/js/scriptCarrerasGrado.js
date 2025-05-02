@@ -46,16 +46,16 @@ const CarrerasDeGrado = [
 
   
    // Obtenemos el contenedor donde se insertarán los cursos
-   const CarrerasDeGradoContainer = document.getElementById('CarrerasDeGradoContainer');
+   const Container = document.getElementById('CarrerasDeGradoContainer');
 
    // Iteramos sobre cada curso para crear dinámicamente su card 
-   CarrerasDeGradoContainer.forEach(Carrera => {
+   CarrerasDeGrado.forEach(Carrera => {
      const col = document.createElement('div');
      col.className = 'col-md-4 mb-4';
  
      // Generamos la tarjeta del curso con imagen, titulo y descripcion
      col.innerHTML = `
-       <div class="card" role="button" tabindex="0" onclick="openCourse('${CarrerasDeGrado.id}')" onkeypress="if(event.key === 'Enter') openCourse('${CarrerasDeGrado.id}')">
+       <div class="card" role="button" tabindex="0" onclick="openCourse('${Carrera.id}')" onkeypress="if(event.key === 'Enter') openCourse('${Carrera.id}')">
          <img src="${Carrera.thumb}" class="card-img-top" alt="${course.title}">
          <div class="card-body">
            <h5 class="card-title">${Carrera.title}</h5>
@@ -64,34 +64,34 @@ const CarrerasDeGrado = [
        </div>
      `;
      // Agregamos la tarjeta al contenedor en el DOM
-     CarrerasDeGradoContainer.appendChild(col);
+     Container.appendChild(col);
    });
-    // ejecuta el sidebar al hacer clic en una tarjeta
-   function openCourse(CarrerasDeGradoId) {
-     const CarrerasDeGrado = CarrerasDeGrado.find(c => c.id === CarrerasDeGradoId); // Buscamos el curso por ID
-     const sidebar = document.getElementById('mySidebar');
-     if (CarrerasDeGrado) {
-       sidebar.style.display = 'block'; // Mostramos el sidebar (antes de animar)
- 
-       // realentizamos el CSS de la animación asi se activa correctamente
-       setTimeout(() => {
-         sidebar.classList.add('show'); // Aplica clase que mueve el sidebar visible
-       }, 10);
-       sidebar.setAttribute('aria-hidden', 'false'); // Mejora accesibilidad
-       document.getElementById('CarrerasDeGradoTitle').innerText = CarrerasDeGrado.title;
-       document.getElementById('CarrerasDeGradoImage').src = CarrerasDeGrado.image;
-       document.getElementById('CarrerasDeGradoImage').alt = CarrerasDeGrado.title;
-       document.getElementById('CarrerasDeGradoDescription').innerText = CarrerasDeGrado.description;
-     }
-   }
-   // Cerrar el sidebar
-   function closeCourse() {
-     const sidebar = document.getElementById('mySidebar');
-     sidebar.classList.remove('show'); // Ocultamos el sidebar con animacion
-     sidebar.setAttribute('aria-hidden', 'true'); // Mejoramos su accesibilidad
- 
-     // Esperamos para ocultarlo completamente
-     setTimeout(() => {
-       sidebar.style.display = 'none';
-     }, 500);
-   }
+    // Muestra el sidebar con la información detallada
+function openCourse(carreraId) {
+    const carrera = CarrerasDeGrado.find(c => c.id === carreraId);
+    const sidebar = document.getElementById('mySidebar');
+  
+    if (carrera) {
+      sidebar.style.display = 'block';
+      setTimeout(() => {
+        sidebar.classList.add('show');
+      }, 10);
+      sidebar.setAttribute('aria-hidden', 'false');
+  
+      document.getElementById('courseTitle').innerText = carrera.title;
+      document.getElementById('courseImage').src = carrera.image;
+      document.getElementById('courseImage').alt = carrera.title;
+      document.getElementById('courseDescription').innerText = carrera.description;
+    }
+  }
+  
+  // Oculta el sidebar
+  function closeCourse() {
+    const sidebar = document.getElementById('mySidebar');
+    sidebar.classList.remove('show');
+    sidebar.setAttribute('aria-hidden', 'true');
+  
+    setTimeout(() => {
+      sidebar.style.display = 'none';
+    }, 500);
+  }
