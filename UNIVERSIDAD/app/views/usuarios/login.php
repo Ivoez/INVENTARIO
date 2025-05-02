@@ -6,7 +6,7 @@
 
         <?php if (!empty($data['error'])): ?>
             <div class="alert alert-danger text-center">
-                <?php echo $data['error']; ?>
+                <?phpecho $data['error']; ?>
             </div>
         <?php endif; ?>
 

@@ -106,3 +106,4 @@
 </style>
 
 <?php require RUTA_APP . '/views/layout/footer.php'; ?>
+s
