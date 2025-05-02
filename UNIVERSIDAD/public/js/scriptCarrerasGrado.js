@@ -10,8 +10,8 @@ const CarrerasDeGrado = [
     {
         id: 'carrera2',
         title: 'Ingenieria en Informatica',
-        image: '../public/img/Ing-Informatica.jpg.jpg',
-        thumb: '../public/img/Ing-Informatica.jpg.jpg',
+        image: '../public/img/Ing-Informatica.jpg',
+        thumb: '../public/img/Ing-Informatica.jpg',
         description: 'La Ingeniería en Informática se enfoca en la creación y gestión de software y aplicaciones. Los ingenieros en informática desarrollan soluciones digitales, desde aplicaciones móviles hasta sistemas complejos, y se especializan en áreas como inteligencia artificial, bases de datos y seguridad informática.'
     },
     {
@@ -24,8 +24,8 @@ const CarrerasDeGrado = [
     {
         id: 'carrera4',
         title: 'Ingenieria Industrial',
-        image: '../public/img/Ing-Iing-industrial.jpg',
-        thumb: '../public/img/Ing-Iing-industrial.jpg',
+        image: '../public/img/Iing-industrial.jpg',
+        thumb: '../public/img/Iing-industrial.jpg',
         description: 'La Ingeniería Industrial busca optimizar procesos y sistemas en entornos productivos y organizacionales. Los ingenieros industriales analizan y mejoran la eficiencia de las operaciones, gestionando recursos humanos, materiales y tecnológicos para maximizar la productividad y reducir costos.'
     },
     {
@@ -49,17 +49,17 @@ const CarrerasDeGrado = [
    const Container = document.getElementById('CarrerasDeGradoContainer');
 
    // Iteramos sobre cada curso para crear dinámicamente su card 
-   CarrerasDeGrado.forEach(Carrera => {
+   CarrerasDeGrado.forEach(course => {
      const col = document.createElement('div');
      col.className = 'col-md-4 mb-4';
  
      // Generamos la tarjeta del curso con imagen, titulo y descripcion
      col.innerHTML = `
-       <div class="card" role="button" tabindex="0" onclick="openCourse('${Carrera.id}')" onkeypress="if(event.key === 'Enter') openCourse('${Carrera.id}')">
-         <img src="${Carrera.thumb}" class="card-img-top" alt="${course.title}">
+       <div class="card" role="button" tabindex="0" onclick="openCourse('${course.id}')" onkeypress="if(event.key === 'Enter') openCourse('${course.id}')">
+         <img src="${course.thumb}" class="card-img-top" alt="${course.title}">
          <div class="card-body">
-           <h5 class="card-title">${Carrera.title}</h5>
-           <p class="card-text">${Carrera.description}</p>
+           <h5 class="card-title">${course.title}</h5>
+           <p class="card-text">${course.description}</p>
          </div>
        </div>
      `;
@@ -78,10 +78,11 @@ function openCourse(carreraId) {
       }, 10);
       sidebar.setAttribute('aria-hidden', 'false');
   
-      document.getElementById('courseTitle').innerText = carrera.title;
-      document.getElementById('courseImage').src = carrera.image;
-      document.getElementById('courseImage').alt = carrera.title;
-      document.getElementById('courseDescription').innerText = carrera.description;
+    document.getElementById('courseTitle').innerText = carrera.title;
+    document.getElementById('courseImage').src = carrera.image;
+    document.getElementById('courseImage').alt = carrera.title;
+    document.getElementById('courseDescription').innerText = carrera.description;
+
     }
   }
   

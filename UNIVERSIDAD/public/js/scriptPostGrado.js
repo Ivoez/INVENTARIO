@@ -1,10 +1,10 @@
 const postGradoCourses = [
     {
         id: 'carrera1',
-        title: 'Ingenieria en Sistemas de Informacion',
+        title: 'Licenciatura en Sistemas de Informacion',
         image: '../public/img/IngenieriaDeSistemas.jpg',
         thumb: '../public/img/IngenieriaDeSistemas.jpg',
-        description: 'La Ingeniería en Sistemas de Información se enfoca en el desarrollo, implementación y gestión de sistemas que procesan y administran información. Los ingenieros en esta área combinan conocimientos de tecnología y negocio para crear soluciones que optimizan la toma de decisiones en las organizaciones. Su trabajo incluye el diseño de bases de datos, la programación de aplicaciones, y la integración de tecnologías emergentes, garantizando que los sistemas sean eficientes, seguros y alineados con las necesidades del usuario.'
+        description: 'La Licenciatura en Sistemas de Información se enfoca en el desarrollo, implementación y gestión de sistemas que procesan y administran información. Los Licenciados en esta área combinan conocimientos de tecnología y negocio para crear soluciones que optimizan la toma de decisiones en las organizaciones. Su trabajo incluye el diseño de bases de datos, la programación de aplicaciones, y la integración de tecnologías emergentes, garantizando que los sistemas sean eficientes, seguros y alineados con las necesidades del usuario.'
     },
     {
         id: 'carrera2',
@@ -26,7 +26,21 @@ const postGradoCourses = [
         image: '../public/img/GestionProyectosTecnologicos.jpg',
         thumb: '../public/img/GestionProyectosTecnologicos.jpg',
         description: 'La gestión de proyectos tecnológicos implica planificar, ejecutar, supervisar y controlar proyectos que involucran tecnología, ya sea software, hardware, infraestructura o aplicaciones. Esto incluye desde la implementación de nuevos sistemas informáticos hasta el desarrollo de soluciones innovadoras. '
-    }
+    },
+    {
+        id: 'carrera5',
+        title: 'Licenciatura en Robotica',
+        image: '../public/img/TecnologiaDeLaInformacion.jpeg',
+        thumb: '../public/img/TecnologiaDeLaInformacion.jpeg',
+        description: 'La Licenciatura en Robótica es una carrera interdisciplinaria que combina conocimientos de ingeniería, informática y automatización para diseñar, construir y mantener sistemas robóticos. Esta disciplina aborda tanto los aspectos teóricos como prácticos de la robótica, preparando a los estudiantes para enfrentar los desafíos en un campo en constante evolución.'
+    },
+    {
+        id: 'carrera6',
+        title: 'Mestria en Inteligencia Artificial',
+        image: '../public/img/TecnologiaDeLaInformacion.jpeg',
+        thumb: '../public/img/TecnologiaDeLaInformacion.jpeg',
+        description: 'La Maestría en Inteligencia Artificial (IA) es un programa avanzado diseñado para formar expertos en el desarrollo y aplicación de tecnologías que simulan la inteligencia humana. Esta combina maestría teoría, práctica y ética en el uso de la IA, preparando a los estudiantes para abordar problemas complejos en diversas industrias.'
+    },
   ];
   
   const container = document.getElementById('postGradoContainer');

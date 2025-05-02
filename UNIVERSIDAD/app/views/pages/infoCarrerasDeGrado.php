@@ -7,18 +7,14 @@
 <title class="text-center mb-0"><?php echo $data['title']; ?></title>
 </head>
  
-  <div class="container my-5">
-    <div class="row" id="CarrerasDeGradoContainer">
-      <!-- Los cursos se generan automáticamente en esta parte -->
-    </div>
-  </div>
+<div id="CarrerasDeGradoContainer" class="row"></div>
 
-  <!-- Sidebar (Menu lateral) -->
-  <div id="mySidebar" class="sidebar" aria-hidden="true">
+<!-- Sidebar (Menu lateral) -->
+<div id="mySidebar" class="sidebar" aria-hidden="true">
     <a href="javascript:void(0)" class="closebtn" onclick="closeCourse()">&times;</a>
     <h3 id="CarrerasDeGradoTitle"></h3>
-    <img id="CarrerasDeGradoTitle" class="CarrerasDeGrado-image" src="" alt="">
-    <p id="CarrerasDeGradoTitleDescription"></p>
+    <img id="CarrerasDeGradoImage" class="CarreraDeGrado-image" src="" alt="">
+    <p id="courseDescription"></p>
   </div>
 
   <!-- Ruta JS -->
