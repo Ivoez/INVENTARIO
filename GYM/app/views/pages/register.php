@@ -46,9 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="#">
     <h1>Crear cuenta!</h1>
     <span>Usa tu mail para registrarte!</span>
-    <input type="text" placeholder="Npmbre" />
+    <input type="text" placeholder="Nombre" />
+    <input type="text" placeholder="Apellido" />
+    <input type="text" placeholder="DNI" />
     <input type="email" placeholder="Email" />
+    <input type="text" placeholder="Número de celular" />
     <input type="password" placeholder="Contraseña" />
+    <input type="password" placeholder="Ingrese nuevamente su contraseña" />
     <button>REGISTRARSE!</button>
     </form>
 </div>
@@ -56,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="form-container sign-in-container">
     <form action="#">
     <h1>Iniciar Sesion!</h1>
-    <span>Usa tu mail para acceder a tu cuenta!</span>
-    <input type="email" placeholder="Email" />
+    <span>Ingresa tu DNI para acceder a tu cuenta!</span>
+    <input type="text" placeholder="DNI" />
     <input type="password" placeholder="Contraseña" />
-    <a href="#">Olvidaste tu contraseña?</a>
+    <a href="#">¿Olvidaste tu contraseña?</a>
     <button>INICIAR SESION!</button>
     </form>
 </div>
@@ -68,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="overlay">
     <div class="overlay-panel overlay-left">
         <h1>Hola devuelta!</h1>
-        <p>Accede con tu informacion personal para conectarte!</p>
+        <p>Accede con tu información personal para conectarte!</p>
         <label for="sign-in-toggle" class="ghost btn">INICIAR SESION!</label>
     </div>
     <div class="overlay-panel overlay-right">
