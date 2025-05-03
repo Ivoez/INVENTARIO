@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2025 a las 16:00:33
+-- Tiempo de generación: 03-05-2025 a las 20:11:43
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `inventario`
 --
-CREATE DATABASE IF NOT EXISTS `inventario` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
-USE `inventario`;
 
 -- --------------------------------------------------------
 
@@ -34,8 +32,8 @@ CREATE TABLE `cabecera_orden_compra` (
   `nro_orden_compra` varchar(40) NOT NULL,
   `usuario_responsable_id` int(11) NOT NULL,
   `fecha_orden_compra` date DEFAULT current_timestamp(),
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -48,8 +46,8 @@ CREATE TABLE `categoria_producto` (
   `id_categoria_producto` int(11) NOT NULL,
   `nombre_categoria_producto` varchar(40) NOT NULL,
   `estado_categoria_producto_id` int(11) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -63,24 +61,8 @@ CREATE TABLE `detalle_orden_compra` (
   `cabecera_orden_compra_id` int(11) NOT NULL,
   `producto_id` int(11) NOT NULL,
   `cantidad_detalle_orden_compra` decimal(16,4) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `egreso_producto`
---
-
-CREATE TABLE `egreso_producto` (
-  `id_egreso_producto` int(11) NOT NULL,
-  `producto_id` int(11) NOT NULL,
-  `cantidad_egreso` decimal(16,4) NOT NULL,
-  `fecha_egreso` date NOT NULL DEFAULT current_timestamp(),
-  `usuario_responsable_id` int(11) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -94,16 +76,14 @@ CREATE TABLE `empleado` (
   `nombre_empleado` varchar(30) NOT NULL,
   `apellido_empleado` varchar(30) NOT NULL,
   `fecha_nacimiento_empleado` date NOT NULL,
-  `edad` int(11) GENERATED ALWAYS AS (timestampdiff(YEAR,`fecha_nacimiento_empleado`,curdate())) VIRTUAL,
-  `grupo_sanguineo_id` int(11) DEFAULT NULL,
   `DNI_empleado` varchar(10) NOT NULL,
   `email_personal_empleado` varchar(40) NOT NULL,
-  `usuario_id` int(11) DEFAULT NULL,
+  `usuario_id` int(11) NOT NULL,
   `estado_empleado_id` int(11) NOT NULL,
   `fecha_alta_empleado` date DEFAULT NULL,
   `fecha_baja_empleado` date DEFAULT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -115,8 +95,8 @@ CREATE TABLE `empleado` (
 CREATE TABLE `estado_categoria_producto` (
   `id_estado_categoria_producto` int(11) NOT NULL,
   `nombre_estado_categoria_producto` varchar(29) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -128,8 +108,8 @@ CREATE TABLE `estado_categoria_producto` (
 CREATE TABLE `estado_empleado` (
   `id_estado_empleado` int(11) NOT NULL,
   `nombre_estado_empleado` varchar(20) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -141,8 +121,8 @@ CREATE TABLE `estado_empleado` (
 CREATE TABLE `estado_producto` (
   `id_estado_producto` int(11) NOT NULL,
   `nombre_estado_producto` varchar(20) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -154,63 +134,25 @@ CREATE TABLE `estado_producto` (
 CREATE TABLE `estado_proveedor` (
   `id_estado_proveedor` int(11) NOT NULL,
   `nombre_estado_proveedor` varchar(20) NOT NULL,
-  `fecha_hora_creacion` int(11) NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `grupo_sanguineo`
+-- Estructura de tabla para la tabla `movimiento_stock`
 --
 
-CREATE TABLE `grupo_sanguineo` (
-  `id_grupo_sanguineo` int(11) NOT NULL,
-  `incial_grupo_sanguineo` varchar(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `historico_costo_producto`
---
-
-CREATE TABLE `historico_costo_producto` (
-  `fecha_hora_hist_costo` datetime NOT NULL DEFAULT current_timestamp(),
+CREATE TABLE `movimiento_stock` (
+  `id_movimiento_stock` int(11) NOT NULL,
   `producto_id` int(11) NOT NULL,
+  `tipo_movmiento_stock_id` int(11) NOT NULL,
+  `cantidad` decimal(16,4) NOT NULL,
+  `fecha_movmiento` date NOT NULL DEFAULT current_timestamp(),
   `usuario_responsable_id` int(11) NOT NULL,
-  `precio_costo_producto` decimal(16,4) NOT NULL,
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `historico_precio_producto`
---
-
-CREATE TABLE `historico_precio_producto` (
-  `fecha_hora_hist_precio` datetime NOT NULL DEFAULT current_timestamp(),
-  `producto_id` int(11) NOT NULL,
-  `usuario_responsable_id` int(11) NOT NULL,
-  `precio_venta_producto` decimal(16,4) NOT NULL,
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ingreso_producto`
---
-
-CREATE TABLE `ingreso_producto` (
-  `id_ingreso_producto` int(11) NOT NULL,
-  `producto_id` int(11) NOT NULL,
-  `cantidad_ingreso` decimal(16,4) NOT NULL,
-  `fecha_ingreso` date NOT NULL DEFAULT current_timestamp(),
-  `usuario_responsable_id` int(11) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -230,8 +172,8 @@ CREATE TABLE `producto` (
   `precio_venta_producto` decimal(16,4) NOT NULL,
   `precio_costo_producto` decimal(16,4) NOT NULL,
   `estado_producto_id` int(11) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -248,8 +190,21 @@ CREATE TABLE `proveedor` (
   `telefono_proveedor` varchar(40) NOT NULL,
   `email_personal_proveedor` varchar(40) NOT NULL,
   `estado_proveedor_id` int(11) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_movimiento_stock`
+--
+
+CREATE TABLE `tipo_movimiento_stock` (
+  `id_tipo_movmiento_stock` int(11) NOT NULL,
+  `nombre_tipo_movimiento_stock` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -261,8 +216,8 @@ CREATE TABLE `proveedor` (
 CREATE TABLE `tipo_unidad` (
   `id_tipo_unidad` int(11) NOT NULL,
   `nombre_tipo_unidad` varchar(20) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -274,8 +229,8 @@ CREATE TABLE `tipo_unidad` (
 CREATE TABLE `tipo_usuario` (
   `id_tipo_usuario` int(11) NOT NULL,
   `nombre_tipo_usuario` varchar(15) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -291,8 +246,8 @@ CREATE TABLE `usuario` (
   `email_usuario` varchar(40) NOT NULL,
   `avatar_usuario` varchar(150) DEFAULT NULL,
   `tipo_usuario_id` int(10) NOT NULL,
-  `fecha_hora_creacion` datetime NOT NULL DEFAULT current_timestamp(),
-  `fecha_hora_ult_modificacion` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
@@ -324,14 +279,6 @@ ALTER TABLE `detalle_orden_compra`
   ADD KEY `FK_detalle_orden_compra_producto` (`producto_id`);
 
 --
--- Indices de la tabla `egreso_producto`
---
-ALTER TABLE `egreso_producto`
-  ADD PRIMARY KEY (`id_egreso_producto`),
-  ADD KEY `FK_egreso_producto_producto` (`producto_id`),
-  ADD KEY `FK_egreso_producto_usuario` (`usuario_responsable_id`);
-
---
 -- Indices de la tabla `empleado`
 --
 ALTER TABLE `empleado`
@@ -339,8 +286,7 @@ ALTER TABLE `empleado`
   ADD UNIQUE KEY `unique_dni_empleado` (`DNI_empleado`),
   ADD UNIQUE KEY `unique_email_personal_empleado` (`email_personal_empleado`),
   ADD KEY `FK_empleado_usuario` (`usuario_id`),
-  ADD KEY `FK_empleado_estado_empleado` (`estado_empleado_id`),
-  ADD KEY `FK_empleado_grupo_sanguineo` (`grupo_sanguineo_id`);
+  ADD KEY `FK_empleado_estado_empleado` (`estado_empleado_id`);
 
 --
 -- Indices de la tabla `estado_categoria_producto`
@@ -371,35 +317,13 @@ ALTER TABLE `estado_proveedor`
   ADD UNIQUE KEY `unique_nombre_estado_proveedor` (`id_estado_proveedor`);
 
 --
--- Indices de la tabla `grupo_sanguineo`
+-- Indices de la tabla `movimiento_stock`
 --
-ALTER TABLE `grupo_sanguineo`
-  ADD PRIMARY KEY (`id_grupo_sanguineo`),
-  ADD UNIQUE KEY `unique_inicial_grupo_sanguineo` (`id_grupo_sanguineo`);
-
---
--- Indices de la tabla `historico_costo_producto`
---
-ALTER TABLE `historico_costo_producto`
-  ADD PRIMARY KEY (`fecha_hora_hist_costo`,`producto_id`),
-  ADD KEY `FK_historico_costo_producto_producto` (`producto_id`),
-  ADD KEY `FK_historico_costo_producto_usuario` (`usuario_responsable_id`);
-
---
--- Indices de la tabla `historico_precio_producto`
---
-ALTER TABLE `historico_precio_producto`
-  ADD PRIMARY KEY (`fecha_hora_hist_precio`,`producto_id`),
-  ADD KEY `FK_historico_precio_producto_producto` (`producto_id`),
-  ADD KEY `FK_historico_precio_producto_usuario` (`usuario_responsable_id`);
-
---
--- Indices de la tabla `ingreso_producto`
---
-ALTER TABLE `ingreso_producto`
-  ADD PRIMARY KEY (`id_ingreso_producto`),
-  ADD KEY `FK_ingreso_producto_producto` (`producto_id`),
-  ADD KEY `FK_ingreso_producto_usuario` (`usuario_responsable_id`);
+ALTER TABLE `movimiento_stock`
+  ADD PRIMARY KEY (`id_movimiento_stock`),
+  ADD KEY `FK_movmiento_stock_tipo_movimiento_stock` (`tipo_movmiento_stock_id`),
+  ADD KEY `FK_movmiento_stock_usuario` (`usuario_responsable_id`) USING BTREE,
+  ADD KEY `FK_movmiento_stock_producto` (`producto_id`);
 
 --
 -- Indices de la tabla `producto`
@@ -424,6 +348,13 @@ ALTER TABLE `proveedor`
   ADD UNIQUE KEY `unique_cuit_proveedor` (`CUIT_proveedor`),
   ADD UNIQUE KEY `unique_razon_social_proveedor` (`razon_social_proveedor`),
   ADD KEY `FK_proveedor_estado_proveedor` (`estado_proveedor_id`);
+
+--
+-- Indices de la tabla `tipo_movimiento_stock`
+--
+ALTER TABLE `tipo_movimiento_stock`
+  ADD PRIMARY KEY (`id_tipo_movmiento_stock`),
+  ADD UNIQUE KEY `unique_nombre_tipo_movmiento_stock` (`nombre_tipo_movimiento_stock`);
 
 --
 -- Indices de la tabla `tipo_unidad`
@@ -471,12 +402,6 @@ ALTER TABLE `detalle_orden_compra`
   MODIFY `id_detalle_orden_compra` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `egreso_producto`
---
-ALTER TABLE `egreso_producto`
-  MODIFY `id_egreso_producto` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
@@ -507,16 +432,10 @@ ALTER TABLE `estado_proveedor`
   MODIFY `id_estado_proveedor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `grupo_sanguineo`
+-- AUTO_INCREMENT de la tabla `movimiento_stock`
 --
-ALTER TABLE `grupo_sanguineo`
-  MODIFY `id_grupo_sanguineo` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `ingreso_producto`
---
-ALTER TABLE `ingreso_producto`
-  MODIFY `id_ingreso_producto` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `movimiento_stock`
+  MODIFY `id_movimiento_stock` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -529,6 +448,12 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `proveedor`
   MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_movimiento_stock`
+--
+ALTER TABLE `tipo_movimiento_stock`
+  MODIFY `id_tipo_movmiento_stock` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_unidad`
@@ -572,40 +497,19 @@ ALTER TABLE `detalle_orden_compra`
   ADD CONSTRAINT `FK_detalle_orden_compra_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `egreso_producto`
---
-ALTER TABLE `egreso_producto`
-  ADD CONSTRAINT `FK_egreso_producto_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_egreso_producto_usuario` FOREIGN KEY (`usuario_responsable_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD CONSTRAINT `FK_empleado_estado_empleado` FOREIGN KEY (`estado_empleado_id`) REFERENCES `estado_empleado` (`id_estado_empleado`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_empleado_grupo_sanguineo` FOREIGN KEY (`grupo_sanguineo_id`) REFERENCES `grupo_sanguineo` (`id_grupo_sanguineo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_empleado_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `historico_costo_producto`
+-- Filtros para la tabla `movimiento_stock`
 --
-ALTER TABLE `historico_costo_producto`
-  ADD CONSTRAINT `FK_historico_costo_producto_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_historico_costo_producto_usuario` FOREIGN KEY (`usuario_responsable_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `historico_precio_producto`
---
-ALTER TABLE `historico_precio_producto`
-  ADD CONSTRAINT `FK_historico_precio_producto_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_historico_precio_producto_usuario` FOREIGN KEY (`usuario_responsable_id`) REFERENCES `usuario` (`id_usuario`);
-
---
--- Filtros para la tabla `ingreso_producto`
---
-ALTER TABLE `ingreso_producto`
-  ADD CONSTRAINT `FK_ingreso_producto_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_ingreso_producto_usuario` FOREIGN KEY (`usuario_responsable_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
+ALTER TABLE `movimiento_stock`
+  ADD CONSTRAINT `FK_movmiento_stock_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_movmiento_stock_tipo_movimiento_stock` FOREIGN KEY (`tipo_movmiento_stock_id`) REFERENCES `tipo_movimiento_stock` (`id_tipo_movmiento_stock`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_movmiento_stock_usuario` FOREIGN KEY (`usuario_responsable_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
