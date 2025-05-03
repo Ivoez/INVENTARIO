@@ -1,7 +1,7 @@
 
 /*Nav*/
 #navegadorPaginaPrincipal{
-    background-color:  #D3E4F7;
+ background-color: #ffffff;
 
 }
 #navegadorPaginaPrincipal .nav-link{
@@ -9,7 +9,7 @@
     font-weight: 500; /* Semi bold */
     letter-spacing: 0.5px; /* Espacio entre letras */
     padding: 0.8rem 1.2rem;
-    color: #033e8c;
+    color: #252525;
 }
 
 /* color de fondo de los navlink*/
@@ -19,8 +19,8 @@
 
 
 #footerinfo{
-    background-color:  #D3E4F7;
-    color: #033e8c; 
+    background-color:  #171717;
+    color: #fff; 
 }
 
 
@@ -178,20 +178,127 @@
     height: auto;
     margin-top: 20px;
   }
-
-   /*ESTILO DE IMAGENES DE LANDING (GRADO , POST-GRADO Y CURSOS)*/
-  /*<!-- ESTILO IMAGENES Y TEXTO -->*/
-
   
-  .image-wrapper {
-  height: 320px; /* un poco más que la imagen para texto u overlay */
-}
-  .card-img-top {
-    transition: transform 0.3s ease;
+  /* estilo pagina login y olvide mi contraseña /*
+
+    /* General Box Styling */
+    .olvide-box {
+      width: 100%;
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 40px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
   }
-  
-  .card:hover .card-img-top {
+  .olvide-box:hover {
+      transform: translateY(-5px);
+  }
+
+  /* Heading Style */
+  .olvide-box h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+      font-family: 'Arial', sans-serif;
+  }
+
+  /* Input Styling */
+  .olvide-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: all 0.3s;
+  }
+  .olvide-box input:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+  }
+
+  /* Button Styling */
+  .olvide-box button {
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  }
+  .olvide-box button:hover {
+      background-color: #0056b3;
+  }
+
+  /* Error and Success Messages */
+  .olvide-box .error {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 15px;
+      background: #f8d7da;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: left;
+      font-weight: bold;
+  }
+  .olvide-box .success {
+      color: green;
+      font-size: 14px;
+      margin-bottom: 15px;
+      background: #d4edda;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: left;
+      font-weight: bold;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 480px) {
+      .olvide-box {
+          padding: 20px;
+      }
+      .olvide-box h2 {
+          font-size: 20px;
+      }
+  }
+
+    /* Estilos Imagenes y texto */
+
+.custom-img{ 
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    margin-top: 50px;
+  }
+
+  .image-wrapper:hover .custom-img{
     transform: scale(1.05);
   }
 
-  
+  .position-relative{
+    position: relative;
+    overflow: hidden;
+  }
+
+  .overlay-text{
+    position: absolute;
+    top: 70%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
