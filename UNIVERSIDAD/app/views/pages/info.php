@@ -24,5 +24,6 @@
  
    <!-- Ruta JS -->
    <script src="<?php echo RUTA_URL?>/public/js/script.js"></script>
+   <script src="<?php echo RUTA_URL?>/public/js/main.js"></script>
  
  <?php require RUTA_APP .'/views/layout/footer.php';?>
