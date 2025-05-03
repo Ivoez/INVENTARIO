@@ -53,32 +53,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="text" placeholder="Número de celular" />
     <input type="password" placeholder="Contraseña" />
     <input type="password" placeholder="Ingrese nuevamente su contraseña" />
-    <button>REGISTRARSE!</button>
+    <button>
+        <span class="btn-register">REGISTRARSE!</span>
+    </button>
     </form>
 </div>
 
 <div class="form-container sign-in-container">
     <form action="#">
-    <h1>Iniciar Sesion!</h1>
+    <h1 class="sign-in-text-form">Iniciar Sesion!</h1>
     <span>Ingresa tu DNI para acceder a tu cuenta!</span>
     <input type="text" placeholder="DNI" />
     <input type="password" placeholder="Contraseña" />
-    <a href="#">¿Olvidaste tu contraseña?</a>
-    <button>INICIAR SESION!</button>
+    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+    <button>
+        <span>INICIAR SESION!</span>
+    </button>
     </form>
 </div>
 
 <div class="overlay-container">
     <div class="overlay">
     <div class="overlay-panel overlay-left">
-        <h1>Hola devuelta!</h1>
-        <p>Accede con tu información personal para conectarte!</p>
-        <label for="sign-in-toggle" class="ghost btn">INICIAR SESION!</label>
+        <h1 class="overlay-text">Hola devuelta!</h1>
+        <p class="overlay-text">Accede con tu información personal para conectarte!</p>
+        <label for="sign-in-toggle" class="ghost btn overlay-btn">INICIAR SESION!</label>
     </div>
     <div class="overlay-panel overlay-right">
-        <h1>Bienvenido!</h1>
-        <p>Pasanos tus datos y sumate a nuestra familia!</p>
-        <label for="sign-up-toggle" class="ghost btn">REGISTRARSE!</label>
+        <h1 class="overlay-text">Bienvenido!</h1>
+        <p class="overlay-text">Pasanos tus datos y sumate a nuestra familia!</p>
+        <label for="sign-up-toggle" class="ghost btn overlay-btn">REGISTRARSE!</label>
     </div>
     </div>
 </div>
