@@ -5,6 +5,7 @@
 
 
 <section class="main">
+    
     <div>
         <h1 class="texto-centro text-white">
             Registro de usuarios
