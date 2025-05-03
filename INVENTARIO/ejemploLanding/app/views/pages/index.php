@@ -18,7 +18,7 @@
 </div>
 
 <!--boton sign in-->
-<a input type="submit" href= "logint.html" >
+<a input type="submit" href= "login.html" >
 <button class="boton-animado">Sign in</button>
 </a>
 </nav>
