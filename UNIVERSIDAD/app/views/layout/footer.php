@@ -9,10 +9,12 @@
     </div>
 </footer>
 
-<?php if (!isset($data['page']) || $data['page'] !== 'infoPostGrado'): ?>
-    <script src="<?php echo RUTA_URL; ?>/public/js/main.js"></script>
-    <script src="<?php echo RUTA_URL?>/public/js/scriptCarrerasGrado.js" defer></script>
-    <script src="<?php echo RUTA_URL?>/public/js/script.js" defer></script>
+<?php if (isset($data['page'])): ?>
+    <?php if ($data['page'] === 'infoPostGrado'): ?>
+        <script src="<?php echo RUTA_URL?>/public/js/scriptPostGrado.js" defer></script>
+    <?php elseif ($data['page'] === 'infoCarrerasDeGrado'): ?>
+        <script src="<?php echo RUTA_URL?>/public/js/scriptCarrerasGrado.js" defer></script>
+    <?php endif; ?>
 <?php endif; ?>
 
 <!-- Bootstrap JS -->
