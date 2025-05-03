@@ -8,7 +8,7 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
    <link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/infoStyle.css">
    <!--Icono de la pestaña -->
-   <link rel="icon" href="<?php echo RUTA_URL?>/img/logoUniversidad.png" type="image/x-icon">
+   <link rel="icon" href="<?php echo RUTA_URL?>/img/utnNegro.png" type="image/x-icon">
    <title><?php echo NOMBRESITIO;?> </title>
 </head>
 <body>
@@ -19,7 +19,7 @@
         <nav id="navegadorPaginaPrincipal" class="navbar navbar-expand-lg py-2 px-3 mb-1">
             <div class="dropdown me-5">
             <a class="user-icon" href="<?php echo RUTA_URL; ?>" role="button" id="userMenu">
-             <img src="<?php echo RUTA_URL; ?>/img/logoUniversidad.png" alt="LogoIzq" class="me-2 rounded-circle" style="width: 60px; height: 60px;">
+             <img src="<?php echo RUTA_URL; ?>/img/utnNegro.png" alt="LogoIzq" class="me-2" style="width: 90px; height: 90px;">
             </a>
             </div> 
 
