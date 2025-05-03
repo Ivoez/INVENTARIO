@@ -23,15 +23,17 @@
 <!--barra de navegacion-->
   <nav class="navbar-custom d-flex justify-content-between align-items-center px-4">
     <div class="d-flex align-items-center">
-      <!-- Imagen de icono a la izquierda -->
-      <img src="<?php echo RUTA_URL; ?>/Imagenes/InventarioIcono.ico" alt="Icono" class="icono me-4" width="40" height="40">
+      <!-- Imagen de icono a la izquierda, además hacemos que la imagen se convierta en un enlace para volver al inicio -->
+      <a href="<?php echo RUTA_URL; ?>/Pages/Landing">
+  <img src="<?php echo RUTA_URL; ?>/Imagenes/InventarioIcono.ico" alt="Icono" class="icono me-4" width="40" height="40">
+</a>
       <!-- Título -->
       <h1 class="navbar-title text-white m-0" id="logoTitle">Logística RST</h1>
     </div>
 
     <div class="d-flex gap-3">
-<!--botones sign in y inicio-->
-      <a href="<?php echo RUTA_URL; ?>/Pages/Inicio" class="boton-animado1">Inicio</a>
+<!--botones sign in y Nav Prin-->
+      <a href="<?php echo RUTA_URL; ?>/Pages/Inicio" class="boton-animado1">Navegación Principal</a>
       <a href="<?php echo RUTA_URL; ?>/Pages/Login" class="boton-animado">Sign in / Log In</a>
     </div>
   </nav>
