@@ -22,6 +22,15 @@
             $this->view('pages/Login',$data);
         }
 
+        /* FUNCION PARA IR A INICIO */
+        public function Inicio(){
+            
+            $data = [
+                "title" => "Pagina inicio"
+            ];
+            $this->view('pages/inicio',$data);
+        }
+
 
 
 

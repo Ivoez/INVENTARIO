@@ -12,12 +12,9 @@
 }
 
   
-
-/* boton Sign in */
-.boton-animado {
-  position: fixed; /* Para que el botón permanezca en su lugar */
-  right: 20px; /* Lo posiciona en el lado derecho */
-  top: 20px; /* Ajusta la altura  */
+/*boton Sign in e Inicio*/
+.boton-animado,
+.boton-animado1 {
   background-color: #6200ea;
   color: white;
   padding: 10px 20px;
@@ -25,20 +22,13 @@
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.2s ease;
-  z-index: 2;
-  text-decoration: none; /* Elimina el subrayado */
-  
+  text-decoration: none; /*Para que el boton permanezca en su lugar*/
 }
 
-.boton-animado:active {
-  transform: scale(1.2); /* Se agranda cuando se hace clic */
+.boton-animado:active,
+.boton-animado1:active {
+  transform: scale(1.2); /*Se agranda cuando se hace clic*/
 }
-
-
-
-
-
-
 
 
 /****************************Main class*********************************/
