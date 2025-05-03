@@ -8,7 +8,7 @@
 
       public function model($model){
          //carga
-         require_once '../app/models/'. $model.'.php';
+         require_once '../app/model/'. $model.'.php';
          // instanciar el model
          return new $model();
       }

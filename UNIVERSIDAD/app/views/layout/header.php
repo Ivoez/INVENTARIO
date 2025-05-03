@@ -38,7 +38,7 @@
                 <li class="nav-item">
                 <li class="nav-item">
                 <li class="nav-item">
-            <a class="nav-link" href="<?php echo RUTA_URL; ?>/usuarios/login">Ingresar</a>
+            <a class="nav-link" href="<?php echo RUTA_URL; ?>/AuthController/login">Ingresar</a>
             </li>
 
               </li>

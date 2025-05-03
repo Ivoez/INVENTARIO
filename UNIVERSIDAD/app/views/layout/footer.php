@@ -8,7 +8,7 @@
         <p class="text-muted mt-3">&copy; 2025 <b>Universidad Tecnológica Nacional</b>. Todos los derechos reservados.</p>
     </div>
 </footer>
-
+<!-- Bootstrap JS 
 <?php if (isset($data['page'])): ?>
     <?php if ($data['page'] === 'infoPostGrado'): ?>
         <script src="<?php echo RUTA_URL?>/public/js/scriptPostGrado.js" defer></script>
@@ -16,7 +16,7 @@
         <script src="<?php echo RUTA_URL?>/public/js/scriptCarrerasGrado.js" defer></script>
     <?php endif; ?>
 <?php endif; ?>
-
+-->
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
