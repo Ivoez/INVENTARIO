@@ -47,65 +47,48 @@
 
   <!-- Carreras -->
 
-  <div class="container text-center py-4">
-  <div class="row justify-content-center g-5">
-    <!-- IMAGEN 1 -->
-    <div class="col-md-4 position-relative image-wrapper">
-      <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" target="_blank">
-        <img src="img/ImagenGrado.jpeg" alt="CarreraGrado" class="img-fluid custom-img">
-      </a>
-      <div class="overlay-text"> Carreras de Grado </div> 
+  <div class="container py-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    
+    <!-- Card 1: Carreras de Grado -->
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="<?php echo RUTA_URL; ?>/img/ImagenGrado.jpeg" class="card-img-top" alt="Carreras de Grado">
+        <div class="card-body text-center">
+          <h5 class="card-title">Carreras de Grado</h5>
+          <p class="card-text">Programas universitarios enfocados en ciencia y tecnología para tu desarrollo profesional.</p>
+          <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" target="_blank" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
     </div>
-    <!-- IMAGEN 2 -->
-    <div class="col-md-4 position-relative image-wrapper">
-      <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" target="_blank"> 
-        <img src="img/ImagenPostGrado.jpg" alt="PostGrado" class="img-fluid custom-img">
-      </a>
-      <div class="overlay-text"> Carreras de Post-Grado </div>
+
+    <!-- Card 2: Post-Grado -->
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="<?php echo RUTA_URL; ?>/img/ImagenPostGrado.jpg" class="card-img-top" alt="Carreras de Post-Grado">
+        <div class="card-body text-center">
+          <h5 class="card-title">Carreras de Post-Grado</h5>
+          <p class="card-text">Especializaciones para potenciar tu carrera con conocimientos avanzados y actualizados.</p>
+          <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" target="_blank" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
     </div>
-    <!-- IMAGEN 3 -->
-    <div class="col-md-4 position-relative image-wrapper">
-    <a href="<?php echo RUTA_URL; ?>/Pages/Info" target="_blank">
-        <img src="img/ImagenCursos.jpg" alt="Cursos" class="img-fluid custom-img">
-      </a>
-      <div class="overlay-text"> Cursos a distancia </div>
+
+    <!-- Card 3: Cursos -->
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="<?php echo RUTA_URL; ?>/img/ImagenCursos.jpg" class="card-img-top" alt="Cursos a distancia">
+        <div class="card-body text-center">
+          <h5 class="card-title">Cursos a Distancia</h5>
+          <p class="card-text">Capacitate online en áreas tecnológicas, con flexibilidad y calidad académica.</p>
+          <a href="<?php echo RUTA_URL; ?>/Pages/Info" target="_blank" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
-<!-- ESTILO IMAGENES Y TEXTO -->
-<style>
-  .custom-img{ 
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    margin-top: 50px;
-  }
 
-  .image-wrapper:hover .custom-img{
-    transform: scale(1.05);
-  }
-
-  .position-relative{
-    position: relative;
-    overflow: hidden;
-  }
-
-  .overlay-text{
-    position: absolute;
-    top: 70%;
-    left: 75%;
-    transform: translate(-50%, -50%);
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  </style>
 
 
 
