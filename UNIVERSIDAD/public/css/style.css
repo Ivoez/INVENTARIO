@@ -178,4 +178,20 @@
     height: auto;
     margin-top: 20px;
   }
+
+   /*ESTILO DE IMAGENES DE LANDING (GRADO , POST-GRADO Y CURSOS)*/
+  /*<!-- ESTILO IMAGENES Y TEXTO -->*/
+
+  
+  .image-wrapper {
+  height: 320px; /* un poco más que la imagen para texto u overlay */
+}
+  .card-img-top {
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+
   
