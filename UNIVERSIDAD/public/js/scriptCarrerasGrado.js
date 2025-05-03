@@ -23,8 +23,8 @@ const CarrerasDeGrado = [
   {
     id: 'carrera4',
     title: 'Ingenieria Industrial',
-    image: '../public/img/Iing-industrial.jpg',
-    thumb: '../public/img/Iing-industrial.jpg',
+    image: '../public/img/Ing-industrial.jpg',
+    thumb: '../public/img/Ing-industrial.jpg',
     description: 'La Ingeniería Industrial busca optimizar procesos y sistemas en entornos productivos y organizacionales. Los ingenieros industriales analizan y mejoran la eficiencia de las operaciones, gestionando recursos humanos, materiales y tecnológicos para maximizar la productividad y reducir costos.'
   },
   {
@@ -44,7 +44,7 @@ const CarrerasDeGrado = [
   ];
 
 // Obtenemos el contenedor donde se insertarán los cursos
-const Container = document.getElementById('CarrerasDeGradoContainer');
+const CarrerasDeGradoContainer = document.getElementById('CarrerasDeGradoContainer');
 
 // Iteramos sobre cada curso para crear dinámicamente su card 
 CarrerasDeGrado.forEach(course => {
@@ -62,7 +62,7 @@ CarrerasDeGrado.forEach(course => {
     </div>
   `;
   // Agregamos la tarjeta al contenedor en el DOM
-  Container.appendChild(col);
+  CarrerasDeGradoContainer.appendChild(col);
 });
 
 // Muestra el sidebar con la información detallada
@@ -77,13 +77,12 @@ function openCourse(title, imageSrc, description) {
 function closeCourse() {
   document.getElementById('mySidebar').classList.remove('show');
   document.querySelector('.overlay').style.display = 'none';
-}
+
 
 
   setTimeout(() => {
       sidebar.style.display = 'none';
   }, 300);
-
+}
   const card = document.querySelector('.card');
 card.addEventListener('click', () => openCourse('carrera1'));
-
