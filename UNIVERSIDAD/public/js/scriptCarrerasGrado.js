@@ -23,8 +23,8 @@ const CarrerasDeGrado = [
   {
     id: 'carrera4',
     title: 'Ingenieria Industrial',
-    image: '../public/img/Ing-industrial.jpg',
-    thumb: '../public/img/Ing-industrial.jpg',
+    image: '../public/img/Iing-Industrial.jpg',
+    thumb: '../public/img/Iing-Industrial.jpg',
     description: 'La Ingeniería Industrial busca optimizar procesos y sistemas en entornos productivos y organizacionales. Los ingenieros industriales analizan y mejoran la eficiencia de las operaciones, gestionando recursos humanos, materiales y tecnológicos para maximizar la productividad y reducir costos.'
   },
   {

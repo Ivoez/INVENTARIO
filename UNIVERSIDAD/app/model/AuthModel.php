@@ -6,6 +6,7 @@ class AuthModel{
 
     public function crearUsuario($data)
 	{
+		//para hashear la contraseña
 		$hash = password_hash($data['ContraUsuario'], PASSWORD_DEFAULT);
 		$activo = 1;
 		$this->db->query("INSERT INTO usuario

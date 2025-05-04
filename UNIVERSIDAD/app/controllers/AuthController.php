@@ -22,7 +22,8 @@ class AuthController extends BaseController {
             ];
             $UsuarioEncontrado = $this->authModel->buscarPorMail($data);
             if($UsuarioEncontrado){
-                if ($data['pass'] === $UsuarioEncontrado->ContraUsuario){ //password_verify($data['pass'], $UsuarioEncontrado->ContraUsuario)
+                //CON HASH password_verify($data['pass'], $UsuarioEncontrado->ContraUsuario)
+                if ($data['pass'] === $UsuarioEncontrado->ContraUsuario){ 
                     $_SESSION['idUsuario']=$UsuarioEncontrado->idUsuario;
                     $_SESSION['NombreUsuario']=$UsuarioEncontrado->NombreUsuario;
                     $_SESSION['Nombre']=$UsuarioEncontrado->Nombre;
@@ -36,11 +37,22 @@ class AuthController extends BaseController {
                     $_SESSION['ContraUsuario']=$UsuarioEncontrado->ContraUsuario;
 
                     $data = [
-                        'NombreAlumno' => $UsuarioEncontrado->Nombre,
+                        'Nombre' => $UsuarioEncontrado->Nombre,
+                        'tipoUsuario' => $UsuarioEncontrado->tipoUsuario,
                     ];
-                    $this->view('pages/dashboard/dashboard', $data); // o $this->view('pages/dashboard/dashboard');
+                    if($data['tipoUsuario'] == 'admin'){
+                        $this->view('pages/admin/dashboard', $data);
+                        exit();
+                    }else if($data['tipoUsuario'] == 'Profesor'){
+                        $this->view('pages/profesor/dashboard', $data);
+                        exit();
+                    }else{
+                        $this->view('pages/alumno/dashboard', $data);
+                        exit();
+                    }
+                     // o $this->view('pages/dashboard/dashboard');
                     //header('Location: ' . RUTA_APP . '/app/views/pages/dashboard');
-                    exit();
+                    
                 }else{
                     $data = [
                         'errorLogin' => '<div class="alert alert-danger" role="alert">
@@ -112,7 +124,7 @@ public function olvide() {
         
     }
 
-    
+
     public function logout() {
         // Iniciar la sesión si aún no ha sido iniciada
         //session_start();

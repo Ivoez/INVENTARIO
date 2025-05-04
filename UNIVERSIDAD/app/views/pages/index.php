@@ -11,7 +11,7 @@
    <!--<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>-->
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="10000">
+    <div class="carousel-item active" data-bs-interval="2000">
       <img src="img/cursos.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 24px;">
         <h5>PROGRAMAS ACADÉMICOS DE EXCELENCIA</h5>
@@ -25,7 +25,7 @@
         <p>"Inscríbete hoy y comienza tu viaje hacia un futuro brillante."</p>
       </div>
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item" data-bs-interval="2000">
       <img src="img/grupo.jpg" class="d-block w-100" alt="..." >
       <div class="carousel-caption d-none d-md-block" style="color: white; font-size: 20px;">
         <h5>TU FUTURO ESTA AQUÍ</h5>
@@ -57,7 +57,7 @@
         <div class="card-body text-center">
           <h5 class="card-title">Carreras de Grado</h5>
           <p class="card-text">Programas universitarios enfocados en ciencia y tecnología para tu desarrollo profesional.</p>
-          <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" target="_blank" class="btn btn-primary">Ver más</a>
+          <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" class="btn btn-primary">Ver más</a>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
         <div class="card-body text-center">
           <h5 class="card-title">Carreras de Post-Grado</h5>
           <p class="card-text">Especializaciones para potenciar tu carrera con conocimientos avanzados y actualizados.</p>
-          <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" target="_blank" class="btn btn-primary">Ver más</a>
+          <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" class="btn btn-primary">Ver más</a>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
         <div class="card-body text-center">
           <h5 class="card-title">Cursos a Distancia</h5>
           <p class="card-text">Capacitate online en áreas tecnológicas, con flexibilidad y calidad académica.</p>
-          <a href="<?php echo RUTA_URL; ?>/Pages/Info" target="_blank" class="btn btn-primary">Ver más</a>
+          <a href="<?php echo RUTA_URL; ?>/Pages/Info"  class="btn btn-primary">Ver más</a>
         </div>
       </div>
     </div>
