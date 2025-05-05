@@ -10,10 +10,12 @@
   <link rel="stylesheet" href="<?php echo RUTA_URL?>/css/style.css">
   <link rel="icon" href="<?php echo RUTA_URL?>/public/img/utnBlanco.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
   <title><?php echo NOMBRESITIO;?></title>
 </head>
 <body>
+
+<script src="<?php echo RUTA_URL?>/public/js/carousel.js"></script>
+
 
 <!-- Header -->
 <header class="border-bottom shadow-sm">
@@ -34,15 +36,16 @@
       <!-- Menú de navegación -->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link text-white btn btn-outline-primary ms-lg-3" href="<?php echo RUTA_URL; ?>/AuthController/login">Ingresar</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#universidadInfo">Información</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#footerinfo">Contáctanos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white btn btn-outline-primary ms-lg-3" href="<?php echo RUTA_URL; ?>/AuthController/login">Ingresar</a>
-          </li>
+        
         </ul>
       </div>
 

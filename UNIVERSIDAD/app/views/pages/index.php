@@ -52,46 +52,48 @@
 
   <!-- Carreras -->
   <section class="py-5 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-    <div class="container py-4">
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <!-- Card 1: Carreras de Grado -->
-        <div class="col d-flex align-items-stretch">
-          <div class="card h-100 border-0 shadow-lg rounded-3 bg-gradient-to-r from-teal-400 to-green-500">
-            <img src="<?php echo RUTA_URL; ?>/img/ImagenGrado.jpeg" class="card-img-top" alt="Carreras de Grado">
-            <div class="card-body text-center">
-              <h5 class="card-title">Carreras de Grado</h5>
-              <p class="card-text">Programas universitarios enfocados en ciencia y tecnología para tu desarrollo profesional.</p>
-              <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" class="btn btn-outline-light">Ver más</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: Post-Grado -->
-        <div class="col d-flex align-items-stretch">
-          <div class="card h-100 border-0 shadow-lg rounded-3 bg-gradient-to-r from-pink-400 to-purple-500">
-            <img src="<?php echo RUTA_URL; ?>/img/ImagenPostGrado.jpg" class="card-img-top" alt="Carreras de Post-Grado">
-            <div class="card-body text-center">
-              <h5 class="card-title">Carreras de Post-Grado</h5>
-              <p class="card-text">Especializaciones para potenciar tu carrera con conocimientos avanzados y actualizados.</p>
-              <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" class="btn btn-outline-light">Ver más</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: Cursos -->
-        <div class="col d-flex align-items-stretch">
-          <div class="card h-100 border-0 shadow-lg rounded-3 bg-gradient-to-r from-orange-400 to-yellow-500">
-            <img src="<?php echo RUTA_URL; ?>/img/ImagenCursos.jpg" class="card-img-top" alt="Cursos a distancia">
-            <div class="card-body text-center">
-              <h5 class="card-title">Cursos a Distancia</h5>
-              <p class="card-text">Capacitate online en áreas tecnológicas, con flexibilidad y calidad académica.</p>
-              <a href="<?php echo RUTA_URL; ?>/Pages/InfoCursos" class="btn btn-outline-light">Ver más</a>
-            </div>
+  <div class="container py-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      
+      <!-- Card 1: Carreras de Grado -->
+      <div class="col d-flex align-items-stretch">
+        <div class="card h-100 border-0 shadow-lg rounded-3 bg-gradient-to-r from-teal-400 to-green-500 d-flex flex-column">
+          <img src="<?php echo RUTA_URL; ?>/img/ImagenGrado.jpeg" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Carreras de Grado">
+          <div class="card-body text-center d-flex flex-column justify-content-between">
+            <h5 class="card-title fw-bold">Carreras de Grado</h5>
+            <p class="card-text flex-grow-1">Programas universitarios enfocados en ciencia y tecnología para tu desarrollo profesional.</p>
+            <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" class="btn fw-bold px-4 py-2 mt-3 rounded-pill shadow-sm" style="background-color: #000; color: #fff; border: 2px solid #fff;">Ver más</a>
           </div>
         </div>
       </div>
+
+      <!-- Card 2: Post-Grado -->
+      <div class="col d-flex align-items-stretch">
+        <div class="card h-100 border-0 shadow-lg rounded-3 bg-gradient-to-r from-pink-400 to-purple-500 d-flex flex-column">
+          <img src="<?php echo RUTA_URL; ?>/img/ImagenPostGrado.jpg" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Carreras de Post-Grado">
+          <div class="card-body text-center d-flex flex-column justify-content-between">
+            <h5 class="card-title fw-bold">Carreras de Post-Grado</h5>
+            <p class="card-text flex-grow-1">Especializaciones para potenciar tu carrera con conocimientos avanzados y actualizados.</p>
+            <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" class="btn fw-bold px-4 py-2 mt-3 rounded-pill shadow-sm" style="background-color: #000; color: #fff; border: 2px solid #fff;">Ver más</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Cursos -->
+      <div class="col d-flex align-items-stretch">
+        <div class="card h-100 border-0 shadow-lg rounded-3 bg-gradient-to-r from-orange-400 to-yellow-500 d-flex flex-column">
+          <img src="<?php echo RUTA_URL; ?>/img/ImagenCursos.jpg" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Cursos a distancia">
+          <div class="card-body text-center d-flex flex-column justify-content-between">
+            <h5 class="card-title fw-bold">Cursos a Distancia</h5>
+            <p class="card-text flex-grow-1">Capacitate online en áreas tecnológicas, con flexibilidad y calidad académica.</p>
+            <a href="<?php echo RUTA_URL; ?>/Pages/InfoCursos" class="btn fw-bold px-4 py-2 mt-3 rounded-pill shadow-sm" style="background-color: #000; color: #fff; border: 2px solid #fff;">Ver más</a>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Información Universidad -->
   <section class="container my-5 py-4 px-3 bg-gradient-to-r from-gray-100 to-gray-300 rounded shadow-lg seccion-universidad">
@@ -157,19 +159,6 @@
   </a>
 
   <!-- Script para forzar el arranque automático del carrusel -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const myCarouselElement = document.querySelector('#carouselUTN');
-      if (myCarouselElement) {
-        new bootstrap.Carousel(myCarouselElement, {
-          interval: 3000,
-          ride: 'carousel',
-          pause: false, // por si pasa el mouse encima
-          wrap: true
-        });
-      }
-    });
-  </script>
 
 </div>
 
