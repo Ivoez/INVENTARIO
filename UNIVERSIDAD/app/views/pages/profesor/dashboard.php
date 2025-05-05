@@ -5,7 +5,8 @@ if (!isset($_SESSION['tipoUsuario']) == 'Profesor') {
     exit;
 }
 ?>
-<?php require RUTA_APP . '/views/layout/header.php'; ?>
+<!-- header para usuarios -->
+<?php require RUTA_APP . '/views/layout/users/header.php'; ?>
 
 
 <h1>Hola <?php echo $data['Nombre']; ?>, <?php echo $data['tipoUsuario']?></h1>

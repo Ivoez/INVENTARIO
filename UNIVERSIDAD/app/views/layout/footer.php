@@ -4,7 +4,7 @@
         <h5 class="mb-2">Universidad Tecnológica Nacional</h5>
         <p class="mb-1"><strong>Teléfono:</strong> +54 11 9520 6408</p>
         <p class="mb-1"><strong>Email:</strong> <a href="mailto:universidadteconlogica@correo.com">universidadteconlogica@correo.com</a></p>
-        <p class="mb-1"><strong>Dirección:</strong> Dirección Universidad</p>
+        <p class="mb-1"><strong>Dirección:</strong> Don Bosco 3729, Cdad. Autónoma de Buenos Aires</p>
         <p class="text-muted mt-3">&copy; 2025 <b>Universidad Tecnológica Nacional</b>. Todos los derechos reservados.</p>
     </div>
 </footer>

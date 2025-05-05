@@ -43,91 +43,112 @@
   </button>
 </div>
 
-    <h3 class="text-center mb-0"><?php echo $data['title']; ?></h3>
 
   <!-- Carreras -->
 
+  <section class="py-5 ">
   <div class="container py-4">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    
-    <!-- Card 1: Carreras de Grado -->
-    <div class="col">
-      <div class="card h-100 shadow-sm">
-        <img src="<?php echo RUTA_URL; ?>/img/ImagenGrado.jpeg" class="card-img-top" alt="Carreras de Grado">
-        <div class="card-body text-center">
-          <h5 class="card-title">Carreras de Grado</h5>
-          <p class="card-text">Programas universitarios enfocados en ciencia y tecnología para tu desarrollo profesional.</p>
-          <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" class="stretched-link">Ver más</a>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      
+      <!-- Card 1: Carreras de Grado -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="<?php echo RUTA_URL; ?>/img/ImagenGrado.jpeg" class="card-img-top img-card" alt="Carreras de Grado">
+          <div class="card-body text-center">
+            <h5 class="card-title">Carreras de Grado</h5>
+            <p class="card-text">Programas universitarios enfocados en ciencia y tecnología para tu desarrollo profesional.</p>
+            <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" class="stretched-link">Ver más</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Card 2: Post-Grado -->
-    <div class="col">
-      <div class="card h-100 shadow-sm">
-        <img src="<?php echo RUTA_URL; ?>/img/ImagenPostGrado.jpg" class="card-img-top" alt="Carreras de Post-Grado">
-        <div class="card-body text-center">
-          <h5 class="card-title">Carreras de Post-Grado</h5>
-          <p class="card-text">Especializaciones para potenciar tu carrera con conocimientos avanzados y actualizados.</p>
-          <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" class="stretched-link">Ver más</a>
+      <!-- Card 2: Post-Grado -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="<?php echo RUTA_URL; ?>/img/ImagenPostGrado.jpg" class="card-img-top img-card" alt="Carreras de Post-Grado">
+          <div class="card-body text-center">
+            <h5 class="card-title">Carreras de Post-Grado</h5>
+            <p class="card-text">Especializaciones para potenciar tu carrera con conocimientos avanzados y actualizados.</p>
+            <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" class="stretched-link">Ver más</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Card 3: Cursos -->
-    <div class="col">
-      <div class="card h-100 shadow-sm">
-        <img src="<?php echo RUTA_URL; ?>/img/ImagenCursos.jpg" class="card-img-top" alt="Cursos a distancia">
-        <div class="card-body text-center">
-          <h5 class="card-title">Cursos a Distancia</h5>
-          <p class="card-text">Capacitate online en áreas tecnológicas, con flexibilidad y calidad académica.</p>
-          <a href="<?php echo RUTA_URL; ?>/Pages/InfoCursos"  class="stretched-link">Ver más</a>
+      <!-- Card 3: Cursos -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="<?php echo RUTA_URL; ?>/img/ImagenCursos.jpg" class="card-img-top img-card" alt="Cursos a distancia">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cursos a Distancia</h5>
+            <p class="card-text">Capacitate online en áreas tecnológicas, con flexibilidad y calidad académica.</p>
+            <a href="<?php echo RUTA_URL; ?>/Pages/InfoCursos" class="stretched-link">Ver más</a>
+          </div>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</div>
+</section>
 
 
 
 
   <!--universidad info -->
-
-  <section class="container my-5 seccion-universidad">
-    <div class="row align-items-center">
-        <div class="col-md-6">
-        <img src="img/Universidad.jpg" alt="Cursos" class="img-fluid custom-img">
-        </div>
-        <div class="col-md-6">
-            <h2 class="mb-3">Universidad Tecnologica Nacional: Innovación que transforma</h2>
-            <p class="mb-4">Formamos profesionales altamente capacitados en ciencia, ingeniería y tecnología, con un enfoque práctico, multidisciplinario y adaptado al futuro del trabajo.</p>
-            <a href="#" class="btn btn-primary btn-lg">Solicitá tu cupo ahora</a>
-        </div>
+  <section class="container my-5 py-4 px-3 bg-light rounded shadow seccion-universidad">
+  <div class="row align-items-center">
+    <!-- Imagen -->
+    <div class="col-lg-6 mb-4 mb-lg-0">
+      <img src="img/Universidad.jpg" alt="Universidad" class="img-fluid rounded-3 w-100 shadow-sm">
     </div>
+
+    <!-- Universidad tecnologica -->
+    <div class="col-lg-6">
+      <h2 class="mb-3 fw-bold text-primary">Universidad Tecnológica Nacional: Innovación que transforma</h2>
+      <p class="mb-4 text-muted">
+        Formamos profesionales altamente capacitados en ciencia, ingeniería y tecnología, con un enfoque práctico, multidisciplinario y adaptado al futuro del trabajo.
+      </p>
+      <a href="#" class="btn btn-primary btn-lg shadow">Solicitá tu cupo ahora</a>
+    </div>
+  </div>
 </section>
 
-<section class="container my-5 seccion-contenedor">
-    <div class="text-center mb-4">
-        <h2>Programas Académicos en Ciencia y Tecnología</h2>
-        <p>Desarrollamos talento para liderar la transformación digital y la innovación en la industria moderna.</p>
-    </div>
-    <div class="row text-center">
-        <div class="col-md-4 mb-4">
-            <h4 class="mb-2">Ingeniería en Software</h4>
-            <p>Diseño, desarrollo y gestión de sistemas y aplicaciones. Capacitación en lenguajes modernos, metodologías ágiles y arquitectura de software.</p>
-        </div>
-        <div class="col-md-4 mb-4">
-            <h4 class="mb-2">Ciencia de Datos e Inteligencia Artificial</h4>
-            <p>Formación en análisis de datos, machine learning y algoritmos inteligentes. Aplicaciones en industria, salud, finanzas y más.</p>
-        </div>
-        <div class="col-md-4 mb-4">
-            <h4 class="mb-2">Ingeniería en Robótica y Automatización</h4>
-            <p>Estudios avanzados en sistemas ciberfísicos, robótica industrial, sensores inteligentes y automatización de procesos.</p>
-        </div>
-    </div>
-</section>
+<!-- Programas academicos -->
 
+<section class="container my-5 py-4 px-3 bg-light rounded shadow seccion-contenedor">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-primary">Programas Académicos en Ciencia y Tecnología</h2>
+    <p class="p-2 text-muted">Desarrollamos talento para liderar la transformación digital y la innovación en la industria moderna.</p>
+  </div>
+  
+  <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+    <div class="col-md-4 mb-4">
+      <div class="p-4 h-100 border rounded shadow-sm bg-white">
+        <h4 class="mb-3 text-secondary">Ingeniería en Software</h4>
+        <p class="text-muted">
+          Diseño, desarrollo y gestión de sistemas y aplicaciones. Capacitación en lenguajes modernos, metodologías ágiles y arquitectura de software.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="p-4 h-100 border rounded shadow-sm bg-white">
+        <h4 class="mb-3 text-secondary">Ciencia de Datos e Inteligencia Artificial</h4>
+        <p class="text-muted">
+          Formación en análisis de datos, machine learning y algoritmos inteligentes. Aplicaciones en industria, salud, finanzas y más.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="p-4 h-100 border rounded shadow-sm bg-white">
+        <h4 class="mb-3 text-secondary">Ingeniería en Robótica y Automatización</h4>
+        <p class="text-muted">
+          Estudios avanzados en sistemas ciberfísicos, robótica industrial, sensores inteligentes y automatización de procesos.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
     
 

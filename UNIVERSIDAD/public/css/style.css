@@ -1,3 +1,8 @@
+body{
+
+    background-color: #e2e1e1 !important;
+}
+
 
 /*Nav*/
 #navegadorPaginaPrincipal{
@@ -19,15 +24,30 @@
 
 #footerinfo{
     background-color:  #171717;
-    color: #fff; 
-}
 
+}
+#footerinfo p, h5, b{
+    color: #ffffff !important;
+
+}
 
 
 #btn{
     color:  rgb( 113, 128, 255 ) ;
 }
+.img-card {
+    height: 230px; /* o el alto que se vea mejor para tu diseño */
+    object-fit: cover;
+    width: 100%;
+  }
+.card-body {
+    padding: 1rem; /* Espaciado en el contenido de la tarjeta */
+}   
 
+.card-title {
+    margin-bottom: 1rem; /* Espacio debajo del título */
+    color: #171717 !important;
+}
 /* Primera sección: Info de la universidad */
 .seccion-universidad {
     background: rgb(192, 248, 236); /* Degradado azul muy claro */
@@ -40,12 +60,12 @@
 
 .seccion-universidad h2 {
     font-size: 2.5rem;
-    color: #033e8c;
+    color: #171717 !important;
     font-weight: bold;
 }
 
 .seccion-universidad p {
-    color:  #033e8c;
+    color:  #202020 !important;
     font-size: 1.2rem;
     margin-bottom: 20px;
 }
@@ -74,25 +94,24 @@
 
 .seccion-contenedor h2 {
     font-size: 2.5rem;
-    color:  #033e8c;
+    color:  #171717 !important;
     font-weight: bold;
 }
 
 .seccion-contenedor p {
-    color:  #033e8c;
-    font-size: 1.1rem;
+    color:  #202020 !important;
+    font-size: 1.1rem ;
     margin-bottom: 40px;
 }
 
 .seccion-contenedor h4 {
     font-size: 1.5rem;
-    color:  #033e8c;
+    color:  #171717 !important;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
 .seccion-contenedor .row > div {
-    background: white;
     border-radius: 12px;
     padding: 20px;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -149,7 +168,7 @@
       font-size: 24px;
       margin-bottom: 20px;
       color: #333;
-      font-family: 'Arial', sans-serif;
+     /* font-family: 'Arial', sans-serif;*/
   }
 
   /* Input Styling */
