@@ -47,8 +47,19 @@
     height: auto;
     margin-top: 20px;
     object-fit: contain; 
+    margin-left: 20px;
   }
 
+ 
+#courseDescription {
+  padding: 0 20px;
+  max-height: 400px; /* Definimos la altura máxima */
+  overflow-y: auto; /* Habilitamos el scroll vertical */
+  padding-right: 10px; /* Espacio adicional para la barra de scroll */
+  margin-top: 20px; /* Espacio entre la imagen y la descripción */
+  font-size: 16px; /* Tamaño de la fuente */
+  text-align: justify;
+}
 
    
 

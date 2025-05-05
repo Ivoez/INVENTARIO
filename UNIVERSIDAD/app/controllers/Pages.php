@@ -1,8 +1,9 @@
 <?php
 class Pages extends BaseController {
+    private $CarrerasModel;
 
     public function __construct() {
-        // Constructor vacío por ahora
+        $this->CarrerasModel = $this->model('CarrerasModel');
     }
 
     public function index() {
@@ -12,30 +13,61 @@ class Pages extends BaseController {
         $this->view('pages/index', $data);
     }
 
-    /* Función para llamar a la vista info */
-    public function Info() {
-        $data = [
-            "title" => "Información"
-        ];
-        $this->view('pages/info', $data);
+    public function infoCursos() {
+        $cursos = $this->CarrerasModel->obtenerCursos();
+
+        $data['cursos'] = array_map(function($curso) {
+            return [
+                'titulo' => $curso->nombreCarrera,
+                'descripcion' => $curso->descripcionMuestra,
+                'imagen' => $curso->rutaImagenMuestra,
+                'descripcionCompleta' => $curso->descripcionCompletaSideBar
+            ];
+        }, $cursos);
+
+        $data['title'] = 'Cursos disponibles';
+
+        $this->view('pages/infoCarreras/infoCursos', $data);
     }
 
-    // Función infoPostGrado combinada
-    public function infoPostGrado() {
-        $data = [
-            "title" => "Carreras de Post-Grado",
-            "page" => "infoPostGrado"
-        ];
-        $this->view('pages/infoPostGrado', $data);
-    }
 
-    // Función infoCarrerasDeGrado
+
     public function infoCarrerasDeGrado() {
-        $data = [
-            "title" => "Carreras de Grado",
-            "page" => "infoCarrerasDeGrado"
-        ];
-        $this->view('pages/infoCarrerasDeGrado', $data);
+    
+        $carreras = $this->CarrerasModel->obtenerCarrerasDeGrado();
+        $data['infoCarrerasDeGrado'] = array_map(function($carrera) {
+            return [
+                'titulo' => $carrera->nombreCarrera,  
+                'descripcion' => $carrera->descripcionMuestra,
+                'imagen' => $carrera->rutaImagenMuestra,
+                'descripcionCompleta' => $carrera->descripcionCompletaSideBar
+            ];
+        }, $carreras);
+    
+        $data['title'] = 'Carreras de Grado';
+    
+       
+        $this->view('pages/infoCarreras/infoCarrerasDeGrado', $data);
     }
+    
+    public function infoPostGrado() {
+        
+        $carreras = $this->CarrerasModel->obtenerCarrerasDePostGrado();
+    
+        $data['infoPostGrado'] = array_map(function($carrera) {
+            return [
+                'titulo' => $carrera->nombreCarrera, 
+                'descripcion' => $carrera->descripcionMuestra,
+                'imagen' => $carrera->rutaImagenMuestra,
+                'descripcionCompleta' => $carrera->descripcionCompletaSideBar
+            ];
+        }, $carreras);
+        
+        $data['title'] = 'Carreras de Postgrado';
+    
+        $this->view('pages/infoCarreras/infoPostGrado', $data);
+    }
+    
+
 }
 ?>

@@ -57,7 +57,7 @@
         <div class="card-body text-center">
           <h5 class="card-title">Carreras de Grado</h5>
           <p class="card-text">Programas universitarios enfocados en ciencia y tecnología para tu desarrollo profesional.</p>
-          <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" class="btn btn-primary">Ver más</a>
+          <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" class="stretched-link">Ver más</a>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
         <div class="card-body text-center">
           <h5 class="card-title">Carreras de Post-Grado</h5>
           <p class="card-text">Especializaciones para potenciar tu carrera con conocimientos avanzados y actualizados.</p>
-          <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" class="btn btn-primary">Ver más</a>
+          <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" class="stretched-link">Ver más</a>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
         <div class="card-body text-center">
           <h5 class="card-title">Cursos a Distancia</h5>
           <p class="card-text">Capacitate online en áreas tecnológicas, con flexibilidad y calidad académica.</p>
-          <a href="<?php echo RUTA_URL; ?>/Pages/Info"  class="btn btn-primary">Ver más</a>
+          <a href="<?php echo RUTA_URL; ?>/Pages/InfoCursos"  class="stretched-link">Ver más</a>
         </div>
       </div>
     </div>
