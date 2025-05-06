@@ -28,13 +28,19 @@
                 <input type="password" name="password" id="password" class="form-control rounded-pill border-0 shadow-sm" placeholder="Ingrese su contraseña" required>
             </div>
 
-            <!-- Botón de login -->
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Ingresar</button>
-                <a href="<?php echo RUTA_URL; ?>/AuthController/olvide">¿Olvidaste tu contraseña?</a>
+           <!-- Botón de login -->
+<div class="d-grid gap-2">
+    <button type="submit" class="btn btn-primary">Ingresar</button>
+    <a href="<?php echo RUTA_URL; ?>/AuthController/olvide">¿Olvidaste tu contraseña?</a>
+</div>
 
+<!-- Botón de registro -->
+<div class="d-grid gap-2 mt-2">
+    <a href="<?php echo RUTA_URL; ?>/AuthController/registrarUsuario" class="btn btn-success rounded-pill py-2">
+        <i class="bi bi-person-plus-fill"></i> Registrarse
+    </a>
+</div>
 
-            </div>
             
         </form>
 

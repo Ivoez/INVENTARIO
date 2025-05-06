@@ -273,12 +273,47 @@ body{
 
 
   /* Fondo de RegistrarUsuario.php*/
-body {
-    background-image: url('../img/Fondo-registrarUsuario.jpg'); /* Asegúrate de que la ruta a la imagen sea correcta */
-    background-size: cover; /* La imagen cubre toda la ventana */
-    background-position: center center; /* Centra la imagen */
-    background-attachment: fixed; /* La imagen permanece fija cuando se hace scroll */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
-    background-color: #e2e1e1; /* Color de fondo en caso de que la imagen no cargue */
-}
+
+  body {
+    background-image: url('<?php echo RUTA_URL; ?>/img/fondo-login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .card-registro {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+  }
+
+  .form-control::placeholder {
+    color: #555;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+
+  .btn-registrarse {
+    background-color: #212529;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-registrarse:hover {
+    background-color: #0d6efd; /* azul bootstrap */
+    transform: scale(1.05);
+    color: #fff;
+  }
+  
