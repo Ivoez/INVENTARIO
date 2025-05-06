@@ -1,4 +1,4 @@
-<footer id="footerinfo" class="bg-dark text-white py-4 mt-5 border-top">
+<footer id="footerinfo" class="bg-dark text-white py-4 mt-5 ">
     <div class="container">
         <!-- Contenedor para el logo y la información de contacto -->
         <div class="row justify-content-between">
@@ -35,7 +35,7 @@
         </div>
 
         <!-- Derechos reservados -->
-        <div class="text-center mt-4">
+        <div class="text-center mt-1">
             <p class="text-muted">&copy; 2025 <b>Universidad Tecnológica Nacional</b>. Todos los derechos reservados.</p>
         </div>
     </div>

@@ -18,8 +18,8 @@
 
 
 <!-- Header -->
-<header class="border-bottom shadow-sm">
-  <nav class="navbar navbar-expand-lg py-3">
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg py-3 ">
     <div class="container-fluid">
       
       <!-- Solo logo como botón de inicio -->

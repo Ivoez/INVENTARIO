@@ -1,10 +1,11 @@
-<header>
+
+<head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo RUTA_URL?>/css/style.css">
+</head>
 
-
-</header>
+<body>
 <!-- Contenedor principal con la imagen de fondo -->
 <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh; background: url('<?php echo RUTA_URL; ?>/public/img/IMGDeFondo.jpg') no-repeat center center fixed; background-size: cover; background-position: center;">
     <div class="card shadow-lg p-5 rounded-4" style="width: 100%; max-width: 450px; background-color: rgba(255, 255, 255, 0.52); border: none;">
@@ -46,5 +47,4 @@
         </div>
     </div>
 </div>
-
-<?php require RUTA_APP . '/views/layout/footer.php'; ?>
+</body>

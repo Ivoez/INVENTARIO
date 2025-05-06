@@ -65,7 +65,6 @@
   </div>
 </div>
 
-<?php require RUTA_APP . '/views/layout/footer.php'; ?>
 </body>
 </html>
 

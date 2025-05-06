@@ -1,11 +1,5 @@
-<?php require RUTA_APP .'/views/layout/header.php';?>
-
-<!-- CSS Y BOOTSTRAP 4.5.2 -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/infoStyle.css">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<title class="text-center mb-0"><?php echo $data['title']; ?></title>
+<div style="background-image: url('../img/uniDefondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+<?php require RUTA_APP . '/views/layout/header.php'; ?>
 
 <div class="container my-5">
   <div class="row" id="courseContainer">
@@ -18,10 +12,12 @@
                data-description="<?php echo $curso['descripcion']; ?>"
                data-full-description="<?php echo htmlspecialchars($curso['descripcionCompleta'], ENT_QUOTES, 'UTF-8'); ?>"
                onclick="openCourse(this)">
-            <img src="<?php echo RUTA_URL . '/public/img/' . $curso['imagen']; ?>" class="card-img-top" alt="<?php echo $curso['titulo']; ?>">
+               <img src="<?php echo RUTA_URL . '/public/img/' . $curso['imagen']; ?>" class="card-img-top" alt="<?php echo $curso['titulo']; ?>">
             <div class="card-body">
               <h5 class="card-title"><?php echo $curso['titulo']; ?></h5>
               <p class="card-text"><?php echo $curso['descripcion']; ?></p>
+              <!-- Botón Ver Más que abre el sidebar -->
+              
             </div>
           </div>
         </div>
@@ -43,3 +39,4 @@
 <script src="<?php echo RUTA_URL?>/public/js/infoSidebar.js"></script>
 
 <?php require RUTA_APP .'/views/layout/footer.php';?>
+    </div>

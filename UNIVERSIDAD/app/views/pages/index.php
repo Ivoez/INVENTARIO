@@ -60,7 +60,7 @@
         <div class="card h-100 border-0 shadow-lg rounded-3 bg-gradient-to-r from-teal-400 to-green-500 d-flex flex-column">
           <img src="<?php echo RUTA_URL; ?>/img/ImagenGrado.jpeg" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Carreras de Grado">
           <div class="card-body text-center d-flex flex-column justify-content-between">
-            <h5 class="card-title fw-bold">Carreras de Grado</h5>
+            <h5 class="card-title fw-bold text-black">Carreras de Grado</h5>
             <p class="card-text flex-grow-1">Programas universitarios enfocados en ciencia y tecnología para tu desarrollo profesional.</p>
             <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" class="btn fw-bold px-4 py-2 mt-3 rounded-pill shadow-sm" style="background-color: #000; color: #fff; border: 2px solid #fff;">Ver más</a>
           </div>
@@ -72,7 +72,7 @@
         <div class="card h-100 border-0 shadow-lg rounded-3 bg-gradient-to-r from-pink-400 to-purple-500 d-flex flex-column">
           <img src="<?php echo RUTA_URL; ?>/img/ImagenPostGrado.jpg" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Carreras de Post-Grado">
           <div class="card-body text-center d-flex flex-column justify-content-between">
-            <h5 class="card-title fw-bold">Carreras de Post-Grado</h5>
+            <h5 class="card-title fw-bold text-black">Carreras de Post-Grado</h5>
             <p class="card-text flex-grow-1">Especializaciones para potenciar tu carrera con conocimientos avanzados y actualizados.</p>
             <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" class="btn fw-bold px-4 py-2 mt-3 rounded-pill shadow-sm" style="background-color: #000; color: #fff; border: 2px solid #fff;">Ver más</a>
           </div>
@@ -84,7 +84,7 @@
         <div class="card h-100 border-0 shadow-lg rounded-3 bg-gradient-to-r from-orange-400 to-yellow-500 d-flex flex-column">
           <img src="<?php echo RUTA_URL; ?>/img/ImagenCursos.jpg" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Cursos a distancia">
           <div class="card-body text-center d-flex flex-column justify-content-between">
-            <h5 class="card-title fw-bold">Cursos a Distancia</h5>
+            <h5 class="card-title fw-bold text-black">Cursos a Distancia</h5>
             <p class="card-text flex-grow-1">Capacitate online en áreas tecnológicas, con flexibilidad y calidad académica.</p>
             <a href="<?php echo RUTA_URL; ?>/Pages/InfoCursos" class="btn fw-bold px-4 py-2 mt-3 rounded-pill shadow-sm" style="background-color: #000; color: #fff; border: 2px solid #fff;">Ver más</a>
           </div>
@@ -93,7 +93,7 @@
 
     </div>
   </div>
-</section>
+ </section>
 
   <!-- Información Universidad -->
   <section class="container my-5 py-4 px-3 bg-gradient-to-r from-gray-100 to-gray-300 rounded shadow-lg seccion-universidad">
@@ -160,6 +160,5 @@
 
   <!-- Script para forzar el arranque automático del carrusel -->
 
+ <?php require RUTA_APP . '/views/layout/footer.php'; ?>
 </div>
-
-<?php require RUTA_APP . '/views/layout/footer.php'; ?>

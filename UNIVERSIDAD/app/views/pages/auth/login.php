@@ -48,8 +48,5 @@
   </div>
 </div>
 
-<!-- Footer correctamente ubicado -->
-<?php require RUTA_APP . '/views/layout/footer.php'; ?>
-
 </body>
 </html>
