@@ -3,7 +3,7 @@
 <!-- Agregar imagen de fondo a toda la página -->
 <div style="background-image: url('img/IMGDeFondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
 
-  <div id="carouselUTN" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel" data-bs-interval="3000">
+  <div id="carouselUTN" class="carousel slide mb-5" data-bs-ride="carousel" >
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselUTN" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselUTN" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -13,7 +13,7 @@
     <div class="carousel-inner">
       <!-- Slide 1 -->
       <div class="carousel-item active">
-        <img src="img/GrupoEstudiantes.jpg" class="d-block w-100" style="object-fit: cover; height: 500px;" alt="Cursos">
+        <img src="img/GrupoEstudiantes.jpg" class="d-block w-100" style="object-fit: cover; height: 500px;" alt="Cursos" loading="lazy">
         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
           <h5 class="text-white fw-bold">PROGRAMAS ACADÉMICOS DE EXCELENCIA</h5>
           <p class="text-white">Transformá tu futuro con cursos innovadores en tecnología, ciencia e ingeniería.</p>
@@ -22,7 +22,7 @@
 
       <!-- Slide 2 -->
       <div class="carousel-item">
-        <img src="img/EdificioUni.jpg" class="d-block w-100" style="object-fit: cover; height: 500px;" alt="Estudiante">
+        <img src="img/EdificioUni.jpg" class="d-block w-100" style="object-fit: cover; height: 500px;" alt="Estudiante" loading="lazy">
         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
           <h5 class="text-white fw-bold">INSCRIPCIONES ABIERTAS</h5>
           <p class="text-white">Sumate hoy y empezá a construir un futuro profesional brillante.</p>
@@ -31,7 +31,7 @@
 
       <!-- Slide 3 -->
       <div class="carousel-item">
-        <img src="img/grupo.jpg" class="d-block w-100" style="object-fit: cover; height: 500px;" alt="Grupo de estudiantes">
+        <img src="img/grupo.jpg" class="d-block w-100" style="object-fit: cover; height: 500px;" alt="Grupo de estudiantes" loading="lazy">
         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
           <h5 class="text-white fw-bold">TU FUTURO ESTÁ AQUÍ</h5>
           <p class="text-white">Aprendé en un entorno que potencia tu creatividad y colaboración.</p>

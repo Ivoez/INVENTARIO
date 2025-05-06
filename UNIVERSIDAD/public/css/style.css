@@ -21,6 +21,9 @@ body{
     background-color: #98a5b3;
 }
 
+.carousel-item {
+    will-change: transform;  /* Le dice al navegador que se va a mover */
+  }
 
 #footerinfo{
     background-color:  #171717;
@@ -31,23 +34,9 @@ body{
 
 }
 
-
-#btn{
-    color:  rgb( 113, 128, 255 ) ;
-}
-.img-card {
-    height: 230px; /* o el alto que se vea mejor para tu diseño */
-    object-fit: cover;
-    width: 100%;
+.card {
+    cursor: default; /* para que el cursor no se vea como un botón */
   }
-.card-body {
-    padding: 1rem; /* Espaciado en el contenido de la tarjeta */
-}   
-
-.card-title {
-    margin-bottom: 1rem; /* Espacio debajo del título */
-    color: #111010 !important;
-}
 /* Primera sección: Info de la universidad */
 .seccion-universidad {
     background: rgba(14, 0, 0, 0.397); /* Azul oscuro transparente */
