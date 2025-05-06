@@ -1,12 +1,12 @@
 body{
 
-    background-color: #e2e1e1 !important;
+    background-color:  #171717 !important;
 }
 
 
 /*Nav*/
 #navegadorPaginaPrincipal{
- background-color: #ffffff;
+ background-color: #171717;
 }
 #navegadorPaginaPrincipal .nav-link{
     font-size: 1.3rem;
@@ -46,11 +46,11 @@ body{
 
 .card-title {
     margin-bottom: 1rem; /* Espacio debajo del título */
-    color: #171717 !important;
+    color: #111010 !important;
 }
 /* Primera sección: Info de la universidad */
 .seccion-universidad {
-    background: rgb(192, 248, 236); /* Degradado azul muy claro */
+    background: rgba(14, 0, 0, 0.397); /* Azul oscuro transparente */
     padding: 60px 20px;
     border-radius: 15px;
     box-shadow: 0 30px 20px rgba(0, 0, 0, 0.1);
@@ -58,14 +58,15 @@ body{
     margin-bottom: 50px;
 }
 
+
 .seccion-universidad h2 {
     font-size: 2.5rem;
-    color: #171717 !important;
+    color: #ffffff !important;
     font-weight: bold;
 }
 
 .seccion-universidad p {
-    color:  #202020 !important;
+    color:  #ffffff !important;
     font-size: 1.2rem;
     margin-bottom: 20px;
 }
@@ -85,28 +86,29 @@ body{
 
 /* Segunda sección: Programas académicos */
 .seccion-contenedor {
-    background: rgb(192, 248, 236); /* Fondo gris clarito */
+    background: rgba(14, 0, 0, 0.397); /* Fondo gris clarito */
     padding: 60px 20px;
     border-radius: 15px;
-    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.10);
+    box-shadow: 0 20px 20px rgba(255, 255, 255, 0.973);
     margin-bottom: 50px;
 }
 
 .seccion-contenedor h2 {
     font-size: 2.5rem;
-    color:  #171717 !important;
+    color:  #ffffff !important;
     font-weight: bold;
 }
 
+
 .seccion-contenedor p {
-    color:  #202020 !important;
+    color:  #000000 !important;
     font-size: 1.1rem ;
     margin-bottom: 40px;
 }
-
+/* seccion de programamas academicos */
 .seccion-contenedor h4 {
     font-size: 1.5rem;
-    color:  #171717 !important;
+    color:  #000000 !important;
     font-weight: bold;
     margin-bottom: 15px;
 }
