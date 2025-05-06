@@ -85,6 +85,18 @@ public function olvide() {
     $this->view('pages/auth/olvide_mi_contraseña', $data); // Asegúrate de que la vista se llame correctamente
 }
 
+//mostrar vista de registro usuario
+public function registrarUsuario() {
+    $data=[
+        
+    ];
+    $this->view('pages/auth/registrarUsuario', $data); // Asegúrate de que la vista se llame correctamente
+}    
+    
+
+
+
+
 
     // Procesa el formulario de recuperación
     public function enviarCorreo() {

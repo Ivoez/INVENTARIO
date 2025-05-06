@@ -9,107 +9,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   </head>
   <body>
-    <!---ENCABEZADO CON MENU-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">GAMEon</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto"> <!--iconos a la derecha-->
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Novedades</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Proximamente</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Nosotros</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!--SECCION PRINCIPAL-->
-    <div class="container py-5 mt-3">
-      <div class="row align-items-center">
-        <!--columna imagen-->
-        <div class="col-md-4">
-          <img src="img/imagen-proyecto.jpg" alt="imagen gaming" class="img-fluid">
-        </div>
-        <!--columna texto-->
-        <div class="col-md-6 text-start"
-          <h2>Bienvenido a GAMEon</h2>
-          <p>
-            Aquí encontrarás todo sobre el mundo del gaming: noticias, lanzamientos, reseñas y más.
-            Puedes visitar nuestro foro para compartir tus opiniones, resolver dudas o descubrir nuevos juegos con la comunidad.
-          </p>
-          <!--columna boton-->
-        </div>
-        <div class="col-md-2 text-end">
-          <button type="button" class="btn btn-primary btn-lg mt-3">Visitar el Foro</button>
-        </div>
-      </div>
-    </div>
-    <!--SECCION DE CONTENIDO-->
-    <!--COLUMNA 1-->
-    <div class="container py-5 mt-3">
-      <div class="row">
-        <div class="col-md-4 mb-4">
-         <div class="p-4 bg-white shadow rounded h-100 text-center"> <!--color de fondo, fondo diferenciado, altura de columna-->
-           <h2>Game Awards</h2>
-          <p>
-            El ganador del Premio GOTY 2024 fue: Astro Bot
-          </p>
-          <i class="bi bi-robot fs-3"></i>
-          <i class="bi bi-joystick fs-3"></i>
-       </div>
-      </div>
-      <!--COLUMNA 2-->
-        <div class="col-md-4 mb-4">
-         <div class="p-4 bg-light shadow rounded h-100 text-center">
-          <h2>BAFTA</h2>
-          <p>
-            El ganador del Premio BAFTA 2024 fue: Baldur’s Gate 3
-          </p>
-          <i class="bi bi-controller fs-3"></i>
-          <i class="bi bi-trophy-fill fs-2"></i>
-        </div>
-      </div>
-      <!--COLUMNA 3-->
-      <div class="col-md-4 mb-4">
-        <div class="p-4 bg-white shadow rounded h-100 text-center"> 
-          <h2>Steam Awards</h2>
-          <p>
-            El ganador del Premio Steam Awards 2024 fue: Black Myth: Wukong
-          </p>
-          <i class="bi bi-star-fill fs-2"></i>
-          <i class="bi bi-trophy fs-3"></i>
-        </div>
-      </div>
-    </div>
+  
 
-    <!--PIE DE PAGINA-->
-    <footer class="bg-dark text-white py-4 mt-5">
-      <div class="container">
-        <div class="row text-center">
-          <div class="col-md-4 mb-2 mb-md-0">
-            <i class="bi bi-telephone-fill me-2"></i> +54 123 456789
-          </div>
-          <div class="col-md-4 mb-2 mb-md-0">
-            &copy; 2025 Todos los derechos reservados
-          </div>
-          <div class="col-md-4">
-            <i class="bi bi-envelope-fill me-2"></i> contacto@mail.com
-          </div>
-        </div>
-      </div>
-    </footer>
-    
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="card shadow-lg p-4 rounded" style="width: 100%; max-width: 500px;">
+        <h3 class="text-center mb-4">Registro de Usuario</h3>
+
+        
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="confirmar_password" class="form-label">Confirmar contraseña</label>
+                <input type="password" name="confirmar_password" id="confirmar_password" class="form-control" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success">Registrarse</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
 
   </body>
 </html>
