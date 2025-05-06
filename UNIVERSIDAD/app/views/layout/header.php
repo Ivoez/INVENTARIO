@@ -40,7 +40,7 @@
             <a class="nav-link text-white btn btn-outline-primary ms-lg-3" href="<?php echo RUTA_URL; ?>/AuthController/login">Ingresar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#universidadInfo">Información</a>
+            <a class="nav-link text-white btn btn-outline-primary ms-lg-3" href="<?php echo RUTA_URL; ?>/AuthController/informacion">Información</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#footerinfo">Contáctanos</a>

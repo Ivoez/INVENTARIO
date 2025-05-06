@@ -32,7 +32,7 @@
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary">Ingresar</button>
                 <a href="<?php echo RUTA_URL; ?>/AuthController/olvide">¿Olvidaste tu contraseña?</a>
-
+                <a href="<?php echo RUTA_URL; ?>/AuthController/registrarUsuario">Registrate Aqui</a>
 
             </div>
             

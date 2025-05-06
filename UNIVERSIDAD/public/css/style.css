@@ -271,14 +271,6 @@ body{
     font-weight: bold;
   }
 
+ 
 
-  /* Fondo de RegistrarUsuario.php*/
-body {
-    background-image: url('../img/Fondo-registrarUsuario.jpg'); /* Asegúrate de que la ruta a la imagen sea correcta */
-    background-size: cover; /* La imagen cubre toda la ventana */
-    background-position: center center; /* Centra la imagen */
-    background-attachment: fixed; /* La imagen permanece fija cuando se hace scroll */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
-    background-color: #e2e1e1; /* Color de fondo en caso de que la imagen no cargue */
-}
+  

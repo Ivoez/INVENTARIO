@@ -13,6 +13,12 @@ class AuthController extends BaseController {
         $this->view('pages/auth/login', $data);
     }
 
+    //Vista Informacion.php
+    public function informacion() {
+        $this->view('pages/auth/Informacion');
+    }
+    
+
     // Login
     public function loginUsuario() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
