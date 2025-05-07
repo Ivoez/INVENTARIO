@@ -216,5 +216,5 @@
 
   <!-- Script para forzar el arranque automático del carrusel -->
 
- <?php require RUTA_APP . '/views/layout/footer.php'; ?>
 </div>
+<?php require RUTA_APP . '/views/layout/footer.php'; ?>
