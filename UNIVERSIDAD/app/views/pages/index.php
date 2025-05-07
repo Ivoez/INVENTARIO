@@ -1,7 +1,8 @@
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
 
 <!-- Agregar imagen de fondo a toda la página -->
-<div style="background-image: url('img/IMGDeFondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+<div style="background-image: url('img/IMGDeFondo.jpg'); background-size: cover; background-position: center;">
+
 
   <div id="carouselUTN" class="carousel slide mb-5" data-bs-ride="carousel" >
     <div class="carousel-indicators">
@@ -13,7 +14,8 @@
     <div class="carousel-inner">
       <!-- Slide 1 -->
       <div class="carousel-item active">
-        <img src="img/GrupoEstudiantes.jpg" class="d-block w-100" style="object-fit: cover; height: 500px;" alt="Cursos" loading="lazy">
+      <img src="img/GrupoEstudiantes.jpg" class="d-block w-100" width="1600" height="500" style="object-fit: cover;" alt="Cursos" loading="lazy">
+
         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
           <h5 class="text-white fw-bold">PROGRAMAS ACADÉMICOS DE EXCELENCIA</h5>
           <p class="text-white">Transformá tu futuro con cursos innovadores en tecnología, ciencia e ingeniería.</p>
@@ -151,7 +153,61 @@
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- Testimonios de Estudiantes -->
+<!-- Testimonios de Estudiantes -->
+<section class="container my-5 py-4 px-3 bg-gradient-to-r from-gray-100 to-gray-300 rounded shadow-lg seccion-testimonios">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-primary">Testimonios de Estudiantes</h2>
+    <p class="p-2" style="color: white !important;">Conocé las experiencias de quienes ya están transformando su futuro con nosotros.</p>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+    <div class="col">
+      <div class="p-4 h-100 border rounded shadow-lg bg-white">
+        <h5 class="mb-3 text-primary">Laura Gómez</h5>
+        <p class="text-muted">"Estudiar en la UTN me abrió las puertas a una carrera en tecnología que jamás imaginé."</p>
+        <span class="text-muted small">Ingeniera en Sistemas</span>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="p-4 h-100 border rounded shadow-lg bg-white">
+        <h5 class="mb-3 text-primary">Juan Pérez</h5>
+        <p class="text-muted">"Gracias a los cursos online pude capacitarme mientras trabajaba."</p>
+        <span class="text-muted small">Desarrollador Web</span>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="p-4 h-100 border rounded shadow-lg bg-white">
+        <h5 class="mb-3 text-primary">María López</h5>
+        <p class="text-muted">"Los docentes y recursos están a nivel internacional."</p>
+        <span class="text-muted small">Magíster en IA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Noticias o Novedades -->
+<section class="container py-5">
+  <h2 class="text-center fw-bold mb-4">Últimas novedades</h2>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="border rounded p-3 bg-white shadow-sm">
+        <h5 class="fw-bold text-primary">UTN firma convenio con empresa de IA</h5>
+        <p>El acuerdo permitirá a estudiantes realizar prácticas profesionales en proyectos reales con tecnologías de punta.</p>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="border rounded p-3 bg-white shadow-sm">
+        <h5 class="fw-bold text-primary">Nuevo laboratorio de robótica inaugurado</h5>
+        <p>Un espacio de innovación con impresoras 3D, brazos robóticos y simuladores de automatización industrial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <!-- Botón para volver al top -->
   <a href="#navegadorPaginaPrincipal" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle" title="Volver arriba">

@@ -126,6 +126,11 @@ body{
     height: 500px;
     object-fit: cover; /* Ajusta la imagen manteniendo buen encuadre */
   }
+  /*tamaño minima contenedor carrusel*/
+  #carouselUTN .carousel-inner {
+    min-height: 500px;
+  }
+  
   
   /* Texto del caption */
   #carouselExampleDark .carousel-caption {
