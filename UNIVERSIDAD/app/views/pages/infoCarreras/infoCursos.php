@@ -1,6 +1,15 @@
 <div style="background-image: url('../img/uniDefondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
 
+<!-- Botón moderno "Volver al Inicio" debajo del header -->
+<div class="container mt-4">
+  <a href="<?php echo RUTA_URL; ?>" 
+     class="btn px-4 py-2 rounded-pill shadow"
+     style="background-color: rgba(14, 0, 0, 0.397); color: white; font-weight: bold; border: 1px solid rgba(255,255,255,0.3);">
+    ← Volver al Inicio
+  </a>
+</div>
+
 <div class="container my-5">
   <div class="row" id="courseContainer">
     <?php if (!empty($data['cursos'])): ?>
@@ -17,7 +26,6 @@
               <h5 class="card-title"><?php echo $curso['titulo']; ?></h5>
               <p class="card-text"><?php echo $curso['descripcion']; ?></p>
               <!-- Botón Ver Más que abre el sidebar -->
-              
             </div>
           </div>
         </div>
@@ -28,6 +36,7 @@
   </div>
 </div>
 
+<!-- Sidebar con información detallada -->
 <div id="mySidebar" class="sidebar" aria-hidden="true">
   <a href="javascript:void(0)" class="closebtn" onclick="closeCourse()">&times;</a>
   <h3 id="courseTitle"></h3>
@@ -35,8 +44,8 @@
   <p id="courseDescription"></p>
 </div>
 
-<!-- Ruta JS externa (si todavía la necesitás) -->
+<!-- Ruta JS -->
 <script src="<?php echo RUTA_URL?>/public/js/infoSidebar.js"></script>
 
-<?php require RUTA_APP .'/views/layout/footer.php';?>
-    </div>
+<?php require RUTA_APP .'/views/layout/footer.php'; ?>
+</div>
