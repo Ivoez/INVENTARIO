@@ -1,10 +1,11 @@
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
 
-
-<?php
-// informacion.php
-include_once 'header.php'; // Asumiendo que ya tienes un header que se incluye en todas las páginas
-?>
+<!-- Botón Volver al Inicio -->
+<div class="container mt-4">
+  <a href="<?php echo RUTA_URL; ?>" class="btn-volver-inicio">
+    🏠 Volver al Inicio
+  </a>
+</div>
 
 <!-- Sección de Información -->
 <section class="py-5 bg-gradient-to-r from-indigo-600 to-blue-700 text-white" id="universidadInfo">

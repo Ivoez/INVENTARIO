@@ -265,5 +265,23 @@ body{
     font-weight: bold;
   }
 
- 
-
+/* Estilos para el botón de Volver al Inicio */
+.btn-volver-inicio {
+    display: inline-block;
+    background-color: rgba(14, 0, 0, 0.397);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-volver-inicio:hover {
+    background-color: rgba(14, 0, 0, 0.6);
+    transform: scale(1.03);
+  }
+  
