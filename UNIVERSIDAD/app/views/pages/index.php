@@ -133,49 +133,86 @@
   </section>
 
   <!-- Testimonios -->
-  <section class="container my-5 py-4 px-3 bg-gradient-to-r from-gray-100 to-gray-300 rounded shadow-lg seccion-testimonios">
+  <section class="container my-5 py-4 px-3 bg-gradient-to-r from-teal-100 to-teal-200 rounded shadow-lg seccion-contenedor">
     <div class="text-center mb-5">
-      <h2 class="fw-bold text-primary">Testimonios de Estudiantes</h2>
+      <h2 class="fw-bold text-primary">Testimonios De Estudiantes</h2>
       <p class="p-2" style="color: white !important;">Conocé las experiencias de quienes ya están transformando su futuro con nosotros.</p>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-      <div class="col">
-        <div class="p-4 h-100 border rounded shadow-lg bg-white">
-          <h5 class="mb-3 text-primary">Laura Gómez</h5>
-          <p class="text-muted">"Estudiar en la UTN me abrió las puertas a una carrera en tecnología que jamás imaginé."</p>
-          <span class="text-muted small">Ingeniera en Sistemas</span>
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-4 h-100 border rounded shadow-lg bg-white">
-          <h5 class="mb-3 text-primary">Juan Pérez</h5>
-          <p class="text-muted">"Gracias a los cursos online pude capacitarme mientras trabajaba."</p>
-          <span class="text-muted small">Desarrollador Web</span>
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-4 h-100 border rounded shadow-lg bg-white">
-          <h5 class="mb-3 text-primary">María López</h5>
-          <p class="text-muted">"Los docentes y recursos están a nivel internacional."</p>
-          <span class="text-muted small">Magíster en IA</span>
-        </div>
-      </div>
+    <div class="col">
+  <div class="testimonio-card p-4 h-100 border rounded shadow-lg bg-white position-relative overflow-hidden">
+
+    <!-- Imagen que se muestra al hacer hover -->
+    <img src="<?php echo RUTA_URL; ?>/img/Testinomio-LauraGomez.jpg"
+         alt="Foto de Laura Gómez"
+         class="testimonio-img position-absolute top-0 start-0 w-100 h-100"
+         style="object-fit: cover;">
+
+    <!-- Contenido -->
+    <div class="testimonio-content position-relative">
+      <h4 class="mb-3 text-dark">Laura Gómez</h4>
+      <p class="text-muted">"La UTN me abrió las puertas a una carrera en tecnología inimaginable."</p>
+      <span class="text-muted small">Ingeniera en Sistemas</span>
     </div>
+
+  </div>
+</div>
+
+
+<div class="col">
+  <div class="testimonio-card p-4 h-100 border rounded shadow-lg bg-white position-relative overflow-hidden">
+
+    
+    <img src="<?php echo RUTA_URL; ?>/img/Testimonio-JuanPerez.jpg"
+         alt="Foto de Juan Perez"
+         class="testimonio-img position-absolute top-0 start-0 w-100 h-100"
+         style="object-fit: cover;">
+
+    
+    <div class="testimonio-content position-relative">
+      <h4 class="mb-3 text-dark">Juan Perez</h4>
+      <p class="text-muted">""Gracias a los cursos online pude capacitarme mientras trabajaba.""</p>
+      <span class="text-muted small">Desarrollador Web</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="col">
+  <div class="testimonio-card p-4 h-100 border rounded shadow-lg bg-white position-relative overflow-hidden">
+
+    
+    <img src="<?php echo RUTA_URL; ?>/img/Testimonio-MariaLopez.jpg"
+         alt="Foto de Maria Lopez"
+         class="testimonio-img position-absolute top-0 start-0 w-100 h-100"
+         style="object-fit: cover;">
+
+    
+    <div class="testimonio-content position-relative">
+      <h4 class="mb-3 text-dark">Maria Lopez</h4>
+      <p class="text-muted">"Los Docentes y recursos estan a nivel internacional."</p>
+      <span class="text-muted small">Magister en IA</span>
+    </div>
+
+  </div>
+</div>
+
   </section>
 
   <!-- Noticias -->
-  <section class="container py-5">
-    <h2 class="text-center fw-bold mb-4">Últimas novedades</h2>
+  <section class="container my-5 py-4 px-3 bg-gradient-to-r from-teal-100 to-teal-200 rounded shadow-lg seccion-contenedor">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-primary">Ultimas Novedades</h2>
     <div class="row">
       <div class="col-md-6 mb-3">
         <div class="border rounded p-3 bg-white shadow-sm">
-          <h5 class="fw-bold text-primary">UTN firma convenio con empresa de IA</h5>
+          <h4 class="fw-bold text-primary">UTN firma convenio con empresa de IA</h4>
           <p>El acuerdo permitirá a estudiantes realizar prácticas profesionales en proyectos reales con tecnologías de punta.</p>
         </div>
       </div>
       <div class="col-md-6 mb-3">
         <div class="border rounded p-3 bg-white shadow-sm">
-          <h5 class="fw-bold text-primary">Nuevo laboratorio de robótica inaugurado</h5>
+          <h4 class="fw-bold text-primary">Nuevo laboratorio de robótica inaugurado</h4>
           <p>Un espacio de innovación con impresoras 3D, brazos robóticos y simuladores de automatización industrial.</p>
         </div>
       </div>

@@ -261,5 +261,35 @@ body{
     font-weight: bold;
   }
 
+  /*Testimonios imagen oculta*/
+  .testimonio-card {
+    transition: transform 0.3s ease;
+  }
+  
+  .testimonio-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .testimonio-img {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+  
+  .testimonio-card:hover .testimonio-img {
+    opacity: 1;
+  }
+  
+  .testimonio-content {
+    position: relative;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+  }
+  
+  .testimonio-card:hover .testimonio-content {
+    opacity: 0;
+  }
+  
+
  
 
