@@ -1,12 +1,5 @@
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
 
-<!-- Botón Volver al Inicio -->
-<div class="container mt-4">
-  <a href="<?php echo RUTA_URL; ?>" class="btn-volver-inicio">
-    🏠 Volver al Inicio
-  </a>
-</div>
-
 <!-- Sección de Información -->
 <section class="py-5 bg-gradient-to-r from-indigo-600 to-blue-700 text-white" id="universidadInfo">
   <div class="container py-4">
@@ -91,9 +84,5 @@
     </div>
   </div>
 </section>
-
-<?php
-include_once 'footer.php'; // Asumiendo que tienes un footer común para todas las páginas
-?>
 
 <?php require RUTA_APP . '/views/layout/footer.php'; ?>
