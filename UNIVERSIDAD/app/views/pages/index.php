@@ -104,33 +104,60 @@
     </div>
   </section>
 
-  <!-- Programas académicos -->
-  <section class="container my-5 py-4 px-3 bg-gradient-to-r from-teal-100 to-teal-200 rounded shadow-lg seccion-contenedor">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold text-primary">Programas Académicos en Ciencia y Tecnología</h2>
-      <p class="p-2" style="color: white !important;">Desarrollamos talento para liderar la transformación digital y la innovación en la industria moderna.</p>
-    </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-      <div class="col-md-4 mb-4">
-        <div class="p-4 h-100 border rounded shadow-lg bg-white">
+  <!-- Programas académicos (Imagenes al pasar cursor)-->
+<!-- Programas académicos -->
+<section class="container my-5 py-4 px-3 bg-gradient-to-r from-teal-100 to-teal-200 rounded shadow-lg seccion-contenedor">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-primary">Programas Académicos en Ciencia y Tecnología</h2>
+    <p class="p-2" style="color: white !important;">Desarrollamos talento para liderar la transformación digital y la innovación en la industria moderna.</p>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+
+    <!-- Ingeniería en Software -->
+    <div class="col-md-4 mb-4">
+      <div class="testimonio-card p-4 h-100 border rounded shadow-lg bg-white position-relative overflow-hidden">
+        <img src="img/ProgrAcadeIngSoft.jpg"
+             alt="Imagen Ingeniería en Software"
+             class="testimonio-img position-absolute top-0 start-0 w-100 h-100"
+             style="object-fit: cover;">
+        <div class="testimonio-content">
           <h4 class="mb-3 text-primary">Ingeniería en Software</h4>
           <p class="text-muted">Diseño, desarrollo y gestión de sistemas y aplicaciones. Capacitación en lenguajes modernos, metodologías ágiles y arquitectura de software.</p>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="p-4 h-100 border rounded shadow-lg bg-white">
+    </div>
+
+    <!-- Ciencia de Datos e Inteligencia Artificial -->
+    <div class="col-md-4 mb-4">
+      <div class="testimonio-card p-4 h-100 border rounded shadow-lg bg-white position-relative overflow-hidden">
+        <img src="img/ProgrAcadeIntArtificial.jpg"
+             alt="Imagen Ciencia de Datos"
+             class="testimonio-img position-absolute top-0 start-0 w-100 h-100"
+             style="object-fit: cover;">
+        <div class="testimonio-content">
           <h4 class="mb-3 text-primary">Ciencia de Datos e Inteligencia Artificial</h4>
           <p class="text-muted">Formación en análisis de datos, machine learning y algoritmos inteligentes. Aplicaciones en industria, salud, finanzas y más.</p>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="p-4 h-100 border rounded shadow-lg bg-white">
+    </div>
+
+    <!-- Ingeniería en Robótica y Automatización -->
+    <div class="col-md-4 mb-4">
+      <div class="testimonio-card p-4 h-100 border rounded shadow-lg bg-white position-relative overflow-hidden">
+        <img src="img/ProgrAcadeRobotica.jpg"
+             alt="Imagen Robótica"
+             class="testimonio-img position-absolute top-0 start-0 w-100 h-100"
+             style="object-fit: cover;">
+        <div class="testimonio-content">
           <h4 class="mb-3 text-primary">Ingeniería en Robótica y Automatización</h4>
           <p class="text-muted">Estudios avanzados en sistemas ciberfísicos, robótica industrial, sensores inteligentes y automatización de procesos.</p>
         </div>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
+
 
   <!-- Testimonios -->
   <section class="container my-5 py-4 px-3 bg-gradient-to-r from-teal-100 to-teal-200 rounded shadow-lg seccion-contenedor">
@@ -200,24 +227,42 @@
   </section>
 
   <!-- Noticias -->
-  <section class="container my-5 py-4 px-3 bg-gradient-to-r from-teal-100 to-teal-200 rounded shadow-lg seccion-contenedor">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold text-primary">Ultimas Novedades</h2>
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <div class="border rounded p-3 bg-white shadow-sm">
+<section class="container my-5 py-4 px-3 bg-gradient-to-r from-teal-100 to-teal-200 rounded shadow-lg seccion-contenedor">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-primary">Últimas Novedades</h2>
+  </div>
+  <div class="row">
+
+    <!-- Noticia 1 -->
+    <div class="col-md-6 mb-3">
+      <div class="testimonio-card p-3 h-100 border rounded shadow-sm bg-white position-relative overflow-hidden">
+        <img src="img/Novedades-Convenio.jpg"
+             alt="Convenio con empresa de IA"
+             class="testimonio-img position-absolute top-0 start-0 w-100 h-100"
+             style="object-fit: cover;">
+        <div class="testimonio-content">
           <h4 class="fw-bold text-primary">UTN firma convenio con empresa de IA</h4>
           <p>El acuerdo permitirá a estudiantes realizar prácticas profesionales en proyectos reales con tecnologías de punta.</p>
         </div>
       </div>
-      <div class="col-md-6 mb-3">
-        <div class="border rounded p-3 bg-white shadow-sm">
+    </div>
+
+    <!-- Noticia 2 -->
+    <div class="col-md-6 mb-3">
+      <div class="testimonio-card p-3 h-100 border rounded shadow-sm bg-white position-relative overflow-hidden">
+        <img src="img/Novedades-Laboratorio.jpg"
+             alt="Nuevo laboratorio de robótica"
+             class="testimonio-img position-absolute top-0 start-0 w-100 h-100"
+             style="object-fit: cover;">
+        <div class="testimonio-content">
           <h4 class="fw-bold text-primary">Nuevo laboratorio de robótica inaugurado</h4>
           <p>Un espacio de innovación con impresoras 3D, brazos robóticos y simuladores de automatización industrial.</p>
         </div>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
 
   <!-- Botón volver arriba -->
   <a href="#navegadorPaginaPrincipal" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle" title="Volver arriba">
