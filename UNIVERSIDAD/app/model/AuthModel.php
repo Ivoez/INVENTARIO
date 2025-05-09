@@ -9,6 +9,7 @@ class AuthModel{
 		//para hashear la contraseña
 		$hash = password_hash($data['ContraUsuario'], PASSWORD_DEFAULT);
 		$activo = 1;
+		$tipoUsuario  = 'Alumno';
 		$this->db->query("INSERT INTO usuario
                           (NombreUsuario, ContraUsuario, Nombre, Apellido, DNI, Email, tipoUsuario, telefono, fotoDePerfil ,activo) 
 						  VALUES 
@@ -19,10 +20,10 @@ class AuthModel{
 		$this->db->bind('Apellido', $data['Apellido']);
 		$this->db->bind('DNI', $data['DNI']);
 		$this->db->bind('Email', $data['Email']);
-		$this->db->bind('tipoUsuario', $data['tipoUsuario']);
+		$this->db->bind('tipoUsuario', $tipoUsuario);
 		$this->db->bind('telefono', $data['telefono']);
 		$this->db->bind('fotoDePerfil', $data['fotoDePerfil']);
-        $this->db->bind('fotoDePerfil', $activo);
+        $this->db->bind('activo', $activo);
 
 		if ($this->db->execute()) {
 			return true;

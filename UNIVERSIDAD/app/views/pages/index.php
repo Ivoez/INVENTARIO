@@ -220,7 +220,7 @@
   </section>
 
   <!-- Botón volver arriba -->
-  <a href="#navegadorPaginaPrincipal" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle" title="Volver arriba">
+  <a href="#carouselUTN" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle" title="Volver arriba">
     <i class="bi bi-arrow-up-circle-fill fs-3"></i>
   </a>
 
