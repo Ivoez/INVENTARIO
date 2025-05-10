@@ -33,8 +33,8 @@
 
     <div class="d-flex gap-3">
 <!--botones sign in y Nav Prin-->
-      <a href="<?php echo RUTA_URL; ?>/Pages/Inicio" class="boton-animado1">Navegación Principal</a>
-      <a href="<?php echo RUTA_URL; ?>/Pages/Login" class="boton-animado">Sign in / Log In</a>
+      
+      <a href="<?php echo RUTA_URL; ?>Pages/login" class="boton-animado">Sign in / Log In</a>
     </div>
   </nav>
 </header>
