@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="<?php echo RUTA_URL . '/public/css/' . $css; ?>" />
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+  <nav class="navbar navbar-expand-lg navbar-dark custom-navbar mb-4">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#">
         <img src="public/img/logogymtransparent.png" alt="Logo GYM" />

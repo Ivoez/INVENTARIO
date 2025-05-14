@@ -4,6 +4,14 @@
     margin-right: 10px;
   }
 
+.custom-navbar {
+  background: transparent;
+}
+
+.custom-footer {
+  background: transparent;
+}
+
 .card {
   height: 100%;
   box-shadow: 0 4px 12px black;
@@ -21,7 +29,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
 }
 
@@ -69,9 +77,32 @@
   opacity: 1;
 }
 
+/* body {
+  background: url('../img/calltoactionimg.jpg');
+  background-position: center;
+  background-size: cover;
+} */
+
 body {
-  background-color: #120100;
-  background-image: url("https://www.transparenttextures.com/patterns/black-scales.png");
+  position: relative;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url('../img/imagenfondo.png') center/cover no-repeat;
+  background-position: center;
 }
 
 p, h5, .overlay-text {
@@ -91,15 +122,19 @@ p, h5, .overlay-text {
     0px 0px 8px #D2FF1F;
 }
 
-h1, h2, .overlay-title {
+h1, h2, h3, .overlay-title {
   font-family: 'Bebas Neue', sans-serif;
   font-weight: normal;
+}
+
+h3 {
+  font-size: 2rem;
 }
 
 h1 {
   font-size: 5rem;
   padding-bottom: 35px;
-  color: #4d4d4d;
+  color: #000;
   font-weight: 700;
   text-shadow: -1px 1px 2px #D2FF1F,
   1px 1px 2px #D2FF1F,
@@ -114,7 +149,7 @@ h2 {
 
 .text-valores, .text-ubi {
   font-size: 4rem;
-  color: #4d4d4d;
+  color: #000;
   font-weight: 700;
   text-shadow: -1px 1px 2px #D2FF1F,
   1px 1px 2px #D2FF1F,
@@ -232,8 +267,8 @@ h2 {
 
 .call-to-action {
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-              url('../img/calltoactionimg.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+              url('../img/calltoactionimg2.jpg');
   background-size: cover;
   background-position: center;
   height: 300px;
@@ -269,4 +304,57 @@ h2 {
   height: 100%;
   border: 0;
   object-fit: cover;
+}
+
+.icono-membresia {
+  max-width: 300px;
+  height: auto;
+  opacity: 30%;
+}
+
+/* .icono-membresia:hover {
+  transition-duration: 0.2s;
+  opacity: 100%;
+} */
+
+.ul-bronce, .ul-oro, .ul-diamante {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+}
+
+.precio-membresia {
+  margin-bottom: 1rem;
+}
+
+.card-bronce {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.8),
+      rgba(136, 80, 24, 0.8))
+}
+
+.card-oro {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(167, 142, 0, 0.7))
+}
+
+.card-diamante {
+  background: linear-gradient(
+    rgb(0, 0, 0, 0.8),
+    rgba(90, 126, 138, 0.8))
+}
+
+.card-bronce:hover .icono-membresia {
+  transition-duration: 0.2s;
+  opacity: 100%;
+}
+
+.card-oro:hover .icono-membresia {
+  transition-duration: 0.2s;
+  opacity: 100%;
+}
+
+.card-diamante:hover .icono-membresia {
+  transition-duration: 0.2s;
+  opacity: 100%;
 }

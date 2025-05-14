@@ -63,6 +63,60 @@
 </div>
 </div>
 
+<div class="text-center mb-5">
+  <h2 class="text-valores">OPCIONES DE MEMBRESIA:</h2>
+</div>
+
+<div class="container my-5">
+  <div class="row text-center">
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 card-bronce">
+        <div class="card-body">
+          <h3 class="card-title text-white">Bronce</h3>
+          <div class="mb-3"><img class="img-fluid icono-membresia" src="public/img/bronce.png"></div>
+          <ul class="list-unstyled text-white ul-bronce">
+            <li class="precio-membresia"><strong>DESDE $30.000/mes</strong></li>
+            <li>- Acceso a 5 sedes en toda la provincia</li>
+            <li>- Acceso unicamente a la sala de musculacion</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 card-oro">
+        <div class="card-body">
+          <h3 class="card-title text-white">Oro</h3>
+          <div class="mb-3"><img class="img-fluid icono-membresia" src="public/img/oro.png"></div>
+          <ul class="list-unstyled text-white ul-oro">
+            <li class="precio-membresia"><strong>DESDE $40.000/mes</strong></li>
+            <li></li>
+            <li>- Acceso a 15 sedes en toda la provincia</li>
+            <li>- Acceso a la sala de musculacion y actividades semanales</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 card-diamante">
+        <div class="card-body">
+          <h3 class="card-title text-white">Diamante</h3>
+          <div class="mb-3"><img class="img-fluid icono-membresia" src="public/img/diamante.png"></div>
+          <ul class="list-unstyled text-white ul-diamante">
+            <li class="precio-membresia"><strong>DESDE $50.000/mes</strong></li>
+            <li></li>
+            <li>- Acceso ilimitado a todas las sedes de la provincia</li>
+            <li>- Acceso a sala de musculacion, actividades semanales, entrenamientos personalizados y una visita al nutricionista por mes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <div class="call-to-action my-5">
   <div class="overlay-text">
     <h2>NO SOS PARTE? <a href="#">UNITE A NUESTRA FAMILIA!</a></h2>

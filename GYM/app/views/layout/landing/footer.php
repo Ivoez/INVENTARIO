@@ -1,5 +1,5 @@
 <section class="">
-  <footer class="text-center text-white bg-dark">
+  <footer class="text-center text-white custom-footer">
     <div class="container p-4 pb-0">
       <section class="">
         <p class="d-flex justify-content-center align-items-center">
