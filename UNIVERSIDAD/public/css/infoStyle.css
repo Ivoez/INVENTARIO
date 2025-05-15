@@ -106,6 +106,88 @@
   text-align: justify;
 }
 
+/* Estilo para el dashboard de alumnos*/
 
-   
+    body {
+    background-color: #f8f9fa;
+}
 
+.sidebar {
+    width: 220px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.container-fluid {
+    margin-left: 240px;
+}
+
+
+/* Botones para fondo negro (alumnos) */
+.btn-dark-style {
+    background-color: #4a4a4a;    /* gris oscuro para fondo */
+    color: #f0f0f0 !important;    /* texto claro */
+    border-radius: 6px;
+    padding: 6px 12px;             /* tamaño compacto */
+    margin-right: 10px;            /* espacio entre botones */
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-dark-style:last-child {
+    margin-right: 0;               /* sin margen al último botón */
+}
+
+.btn-dark-style:hover {
+    background-color: #6c757d;    /* gris más claro al pasar el mouse */
+    color: white !important;
+    text-decoration: none;
+}
+
+.btn-logout-dark {
+    background-color: #dc3545;    /* rojo para cerrar sesión */
+    color: white !important;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-weight: 600;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-left: 15px;            /* separarlo del resto */
+    text-decoration: none;
+}
+
+.btn-logout-dark:hover {
+    background-color: #bb2d3b;    /* rojo más oscuro al hover */
+    color: white !important;
+    text-decoration: none;
+}
+
+.nav-button {
+    background-color: #4a4a4a;       /* Fondo gris oscuro */
+    color: #f0f0f0 !important;       /* Texto claro */
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    margin: 0 7px;                   /* Espacio horizontal entre botones */
+}
+
+.nav-button:hover {
+    background-color: #6c757d;
+    color: white !important;
+    text-decoration: none;
+}
+
+.nav-button.logout {
+    background-color: #dc3545;
+    font-weight: 600;
+}
+
+.nav-button.logout:hover {
+    background-color: #bb2d3b;
+}

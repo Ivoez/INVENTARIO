@@ -46,16 +46,16 @@
                   <a class="nav-link  " href="#">Mis Alumnos</a>
                 </li>
                 <?php elseif($data['tipoUsuario'] == 'Alumno'): ?>
-                    <li class="nav-item">
-                    <a class="nav-link  " href="#">Mis Cursos</a>
+                    <li class="nav-item d-inline-block">
+                    <a class="nav-link nav-button" href="#">Mis Cursos</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link  " href="#">Informacion</a>
-                    </li>
-                <?php endif; ?>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo RUTA_URL; ?>/AuthController/logout">Cerrar Sesion</a>
+                      <li class="nav-item d-inline-block">
+                   <a class="nav-link nav-button" href="#">Información</a>
+                  </li>
+                    <li class="nav-item d-inline-block">
+                  <a class="nav-link nav-button logout" href="<?php echo RUTA_URL; ?>/AuthController/logout">Cerrar Sesión</a>
                 </li>
+                <?php endif; ?>
               </ul>
             </div>
           </nav>
