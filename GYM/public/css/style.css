@@ -4,6 +4,10 @@
     margin-right: 10px;
   }
 
+  .no-subrayado {
+  text-decoration: none;
+}
+
 .custom-navbar {
   background: transparent;
 }

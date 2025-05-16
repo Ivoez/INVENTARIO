@@ -119,7 +119,7 @@
 
 <div class="call-to-action my-5">
   <div class="overlay-text">
-    <h2>NO SOS PARTE? <a href="#">UNITE A NUESTRA FAMILIA!</a></h2>
+    <h2>NO SOS PARTE? <a href="/appweb_caba_1c_2025/GYM/public/register#">UNITE A NUESTRA FAMILIA!</a></h2>
   </div>
 </div>
 
