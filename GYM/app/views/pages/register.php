@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <div class="form-container sign-in-container">
-    <form action="#">
+    <form action="/appweb_caba_1c_2025/GYM/">
     <h1 class="sign-in-text-form">Iniciar Sesion!</h1>
     <span>Ingresa tu DNI para acceder a tu cuenta!</span>
     <input type="text" placeholder="DNI" />

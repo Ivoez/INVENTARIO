@@ -77,11 +77,6 @@
   opacity: 1;
 }
 
-/* body {
-  background: url('../img/calltoactionimg.jpg');
-  background-position: center;
-  background-size: cover;
-} */
 
 body {
   position: relative;
@@ -162,19 +157,6 @@ h2 {
   font-size: 2rem;
 }
 
-/* .btn {
-  border-radius: 50px;
-  border: none;
-  padding: 12px 24px;
-  font-weight: lighter;
-  background-color: #D2FF1F;
-  color: black;
-  box-shadow: -1px 1px 2px #D2FF1F,
-  1px 1px 2px #D2FF1F,
-  1px -1px 0 #D2FF1F,
-  -1px -1px 0 #D2FF1F,
-  0px 0px 15px #D2FF1F;
-} */
 
 .btn {
   position: relative;
@@ -310,12 +292,8 @@ h2 {
   max-width: 300px;
   height: auto;
   opacity: 30%;
+  transform: scale(1);
 }
-
-/* .icono-membresia:hover {
-  transition-duration: 0.2s;
-  opacity: 100%;
-} */
 
 .ul-bronce, .ul-oro, .ul-diamante {
   font-family: 'Roboto', sans-serif;
@@ -344,17 +322,9 @@ h2 {
     rgba(90, 126, 138, 0.8))
 }
 
-.card-bronce:hover .icono-membresia {
-  transition-duration: 0.2s;
-  opacity: 100%;
-}
-
-.card-oro:hover .icono-membresia {
-  transition-duration: 0.2s;
-  opacity: 100%;
-}
-
+.card-bronce:hover .icono-membresia,
+.card-oro:hover .icono-membresia,
 .card-diamante:hover .icono-membresia {
-  transition-duration: 0.2s;
+  transition: transform 0.2s ease, opacity 0.2s ease;
   opacity: 100%;
 }
