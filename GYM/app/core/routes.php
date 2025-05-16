@@ -11,6 +11,7 @@
     protected $actualController='pages';
     protected $actualMethod='index';
     protected $param =[];
+    public $params = [];
 
      /* constructor.*/
      
@@ -48,7 +49,8 @@
 
         //obtener los posibles params
 
-        $this->params= $url ? array_values($url) : [];
+       $this->param = $url ? array_values($url) : [];
+
 
 
         //llamar callback con params

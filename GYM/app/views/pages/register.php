@@ -34,17 +34,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container">
 <div class="form-container sign-up-container">
-    <form action="#">
+    <form action="http://localhost/appweb_caba_1c_2025/GYM/AuthController/registrar" method="POST">
     <h1>Crear cuenta!</h1>
     <span>Usa tu mail para registrarte!</span>
-    <input type="text" placeholder="Nombre" />
-    <input type="text" placeholder="Apellido" />
-    <input type="text" placeholder="DNI" />
-    <input type="email" placeholder="Email" />
-    <input type="text" placeholder="Número de celular" />
-    <input type="password" placeholder="Contraseña" />
-    <input type="password" placeholder="Ingrese nuevamente su contraseña" />
-    <button>
+    <input type="text" placeholder="Nombre" name="nombre" />
+    <input type="text" placeholder="Apellido" name="apellido" />
+    <input type="text" placeholder="DNI" name="dni" />
+    <input type="email" placeholder="Email" name="email" />
+    <input type="text" placeholder="Número de celular" name="celular" />
+    <input type="password" placeholder="Contraseña" name="password" />
+    <input type="password" placeholder="Ingrese nuevamente su contraseña" name="password2" />
+    <button type="submit">
         <span class="btn-register">REGISTRARSE!</span>
     </button>
     </form>

@@ -3,10 +3,9 @@ class Usuario {
     private $db;
 
     public function __construct() {
-        $this->db = new Database();
+        $this->db = new Database(); // ✅ Esta instancia sí tiene query(), bind(), etc.
     }
 
-    
     public function registrar($datos) {
         $this->db->query("INSERT INTO socios (nombre, apellido, dni, email, celular, password) 
                           VALUES (:nombre, :apellido, :dni, :email, :celular, :password)");
@@ -20,6 +19,7 @@ class Usuario {
 
         return $this->db->execute();
     }
+
 
    
     public function obtenerUsuarioPorEmail($email) {
