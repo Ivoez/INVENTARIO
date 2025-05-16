@@ -23,7 +23,7 @@ class AuthController extends BaseController {
     public function loginUsuario() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
-                'Email' => $_POST['Email'],
+                'email' => $_POST['Email'],
                 'pass' => $_POST['password'],
             ];
             $UsuarioEncontrado = $this->authModel->buscarPorMail($data);
@@ -204,27 +204,33 @@ class AuthController extends BaseController {
 
     // Procesa el formulario de recuperación
     public function enviarCorreo() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = trim($_POST['email']);
-
-            // Simulación de búsqueda de usuario por correo
-            $usuariosRegistrados = ['usuario@ejemplo.com'];
-
-            if (in_array($email, $usuariosRegistrados)) {
-                // Enlace ficticio
-                $enlace = RUTA_URL . "/usuarios/restablecer";
-                $mensaje = "Hacé clic aquí para restablecer tu contraseña: $enlace";
-
-                // mail($email, "Recuperación de contraseña", $mensaje); // si tenés configurado mail
-                $data['success'] = "Te enviamos un enlace de recuperación al correo.";
-            } else {
-                $data['error'] = "El correo no está registrado.";
-            }
-
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['email']) || empty(trim($_POST['email']))) {
+            $data = [
+            "error_mail" => "<div class='alert alert-danger text-center'>Por favor ingrese un email válido.</div>",
+            "mail" => '',
+            ];
             $this->view('pages/auth/olvide_mi_contraseña', $data);
-        } else {
-            $this->view('pages/auth/olvide_mi_contraseña');
-        }
+            return; // Terminar aquí para evitar errores posteriores
+            }
+            $Email = $_POST['email'];
+            
+            $data = [
+                'email' => $Email,
+            ];
+            $usuario = $this->authModel->buscarPorMail($data);
+            if(!empty($usuario)){
+                $where = "new_pass";
+                include(RUTA_APP . "/mail/mail_pass.php");
+            }else{
+                $data = [
+                "error_mail"=> "<div class='alert alert-danger' role='alert'>
+                            <p class = 'text-center'>No es un email válido.</p>
+                         </div>",
+                "mail"=>'',
+            ];
+                $this->view('pages/auth/olvide_mi_contraseña', $data);
+            }
+   
     }
 
     // /* Función para llamar a la vista actualizarContraseña con blanqueo de errores*/

@@ -36,12 +36,15 @@ class AuthModel{
 
 	public function buscarPorMail($data)
 	{
+		if (!isset($data['email'])) {
+        	return false; // Seguridad: evita errores si no viene el índice
+    	}
 
 		$this->db->query("SELECT idUsuario, NombreUsuario, ContraUsuario ,Nombre, Apellido, DNI, Email, tipoUsuario, telefono, fotoDePerfil ,activo
 							  FROM usuario
-							  WHERE usuario.Email =:Email
+							  WHERE Email =:Email
 							  AND activo = 1");
-		$this->db->bind('Email', $data['Email']);
+		$this->db->bind('Email', $data['email']);
 		
 		$result = $this->db->register();
 		return $result;
@@ -50,11 +53,11 @@ class AuthModel{
 	public function cambiarContaseña($pass, $email)
 	{
 		
-		//$hashed_pass = password_hash($new_pass, PASSWORD_DEFAULT);
+		$hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 		$this->db->query("UPDATE usuario SET
-								ContraUsuario = :pass)
+								ContraUsuario = :pass
 							 WHERE Email=:mail");
-		$this->db->bind('new_pass', $pass);
+		$this->db->bind('pass', $hashed_pass);
 		$this->db->bind('mail', $email);
 		if ($this->db->execute()) {
 			return true;
