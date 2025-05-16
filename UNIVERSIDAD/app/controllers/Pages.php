@@ -68,6 +68,11 @@ class Pages extends BaseController {
         $this->view('pages/infoCarreras/infoPostGrado', $data);
     }
     
+    //Funcion para Preguntas Frecuentes 
+    public function preguntasFrecuentes() {
+    $this->view('pages/infoCarreras/preguntasFrecuentes');
+
+}
 
 }
 ?>

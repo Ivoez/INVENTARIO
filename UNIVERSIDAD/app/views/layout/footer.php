@@ -22,6 +22,8 @@
                     <a href="<?php echo RUTA_URL; ?>/Pages/InfoCursos" class="btn btn-outline-light mb-2">Cursos a Distancia</a>
                     <a href="<?php echo RUTA_URL; ?>/Pages/infoCarrerasDeGrado" class="btn btn-outline-light mb-2">Carreras de Grado</a>
                     <a href="<?php echo RUTA_URL; ?>/Pages/infoPostGrado" class="btn btn-outline-light mb-2">Carreras de Post-Grado</a>
+                    <a href="<?php echo RUTA_URL; ?>/Pages/preguntasFrecuentes" class="btn btn-light text-dark fw-bold mb-2">❓ Preguntas Frecuentes</a>
+
                 </div>
             </div>
 
