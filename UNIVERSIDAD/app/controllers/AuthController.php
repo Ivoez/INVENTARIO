@@ -1,9 +1,11 @@
 <?php
 
 class AuthController extends BaseController {
+  private $CarrerasModel;
 
     public function __construct() {
         $this->authModel=$this->model('AuthModel');
+        $this->CarrerasModel = $this->model('CarrerasModel');
     }
     //login retorna la vista
     public function login(){
@@ -18,6 +20,63 @@ class AuthController extends BaseController {
         $this->view('pages/auth/Informacion');
     }
     
+    public function agregarCarrera() {
+   
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // datos del formulario
+        $nombreCarrera = trim($_POST['nombreCarrera']);
+        $descripcion = trim($_POST['descripcion']);
+        $descripcionCompleta = trim($_POST['descripcionCompleta']);
+        $tipoCarrera = $_POST['tipoCarrera'];
+        $imagen = isset($_FILES['imagen']) ? $_FILES['imagen']['name'] : null;
+        $image_type = isset($_FILES['imagen']) ? $_FILES['imagen']['type'] : null;
+        $image_size = isset($_FILES['imagen']) ? $_FILES['imagen']['size'] : null;
+        $ubi = $_SERVER['DOCUMENT_ROOT'] . RUTA_IMG_CARRERA;
+
+        if ($imagen != '') {
+            if ($image_size <= 10000000) {
+                if ($image_type == 'image/jpg' || $image_type == 'image/jpeg' || $image_type == 'image/png') {
+                    move_uploaded_file($_FILES['imagen']['tmp_name'], $ubi . $imagen);
+                } else {
+                    $data = [
+                        'errorRegistro' => '<div class="alert alert-danger" role="alert">
+                            El tipo de imagen debe ser jpg, jpeg o png.
+                          </div>',
+                    ];
+                    $this->view('pages/auth/agregarCarrera', $data);
+                    return;
+                }
+            } else {
+                $data = [
+                    'errorRegistro' => '<div class="alert alert-danger" role="alert">
+                        El tamaño de la imagen es demasiado grande
+                      </div>',
+                ];
+                $this->view('pages/auth/agregarCarrera', $data);
+                return;
+            }
+        } else {
+            $imagen = 'img_default.png';
+        }
+
+        if (empty($nombreCarrera) || empty($descripcion) || empty($descripcionCompleta) || empty($tipoCarrera) || empty($imagen)) {
+            echo "Todos los campos son obligatorios.";
+            return;
+        }
+
+        if ($this->CarrerasModel->agregarCarrera($nombreCarrera, $descripcion, $descripcionCompleta, $tipoCarrera, $imagen)) {
+            // Redirigir después de agregar
+            $_SESSION['mensaje'] = 'La carrera se ha agregado correctamente.';
+           $this->view('pages/auth/agregarCarrera');
+            exit();
+        } else {
+            echo "Hubo un error al agregar la carrera.";
+        }
+    } else {
+        $this->view('pages/auth/agregarCarrera');
+    }
+}
+
 
     // Login
     public function loginUsuario() {
