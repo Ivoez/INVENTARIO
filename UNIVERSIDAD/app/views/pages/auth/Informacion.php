@@ -2,47 +2,49 @@
 
 <!-- Contenido con fondo -->
 <div class="container-fluid d-flex justify-content-center align-items-center position-relative" style="min-height: 100vh; background: url('<?php echo RUTA_URL; ?>/public/img/IMGDeFondo.jpg') no-repeat center center fixed; background-size: cover;">
-    <div class="card shadow-lg p-5 rounded-4" style="width: 100%; max-width: 450px; background-color: rgba(255, 255, 255, 0.70); border: none;">
-        <h3 class="text-center mb-4">Universidad Tecnológica Nacional (UTN)</h3>
+    <div class="card shadow-lg p-5 rounded-4" style="width: 100%; max-width: 600px; background-color: rgba(255, 255, 255, 0.95); border: none;">
+        
 
-        <p class="text-justify">
-            <strong>Bienvenidos a la UTN</strong><br>
-            La Universidad Tecnológica Nacional (UTN) es una institución educativa ficticia dedicada a la formación de profesionales altamente capacitados en el ámbito tecnológico, científico y de innovación.
-        </p>
+        <div class="mb-4 text-center">
+            <h2 class="text-dark fw-bold">Universidad Tecnológica Nacional</h2>
+            <p class="text-muted">Formando el futuro desde hoy</p>
+            <hr class="my-3">
+        </div>
 
-        <p class="text-justify">
-            <strong>¿Quiénes somos?</strong><br>
-            Fundada con el objetivo de impulsar la educación técnica y superior, la UTN se ha consolidado como un referente académico gracias a su compromiso con la excelencia, la inclusión y el progreso.
-        </p>
+        <section class="mb-4">
+            <h5 class="text-primary fw-semibold"><i class="fas fa-university me-2"></i>¿Quiénes somos?</h5>
+            <p>La UTN es una institución educativa comprometida con la excelencia, la innovación y la formación de profesionales en áreas tecnológicas y científicas.</p>
+        </section>
 
-        <p class="text-justify">
-            <strong>Oferta académica:</strong>
-            <ul>
-                <li>Ingeniería en Sistemas</li>
-                <li>Ingeniería Electrónica</li>
-                <li>Ingeniería Industrial</li>
-                <li>Licenciatura en Tecnología de la Información</li>
-                <li>Maestrías y especializaciones técnicas</li>
+        <section class="mb-4">
+            <h5 class="text-primary fw-semibold"><i class="fas fa-book me-2"></i>Oferta Académica</h5>
+            <ul class="list-unstyled ps-3">
+                <li>🎓 Ingeniería en Sistemas</li>
+                <li>🔌 Ingeniería Electrónica</li>
+                <li>🏭 Ingeniería Industrial</li>
+                <li>💻 Licenciatura en Tecnología de la Información</li>
+                <li>📚 Maestrías y especializaciones técnicas</li>
             </ul>
-        </p>
+        </section>
 
-        <p class="text-justify">
-            <strong>Nuestros valores:</strong>
-            <ul>
-                <li><strong>Innovación:</strong> Apostamos al desarrollo de nuevas tecnologías y metodologías educativas.</li>
-                <li><strong>Compromiso:</strong> Formamos profesionales comprometidos con su entorno social y laboral.</li>
-                <li><strong>Calidad:</strong> Promovemos la mejora continua en la enseñanza, investigación y extensión.</li>
+        <section class="mb-4">
+            <h5 class="text-primary fw-semibold"><i class="fas fa-heart me-2"></i>Nuestros Valores</h5>
+            <ul class="list-unstyled ps-3">
+                <li><strong>💡 Innovación:</strong> Desarrollo de tecnologías y métodos educativos modernos.</li>
+                <li><strong>🤝 Compromiso:</strong> Con el entorno social y profesional.</li>
+                <li><strong>📈 Calidad:</strong> Mejora continua en educación e investigación.</li>
             </ul>
-        </p>
+        </section>
 
-        <p class="text-justify">
-            <strong>Contacto:</strong><br>
-            📍 Dirección: Don Bosco 3729, Cdad. Autónoma de Buenos Aires<br>
-            📞 Teléfono: +54 11 9520 6408<br>
-            📧 Correo: universidadteconlogica@correo.com
-        </p>
+        <section>
+            <h5 class="text-primary fw-semibold"><i class="fas fa-envelope me-2"></i>Contacto</h5>
+            <p class="mb-1">📍 Don Bosco 3729, CABA</p>
+            <p class="mb-1">📞 +54 11 9520 6408</p>
+            <p>📧 universidadteconlogica@correo.com</p>
+        </section>
     </div>
 </div>
+
 
 <!-- Botón Volver a la Landing Page (Arriba Izquierda) -->
 <a href="<?php echo RUTA_URL; ?>" class="btn btn-secondary" id="backToLandingBtn" aria-label="Volver a la landing"

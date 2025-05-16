@@ -291,6 +291,64 @@ body{
   }
 
   
+  /* Estilo para la página de Preguntas Frecuentes */
+
+.preguntas-frecuentes .card {
+    max-width: 850px;
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.preguntas-frecuentes .accordion-button {
+    color: #333;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+}
+
+.preguntas-frecuentes .accordion-button:not(.collapsed) {
+    color: #0056b3;
+    background-color: #e9ecef;
+}
+
+.preguntas-frecuentes .accordion-item {
+    margin-bottom: 15px;
+}
+
+.preguntas-frecuentes h2 {
+    font-weight: 700;
+    color: #333;
+}
+
+.preguntas-frecuentes p {
+    color: #555;
+}
+
+.preguntas-frecuentes a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.preguntas-frecuentes a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para el título de la página */
+.preguntas-frecuentes h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.preguntas-frecuentes p.text-muted {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+
+
+
   
 
  
