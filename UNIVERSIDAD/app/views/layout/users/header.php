@@ -32,12 +32,12 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto mb-0"> 
-                <?php if($data['tipoUsuario'] == 'admin'):?>
+                <?php if($_SESSION['tipoUsuario'] == 'admin'):?>
                   <li class="nav-item">
-                  <a class="nav-link nav-button " href="<?php echo RUTA_URL; ?>/AuthController/agregarCarrera">Agregar Carreras</a>
+                  <a style="color: white;" class="nav-link nav-button " href="<?php echo RUTA_URL; ?>/AuthController/agregarCarrera">Agregar Carreras</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="<?php echo RUTA_URL; ?> /AuthController/logout">cerrar sesion</a>
+                <a style="color: white;" class="nav-link" href="<?php echo RUTA_URL; ?> /AuthController/logout">cerrar sesion</a>
                 </li>
                 <?php elseif($data['tipoUsuario'] == 'Profesor'): ?>
                 <li class="nav-item">

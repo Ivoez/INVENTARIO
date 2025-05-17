@@ -42,9 +42,8 @@ class Pages extends BaseController {
                       'Nombre' => $_SESSION['Nombre']
                 ];
            $this->view('pages/admin/dashboard', $data);
-            exit();
+           // exit();
     }
-
 
 
     public function infoCarrerasDeGrado() {
@@ -85,12 +84,6 @@ class Pages extends BaseController {
     
     //Funcion para Preguntas Frecuentes 
     public function preguntasFrecuentes() {
-        if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    // Destruir sesión si quieres que siempre se cierre al salir del dashboard
-    session_unset();
-    session_destroy();
     $this->view('pages/infoCarreras/preguntasFrecuentes');
 
     }

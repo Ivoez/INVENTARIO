@@ -5,6 +5,7 @@ if (!isset($_SESSION['tipoUsuario']) == 'admin') {
     exit;
 }
 ?>
+<!-- Cambiar mensaje-->
 <?php if (isset($_SESSION['mensaje'])): ?>
     <div class="alert alert-success">
         <?= $_SESSION['mensaje'] ?>
@@ -15,4 +16,4 @@ if (!isset($_SESSION['tipoUsuario']) == 'admin') {
 <?php require RUTA_APP . '/views/layout/users/header.php'; ?>
 
 
-<h1>Hola <?php echo $data['Nombre']; ?>, <?php echo $data['tipoUsuario']?></h1>
+<h1 style="color: white;">Hola <?php echo $_SESSION['Nombre']; ?>, <?php echo $_SESSION['tipoUsuario']?></h1>
