@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #073477;
+  color: rgb(37, 176, 132);
+  padding: 1rem;
+}
+
+.sidebar h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar a {
+  color: rgb(227, 190, 78);
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem 0;
+}
+
+.sidebar a:hover {
+  background-color: #336dc9;
+  border-radius: 5px;
+}
+
+.card-dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  color: rgb(39, 102, 197);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
