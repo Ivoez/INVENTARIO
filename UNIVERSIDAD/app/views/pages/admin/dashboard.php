@@ -5,11 +5,14 @@ if (!isset($_SESSION['tipoUsuario']) == 'admin') {
     exit;
 }
 ?>
+<?php if (isset($_SESSION['mensaje'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['mensaje'] ?>
+    </div>
+    <?php unset($_SESSION['mensaje']); // Borra el mensaje para que no aparezca siempre ?>
+<?php endif; ?>
 <!-- header para usuarios -->
 <?php require RUTA_APP . '/views/layout/users/header.php'; ?>
 
 
 <h1>Hola <?php echo $data['Nombre']; ?>, <?php echo $data['tipoUsuario']?></h1>
-
-
-<?php require RUTA_APP . '/views/layout/footer.php'; ?>

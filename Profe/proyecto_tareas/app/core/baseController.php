@@ -4,6 +4,8 @@
 
    class BaseController{
 
+      
+
       //Cargar model
 
       public function model($model){

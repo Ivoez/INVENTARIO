@@ -9,6 +9,12 @@ class AuthController extends BaseController {
     }
     //login retorna la vista
     public function login(){
+        if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    // Destruir sesión si quieres que siempre se cierre al salir del dashboard
+    session_unset();
+    session_destroy();
         $data = [
             'errorLogin'=>'',
         ];
@@ -17,10 +23,28 @@ class AuthController extends BaseController {
 
     //Vista Informacion.php
     public function informacion() {
+        if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    // Destruir sesión si quieres que siempre se cierre al salir del dashboard
+    session_unset();
+    session_destroy();
         $this->view('pages/auth/Informacion');
     }
     
     public function agregarCarrera() {
+
+      
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Verifica que haya un usuario logueado y que sea admin
+    if (!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 'admin') {
+        // Si no es admin o no está logueado, redirige al login o a otra página
+        $this->view('pages/auth/login');
+        exit();
+    }
    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // datos del formulario
@@ -67,13 +91,24 @@ class AuthController extends BaseController {
         if ($this->CarrerasModel->agregarCarrera($nombreCarrera, $descripcion, $descripcionCompleta, $tipoCarrera, $imagen)) {
             // Redirigir después de agregar
             $_SESSION['mensaje'] = 'La carrera se ha agregado correctamente.';
-           $this->view('pages/auth/agregarCarrera');
+            $data = [
+            'tipoUsuario' => $_SESSION['tipoUsuario'],
+            'Nombre' => $_SESSION['Nombre']
+        ];
+           $this->view('pages/admin/dashboard', $data);
             exit();
         } else {
-            echo "Hubo un error al agregar la carrera.";
+            $data = [
+                'errorRegistro' => 'Error al agregar la carrera.',
+            ];
+            $this->view('pages/auth/agregarCarrera', $data);
         }
     } else {
-        $this->view('pages/auth/agregarCarrera');
+        $data = [
+            'tipoUsuario' => $_SESSION['tipoUsuario'],
+            'Nombre' => $_SESSION['Nombre']
+        ];
+        $this->view('pages/auth/agregarCarrera', $data);
     }
 }
 
@@ -147,6 +182,12 @@ class AuthController extends BaseController {
 
     //mostrar vista de registro usuario
     public function registrarUsuario() {
+         if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    // Destruir sesión si quieres que siempre se cierre al salir del dashboard
+    session_unset();
+    session_destroy();
         $data=[
             'errorRegistro'=>'',
         ];

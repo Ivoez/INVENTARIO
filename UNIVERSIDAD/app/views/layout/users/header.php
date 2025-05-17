@@ -18,9 +18,7 @@
     <!--Navegador -->
         <nav id="navegadorPaginaPrincipal" class="navbar navbar-expand-lg py-2 px-3 mb-1">
             <div class="dropdown me-5">
-            <a class="user-icon" href="<?php echo RUTA_URL; ?>" role="button" id="userMenu">
-             <img src="<?php echo RUTA_URL; ?>/img/utnNegro.png" alt="LogoIzq" class="me-2" style="width: 90px; height: 90px;">
-            </a>
+             <img src="<?php echo RUTA_URL; ?>/img/utnNegro.png" alt="LogoIzq" class="me-2" style="width: 90px; height: 90px;"> 
             </div> 
 
                     <!-- Botón hamburguesa -->
@@ -39,7 +37,7 @@
                   <a class="nav-link nav-button " href="<?php echo RUTA_URL; ?>/AuthController/agregarCarrera">Agregar Carreras</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="<?php echo RUTA_URL; ?>">Admin</a>
+                <a class="nav-link" href="<?php echo RUTA_URL; ?> /AuthController/logout">cerrar sesion</a>
                 </li>
                 <?php elseif($data['tipoUsuario'] == 'Profesor'): ?>
                 <li class="nav-item">

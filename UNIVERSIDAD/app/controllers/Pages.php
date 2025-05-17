@@ -7,6 +7,12 @@ class Pages extends BaseController {
     }
 
     public function index() {
+        if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    // Destruir sesión si quieres que siempre se cierre al salir del dashboard
+    session_unset();
+    session_destroy();
         $data = [
             "title" => "Bienvenido"
         ];
@@ -28,6 +34,15 @@ class Pages extends BaseController {
         $data['title'] = 'Cursos disponibles';
 
         $this->view('pages/infoCarreras/infoCursos', $data);
+    }
+
+    public function AdminMenu(){
+        $data=[
+                      'tipoUsuario' => $_SESSION['tipoUsuario'],
+                      'Nombre' => $_SESSION['Nombre']
+                ];
+           $this->view('pages/admin/dashboard', $data);
+            exit();
     }
 
 
@@ -70,9 +85,15 @@ class Pages extends BaseController {
     
     //Funcion para Preguntas Frecuentes 
     public function preguntasFrecuentes() {
+        if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    // Destruir sesión si quieres que siempre se cierre al salir del dashboard
+    session_unset();
+    session_destroy();
     $this->view('pages/infoCarreras/preguntasFrecuentes');
 
-}
+    }
 
 }
 ?>
