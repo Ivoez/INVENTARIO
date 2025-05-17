@@ -37,4 +37,11 @@ class CarrerasModel {
         $this->db->query("SELECT * FROM carrera WHERE tipoCarrera = 'PosGrado' AND activo = 1");
         return $this->db->registers();
     }
+
+    //Validacion para no repetir carreras
+    public function carreraExiste($nomCarrera){
+        $this->db->query("SELECT * FROM carrera WHERE nombreCarrera = :nombreCarrera");
+        $this->db->bind(':nombreCarrera', $nomCarrera);
+        return $this->db->register() ? true : false;
+    }
 }
