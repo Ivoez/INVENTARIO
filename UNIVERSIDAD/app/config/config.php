@@ -12,5 +12,6 @@
    define('RUTA_URL','http://localhost/appweb_caba_1c_2025/UNIVERSIDAD');
    define('NOMBRESITIO','Universidad');
    define('RUTA_AVATAR','/appweb_caba_1c_2025/UNIVERSIDAD/public/img/avatar/');
+   define('RUTA_IMG_CARRERA','/appweb_caba_1c_2025/UNIVERSIDAD/public/img/carrera/');
    
 ?>

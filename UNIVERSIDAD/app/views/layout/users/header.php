@@ -35,6 +35,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto mb-0"> 
                 <?php if($data['tipoUsuario'] == 'admin'):?>
+                  <li class="nav-item">
+                  <a class="nav-link nav-button " href="<?php echo RUTA_URL; ?>/AuthController/agregarCarrera">Agregar Carreras</a>
+                </li>
                 <li class="nav-item">
                 <a class="nav-link" href="<?php echo RUTA_URL; ?>">Admin</a>
                 </li>

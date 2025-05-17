@@ -11,7 +11,7 @@
 <body>
 
 <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh; background: url('<?php echo RUTA_URL; ?>/public/img/IMGDeFondo.jpg') no-repeat center center fixed; background-size: cover; background-position: center;">
-  <div class="card shadow-lg p-5 rounded-4" style="width: 100%; max-width: 450px; background-color: rgba(255, 255, 255, 0.52); border: none;">
+  <div class="card shadow-lg p-5 rounded-4" style="width: 100%; max-width: 450px; background-color: :rgba(255, 255, 255, 0.9); border: none;">
   <h3 class="text-center mb-4 text-primary fw-bold">Registro de Usuario</h3>
 
     <?php if (!empty($data['errorRegistro'])): ?>
