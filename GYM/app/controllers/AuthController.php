@@ -72,7 +72,7 @@ class AuthController extends BaseController{
     }
 
     // Método para actualizar la contraseña
-    public function actualizarPassword() {
+    public function recoverPassword() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = trim($_POST['email']);
             $nuevaPassword = trim($_POST['nueva_password']);
@@ -84,14 +84,14 @@ class AuthController extends BaseController{
             }
 
             // Intentar actualizar la contraseña
-            if ($this->usuarioModel->actualizarPassword($email, $nuevaPasswordHash)) {
+            if ($this->usuarioModel->recoverPassword($email, $nuevaPasswordHash)) {
                 echo "Contraseña actualizada exitosamente.";
             } else {
                 echo "Error al actualizar la contraseña.";
             }
         } else {
             // Mostrar vista de recuperación de contraseña
-            require_once 'views/usuarios/recuperar_contraseña.php';
+           require_once __DIR__ . '/../views/pages/auth/recoverPassword.php';
         }
     }
 }

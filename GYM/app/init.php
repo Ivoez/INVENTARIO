@@ -22,5 +22,12 @@
         }
     }
 });
+
+if (!defined('RUTA_APP')) {
+    define('RUTA_APP', __DIR__);
+}
+if (!defined('RUTA_VIEWS')) {
+    define('RUTA_VIEWS', RUTA_APP . '/views');
+}
   
 ?>

@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <span>Ingresa tu DNI para acceder a tu cuenta!</span>
     <input type="text" placeholder="DNI" />
     <input type="password" placeholder="Contraseña" />
-    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+    <a href="http://localhost/appweb_caba_1c_2025/GYM/AuthController/recoverPassword" class="forgot-password">¿Olvidaste tu contraseña?</a>
     <button>
         <span>INICIAR SESION!</span>
     </button>
