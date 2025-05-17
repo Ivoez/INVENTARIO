@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2025 a las 20:11:43
+-- Tiempo de generación: 17-05-2025 a las 21:01:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,8 +18,89 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `inventario`
+-- Base de datos: `inventario_db`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_usuario` VARCHAR(20), IN `param_pass_usuario` VARCHAR(255), IN `param_email_usuario` VARCHAR(100), IN `param_avatar_usuario` VARCHAR(150), IN `param_tipo_usuario` VARCHAR(15), IN `param_estado_usuario` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+    DECLARE existe_nombre_usuario INT;
+    DECLARE existe_email_usuario INT;
+    DECLARE existe_avatar_usuario INT;
+    
+    DECLARE existe_tipo_usuario INT;
+    DECLARE existe_estado_usuario INT;
+    
+    DECLARE id_tipo_usuario_param INT;
+    DECLARE id_estado_usuario_param INT;
+
+    -- Verificar existencia en base de datos
+    SELECT EXISTS(SELECT 1 FROM usuario WHERE nombre_usuario = param_nombre_usuario) INTO existe_nombre_usuario;
+    SELECT EXISTS(SELECT 1 FROM usuario WHERE email_usuario = param_email_usuario) INTO existe_email_usuario;
+    SELECT EXISTS(SELECT 1 FROM usuario WHERE avatar_usuario = param_avatar_usuario) INTO existe_avatar_usuario;
+    
+    SELECT EXISTS(SELECT 1 FROM tipo_usuario WHERE nombre_tipo_usuario = param_tipo_usuario) INTO existe_tipo_usuario;
+    SELECT EXISTS(SELECT 1 FROM estado_usuario WHERE nombre_estado_usuario = param_estado_usuario) INTO existe_estado_usuario;
+
+
+
+    -- Validaciones
+    IF existe_nombre_usuario > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_usuario existente';
+    ELSEIF existe_email_usuario > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'email_usuario existente';
+    ELSEIF existe_avatar_usuario > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'avatar_usuario existente';
+    ELSEIF param_tipo_usuario IS NOT NULL AND existe_tipo_usuario = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_tipo_usuario incorrecto';   
+    ELSEIF param_estado_usuario IS NOT NULL AND existe_estado_usuario = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_estado_usuario incorrecto';
+    ELSE
+    	SELECT id_tipo_usuario INTO id_tipo_usuario_param FROM tipo_usuario WHERE nombre_tipo_usuario = COALESCE(param_tipo_usuario, 'Usuario');
+        SELECT id_estado_usuario INTO id_estado_usuario_param FROM estado_usuario WHERE nombre_estado_usuario = COALESCE(param_estado_usuario, 'Activo');
+    
+        INSERT INTO usuario (nombre_usuario, pass_usuario, email_usuario, avatar_usuario, tipo_usuario_id, estado_usuario_id)
+        VALUES (param_nombre_usuario, param_pass_usuario, param_email_usuario, param_avatar_usuario, id_tipo_usuario_param, id_estado_usuario_param);
+
+        SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Inserción de usuario correcta';
+    END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_estado_empleado` ()   BEGIN
+    SELECT nombre_estado_empleado
+    FROM estado_empleado;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_estado_producto` ()   BEGIN
+    SELECT nombre_estado_producto
+    FROM estado_producto;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_estado_proveedor` ()   BEGIN
+    SELECT nombre_estado_proveedor
+    FROM estado_proveedor;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_estado_usuario` ()   BEGIN
+    SELECT nombre_estado_usuario
+    FROM estado_usuario;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_tipo_usuario` ()   BEGIN
+    SELECT nombre_tipo_usuario FROM tipo_usuario;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -31,7 +112,8 @@ CREATE TABLE `cabecera_orden_compra` (
   `id_cabecera_orden_compra` int(11) NOT NULL,
   `nro_orden_compra` varchar(40) NOT NULL,
   `usuario_responsable_id` int(11) NOT NULL,
-  `fecha_orden_compra` date DEFAULT current_timestamp(),
+  `fecha_orden_compra` date DEFAULT NULL,
+  `proveedor_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -45,7 +127,6 @@ CREATE TABLE `cabecera_orden_compra` (
 CREATE TABLE `categoria_producto` (
   `id_categoria_producto` int(11) NOT NULL,
   `nombre_categoria_producto` varchar(40) NOT NULL,
-  `estado_categoria_producto_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -60,7 +141,7 @@ CREATE TABLE `detalle_orden_compra` (
   `id_detalle_orden_compra` int(11) NOT NULL,
   `cabecera_orden_compra_id` int(11) NOT NULL,
   `producto_id` int(11) NOT NULL,
-  `cantidad_detalle_orden_compra` decimal(16,4) NOT NULL,
+  `cantidad_detalle_orden_compra` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -89,19 +170,6 @@ CREATE TABLE `empleado` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estado_categoria_producto`
---
-
-CREATE TABLE `estado_categoria_producto` (
-  `id_estado_categoria_producto` int(11) NOT NULL,
-  `nombre_estado_categoria_producto` varchar(29) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `estado_empleado`
 --
 
@@ -111,6 +179,16 @@ CREATE TABLE `estado_empleado` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `estado_empleado`
+--
+
+INSERT INTO `estado_empleado` (`id_estado_empleado`, `nombre_estado_empleado`, `created_at`, `updated_at`) VALUES
+(1, 'Activo', '2025-05-17 00:39:54', '2025-05-17 00:39:54'),
+(2, 'Inactivo', '2025-05-17 00:39:54', '2025-05-17 00:39:54'),
+(3, 'Suspendido', '2025-05-17 00:39:54', '2025-05-17 00:39:54'),
+(4, 'En Licencia', '2025-05-17 00:39:54', '2025-05-17 00:39:54');
 
 -- --------------------------------------------------------
 
@@ -125,6 +203,14 @@ CREATE TABLE `estado_producto` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `estado_producto`
+--
+
+INSERT INTO `estado_producto` (`id_estado_producto`, `nombre_estado_producto`, `created_at`, `updated_at`) VALUES
+(1, 'Activo', '2025-05-17 00:42:55', '2025-05-17 00:42:55'),
+(2, 'Inactivo', '2025-05-17 00:42:55', '2025-05-17 00:42:55');
+
 -- --------------------------------------------------------
 
 --
@@ -138,6 +224,35 @@ CREATE TABLE `estado_proveedor` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `estado_proveedor`
+--
+
+INSERT INTO `estado_proveedor` (`id_estado_proveedor`, `nombre_estado_proveedor`, `created_at`, `updated_at`) VALUES
+(1, 'Activo', '2025-05-17 00:41:55', '2025-05-17 00:41:55'),
+(2, 'Inactivo', '2025-05-17 00:41:55', '2025-05-17 00:41:55');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado_usuario`
+--
+
+CREATE TABLE `estado_usuario` (
+  `id_estado_usuario` int(11) NOT NULL,
+  `nombre_estado_usuario` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `estado_usuario`
+--
+
+INSERT INTO `estado_usuario` (`id_estado_usuario`, `nombre_estado_usuario`, `created_at`, `updated_at`) VALUES
+(1, 'Activo', '2025-05-16 23:18:38', '2025-05-16 23:18:38'),
+(2, 'Inactivo', '2025-05-16 23:18:38', '2025-05-16 23:18:38');
+
 -- --------------------------------------------------------
 
 --
@@ -146,10 +261,9 @@ CREATE TABLE `estado_proveedor` (
 
 CREATE TABLE `movimiento_stock` (
   `id_movimiento_stock` int(11) NOT NULL,
+  `fecha_movimiento` datetime NOT NULL,
   `producto_id` int(11) NOT NULL,
-  `tipo_movmiento_stock_id` int(11) NOT NULL,
-  `cantidad` decimal(16,4) NOT NULL,
-  `fecha_movmiento` date NOT NULL DEFAULT current_timestamp(),
+  `cantidad` int(11) NOT NULL,
   `usuario_responsable_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -165,10 +279,9 @@ CREATE TABLE `producto` (
   `id_producto` int(11) NOT NULL,
   `proveedor_id` int(11) NOT NULL,
   `categoria_producto_id` int(11) NOT NULL,
-  `tipo_unidad_id` int(11) NOT NULL,
   `codigo_producto` varchar(60) NOT NULL,
   `nombre_producto` varchar(60) NOT NULL,
-  `cantidad_stock_producto` decimal(16,4) NOT NULL,
+  `cantidad_stock_producto` int(11) NOT NULL,
   `precio_venta_producto` decimal(16,4) NOT NULL,
   `precio_costo_producto` decimal(16,4) NOT NULL,
   `estado_producto_id` int(11) NOT NULL,
@@ -197,32 +310,6 @@ CREATE TABLE `proveedor` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_movimiento_stock`
---
-
-CREATE TABLE `tipo_movimiento_stock` (
-  `id_tipo_movmiento_stock` int(11) NOT NULL,
-  `nombre_tipo_movimiento_stock` varchar(20) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipo_unidad`
---
-
-CREATE TABLE `tipo_unidad` (
-  `id_tipo_unidad` int(11) NOT NULL,
-  `nombre_tipo_unidad` varchar(20) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `tipo_usuario`
 --
 
@@ -233,6 +320,14 @@ CREATE TABLE `tipo_usuario` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `tipo_usuario`
+--
+
+INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `nombre_tipo_usuario`, `created_at`, `updated_at`) VALUES
+(1, 'Administrador', '2025-05-17 00:48:37', '2025-05-17 00:48:37'),
+(2, 'Usuario', '2025-05-17 00:48:37', '2025-05-17 00:48:37');
+
 -- --------------------------------------------------------
 
 --
@@ -242,13 +337,21 @@ CREATE TABLE `tipo_usuario` (
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nombre_usuario` varchar(20) NOT NULL,
-  `pass_usuario` varchar(15) NOT NULL,
-  `email_usuario` varchar(40) NOT NULL,
+  `pass_usuario` varchar(255) NOT NULL,
+  `email_usuario` varchar(100) NOT NULL,
   `avatar_usuario` varchar(150) DEFAULT NULL,
   `tipo_usuario_id` int(10) NOT NULL,
+  `estado_usuario_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `pass_usuario`, `email_usuario`, `avatar_usuario`, `tipo_usuario_id`, `estado_usuario_id`, `created_at`, `updated_at`) VALUES
+(1, 'usuario1', 'contra12345', 'email@email.com', '/ruta/avatar/image.jpg', 2, 1, '2025-05-17 18:51:36', '2025-05-17 18:51:36');
 
 --
 -- Índices para tablas volcadas
@@ -260,23 +363,23 @@ CREATE TABLE `usuario` (
 ALTER TABLE `cabecera_orden_compra`
   ADD PRIMARY KEY (`id_cabecera_orden_compra`),
   ADD UNIQUE KEY `unique_nro_orden_compra` (`nro_orden_compra`),
-  ADD KEY `FK_cabecera_orden_compra_usuario` (`usuario_responsable_id`);
+  ADD KEY `FK_orden_compra_proveedor` (`proveedor_id`),
+  ADD KEY `FK_orden_compra_usuario` (`usuario_responsable_id`);
 
 --
 -- Indices de la tabla `categoria_producto`
 --
 ALTER TABLE `categoria_producto`
   ADD PRIMARY KEY (`id_categoria_producto`),
-  ADD UNIQUE KEY `unique_nombre_categoria_producto` (`nombre_categoria_producto`),
-  ADD KEY `FK_categoria_producto_estado_categoria_producto` (`estado_categoria_producto_id`);
+  ADD UNIQUE KEY `unique_nombre_categoria_producto` (`nombre_categoria_producto`);
 
 --
 -- Indices de la tabla `detalle_orden_compra`
 --
 ALTER TABLE `detalle_orden_compra`
   ADD PRIMARY KEY (`id_detalle_orden_compra`),
-  ADD KEY `FK_detalle_orden_compra_cabecera` (`cabecera_orden_compra_id`),
-  ADD KEY `FK_detalle_orden_compra_producto` (`producto_id`);
+  ADD KEY `FK_detalle_cabecera` (`cabecera_orden_compra_id`),
+  ADD KEY `FK_detalle_producto` (`producto_id`);
 
 --
 -- Indices de la tabla `empleado`
@@ -287,13 +390,6 @@ ALTER TABLE `empleado`
   ADD UNIQUE KEY `unique_email_personal_empleado` (`email_personal_empleado`),
   ADD KEY `FK_empleado_usuario` (`usuario_id`),
   ADD KEY `FK_empleado_estado_empleado` (`estado_empleado_id`);
-
---
--- Indices de la tabla `estado_categoria_producto`
---
-ALTER TABLE `estado_categoria_producto`
-  ADD PRIMARY KEY (`id_estado_categoria_producto`),
-  ADD UNIQUE KEY `unique_nombre_estado_categoria_producto` (`nombre_estado_categoria_producto`) USING BTREE;
 
 --
 -- Indices de la tabla `estado_empleado`
@@ -314,16 +410,22 @@ ALTER TABLE `estado_producto`
 --
 ALTER TABLE `estado_proveedor`
   ADD PRIMARY KEY (`id_estado_proveedor`),
-  ADD UNIQUE KEY `unique_nombre_estado_proveedor` (`id_estado_proveedor`);
+  ADD UNIQUE KEY `unique_nombre_estado_proveedor` (`nombre_estado_proveedor`);
+
+--
+-- Indices de la tabla `estado_usuario`
+--
+ALTER TABLE `estado_usuario`
+  ADD PRIMARY KEY (`id_estado_usuario`),
+  ADD UNIQUE KEY `unique_nombre_estado_usuario` (`nombre_estado_usuario`);
 
 --
 -- Indices de la tabla `movimiento_stock`
 --
 ALTER TABLE `movimiento_stock`
   ADD PRIMARY KEY (`id_movimiento_stock`),
-  ADD KEY `FK_movmiento_stock_tipo_movimiento_stock` (`tipo_movmiento_stock_id`),
-  ADD KEY `FK_movmiento_stock_usuario` (`usuario_responsable_id`) USING BTREE,
-  ADD KEY `FK_movmiento_stock_producto` (`producto_id`);
+  ADD KEY `FK_movimiento_stock_producto` (`producto_id`),
+  ADD KEY `FK_movimiento_usuario` (`usuario_responsable_id`);
 
 --
 -- Indices de la tabla `producto`
@@ -334,15 +436,14 @@ ALTER TABLE `producto`
   ADD UNIQUE KEY `unique_codigo_producto` (`codigo_producto`),
   ADD KEY `FK_producto_proveedor` (`proveedor_id`),
   ADD KEY `FK_producto_categoria` (`categoria_producto_id`),
-  ADD KEY `FK_producto_estado_producto` (`estado_producto_id`),
-  ADD KEY `FK_producto_tipo_unidad` (`tipo_unidad_id`);
+  ADD KEY `FK_producto_estado_producto` (`estado_producto_id`);
 
 --
 -- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`id_proveedor`),
-  ADD UNIQUE KEY `unique_email_personal_proveedor` (`email_personal_proveedor`),
+  ADD UNIQUE KEY `unique_email_personal_empleado` (`email_personal_proveedor`),
   ADD UNIQUE KEY `unique_telefono_proveedor` (`telefono_proveedor`),
   ADD UNIQUE KEY `unique_direccion_proveedor` (`direccion_proveedor`),
   ADD UNIQUE KEY `unique_cuit_proveedor` (`CUIT_proveedor`),
@@ -350,25 +451,11 @@ ALTER TABLE `proveedor`
   ADD KEY `FK_proveedor_estado_proveedor` (`estado_proveedor_id`);
 
 --
--- Indices de la tabla `tipo_movimiento_stock`
---
-ALTER TABLE `tipo_movimiento_stock`
-  ADD PRIMARY KEY (`id_tipo_movmiento_stock`),
-  ADD UNIQUE KEY `unique_nombre_tipo_movmiento_stock` (`nombre_tipo_movimiento_stock`);
-
---
--- Indices de la tabla `tipo_unidad`
---
-ALTER TABLE `tipo_unidad`
-  ADD PRIMARY KEY (`id_tipo_unidad`),
-  ADD UNIQUE KEY `unique_nombre_tipo_unidad` (`nombre_tipo_unidad`);
-
---
 -- Indices de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
   ADD PRIMARY KEY (`id_tipo_usuario`),
-  ADD UNIQUE KEY `unique_nombre_tipo_usuario` (`id_tipo_usuario`);
+  ADD UNIQUE KEY `unique_nombre` (`id_tipo_usuario`);
 
 --
 -- Indices de la tabla `usuario`
@@ -377,7 +464,8 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
   ADD UNIQUE KEY `unique_nombre_usuario` (`nombre_usuario`),
   ADD UNIQUE KEY `unique_email_usuario` (`email_usuario`),
-  ADD KEY `FK_usuario_tipo_usuario` (`tipo_usuario_id`);
+  ADD KEY `FK_usuario_tipo_usuario` (`tipo_usuario_id`),
+  ADD KEY `FK_usuario_estado_usuario` (`estado_usuario_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -408,28 +496,28 @@ ALTER TABLE `empleado`
   MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `estado_categoria_producto`
---
-ALTER TABLE `estado_categoria_producto`
-  MODIFY `id_estado_categoria_producto` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `estado_empleado`
 --
 ALTER TABLE `estado_empleado`
-  MODIFY `id_estado_empleado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estado_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `estado_producto`
 --
 ALTER TABLE `estado_producto`
-  MODIFY `id_estado_producto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estado_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `estado_proveedor`
 --
 ALTER TABLE `estado_proveedor`
-  MODIFY `id_estado_proveedor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estado_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `estado_usuario`
+--
+ALTER TABLE `estado_usuario`
+  MODIFY `id_estado_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `movimiento_stock`
@@ -450,28 +538,16 @@ ALTER TABLE `proveedor`
   MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_movimiento_stock`
---
-ALTER TABLE `tipo_movimiento_stock`
-  MODIFY `id_tipo_movmiento_stock` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tipo_unidad`
---
-ALTER TABLE `tipo_unidad`
-  MODIFY `id_tipo_unidad` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -481,20 +557,15 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `cabecera_orden_compra`
 --
 ALTER TABLE `cabecera_orden_compra`
-  ADD CONSTRAINT `FK_cabecera_orden_compra_usuario` FOREIGN KEY (`usuario_responsable_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `categoria_producto`
---
-ALTER TABLE `categoria_producto`
-  ADD CONSTRAINT `FK_categoria_producto_estado_categoria_producto` FOREIGN KEY (`estado_categoria_producto_id`) REFERENCES `estado_categoria_producto` (`id_estado_categoria_producto`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_orden_compra_proveedor` FOREIGN KEY (`proveedor_id`) REFERENCES `proveedor` (`id_proveedor`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_orden_compra_usuario` FOREIGN KEY (`usuario_responsable_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalle_orden_compra`
 --
 ALTER TABLE `detalle_orden_compra`
-  ADD CONSTRAINT `FK_detalle_orden_compra_cabecera` FOREIGN KEY (`cabecera_orden_compra_id`) REFERENCES `cabecera_orden_compra` (`id_cabecera_orden_compra`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_detalle_orden_compra_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_detalle_cabecera` FOREIGN KEY (`cabecera_orden_compra_id`) REFERENCES `cabecera_orden_compra` (`id_cabecera_orden_compra`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_detalle_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `empleado`
@@ -507,9 +578,8 @@ ALTER TABLE `empleado`
 -- Filtros para la tabla `movimiento_stock`
 --
 ALTER TABLE `movimiento_stock`
-  ADD CONSTRAINT `FK_movmiento_stock_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_movmiento_stock_tipo_movimiento_stock` FOREIGN KEY (`tipo_movmiento_stock_id`) REFERENCES `tipo_movimiento_stock` (`id_tipo_movmiento_stock`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_movmiento_stock_usuario` FOREIGN KEY (`usuario_responsable_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_movimiento_stock_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_movimiento_usuario` FOREIGN KEY (`usuario_responsable_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
@@ -517,8 +587,7 @@ ALTER TABLE `movimiento_stock`
 ALTER TABLE `producto`
   ADD CONSTRAINT `FK_producto_categoria` FOREIGN KEY (`categoria_producto_id`) REFERENCES `categoria_producto` (`id_categoria_producto`) ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_producto_estado_producto` FOREIGN KEY (`estado_producto_id`) REFERENCES `estado_producto` (`id_estado_producto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_producto_proveedor` FOREIGN KEY (`proveedor_id`) REFERENCES `proveedor` (`id_proveedor`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_producto_tipo_unidad` FOREIGN KEY (`tipo_unidad_id`) REFERENCES `tipo_unidad` (`id_tipo_unidad`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_producto_proveedor` FOREIGN KEY (`proveedor_id`) REFERENCES `proveedor` (`id_proveedor`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `proveedor`
@@ -530,6 +599,7 @@ ALTER TABLE `proveedor`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
+  ADD CONSTRAINT `FK_usuario_estado_usuario` FOREIGN KEY (`estado_usuario_id`) REFERENCES `estado_usuario` (`id_estado_usuario`) ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_usuario_tipo_usuario` FOREIGN KEY (`tipo_usuario_id`) REFERENCES `tipo_usuario` (`id_tipo_usuario`) ON UPDATE CASCADE;
 COMMIT;
 
