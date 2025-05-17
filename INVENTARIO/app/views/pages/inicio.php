@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="<?php echo RUTA_URL?>/css/style.css">
+<link rel="stylesheet" href="<?php echo RUTA_URL?>public/css/style.css">
 <?php require RUTA_APP .'/views/layout/header.php';?>
 
 
@@ -9,6 +9,9 @@
             <section class="texto-aislado">
         <div class="container texto-contenedor">
         <div class="texto-interno">
+
+
+<!--AGREGAR BOTON DE LOGIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
     <p >
         Dashboard
