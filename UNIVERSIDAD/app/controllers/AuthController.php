@@ -352,5 +352,7 @@ class AuthController extends BaseController {
         $this->view('pages/auth/login');
         exit;
     }
+
+    
     
 }
