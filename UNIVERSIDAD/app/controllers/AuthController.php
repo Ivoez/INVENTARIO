@@ -237,15 +237,43 @@ class AuthController extends BaseController {
     }
 
     // /* Función para llamar a la vista actualizarContraseña con blanqueo de errores*/
-    public function actualizarVistaContraseña() {
-        $data = [
-            'mail' => '',
-            'errorMail' => '',
-        ];
-        $this->view('pages/auth/actualizarContraseña');
+    public function actualizarVistaContra() {
+        echo "Entrando al método actualizarVistaContraseña"; // DEBUG
+    $data = [
+        'mail' => '',
+        'errorMail' => '',
+    ];
+    $this->view('pages/auth/actualizarContra', $data);
     }
 
-    public function actualizarContraseña() {
+    public function actualizarContra() {
+
+         $Email = $_POST['Email'];
+        $passActual =$_POST['pass_actual'];
+        $password = $_POST['password'];
+        $password2 = $_POST['password2'];
+        if ($password != $password2){
+            $data = [
+                'mail' => '',
+                'error_mail'=>'',
+                'error_pass'=> "<div class='alert alert-danger' role='alert'>
+                <p class = 'text-center'>Las contraseñas no coinciden.</p>
+             </div>",
+            ];
+            $this->view('pages/auth/actualizarContra',$data);
+        }else{
+            if($this->authModel->cambiarContaseña($password, $Email)){
+                $data = [
+                    'mail' => '',
+                    'error_mail'=>'',
+                    'error_pass'=> "<div class='alert alert-success' role='alert'>
+                    <p class = 'text-center'>La contraseña fue actualizada</p>
+                 </div>",
+                ];
+                $this->view('pages/auth/actualizarContra',$data);
+            }
+        }
+
         
     }
 
