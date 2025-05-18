@@ -91,12 +91,6 @@ class AuthController extends BaseController {
 
     //mostrar vista de registro usuario
     public function registrarUsuario() {
-         if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    // Destruir sesión si quieres que siempre se cierre al salir del dashboard
-    session_unset();
-    session_destroy();
         $data=[
             'errorRegistro'=>'',
         ];

@@ -37,10 +37,7 @@
                 case 'admin':
                 ?>
                   <li class="nav-item">
-                  <a style="color: white;" class="nav-link nav-button " href="<?php echo RUTA_URL; ?>/AuthController/agregarCarrera">Agregar Carreras</a>
-                </li>
-                <li class="nav-item">
-                <a style="color: white;" class="nav-link" href="<?php echo RUTA_URL; ?> /AuthController/logout">cerrar sesion</a>
+                  <a style="color: white;" class="nav-link nav-button " href="<?php echo RUTA_URL; ?>/AdminController/agregarCarrera">Agregar Carreras</a>
                 </li>
                 <?php 
                 break;
@@ -59,17 +56,17 @@
                 ?>
                 <li class="nav-item">
                   <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Alumno/materias">
-                    <i class="bi bi-journal-text me-1"></i>Materias
+                    <i style="color: white;" class="bi bi-journal-text me-1"></i>Materias
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Alumno/tareas">
-                    <i class="bi bi-list-task me-1"></i>Tareas
+                    <i style="color: white;" class="bi bi-list-task me-1"></i>Tareas
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Alumno/asistencia">
-                    <i class="bi bi-check2-circle me-1"></i>Asistencia
+                    <i style="color: white;" class="bi bi-check2-circle me-1"></i>Asistencia
                   </a>
                 </li>
                 <?php

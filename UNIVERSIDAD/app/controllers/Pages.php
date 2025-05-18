@@ -7,12 +7,7 @@ class Pages extends BaseController {
     }
 
     public function index() {
-        if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    // Destruir sesión si quieres que siempre se cierre al salir del dashboard
-    session_unset();
-    session_destroy();
+
         $data = [
             "title" => "Bienvenido"
         ];
