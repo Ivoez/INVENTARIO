@@ -9,7 +9,7 @@
         <div class="card p-4" style="background-color: rgba(0, 0, 0, 0.7); border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); color: white;">
             <h2 class="text-center mb-4">Agregar Nueva Carrera</h2>
             
-            <form action="<?php echo RUTA_URL; ?>/AuthController/agregarCarrera" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo RUTA_URL; ?>/AdminController/agregarCarrera" method="POST" enctype="multipart/form-data">
                 
                 <div class="form-group mb-3">
                     <label for="nombreCarrera">Nombre de la carrera:</label>
