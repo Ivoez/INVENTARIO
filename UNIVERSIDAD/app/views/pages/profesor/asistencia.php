@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -31,17 +31,17 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarUsuario">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Profesor/materias">
+                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Pages/materias">
                                 <i class="bi bi-journal-text me-1"></i>Mis Materias
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Profesor/evaluaciones">
+                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Pages/evaluaciones">
                                 <i class="bi bi-card-checklist me-1"></i>Evaluaciones
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Profesor/asistencia">
+                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Pages/asistencia">
                                 <i class="bi bi-check2-square me-1"></i>Registrar Asistencia
                             </a>
                         </li>

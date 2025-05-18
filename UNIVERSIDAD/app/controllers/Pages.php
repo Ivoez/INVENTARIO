@@ -87,28 +87,28 @@ class Pages extends BaseController {
     //Vistas Dashboard Profesor y enlaces.
 
     public function dashboard() {
-    if (!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] !== 'profesor') {
+    if (!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] !== 'Profesor') {
         header('Location: ' . RUTA_URL . '/AuthController/login');
         exit;
     }
 
-    require RUTA_APP . '/views/pages/profesor/dashboard';
+    require RUTA_APP . 'pages/profesor/dashboard';
 }
 
 
      // Mostrar vista de Mis Materias
     public function materias() {
-        $this->view('/views/pages/profesor/materias');
+        $this->view('pages/profesor/materias');
     }
 
     // Mostrar vista de Evaluaciones
     public function evaluaciones() {
-        $this->view('/views/pages/profesor/evaluaciones');
+        $this->view('pages/profesor/evaluaciones');
     }
 
     // Mostrar vista de Asistencia
     public function asistencia() {
-        $this->view('/views/pages/profesor/asistencia');
+        $this->view('pages/profesor/asistencia');
     }
 }
 
