@@ -3,7 +3,7 @@ class Usuario {
     private $db;
 
     public function __construct() {
-        $this->db = new Database(); // ✅ Esta instancia sí tiene query(), bind(), etc.
+        $this->db = new Database(); 
     }
 
     public function registrar($datos) {
@@ -44,8 +44,22 @@ class Usuario {
         return false;
     }
 
+    public function guardarCodigoRecuperacion($email, $codigo) {
+        $this->db->query("UPDATE socios SET codigo_recuperacion = :codigo WHERE email = :email");
+        $this->db->bind(':codigo', $codigo);
+        $this->db->bind(':email', $email);
+        return $this->db->execute();
+    }
+
+    public function validarCodigo($email, $codigo) {
+        $this->db->query("SELECT * FROM socios WHERE email = :email AND codigo_recuperacion = :codigo");
+        $this->db->bind(':email', $email);
+        $this->db->bind(':codigo', $codigo);
+        return $this->db->register();
+    }
+
     public function actualizarPassword($email, $nuevaPasswordHash) {
-        $this->db->query("UPDATE socios SET password = :password WHERE email = :email");
+        $this->db->query("UPDATE socios SET password = :password, codigo_recuperacion = NULL WHERE email = :email");
         $this->db->bind(':password', $nuevaPasswordHash);
         $this->db->bind(':email', $email);
         return $this->db->execute();
