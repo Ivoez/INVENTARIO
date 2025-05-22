@@ -37,13 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="http://localhost/appweb_caba_1c_2025/GYM/AuthController/registrar" method="POST">
     <h1>Crear cuenta!</h1>
     <span>Usa tu mail para registrarte!</span>
-    <input type="text" placeholder="Nombre" name="nombre" />
-    <input type="text" placeholder="Apellido" name="apellido" />
-    <input type="text" placeholder="DNI" name="dni" />
-    <input type="email" placeholder="Email" name="email" />
-    <input type="text" placeholder="Número de celular" name="celular" />
-    <input type="password" placeholder="Contraseña" name="password" />
-    <input type="password" placeholder="Ingrese nuevamente su contraseña" name="password2" />
+    <input type="text" placeholder="Nombre" name="nombre" required/>
+    <input type="text" placeholder="Apellido" name="apellido" required/>
+    <input type="text" placeholder="DNI" name="dni" required/>
+    <input type="email" placeholder="Email" name="email" required/>
+    <input type="text" placeholder="Número de celular" name="celular" required/>
+    <input type="password" placeholder="Contraseña" name="password" required/>
+    <input type="password" placeholder="Ingrese nuevamente su contraseña" name="password2" require/>
     <button type="submit">
         <span class="btn-register">REGISTRARSE!</span>
     </button>
@@ -54,8 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="/appweb_caba_1c_2025/GYM/">
     <h1 class="sign-in-text-form">Iniciar Sesion!</h1>
     <span>Ingresa tu DNI para acceder a tu cuenta!</span>
-    <input type="text" placeholder="DNI" />
-    <input type="password" placeholder="Contraseña" />
+    <input type="text" placeholder="DNI" required/>
+    <input type="password" placeholder="Contraseña" required/>
     <a href="http://localhost/appweb_caba_1c_2025/GYM/AuthController/recoverPassword" class="forgot-password">¿Olvidaste tu contraseña?</a>
     <button>
         <span>INICIAR SESION!</span>
