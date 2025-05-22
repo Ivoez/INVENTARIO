@@ -11,6 +11,7 @@ CREATE TABLE socios (
   email VARCHAR(100) UNIQUE NOT NULL,
   celular VARCHAR(20) NOT NULL,
   password VARCHAR(255) NOT NULL,
+  codigo_recuperacion VARCHAR(10) DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
