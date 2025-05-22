@@ -72,27 +72,93 @@ class AuthController extends BaseController{
     }
 
     // Método para actualizar la contraseña
-    public function recoverPassword() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $email = trim($_POST['email']);
-            $nuevaPassword = trim($_POST['nueva_password']);
-            $nuevaPasswordHash = password_hash($nuevaPassword, PASSWORD_DEFAULT);
+   public function recoverPassword() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+        $nuevaPassword = isset($_POST['nueva_password']) ? trim($_POST['nueva_password']) : '';
 
-            if (empty($email) || empty($nuevaPassword)) {
-                echo "Email y nueva contraseña son obligatorios.";
-                return;
+        if (empty($email) || empty($nuevaPassword)) {
+            echo "Email y nueva contraseña son obligatorios.";
+            return;
+        }
+
+        $nuevaPasswordHash = password_hash($nuevaPassword, PASSWORD_DEFAULT);
+
+        // Intentar actualizar la contraseña
+        if ($this->usuarioModel->recoverPassword($email, $nuevaPasswordHash)) {
+            echo "Contraseña actualizada exitosamente.";
+        } else {
+            echo "Error al actualizar la contraseña.";
+        }
+    } else {
+        // Mostrar vista de recuperación de contraseña
+        require_once __DIR__ . '/../views/pages/auth/recoverPassword.php';
+    }
+}
+
+public function forgotPassword() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+
+        if (empty($email)) {
+            echo "El email es obligatorio.";
+            return;
+        }
+
+        $usuario = $this->usuarioModel->obtenerUsuarioPorEmail($email);
+        if (!$usuario) {
+            echo "No se encontró un usuario con ese email.";
+            return;
+        }
+
+        $codigo = rand(100000, 999999);
+        if ($this->usuarioModel->guardarCodigoRecuperacion($email, $codigo)) {
+            require_once 'utils/Mailer.php';
+            if (Mailer::enviarCodigoRecuperacion($email, $codigo)) {
+                header('Location: /recover-step2?email=' . urlencode($email));
+                exit();
+            } else {
+                echo "Error al enviar el correo.";
             }
+        }
+    } else {
+        require_once 'views/pages/auth/forgotPassword.php';
+    }
+}
 
-            // Intentar actualizar la contraseña
-            if ($this->usuarioModel->recoverPassword($email, $nuevaPasswordHash)) {
+public function resetPassword() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+        $codigo = isset($_POST['codigo']) ? trim($_POST['codigo']) : '';
+        $nuevaPassword = isset($_POST['nueva_password']) ? trim($_POST['nueva_password']) : '';
+        $repetirPassword = isset($_POST['repetir_password']) ? trim($_POST['repetir_password']) : '';
+
+        if (empty($email) || empty($codigo) || empty($nuevaPassword) || empty($repetirPassword)) {
+            echo "Todos los campos son obligatorios.";
+            return;
+        }
+
+        if ($nuevaPassword !== $repetirPassword) {
+            echo "Las contraseñas no coinciden.";
+            return;
+        }
+
+        if ($this->usuarioModel->validarCodigo($email, $codigo)) {
+            $hash = password_hash($nuevaPassword, PASSWORD_DEFAULT);
+            if ($this->usuarioModel->actualizarPassword($email, $hash)) {
                 echo "Contraseña actualizada exitosamente.";
+                header('Location: /login');
+                exit();
             } else {
                 echo "Error al actualizar la contraseña.";
             }
         } else {
-            // Mostrar vista de recuperación de contraseña
-           require_once __DIR__ . '/../views/pages/auth/recoverPassword.php';
+            echo "Código incorrecto.";
         }
+    } else {
+        require_once 'views/pages/auth/recoverPassword.php';
     }
+}
+
 }
 ?>
