@@ -8,6 +8,10 @@ class AuthController extends BaseController{
         $this->usuarioModel = new Usuarios();
     }
 
+    public function index() {
+    $this->forgotPassword();
+}
+
     // Método para registrar un nuevo usuario
     public function registrar() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -72,29 +76,7 @@ class AuthController extends BaseController{
     }
 
     // Método para actualizar la contraseña
-   public function recoverPassword() {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $email = isset($_POST['email']) ? trim($_POST['email']) : '';
-        $nuevaPassword = isset($_POST['nueva_password']) ? trim($_POST['nueva_password']) : '';
-
-        if (empty($email) || empty($nuevaPassword)) {
-            echo "Email y nueva contraseña son obligatorios.";
-            return;
-        }
-
-        $nuevaPasswordHash = password_hash($nuevaPassword, PASSWORD_DEFAULT);
-
-        // Intentar actualizar la contraseña
-        if ($this->usuarioModel->recoverPassword($email, $nuevaPasswordHash)) {
-            echo "Contraseña actualizada exitosamente.";
-        } else {
-            echo "Error al actualizar la contraseña.";
-        }
-    } else {
-        // Mostrar vista de recuperación de contraseña
-        require_once __DIR__ . '/../views/pages/auth/recoverPassword.php';
-    }
-}
+  
 
 public function forgotPassword() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -113,7 +95,8 @@ public function forgotPassword() {
 
         $codigo = rand(100000, 999999);
         if ($this->usuarioModel->guardarCodigoRecuperacion($email, $codigo)) {
-            require_once 'utils/Mailer.php';
+            require_once __DIR__ . '/../../utils/Mailer.php';
+
             if (Mailer::enviarCodigoRecuperacion($email, $codigo)) {
                 header('Location: /recover-step2?email=' . urlencode($email));
                 exit();
@@ -122,11 +105,12 @@ public function forgotPassword() {
             }
         }
     } else {
-        require_once 'views/pages/auth/forgotPassword.php';
+        require_once __DIR__ . '/../views/pages/auth/recoverPassword.php';
+
     }
 }
 
-public function resetPassword() {
+public function resetPassword($codigo = null, $email = null) {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = isset($_POST['email']) ? trim($_POST['email']) : '';
         $codigo = isset($_POST['codigo']) ? trim($_POST['codigo']) : '';
@@ -156,9 +140,10 @@ public function resetPassword() {
             echo "Código incorrecto.";
         }
     } else {
-        require_once 'views/pages/auth/recoverPassword.php';
+        require_once 'views/pages/auth/forgotPassword.php';
     }
 }
 
+    
 }
 ?>
