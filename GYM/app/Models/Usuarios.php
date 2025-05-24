@@ -8,7 +8,7 @@ class Usuarios {
 
     public function registrar($datos) {
         $this->db->query("INSERT INTO socios (nombre, apellido, dni, email, celular, password) 
-                          VALUES (:nombre, :apellido, :dni, :email, :celular, :password)");
+                        VALUES (:nombre, :apellido, :dni, :email, :celular, :password)");
 
         $this->db->bind(':nombre', $datos['nombre']);
         $this->db->bind(':apellido', $datos['apellido']);
@@ -17,7 +17,12 @@ class Usuarios {
         $this->db->bind(':celular', $datos['celular']);
         $this->db->bind(':password', $datos['password']); 
 
+        try {
         return $this->db->execute();
+        } catch (PDOException $e) {
+        echo "Error al insertar: " . $e->getMessage();
+        return false;
+        }
     }
 
 

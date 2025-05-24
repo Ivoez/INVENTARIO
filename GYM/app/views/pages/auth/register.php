@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container">
 <div class="form-container sign-up-container">
-    <form action="http://localhost/appweb_caba_1c_2025/GYM/AuthController/registrar" method="POST">
+    <form action="<?= RUTA_URL ?>/Auth/registrar" method="POST">
     <h1>Crear cuenta!</h1>
     <span>Usa tu mail para registrarte!</span>
     <input type="text" placeholder="Nombre" name="nombre" required/>
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="email" placeholder="Email" name="email" required/>
     <input type="text" placeholder="Número de celular" name="celular" required/>
     <input type="password" placeholder="Contraseña" name="password" required/>
-    <input type="password" placeholder="Ingrese nuevamente su contraseña" name="password2" require/>
+    <input type="password" placeholder="Ingrese nuevamente su contraseña" name="password2" required/>
     <button type="submit">
         <span class="btn-register">REGISTRARSE!</span>
     </button>
@@ -51,12 +51,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <div class="form-container sign-in-container">
-    <form action="/appweb_caba_1c_2025/GYM/">
+    <form action="<?= RUTA_URL ?>">
     <h1 class="sign-in-text-form">Iniciar Sesion!</h1>
     <span>Ingresa tu DNI para acceder a tu cuenta!</span>
     <input type="text" placeholder="DNI" required/>
     <input type="password" placeholder="Contraseña" required/>
-    <a href="http://localhost/appweb_caba_1c_2025/GYM/AuthController/recoverPassword" class="forgot-password">¿Olvidaste tu contraseña?</a>
+    <a href="<?= RUTA_URL ?>/Auth/forgotPassword" target="" class="forgot-password">¿Olvidaste tu contraseña?</a>
     <button>
         <span>INICIAR SESION!</span>
     </button>

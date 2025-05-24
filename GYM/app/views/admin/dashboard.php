@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/../layout/landing/header.php'; ?>
+<?php require_once __DIR__ . '/../layout/admin/header.php'; ?>
 
 <div class="container mt-5">
   <h1 class="mb-4">Panel de Administración</h1>
@@ -27,4 +27,4 @@
   </div>
 </div>
 
-<?php require_once __DIR__ . '/../layout/landing/footer.php'; ?>
+
