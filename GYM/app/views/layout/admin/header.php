@@ -1,6 +1,3 @@
-<?php
-  $css = isset($estiloPagina) ? $estiloPagina : 'styleRegister.css';
-?>
 
 <!DOCTYPE html>
 <html lang="es">

@@ -1,29 +1,30 @@
-<?php require_once __DIR__ . '/../layout/landing/header.php';
- ?>
+<?php require_once __DIR__ . '/../layout/landing/header.php'; ?>
 
 <div class="container mt-5">
   <h1 class="mb-4">Panel de Administración</h1>
 
   <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card text-bg-primary shadow">
+  
+    <div class="col-md-6">
+      <div class="card shadow border-0">
         <div class="card-body">
-          <h5 class="card-title">Usuarios</h5>
-          <p class="card-text">Gestionar socios registrados en el sistema.</p>
-          <a href="/Usuarios/index" class="btn btn-light">Ir a Usuarios</a>
+          <h5 class="card-title">👨‍🏫 Profesores</h5>
+          <p class="card-text">Dar de alta nuevos profesores y ver el listado completo.</p>
+          <a  href="<?= RUTA_URL ?>/Profesores/index" class="btn btn-primary">Gestionar Profesores</a>
         </div>
       </div>
     </div>
-    
-    <div class="col-md-4">
-      <div class="card text-bg-danger shadow">
+
+    <div class="col-md-6">
+      <div class="card shadow border-0">
         <div class="card-body">
-          <h5 class="card-title">Cerrar sesión</h5>
-          <p class="card-text">Salir del sistema de administración.</p>
-          <a href="/Auth/logout" class="btn btn-light">Logout</a>
+          <h5 class="card-title">🏋️ Actividades</h5>
+          <p class="card-text">Administrar las actividades: alta, edición y eliminación.</p>
+          <a href="/Actividades/index" class="btn btn-success">Gestionar Actividades</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <?php require_once __DIR__ . '/../layout/landing/footer.php'; ?>
