@@ -4,7 +4,7 @@
       <section class="">
         <p class="d-flex justify-content-center align-items-center">
           <span class="text-footer me-3">Queres ser miembro?</span>
-          <a href="/appweb_caba_1c_2025/GYM/public/register" class="no-subrayado">
+          <a href="<?= RUTA_URL ?>/Auth/registrar" class="no-subrayado">
             <button data-mdb-ripple-init type="button" class="btn btn-outline-light btn-rounded" >
           <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
             <path

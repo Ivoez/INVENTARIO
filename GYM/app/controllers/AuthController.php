@@ -34,7 +34,7 @@ class AuthController extends BaseController{
             // Intentar registrar al usuario
             if ($this->usuarioModel->registrar($datos)) {
                 // Si es exitoso, redirigir a la página de login
-                header("Location: /login");
+                header("Location: " . RUTA_URL);
                 exit();
             } else {
                 echo "Error al registrar al socio.";
