@@ -5,7 +5,7 @@ class AuthController extends BaseController{
     private $usuarioModel;
 
     public function __construct() {
-        $this->usuarioModel = new Usuario();
+        $this->usuarioModel = new Usuarios();
     }
 
     public function index() {
@@ -34,14 +34,14 @@ class AuthController extends BaseController{
             // Intentar registrar al usuario
             if ($this->usuarioModel->registrar($datos)) {
                 // Si es exitoso, redirigir a la página de login
-                header("Location: /login");
+                header("Location: " . RUTA_URL);
                 exit();
             } else {
                 echo "Error al registrar al socio.";
             }
         } else {
             // Mostrar vista de registro si la solicitud no es POST
-            require_once 'views/usuarios/registro.php';
+            require_once RUTA_VIEWS . '/pages/auth/register.php';
         }
     }
 

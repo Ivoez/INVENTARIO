@@ -200,9 +200,42 @@ class AuthController extends BaseController {
         }   
  
     
+    public function verPerfil(){
+        $data=[
+            'error' => '',
+        ];
+        $this->view('pages/auth/perfilUsuario', $data);
+    }
 
-
-
+    public function verPerfilCambios(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = [
+                'NombreUsuario' => $_POST['nombreUsuario'],
+                'Nombre' => $_POST['Nombre'],
+                'Apellido' => $_POST['apellido'],
+                'DNI' => $_POST['dni'],
+                'telefono' => $_POST['telefono'],
+                'idUsuario' => $_SESSION['idUsuario'],
+            ];
+            if($this->authModel->editarDatosUsuario($data)){
+                $data = [
+                    'error' => '<div class="alert alert-danger" role="alert">
+                                        Usuario editado correctamente.
+                                        </div>',
+                ];
+                $this->view('pages/auth/perfilUsuario', $data);
+            }else{
+                $data = [
+                    'error' => '<div class="alert alert-danger" role="alert">
+                                        No se pudo editar los datos del usuario.
+                                        </div>',
+                ];
+                $this->view('pages/auth/perfilUsuario', $data);
+            }
+        }else{
+            $this->view('pages/auth/perfilUsuario');
+        }
+    }
 
 
     // Procesa el formulario de recuperación
