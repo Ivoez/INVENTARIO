@@ -18,7 +18,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark custom-navbar mb-4">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand d-flex align-items-center" href="<?= RUTA_URL ?>">
         <img src="public/img/logogymtransparent.png" alt="Logo GYM" />
         <span>GYM-UNLZ</span>
       </a>
@@ -29,13 +29,13 @@
       <div class="collapse navbar-collapse" id="navbarGYM">
         <ul class="navbar-nav ms-auto me-2">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Inicio</a>
+            <a class="nav-link active" href="<?= RUTA_URL ?>">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Socios</a>
+            <a class="nav-link" href="<?= RUTA_URL ?>">Socios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Actividades</a>
+            <a class="nav-link"href="<?= RUTA_URL ?>/Dashboard/index">Dashboard</a>
           </li>
         </ul>
 
