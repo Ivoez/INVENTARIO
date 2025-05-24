@@ -119,7 +119,7 @@
 
 <div class="call-to-action my-5">
   <div class="overlay-text">
-    <h2>NO SOS PARTE? <a href="<php echo RUTA_URL; ?> /register">UNITE A NUESTRA FAMILIA!</a></h2>
+    <h2>NO SOS PARTE? <a href="<?= RUTA_URL ?>/Auth/registrar">UNITE A NUESTRA FAMILIA!</a></h2>
   </div>
 </div>
 
