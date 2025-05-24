@@ -31,7 +31,22 @@ class AuthModel{
 			return false;
 		}
 	}
-
+	public function editarDatosUsuario($data){
+		$this->db->query("UPDATE usuario 
+						SET NombreUsuario = :NombreUsuario, Nombre = :Nombre, Apellido = :Apellido, DNI = :DNI, telefono = :telefono
+						WHERE idUsuario = :idUsuario");
+		$this->db->bind('NombreUsuario', $data['NombreUsuario']);
+		$this->db->bind('Nombre', $data['Nombre']);
+		$this->db->bind('Apellido', $data['Apellido']);
+		$this->db->bind('DNI', $data['DNI']);
+		$this->db->bind('telefono', $data['telefono']);
+		$this->db->bind('idUsuario', $data['idUsuario']);
+		if($this->db->execute()){
+			return true;
+		}else {
+			return false;
+		}
+	}
     	/* Método para buscar el mail y la contraseña para comprobar si existe y poder loguear*/
 
 	public function buscarPorMail($data)
@@ -65,6 +80,7 @@ class AuthModel{
 			return false;
 		}
 	}
+
 
 	
 }

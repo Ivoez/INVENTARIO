@@ -73,12 +73,23 @@
                 break;
                 }
                 ?>
-
-                  <li class="nav-item d-inline-block">
-                  <a class="nav-link nav-button logout" href="<?php echo RUTA_URL; ?>/AuthController/logout">Cerrar Sesión</a>
+              
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle fs-4" style="color: white;"></i>
+                  </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilDropdown">
+                  <li>
+                    <a class="dropdown-item" href="<?php echo RUTA_URL; ?>/AuthController/verPerfil">Mi Perfil</a>
                   </li>
-
+                  <li>
+                    <a class="dropdown-item" href="<?php echo RUTA_URL; ?>/AuthController/logout">Cerrar Sesión</a>
+                  </li>
+                </ul>
+              </li>
+              
               </ul>
             </div>
           </nav>
+          
 </header>
