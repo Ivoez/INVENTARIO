@@ -21,9 +21,8 @@
 
         //buscar en controladores si el controlador existe
         if(isset($_GET['url'])){
-        if(file_exists('../app/controllers/' . ucwords($url[0]). '.php')){
-            // si existe se setea como controlador por defecto 
-            $this->actualController = ucwords($url[0]);
+        if(file_exists('../app/controllers/' . ucwords($url[0]) . 'Controller.php')){
+            $this->actualController = ucwords($url[0]) . 'Controller';
 
             //unset indice 
             unset($url[0]);
