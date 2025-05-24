@@ -1,5 +1,5 @@
 <div class="d-flex">
-    <!-- Sidebar -->
+    <!-- Sidebar de alumnos -->
     <div class="bg-primary text-white p-3 vh-100 sidebar">
         <h4 class="mb-4">UTN Alumno</h4>
         <ul class="nav flex-column">

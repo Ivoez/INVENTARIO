@@ -221,20 +221,28 @@ class AuthController extends BaseController {
                 'email' => $Email,
             ];
             $usuario = $this->authModel->buscarPorMail($data);
-            if(!empty($usuario)){
-                $where = "new_pass";
-                include(RUTA_APP . "/mail/mail_pass.php");
-            }else{
-                $data = [
-                "error_mail"=> "<div class='alert alert-danger' role='alert'>
-                            <p class = 'text-center'>No es un email válido.</p>
-                         </div>",
-                "mail"=>'',
-            ];
-                $this->view('pages/auth/olvide_mi_contraseña', $data);
-            }
-   
+
+             if (!empty($usuario)) {
+        $where = "new_pass";
+        include(RUTA_APP . "/mail/actualizarContra.php");
+
+        // ✅ Mensaje de éxito
+        $data = [
+            "success" => "Email enviado correctamente. Revisá tu bandeja de entrada o la carpeta SPAM.",
+            "mail" => $Email
+        ];
+        $this->view('pages/auth/email_enviado', $data);
+
+    } else {
+        $data = [
+            "error_mail"=> "<div class='alert alert-danger' role='alert'>
+                                <p class='text-center'>No es un email válido.</p>
+                            </div>",
+            "mail"=>'',
+        ];
+        $this->view('pages/auth/acutalizarContra', $data);
     }
+}
 
     // /* Función para llamar a la vista actualizarContraseña con blanqueo de errores*/
     public function actualizarVistaContra() {
