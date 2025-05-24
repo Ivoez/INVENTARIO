@@ -5,7 +5,7 @@ class AuthController extends BaseController{
     private $usuarioModel;
 
     public function __construct() {
-        $this->usuarioModel = new Usuario();
+        $this->usuarioModel = new Usuarios();
     }
 
     // Método para registrar un nuevo usuario
@@ -37,7 +37,7 @@ class AuthController extends BaseController{
             }
         } else {
             // Mostrar vista de registro si la solicitud no es POST
-            require_once 'views/usuarios/registro.php';
+            require_once RUTA_VIEWS . '/pages/auth/register.php';
         }
     }
 

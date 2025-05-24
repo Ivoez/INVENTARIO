@@ -1,5 +1,5 @@
 <?php
-class Usuario {
+class Usuarios {
     private $db;
 
     public function __construct() {
