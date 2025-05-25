@@ -41,8 +41,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Pages/asistencia">
-                                <i class="bi bi-check2-square me-1"></i>Registrar Asistencia
+                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Pages/calendario">
+                                <i class="bi bi-check2-square me-1"></i>Calendario de Clases
                             </a>
                         </li>
                         <li class="nav-item">

@@ -27,7 +27,7 @@ if (!isset($_SESSION['tipoUsuario']) == 'Profesor') {
 
 <body>
 
-    <!-- Header personalizado para Profesor -->
+    <!-- Header para Profesor -->
     <header class="shadow-sm bg-white">
         <nav class="navbar navbar-expand-lg py-3">
             <div class="container-fluid">
@@ -54,8 +54,8 @@ if (!isset($_SESSION['tipoUsuario']) == 'Profesor') {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Pages/asistencia">
-                                <i class="bi bi-check2-square me-1"></i>Registrar Asistencia
+                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Pages/calendario">
+                                <i class="bi bi-check2-square me-1"></i>Calendario de Clases
                             </a>
                         </li>
                         <li class="nav-item">

@@ -15,7 +15,7 @@
 
 <body>
 
-    <!-- HEADER PROFESOR -->
+    <!-- HEADER DEL PANEL DEL PROFESOR -->
     <header class="shadow-sm bg-white">
         <nav class="navbar navbar-expand-lg py-3">
             <div class="container-fluid">
@@ -23,9 +23,11 @@
                     <i class="bi bi-person-badge-fill text-primary fs-3 me-2"></i>
                     <span class="fw-bold fs-5 text-dark">Panel Profesor</span>
                 </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarUsuario">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="collapse navbar-collapse justify-content-end" id="navbarUsuario">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -39,8 +41,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Pages/asistencia">
-                                <i class="bi bi-check2-square me-1"></i>Registrar Asistencia
+                            <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Pages/calendario">
+                                <i class="bi bi-check2-square me-1"></i>Calendario de Clases
                             </a>
                         </li>
                         <li class="nav-item">

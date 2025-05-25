@@ -107,8 +107,8 @@ class Pages extends BaseController {
     }
 
     // Mostrar vista de Asistencia
-    public function asistencia() {
-        $this->view('pages/profesor/asistencia');
+    public function calendario() {
+        $this->view('pages/profesor/calendario');
     }
 }
 
