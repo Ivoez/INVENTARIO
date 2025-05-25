@@ -12,16 +12,17 @@
     <div class="card shadow-lg p-5 rounded-4 text-center" style="width: 100%; max-width: 450px; background-color: rgba(255,255,255,0.9); border: none;">
       <h3 class="text-primary fw-bold mb-4">¡Correo Enviado!</h3>
 
-      <div class="alert alert-success fw-semibold">
-        Email enviado correctamente.<br>Por favor revise su bandeja de entrada o carpeta de <strong>SPAM</strong>.
-      </div>
-
-      <!-- Botón para ir a actualizar contraseña -->
-      <div class="d-grid gap-2 mt-3">
-        <a href="<?php echo RUTA_URL ?>/AuthController/actualizarVistaContra" class="btn btn-success rounded-pill py-2 fw-bold">
-          Actualizar Contraseña
-        </a>
-      </div>
+      
+      <?php if (!empty($data['error'])): ?>
+            <div class="alert alert-danger text-center">
+                <?php echo $data['error']; ?>
+            </div>
+        <?php endif; ?>
+        <?php if (!empty($data['success'])): ?>
+            <div class="alert alert-success text-center">
+                <?php echo $data['success']; ?>
+            </div>
+        <?php endif; ?>
 
       <!-- Botón para volver a la página principal -->
       <div class="d-grid gap-2 mt-3">

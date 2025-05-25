@@ -33,7 +33,7 @@ if (!isset($_SESSION['tipoUsuario']) || !in_array($_SESSION['tipoUsuario'], ['Pr
       <input type="text" name="telefono" id="telefono" class="form-control mb-4" value="<?php echo $_SESSION['telefono']; ?>" disabled>
 
       <div class="d-flex justify-content-between">
-        <button type="button" class="btn btn-secondary" id="btnEditar">Editar</button>
+        <button type="button" class="btn btn-secondary" id="btnEditar">Desbloquear</button>
         <button type="submit" class="btn btn-secondary" disabled id="btnModificar">Modificar</button>
       </div>
     </form>
@@ -56,7 +56,5 @@ if (!isset($_SESSION['tipoUsuario']) || !in_array($_SESSION['tipoUsuario'], ['Pr
 
   
 </script>
-<script>
-  console.log("Bootstrap test:", typeof bootstrap !== "undefined");
-</script>
+
 <?php require RUTA_APP . '/views/layout/footer.php'; ?>

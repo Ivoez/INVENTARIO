@@ -31,8 +31,8 @@
     try{
         
         $mail->isSMTP();
-     //   $mail->SMTPDebug = 2;
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        //$mail->SMTPDebug = 2;
+        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->SMTPAuth = $smtp_auth;
         $mail->Host = $host;
         $mail->Username= $email;
@@ -50,12 +50,13 @@
         }
         if ($where == "new_pass") {
             $data = [
-                "mail" => "<div class='alert alert-success text-center' role='alert'>
+                "success" => "<div class='alert alert-success text-center' role='alert'>
                                 Te llegará una nueva contraseña por mail.
                             </div>",
                 "error_mail" =>'',
             ];
-            $this->view('pages/auth/actualizarContraseña.php', $data);
+            //$this->view('pages/auth/actualizarContraseña.php', $data);
+            return $data;
         }
     }catch(Exception $e){
         echo "El mensaje no pudo ser enviado. Error de Mailer: {$mail->ErrorInfo}";
