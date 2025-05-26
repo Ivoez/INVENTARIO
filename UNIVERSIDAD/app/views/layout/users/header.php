@@ -36,8 +36,14 @@
                 <?php switch($_SESSION['tipoUsuario']){
                 case 'admin':
                 ?>
-                  <li class="nav-item">
-                  <a style="color: white;" class="nav-link nav-button " href="<?php echo RUTA_URL; ?>/AdminController/agregarCarrera">Agregar Carreras</a>
+                <li class="nav-item">
+                  <a style="color: white;" class="nav-link nav-button " href="<?php echo RUTA_URL; ?>/AdminController/agregarCarrera">Agregar Carrera</a>
+                </li>
+                <li class="nav-item">
+                  <a style="color: white;" class="nav-link nav-button" href="<?php echo RUTA_URL; ?>/MateriaController/crear">Agregar Materia</a>
+                </li>
+                <li class="nav-item">
+                  <a style="color: white;" class="nav-link nav-button" href="<?php echo RUTA_URL; ?>/MateriaController/vincular">Planificación de Materias</a>
                 </li>
                 <?php 
                 break;

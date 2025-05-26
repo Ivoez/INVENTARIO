@@ -16,7 +16,8 @@
       public function view($view, $data =[]){
          //chequear si existe el archivo view
          if (file_exists('../app/views/'.$view.'.php')){
-             require_once '../app/views/'.$view.'.php';
+            extract($data); // <-- Aquí extraemos las variables para la vista 
+            require_once '../app/views/'.$view.'.php';
          }else{
             //Si el archivo de la vista no existe
             die("La vista no existe");

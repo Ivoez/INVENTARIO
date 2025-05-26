@@ -78,6 +78,10 @@
       public function rowCount(){
          return $this->stmt->rowCount();
       }
+      // Agrega este método para obtener el último ID insertado
+      public function lastInsertId(){
+         return $this->dbh->lastInsertId();
+      }
 
    }
 ?>

@@ -9,6 +9,15 @@
         <div class="card p-4" style="background-color: rgba(0, 0, 0, 0.7); border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); color: white;">
             <h2 class="text-center mb-4">Agregar Nueva Carrera</h2>
             
+             <?php if (!empty($mensaje)): ?>
+                <div class="alert alert-info">
+                    <?= htmlspecialchars($mensaje) ?>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($errorRegistro)): ?>
+                <?= $errorRegistro ?>
+            <?php endif; ?>
+            
             <form action="<?php echo RUTA_URL; ?>/AdminController/agregarCarrera" method="POST" enctype="multipart/form-data">
                 
                 <div class="form-group mb-3">

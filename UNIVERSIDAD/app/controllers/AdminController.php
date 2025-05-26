@@ -7,13 +7,6 @@ class AdminController extends BaseController{
     }
     public function agregarCarrera() {
 
-       
-      
-   /* if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-        */
-
     // Verifica que haya un usuario logueado y que sea admin
     if (!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 'admin') {
         // Si no es admin o no está logueado, redirige al login o a otra página
@@ -31,6 +24,17 @@ class AdminController extends BaseController{
         $image_type = isset($_FILES['imagen']) ? $_FILES['imagen']['type'] : null;
         $image_size = isset($_FILES['imagen']) ? $_FILES['imagen']['size'] : null;
         $ubi = $_SERVER['DOCUMENT_ROOT'] . RUTA_IMG_CARRERA;
+
+         // Validación: si la carrera ya existe, mostramos error
+        if ($this->CarrerasModel->carreraExiste($nombreCarrera)) {
+            $data = [
+                'errorRegistro' => '<div class="alert alert-danger" role="alert">
+                    Ya existe una carrera con ese nombre.
+                </div>',
+            ];
+            $this->view('pages/auth/agregarCarrera', $data);
+            return;
+        }
 
         if ($imagen != '') {
             if ($image_size <= 10000000) {
@@ -65,12 +69,8 @@ class AdminController extends BaseController{
 
         if ($this->CarrerasModel->agregarCarrera($nombreCarrera, $descripcion, $descripcionCompleta, $tipoCarrera, $imagen)) {
             // Redirigir después de agregar
-       /*     $_SESSION['mensaje'] = 'La carrera se ha agregado correctamente.';
-            $data = [
-            'tipoUsuario' => $_SESSION['tipoUsuario'],
-            'Nombre' => $_SESSION['Nombre']
-        ]; */
-           $this->view('pages/admin/dashboard');
+             $data = ['mensaje' => 'Carrera creada exitosamente.'];
+           $this->view('pages/auth/agregarCarrera', $data);
             
         } else {
             $data = [
