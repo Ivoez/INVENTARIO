@@ -110,6 +110,27 @@ class Pages extends BaseController {
     public function calendario() {
         $this->view('pages/profesor/calendario');
     }
+
+
+// Dashboard Alumno
+ public function dashboardAlumno() {
+    $alumnoModel = $this->model('AlumnoModel');
+
+    $grado = $alumnoModel->obtenerCarrerasGrado();
+    $posgrado = $alumnoModel->obtenerCarrerasPosgrado();
+    $cursos = $alumnoModel->obtenerCursos();
+
+    $datos = [
+        'grado' => $grado,
+        'posgrado' => $posgrado,
+        'cursos' => $cursos,
+        'mensaje' => ''
+    ];
+
+    // Renderizar la vista con los datos
+    $this->view('alumno/dashboard', $datos);
+}
+
 }
 
 

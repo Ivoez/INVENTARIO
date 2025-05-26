@@ -55,12 +55,18 @@
                 case 'Alumno':
                 ?>
                 <li class="nav-item">
-                  <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Alumno/materias">
+                 <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/AlumnoController/verCarreras">
+                <i style="color: white;" class="bi bi-mortarboard-fill me-1"></i>Ver Carreras
+                </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/AlumnoController/materias">
                     <i style="color: white;" class="bi bi-journal-text me-1"></i>Materias
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/Alumno/tareas">
+                  <a class="nav-link text-dark fw-semibold" href="<?php echo RUTA_URL; ?>/AlumnoController/tareas">
                     <i style="color: white;" class="bi bi-list-task me-1"></i>Tareas
                   </a>
                 </li>
@@ -80,7 +86,7 @@
                   </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilDropdown">
                   <li>
-                    <a class="dropdown-item" href="<?php echo RUTA_URL; ?>/AuthController/verPerfil">Mi Perfil</a>
+                    <a class="dropdown-item" href="<?php echo RUTA_URL; ?>/AuthController/verPerfilCambios">Mi Perfil</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="<?php echo RUTA_URL; ?>/AuthController/logout">Cerrar Sesión</a>
@@ -91,5 +97,7 @@
               </ul>
             </div>
           </nav>
-          
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+          </body>
 </header>
