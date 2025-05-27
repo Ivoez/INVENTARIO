@@ -6,21 +6,31 @@
   <div class="row g-4">
   
     <div class="col-md-6">
-      <div class="card shadow border-0">
+      <div class="card">
         <div class="card-body">
-          <h5 class="card-title">👨‍🏫 Profesores</h5>
-          <p class="card-text">Dar de alta nuevos profesores y ver el listado completo.</p>
-          <a  href="<?= RUTA_URL ?>/Profesores/index" class="btn btn-primary">Gestionar Profesores</a>
+          <h2 class="card-title text-white">👨‍🏫 Profesores</h2>
+          <p class="card-text text-white">Dar de alta nuevos profesores y ver el listado completo.</p>
+          <!-- <a  href="<?= RUTA_URL ?>/Profesores/index" class="btn btn-primary">Gestionar Profesores</a> -->
+          <a href="<?= RUTA_URL ?>/Profesores/index">
+            <button href="<?= RUTA_URL ?>/Profesores/index">
+              <span class="btn-register">Gestionar profesores</span>
+            </button>
+          </a>
         </div>
       </div>
     </div>
 
     <div class="col-md-6">
-      <div class="card shadow border-0">
+      <div class="card">
         <div class="card-body">
-          <h5 class="card-title">🏋️ Actividades</h5>
-          <p class="card-text">Administrar las actividades: alta, edición y eliminación.</p>
-          <a href="/Actividades/index" class="btn btn-success">Gestionar Actividades</a>
+          <h2 class="card-title text-white">🏋️ Actividades</h2>
+          <p class="card-text text-white">Administrar las actividades: alta, edición y eliminación.</p>
+          <!-- <a href="/Actividades/index" class="btn btn-success">Gestionar Actividades</a> -->
+          <a href="<?= RUTA_URL ?>/Actividades/index">
+            <button href="#">
+              <span class="btn-register">Gestionar actividades</span>
+            </button>
+          </a>
         </div>
       </div>
     </div>

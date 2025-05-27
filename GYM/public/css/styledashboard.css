@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  background: url('../img/imagendashboard.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Helvetica Neue", sans-serif;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+h1 {
+  font-size: 5rem;
+  padding-bottom: 35px;
+  color: #000;
+  font-weight: 700;
+  text-shadow: -1px 1px 2px #D2FF1F,
+  1px 1px 2px #D2FF1F,
+  1px -1px 0 #D2FF1F,
+  -1px -1px 0 #D2FF1F,
+  0px 0px 15px #D2FF1F;
+}
+
+.card {
+  height: 100%;
+  box-shadow: 0 4px 12px black;
+  border: none;
+  overflow: hidden;
+  box-shadow: -1px 1px 2px #D2FF1F,
+  1px 1px 2px #D2FF1F,
+  1px -1px 0 #D2FF1F,
+  -1px -1px 0 #D2FF1F,
+  0px 0px 15px #D2FF1F;
+  background-color: #000000;
+}
+
+button {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 0.9rem 2rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  font-size: 17px;
+  border-radius: 500px;
+  overflow: hidden;
+  background: #d2ff1f;
+  color: ghostwhite;
+  box-shadow:     -0.5px 0.5px 1px #D2FF1F,
+  0.5px 0.5px 1px #D2FF1F,
+  0.5px -0.5px 0 #D2FF1F,
+  -0.5px -0.5px 0 #D2FF1F,
+  0px 0px 8px #D2FF1F;;
+}
+
+button span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+}
+
+button:hover span {
+  color: black;
+}
+
+button::before,
+button::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+button::before {
+  content: "";
+  background: #000;
+  width: 120%;
+  left: -10%;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+button:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
+
+h1, h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif;
+}
