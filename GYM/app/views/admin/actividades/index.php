@@ -1,10 +1,11 @@
 <?php require RUTA_APP . '/views/layout/admin/header.php'; ?>
 
+<div class="container mt-5">
 <form action="<?= RUTA_URL ?>/Actividades/guardar" method="POST" class="row g-3">
 <h2>Alta de Profesor</h2>
-  <div class="col-md-4"><input type="text" name="nombre" class="form-control" placeholder="Nombre de la actividad" required></div>
+  <div class="col-md-4"><input type="text" name="nombre" placeholder="Nombre de la actividad" required></div>
   <div class="col-md-4">
-    <select name="dia" class="form-select" required>
+    <select name="dia" required>
       <option value="">Día</option>
       <option>Lunes</option>
       <option>Martes</option>
@@ -14,9 +15,9 @@
       <option>Sábado</option>
     </select>
   </div>
-  <div class="col-md-4"><input type="time" name="hora" class="form-control" required></div>
+  <div class="col-md-4"><input type="time" name="hora" required></div>
   <div class="col-md-6">
-    <select name="profesor_id" class="form-select" required>
+    <select name="profesor_id" required>
       <option value="">Profesor</option>
       <?php foreach($profesores as $prof): ?>
         <option value="<?= $prof->id ?>"><?= $prof->nombre . ' ' . $prof->apellido ?></option>
@@ -62,6 +63,7 @@
   </table>
 </div>
 
+</div>
 
 
 

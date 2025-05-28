@@ -8,7 +8,7 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h2 class="card-title text-white">👨‍🏫 Profesores</h2>
+          <h2 class="card-title">👨‍🏫 Profesores</h2>
           <p class="card-text text-white">Dar de alta nuevos profesores y ver el listado completo.</p>
           <!-- <a  href="<?= RUTA_URL ?>/Profesores/index" class="btn btn-primary">Gestionar Profesores</a> -->
           <a href="<?= RUTA_URL ?>/Profesores/index">

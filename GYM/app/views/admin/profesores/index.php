@@ -1,15 +1,19 @@
-<?php require_once __DIR__ . '/../../layout/admin/header.php'; ?>
+<?php require RUTA_APP . '/views/layout/admin/header.php'; ?>
+
 
 <div class="container mt-5">
   <h2>Alta de Profesor</h2>
   <form action="/appweb_caba_1c_2025/GYM/public/Profesores/guardar" method="POST" enctype="multipart/form-data" class="row g-3">
-    <div class="col-md-6"><input type="text" name="nombre" class="form-control" placeholder="Nombre" required></div>
-    <div class="col-md-6"><input type="text" name="apellido" class="form-control" placeholder="Apellido" required></div>
-    <div class="col-md-6"><input type="text" name="dni" class="form-control" placeholder="DNI" required></div>
-    <div class="col-md-6"><input type="email" name="email" class="form-control" placeholder="Email" required></div>
-    <div class="col-md-6"><input type="text" name="celular" class="form-control" placeholder="Celular"></div>
-    <div class="col-md-6"><input type="file" name="foto" class="form-control" accept="image/*" required></div>
-    <div class="col-12"><button type="submit" class="btn btn-primary">Guardar</button></div>
+    <div class="col-md-6"><input type="text" name="nombre" placeholder="Nombre" required></div>
+    <div class="col-md-6"><input type="text" name="apellido" placeholder="Apellido" required></div>
+    <div class="col-md-6"><input type="text" name="dni" placeholder="DNI" required></div>
+    <div class="col-md-6"><input type="email" name="email" placeholder="Email" required></div>
+    <div class="col-md-6"><input type="text" name="celular" placeholder="Celular"></div>
+    <div class="col-md-6"><input type="file" name="foto" accept="image/*" required></div>
+    <div class="col-12">
+      <button type="submit">
+        <span class="btn-register">Guardar</span>
+      </button></div>
   </form>
 
   <hr>
