@@ -43,7 +43,7 @@
 
     <!-- Botón para regresar a la página principal -->
     <div class="d-grid gap-2 mt-3">
-      <a href="<?php echo RUTA_URL; ?>" class="btn btn-outline-secondary rounded-pill py-2">Volver a la Landing Page</a>
+      <a href="<?php echo RUTA_URL; ?>" class="btn btn-outline-secondary rounded-pill py-2">Volver al inicio</a>
     </div>
   </div>
 </div>

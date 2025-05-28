@@ -10,20 +10,27 @@ class AlumnoController extends BaseController {
         }
     }
 
-    public function verCarreras() {
-        if (!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 'Alumno') {
+    public function dashboard() {
+        if (!isset($_SESSION['idUsuario']) || $_SESSION['tipoUsuario'] != 'Alumno') {
             $this->view('pages/auth/login');
             return;
         }
 
-        $carreras = $this->AlumnoModel->obtenerCarrerasDisponibles();
+        $idAlumno = $_SESSION['idUsuario'];
+
+        // ✅ Cargar las carreras inscriptas por tipo
+        $grado = $this->AlumnoModel->obtenerCarrerasInscripto($idAlumno, 'Grado');
+        $postgrado = $this->AlumnoModel->obtenerCarrerasInscripto($idAlumno, 'Posgrado');
+        $cursos = $this->AlumnoModel->obtenerCarrerasInscripto($idAlumno, 'Curso');
 
         $data = [
-            'carreras' => $carreras,
+            'grado' => $grado,
+            'postgrado' => $postgrado,
+            'cursos' => $cursos,
             'Nombre' => $_SESSION['Nombre']
         ];
 
-        $this->view('pages/alumno/verCarreras', $data);
+        $this->view('pages/alumno/dashboard', $data);
     }
 
     public function inscribirse($idCarrera) {
@@ -34,20 +41,60 @@ class AlumnoController extends BaseController {
 
         $idAlumno = $_SESSION['idUsuario'];
 
-        if ($this->AlumnoModel->inscribirseCarrera($idAlumno, $idCarrera)) {
-    // Redirige al dashboard
-    
-        $this->view('pages/alumno/dashboard', [
-        'Nombre' => $_SESSION['Nombre'],
-        'mensaje' => 'Inscripción exitosa.'
-    ]);
-}       else {
-             $this->view('pages/alumno/verCarreras', [
-             'error' => 'Error al inscribirse.'
-    ]);
-}
+            // 🛡️ Verificar si ya está inscripto
+        if ($this->AlumnoModel->yaInscripto($idAlumno, $idCarrera)) {
+            $_SESSION['error'] = 'Ya estás inscripto en esta carrera.';
+            header('Location: ' . RUTA_URL . '/AlumnoController/verCarreras');
+            exit;
+    }
 
-       
+
+
+        if ($this->AlumnoModel->inscribirseCarrera($idAlumno, $idCarrera)) {
+            $_SESSION['mensaje'] = 'Inscripción exitosa.';
+        } else {
+            $_SESSION['error'] = 'Error al inscribirse.';
+        }
+
+        // Redirige al dashboard para ver las inscripciones actualizadas
+        header('Location: ' . RUTA_URL . '/AlumnoController/dashboard');
+        exit;
+    }
+
+    public function desinscribirse($idCarrera) {
+        if (!isset($_SESSION['idUsuario']) || $_SESSION['tipoUsuario'] != 'Alumno') {
+            $this->view('pages/auth/login');
+            return;
+        }
+
+        $idAlumno = $_SESSION['idUsuario'];
+
+        if ($this->AlumnoModel->desinscribirseCarrera($idAlumno, $idCarrera)) {
+            $_SESSION['mensaje'] = 'Te desinscribiste correctamente.';
+        } else {
+            $_SESSION['error'] = 'Error al desinscribirse.';
+        }
+
+        header('Location: ' . RUTA_URL . '/AlumnoController/dashboard');
+        exit;
+    }
+
+    public function verCarreras() {
+        if (!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] != 'Alumno') {
+            $this->view('pages/auth/login');
+            return;
+        }
+
+        $idAlumno = $_SESSION['idUsuario'];
+        $carreras = $this->AlumnoModel->obtenerCarrerasDisponibles();
+
+        $data = [
+            'carreras' => $carreras,
+            'idAlumno' => $idAlumno,
+            'Nombre' => $_SESSION['Nombre']
+        ];
+
+        $this->view('pages/alumno/verCarreras', $data);
     }
 }
 ?>

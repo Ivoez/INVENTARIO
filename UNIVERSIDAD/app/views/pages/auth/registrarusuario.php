@@ -66,7 +66,7 @@
       <!-- Botones de navegación -->
       <div class="d-grid gap-2 mt-3">
         <a href="<?php echo RUTA_URL; ?>/AuthController/login" class="btn btn-outline-dark rounded-pill">Volver al Login</a>
-        <a href="<?php echo RUTA_URL; ?>/" class="btn btn-outline-secondary rounded-pill">Volver a la Landing Page</a>
+        <a href="<?php echo RUTA_URL; ?>/" class="btn btn-outline-secondary rounded-pill">Volver al inicio</a>
       </div>
         </form>
     </div>

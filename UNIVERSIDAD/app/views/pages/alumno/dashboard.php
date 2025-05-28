@@ -1,38 +1,42 @@
 <?php
 if (!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] !== 'Alumno') {
-    header('Location: ' . RUTA_URL . '/auth/login');
+            $this->view('pages/auth/login');
+
     exit;
+    // Redirige al dashboard
+
+
 }
 if (!isset($grado)) $grado = [];
 if (!isset($postgrado)) $postgrado = [];
 if (!isset($cursos)) $cursos = [];
 ?>
-<link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/styleAlumno.css">
-<?php if (isset($mensaje)): ?>
-  <div class="alert alert-success"><?php echo $mensaje; ?></div>
-<?php endif; ?>
-
-<?php if (isset($error)): ?>
-  <div class="alert alert-danger"><?php echo $error; ?></div>
-<?php endif; ?>
-
 
 <?php require RUTA_APP . '/views/layout/users/header.php'; ?>
 
-<?php if (isset($mensaje)): ?>
-  <div class="alert alert-success"><?php echo $mensaje; ?></div>
+<?php if (isset($_SESSION['mensaje'])): ?>
+    <div class="alert alert-success text-center">
+        <?php echo $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?>
+    </div>
 <?php endif; ?>
 
-    <!-- Estilos del dashboard del stylesDashboard.css -->
-     <link rel="stylesheet" href="<?php echo RUTA_URL; ?>/public/css/stylesDashboard.css">
+<?php if (isset($_SESSION['error'])): ?>
+    <div class="alert alert-danger text-center">
+        <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+    </div>
+<?php endif; ?>
 
 
+
+
+<link rel="stylesheet" href="<?php echo RUTA_URL; ?>/public/css/stylesDashboard.css">
 
 <div class="container-fluid px-3 mt-4">
 
     <h3 class="mb-4">Bienvenido, <?php echo htmlspecialchars($_SESSION['Nombre']); ?> (<?php echo htmlspecialchars($_SESSION['tipoUsuario']); ?>)</h3>
 
     <div class="row g-3 mb-4">
+        <!-- Carreras de Grado -->
         <div class="col-md-4">
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-header bg-light">
@@ -44,22 +48,23 @@ if (!isset($cursos)) $cursos = [];
                             <div class="mb-3">
                                 <h6 class="fw-bold"><?php echo htmlspecialchars($carrera->nombreCarrera); ?></h6>
                                 <p class="mb-2"><?php echo htmlspecialchars($carrera->descripcionMuestra); ?></p>
-                                <form action="<?php echo RUTA_URL; ?>/AlumnoController/inscribirseCarrera" method="POST">
-                                    <input type="hidden" name="idCarrera" value="<?php echo $carrera->idCarrera; ?>">
-                                    <button type="submit" class="btn btn-success btn-sm w-100">Inscribirse</button>
-                                </form>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-success">Inscripto</span>
+                                    <a href="<?php echo RUTA_URL; ?>/AlumnoController/desinscribirse/<?php echo $carrera->idCarrera; ?>" class="btn btn-outline-danger btn-sm">Desinscribirme</a>
+                                </div>
                             </div>
                             <hr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="alert alert-info text-center">
-                            No hay carreras de grado disponibles.
+                            No hay carreras de grado inscriptas.
                         </div>
                     <?php endif; ?>
                 </div>
             </div>
         </div>
 
+        <!-- Carreras de Posgrado -->
         <div class="col-md-4">
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-header bg-light">
@@ -71,22 +76,23 @@ if (!isset($cursos)) $cursos = [];
                             <div class="mb-3">
                                 <h6 class="fw-bold"><?php echo htmlspecialchars($carrera->nombreCarrera); ?></h6>
                                 <p class="mb-2"><?php echo htmlspecialchars($carrera->descripcionMuestra); ?></p>
-                                <form action="<?php echo RUTA_URL; ?>/AlumnoController/inscribirseCarrera" method="POST">
-                                    <input type="hidden" name="idCarrera" value="<?php echo $carrera->idCarrera; ?>">
-                                    <button type="submit" class="btn btn-success btn-sm w-100">Inscribirse</button>
-                                </form>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-success">Inscripto</span>
+                                    <a href="<?php echo RUTA_URL; ?>/AlumnoController/desinscribirse/<?php echo $carrera->idCarrera; ?>" class="btn btn-outline-danger btn-sm">Desinscribirme</a>
+                                </div>
                             </div>
                             <hr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="alert alert-info text-center">
-                            No hay carreras de posgrado disponibles.
+                            No hay carreras de posgrado inscriptas.
                         </div>
                     <?php endif; ?>
                 </div>
             </div>
         </div>
 
+        <!-- Cursos -->
         <div class="col-md-4">
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-header bg-light">
@@ -98,16 +104,16 @@ if (!isset($cursos)) $cursos = [];
                             <div class="mb-3">
                                 <h6 class="fw-bold"><?php echo htmlspecialchars($curso->nombreCarrera); ?></h6>
                                 <p class="mb-2"><?php echo htmlspecialchars($curso->descripcionMuestra); ?></p>
-                                <form action="<?php echo RUTA_URL; ?>/AlumnoController/inscribirseCarrera" method="POST">
-                                    <input type="hidden" name="idCarrera" value="<?php echo $curso->idCarrera; ?>">
-                                    <button type="submit" class="btn btn-success btn-sm w-100">Inscribirse</button>
-                                </form>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-success">Inscripto</span>
+                                    <a href="<?php echo RUTA_URL; ?>/AlumnoController/desinscribirse/<?php echo $curso->idCarrera; ?>" class="btn btn-outline-danger btn-sm">Desinscribirme</a>
+                                </div>
                             </div>
                             <hr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="alert alert-info text-center">
-                            No hay cursos disponibles.
+                            No hay cursos inscriptos.
                         </div>
                     <?php endif; ?>
                 </div>
