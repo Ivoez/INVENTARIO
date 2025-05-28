@@ -2,7 +2,7 @@
 <?php if (isset($mensaje)): ?>
   <div class="alert alert-success"><?php echo $mensaje; ?></div>
 <?php endif; ?>
-
+<link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/styleAlumno.css">
 
 <div class="container">
     <h2>Bienvenido, <?php echo htmlspecialchars($data['Nombre']); ?></h2>

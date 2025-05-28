@@ -7,6 +7,7 @@ if (!isset($grado)) $grado = [];
 if (!isset($postgrado)) $postgrado = [];
 if (!isset($cursos)) $cursos = [];
 ?>
+<link rel="stylesheet" href="<?php echo RUTA_URL?>/public/css/styleAlumno.css">
 <?php if (isset($mensaje)): ?>
   <div class="alert alert-success"><?php echo $mensaje; ?></div>
 <?php endif; ?>
