@@ -2,7 +2,7 @@
 
 <div class="container mt-5">
 <form action="<?= RUTA_URL ?>/Actividades/guardar" method="POST" class="row g-3">
-<h2>Alta de Profesor</h2>
+<h2>Alta de Actividad</h2>
   <div class="col-md-4"><input type="text" name="nombre" placeholder="Nombre de la actividad" required></div>
   <div class="col-md-4">
     <select name="dia" required>
