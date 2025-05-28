@@ -27,6 +27,7 @@
             //unset indice 
             unset($url[0]);
         }
+        
         //requerir el controlador
         require_once '../app/controllers/' . $this->actualController . '.php';
         $this->actualController= new $this->actualController;

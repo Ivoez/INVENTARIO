@@ -1,8 +1,8 @@
-<?php require_once __DIR__ . '/../../layout/landing/header.php'; ?>
+<?php require_once __DIR__ . '/../../layout/admin/header.php'; ?>
 
 <div class="container mt-5">
   <h2>Alta de Profesor</h2>
-  <form action="/Profesores/guardar" method="POST" enctype="multipart/form-data" class="row g-3">
+  <form action="/appweb_caba_1c_2025/GYM/public/Profesores/guardar" method="POST" enctype="multipart/form-data" class="row g-3">
     <div class="col-md-6"><input type="text" name="nombre" class="form-control" placeholder="Nombre" required></div>
     <div class="col-md-6"><input type="text" name="apellido" class="form-control" placeholder="Apellido" required></div>
     <div class="col-md-6"><input type="text" name="dni" class="form-control" placeholder="DNI" required></div>
@@ -23,11 +23,11 @@
       <tbody>
         <?php foreach($profesores as $p): ?>
         <tr>
-          <td><img src="/<?= $p['foto_perfil'] ?>" width="50"></td>
-          <td><?= $p['nombre'] . ' ' . $p['apellido'] ?></td>
-          <td><?= $p['dni'] ?></td>
-          <td><?= $p['email'] ?></td>
-          <td><?= $p['celular'] ?></td>
+          <td><img src="/appweb_caba_1c_2025/GYM/public/<?= $p->foto_perfil ?>" width="50"></td>
+          <td><?= $p->nombre . ' ' . $p->apellido ?></td>
+          <td><?= $p->dni ?></td>
+          <td><?= $p->email ?></td>
+          <td><?= $p->celular ?></td>
         </tr>
         <?php endforeach; ?>
       </tbody>
@@ -35,4 +35,4 @@
   </div>
 </div>
 
-<?php require_once __DIR__ . '/../../layout/landing/footer.php'; ?>
+

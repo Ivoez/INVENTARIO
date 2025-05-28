@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/../layout/admin/header.php'; ?>
+<?php require RUTA_APP . '/views/layout/admin/header.php'; ?>
 
 <div class="container mt-5">
   <h1 class="mb-4">Panel de Administración</h1>
@@ -12,7 +12,7 @@
           <p class="card-text text-white">Dar de alta nuevos profesores y ver el listado completo.</p>
           <!-- <a  href="<?= RUTA_URL ?>/Profesores/index" class="btn btn-primary">Gestionar Profesores</a> -->
           <a href="<?= RUTA_URL ?>/Profesores/index">
-            <button href="<?= RUTA_URL ?>/Profesores/index">
+            <button>
               <span class="btn-register">Gestionar profesores</span>
             </button>
           </a>
