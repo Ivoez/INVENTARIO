@@ -1,5 +1,0 @@
-Muy buen laburo!! La nota es 9.
-
-Hay que tener cuidado cuando usamos el pie de Página fijos, que no de la imagen como en este caso 
-que no me permite avanzar para seguir leyendo, tendrías que haberlo dado un minimo margen a las cards
-para que se vea el aire y que el usuario entienda que hay termina.
