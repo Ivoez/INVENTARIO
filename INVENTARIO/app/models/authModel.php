@@ -6,24 +6,43 @@ class AuthModel {
         $this->db = new Database();
     }
 
+    // Login: valida email y contraseña
+    public function login($email, $password) {
+        $this->db->query("SELECT * FROM usuario WHERE email_usuario = :email");
+        $this->db->bind(':email', $email);
+        $usuario = $this->db->single();
+
+        if ($usuario && password_verify($password, $usuario->pass_usuario)) {
+            return $usuario;
+        } else {
+            return false;
+        }
+    }
+
+    // Buscar usuario por email
+    public function buscarPorEmail($email) {
+        $this->db->query("SELECT * FROM usuario WHERE email_usuario = :email");
+        $this->db->bind(':email', $email);
+        return $this->db->single();
+    }
+
+    // Crear usuario usando el procedimiento almacenado
     public function crear_usuario($data) {
-        // Llamar al procedimiento con parámetros OUT usando variables @resultado y @mensaje
-        $this->db->query("CALL insert_usuario(:nombre, :pass, :email, :avatar, :tipo, :estado, @resultado, @mensaje)");
+        $this->db->query("CALL insert_usuario(
+            :nombre, :password, :email, :avatar, :tipo, :estado,
+            @res, @msg
+        )");
 
         $this->db->bind(':nombre', $data['nombre_usuario']);
-        $this->db->bind(':pass', $data['pass_usuario']);
+        $this->db->bind(':password', $data['pass_usuario']);
         $this->db->bind(':email', $data['email_usuario']);
         $this->db->bind(':avatar', $data['avatar_usuario']);
         $this->db->bind(':tipo', $data['tipo_usuario']);
         $this->db->bind(':estado', $data['estado_usuario']);
-
         $this->db->execute();
 
-        // Obtener los valores OUT de la sesión de variables de MySQL
-        $this->db->query("SELECT @resultado AS resultado_proceso, @mensaje AS mensaje_proceso");
-        $this->db->execute();
-        $res = $this->db->register();
-
-        return $res; // Objeto con ->resultado_proceso y ->mensaje_proceso
+        // Recuperar el resultado del procedimiento
+        $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
+        return $this->db->single();
     }
 }

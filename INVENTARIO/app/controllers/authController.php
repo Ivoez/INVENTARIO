@@ -4,10 +4,12 @@ class AuthController extends BaseController {
         $this->modelo = $this->model('AuthModel');
     }
 
+    // Mostrar formulario de login
     public function login() {
-        $this->view('pages/auth/Register', ['data' => [], 'errores' => []]);
+        $this->view('pages/auth/login', ['data' => [], 'errores' => []]);
     }
 
+    // Procesar formulario de registro
     public function register() {
         $data = [
             'nombre_usuario' => '',
@@ -15,7 +17,7 @@ class AuthController extends BaseController {
             'email_usuario' => '',
             'avatar_usuario' => '',
             'tipo_usuario' => '',
-            'estado_usuario' => '' // opcional, puedes dejar '' o 'Activo'
+            'estado_usuario' => 'Activo' // por defecto
         ];
 
         $errores = [];
@@ -25,8 +27,7 @@ class AuthController extends BaseController {
             $data['pass_usuario'] = trim($_POST['password']);
             $data['email_usuario'] = trim($_POST['email']);
             $data['avatar_usuario'] = trim($_POST['avatar']) ?: 'default.png';
-            $data['tipo_usuario'] = trim($_POST['tipo_usuario']); // Ajusta el nombre del campo del formulario
-            $data['estado_usuario'] = 'Activo';
+            $data['tipo_usuario'] = trim($_POST['tipo_usuario']);
 
             // Validaciones
             if (empty($data['nombre_usuario'])) {
@@ -44,7 +45,6 @@ class AuthController extends BaseController {
             if (empty($errores)) {
                 $data['pass_usuario'] = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
 
-                // Llamar al modelo para insertar usuario
                 $res = $this->modelo->crear_usuario($data);
 
                 if ($res->resultado_proceso == 1) {
@@ -52,7 +52,6 @@ class AuthController extends BaseController {
                     header('Location: ' . RUTA_URL . '/AuthController/login');
                     exit;
                 } else {
-                    // Aquí el mensaje viene del procedimiento almacenado (por ej: usuario existente)
                     $errores['general'] = $res->mensaje_proceso;
                 }
             }
