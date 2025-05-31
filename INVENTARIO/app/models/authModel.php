@@ -46,8 +46,8 @@ class AuthModel {
         $this->db->execute();
 
         // Obtener resultado del procedimiento (opcional)
-        $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
-        return $this->db->single();
+        ////$this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
+        //RETORNAR MENSAJES HACER!!!!
     }
 }
 ?>
