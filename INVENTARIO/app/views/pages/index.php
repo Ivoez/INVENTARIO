@@ -34,9 +34,8 @@
         con profesionalismo y atención personalizada.</h2>
 
 
-                         <a class="btn btn-primary" href="<?php echo RUTA_URL; ?>/AuthController/login">Registrarse</a>
-
-                        <a class="btn btn-primary" href="#about">Iniciar Sesión</a>
+                        <a class="btn btn-primary" href="<?php echo RUTA_URL; ?>/AuthController/login">Iniciar Sesión</a>
+                        <a class="btn btn-secondary" href="<?php echo RUTA_URL; ?>/AuthController/register">Registrarse</a>     
                     </div>
                 </div>
             </div>

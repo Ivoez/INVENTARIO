@@ -19,30 +19,35 @@ class AuthModel {
         }
     }
 
-    // Buscar usuario por email
+    // Buscar usuario por email (útil para validaciones y login)
     public function buscarPorEmail($email) {
         $this->db->query("SELECT * FROM usuario WHERE email_usuario = :email");
         $this->db->bind(':email', $email);
         return $this->db->single();
     }
 
-    // Crear usuario usando el procedimiento almacenado
+    // Crear usuario usando procedimiento almacenado
     public function crear_usuario($data) {
+
+        // contraseña esté hasheada
+        $password_hashed = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
+
         $this->db->query("CALL insert_usuario(
             :nombre, :password, :email, :avatar, :tipo, :estado,
             @res, @msg
         )");
 
         $this->db->bind(':nombre', $data['nombre_usuario']);
-        $this->db->bind(':password', $data['pass_usuario']);
+        $this->db->bind(':password', $password_hashed);
         $this->db->bind(':email', $data['email_usuario']);
         $this->db->bind(':avatar', $data['avatar_usuario']);
         $this->db->bind(':tipo', $data['tipo_usuario']);
         $this->db->bind(':estado', $data['estado_usuario']);
         $this->db->execute();
 
-        // Recuperar el resultado del procedimiento
+        // Obtener resultado del procedimiento (opcional)
         $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
         return $this->db->single();
     }
 }
+?>

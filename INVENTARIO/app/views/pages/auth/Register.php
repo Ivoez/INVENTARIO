@@ -41,14 +41,17 @@ $errores = $errores ?? [];
             <label for="tipo_usuario">Tipo de usuario</label>
             <select name="tipo_usuario" required>
                 <option value="">Seleccione un tipo</option>
-                <option value="Administrador" <?= ($data['tipo_usuario_id'] ?? '') == 'Administrador' ? 'selected' : '' ?>>Administrador</option>
-                <option value="Usuario" <?= ($data['tipo_usuario_id'] ?? '') == 'Usuario' ? 'selected' : '' ?>>Usuario</option>
+                <option value="Administrador" <?= ($data['tipo_usuario'] ?? '') == 'Administrador' ? 'selected' : '' ?>>Administrador</option>
+                <option value="Usuario" <?= ($data['tipo_usuario'] ?? '') == 'Usuario' ? 'selected' : '' ?>>Usuario</option>
             </select>
+            <?php if (!empty($errores['tipo_usuario'])): ?>
+                <div style="color:red;"><?= $errores['tipo_usuario'] ?></div>
+            <?php endif; ?>
 
             <label for="avatar">Avatar</label>
             <input type="text" name="avatar" placeholder="URL o nombre de imagen" value="<?= htmlspecialchars($data['avatar_usuario'] ?? '') ?>">
 
-            <input type="submit" name="boton" value="Ingresar">
+            <input type="submit" name="boton" value="Registrarse">
         </form>
     </div>
 </div>
