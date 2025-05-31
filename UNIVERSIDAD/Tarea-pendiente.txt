@@ -1,1 +1,0 @@
-Mejorar la vista del recupero de contraseña.

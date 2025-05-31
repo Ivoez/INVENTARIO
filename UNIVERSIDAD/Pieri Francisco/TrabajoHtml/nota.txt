@@ -1,4 +1,0 @@
-Buen trabajo, pero para mejorar la experiencia de usuario, cuando haces en el menu la referencias con #
-hay que mantener una flecha a la altura del pie para poder movernos al menu nuevamente.
-
-La nota es 7
