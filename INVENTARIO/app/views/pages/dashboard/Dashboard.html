@@ -14,7 +14,8 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="Dashboard.html">Navegación Principal</a>
+             <img src="InventarioIcono.ico" alt="Logistica RST" style="margin-left: 15px; width: 40px; height: 40px; margin-right: 10px;">
+            <a class="navbar-brand ps-3" href="Dashboard.html">Logistica RST</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -42,32 +43,39 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseClientes" aria-expanded="false" aria-controls="collapseClientes">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-users-rectangle"></i></div>
                                 Clientes
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <!-- <div class="sb-sidenav-menu-heading">Interface</div> -->
+                            <div class="collapse" id="collapseClientes" aria-labelledby="headingClientes" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="clientes-listado.html">Listado</a>
+                                    <a class="nav-link" href="clientes-agregar.html">Agregar</a>
+                                </nav>
+                            </div>
+                            <!--  -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Gestión de proveedores
+                                <div class="sb-nav-link-icon"><i class="fas fa-cubes"></i></div>
+                                Gestión de productos
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                                    <a class="nav-link" href="layout-static.html">Listado</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Movimiento de stock</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Agregar</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Gestión de productos
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
+                                Gestión de usuarios
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
+                                        Listado
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
@@ -78,7 +86,7 @@
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
+                                        Agregar
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
@@ -90,15 +98,19 @@
                                     </div>
                                 </nav>
                             </div>
-                            <!-- <div class="sb-sidenav-menu-heading">Addons</div> -->
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Gestión de Usuarios
+                            <!--  -->
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProveedores" aria-expanded="false" aria-controls="collapseProveedores">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
+                                Gestión de proveedores
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <!-- <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a> -->
+                            <div class="collapse" id="collapseProveedores" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="layout-static.html">Listado</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Agregar</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Emitir una orden de compra</a>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -110,83 +122,58 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Logistica RST</li>
+
                         </ol>
                         <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Proveedores</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Productos en stock</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Órdenes de compra</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Usuarios</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Movimientos de stock</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Reportes</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card card-proveedores text-white mb-4">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <span class="fs-4">Proveedores</span>
+                                    <i class="fa-solid fa-users fs-1"></i> <!-- ícono -->
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card card-productos text-white mb-4">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <span class="fs-4">Productos en stock</span>
+                                    <i class="fas fa-cubes fs-1"></i> <!-- ícono -->
                                 </div>
                             </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card card-ordenes text-white mb-4">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <span class="fs-4">Órdenes de compra</span>
+                                    <i class="fa-solid fa-file-invoice-dollar fs-1"></i> <!-- ícono -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card card-clientes text-white mb-4">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <span class="fs-4">Clientes</span>
+                                    <i class="fa-solid fa-users-rectangle fs-1"></i> <!-- ícono -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card card-movimientos text-white mb-4">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <span class="fs-4">Movimientos de stock</span>
+                                    <i class="fa-solid fa-dolly fs-1"></i> <!-- ícono -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card card-reportes text-white mb-4">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <span class="fs-4">Reportes</span>
+                                    <i class="fa-solid fa-file-contract fs-1"></i> <!-- ícono -->
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,50 @@
 @charset "UTF-8";
 
+body.sb-nav-fixed .sb-sidenav {
+    width: 280px !important;
+    background-color: #4a7bff !important;
+}
+
+body.sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+    margin-left: 50px !important;
+}
+
+.sb-sidenav .nav-link,
+.sb-sidenav .sb-nav-link-icon {
+    color: var(--bs-light) !important; /* blanco */
+}
+.card-proveedores {
+  background-color: #d33496 !important; /* azul */
+}
+
+.card-productos {
+  background-color: #818181 !important; /* naranja */
+}
+
+.card-ordenes {
+  background-color: #7109b2 !important; /* verde */
+}
+
+.card-clientes {
+  background-color: #0084ff !important; /* rojo */
+}
+
+.card-movimientos {
+  background-color: #994d22 !important; /* morado */
+}
+
+.card-reportes {
+  background-color: #44c131 !important; /* turquesa */
+}
+
+
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
-  --bs-red: #dc3545;
+  --bs-red: #5f35dc;
   --bs-orange: #fd7e14;
   --bs-yellow: #ffc107;
   --bs-green: #198754;
@@ -65,7 +104,7 @@
   --bs-border-radius-pill: 50rem;
   --bs-link-color: #0d6efd;
   --bs-link-hover-color: #0a58ca;
-  --bs-code-color: #d63384;
+  --bs-code-color: #7a003d;
   --bs-highlight-bg: #fff3cd;
 }
 
