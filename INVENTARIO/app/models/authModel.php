@@ -29,6 +29,8 @@ class AuthModel {
     // Crear usuario usando procedimiento almacenado
     public function crear_usuario($data) {
 
+        
+
         // contraseña esté hasheada
         $password_hashed = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
 
@@ -46,8 +48,10 @@ class AuthModel {
         $this->db->execute();
 
         // Obtener resultado del procedimiento (opcional)
-        ////$this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
-        //RETORNAR MENSAJES HACER!!!!
+        $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
+        $resultado = $this->db->register();
+        
+        return $resultado;
     }
 }
 ?>

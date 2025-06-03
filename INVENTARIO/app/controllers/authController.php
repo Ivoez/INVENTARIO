@@ -43,6 +43,9 @@ class AuthController extends BaseController {
 
     // Procesar registro
     public function register() {
+
+        
+
         $data = [
             'nombre_usuario' => '',
             'pass_usuario' => '',
@@ -55,6 +58,10 @@ class AuthController extends BaseController {
         $errores = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+      
+            
+            
             $data['nombre_usuario'] = trim($_POST['usuario']);
             $data['pass_usuario'] = trim($_POST['password']);
             $data['email_usuario'] = trim($_POST['email']);
@@ -65,6 +72,8 @@ class AuthController extends BaseController {
             if (empty($data['nombre_usuario'])) {
                 $errores['usuario'] = 'El nombre de usuario es requerido';
             }
+
+
 
             if (strlen($data['pass_usuario']) < 8) {
                 $errores['password'] = 'La contraseña debe tener al menos 8 caracteres';
@@ -80,16 +89,21 @@ class AuthController extends BaseController {
 
                 $res = $this->modelo->crear_usuario($data);
 
-                if ($res->resultado_proceso == 1) {
-                    $_SESSION['mensaje_exito'] = 'Registro exitoso. Por favor inicia sesión.';
-                    header('Location: ' . RUTA_URL . '/AuthController/login');
-                    exit;
-                } else {
-                    $errores['general'] = $res->mensaje_proceso;
+            if ($res !== null && $res->resultado_proceso == 1) {
+                $_SESSION['mensaje_exito'] = 'Registro exitoso. Por favor inicia sesión.';
+                header('Location: ' . RUTA_URL . '/AuthController/login');
+                exit;
+            }
+             else {
+
+                $errores['general'] = $res ? $res->mensaje_proceso : "Error desconocido al crear el usuario.";
+
                 }
             }
         }
 
+        
+        
         $this->view('pages/auth/Register', ['data' => $data, 'errores' => $errores]);
     }
 

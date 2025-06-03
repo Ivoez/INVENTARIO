@@ -9,6 +9,6 @@
    define('RUTA_APP', dirname(dirname(__FILE__)));
    // Ruta url
 
-   define('RUTA_URL','http://localhost/INVENTARIO/INVENTARIO/'); 
+   define('RUTA_URL','http://localhost/INVENTARIO/INVENTARIO'); 
    define('NOMBRESITIO','Inventario');
 ?>
