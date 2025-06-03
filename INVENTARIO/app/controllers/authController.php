@@ -69,8 +69,21 @@ class AuthController extends BaseController {
             $data['tipo_usuario'] = trim($_POST['tipo_usuario']);
 
             // Validaciones
+
+
+
+
+
+
             if (empty($data['nombre_usuario'])) {
                 $errores['usuario'] = 'El nombre de usuario es requerido';
+            } 
+            else 
+            {
+                $usuarioExistente = $this->modelo->obtenerUsuarioPorNombre($data['nombre_usuario']);
+                if ($usuarioExistente) {
+                $errores['usuario'] = 'El nombre de usuario ya está en uso';
+                 }
             }
 
 
@@ -81,7 +94,20 @@ class AuthController extends BaseController {
 
             if (!filter_var($data['email_usuario'], FILTER_VALIDATE_EMAIL)) {
                 $errores['email'] = 'El email no es válido';
+            }   else {
+
+    // Valida si el email ya está registrado
+                $emailExistente = $this->modelo->buscarPorEmail($data['email_usuario']);
+                if ($emailExistente) {
+                $errores['email'] = 'Este email ya está registrado';
             }
+            }
+
+
+
+
+
+
 
             if (empty($errores)) {
                 // Hashear contraseña

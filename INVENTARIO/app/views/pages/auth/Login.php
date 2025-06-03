@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario LOGIN</title>
@@ -13,7 +14,19 @@
     <div class="form-body">
         <p class="text">Bienvenido al Sistema Inventario</p>
 
+    <?php if (!empty($_SESSION['mensaje_exito'])): ?> <!--(Session) son variables de sesion temporal ya que no persiten como seria en el registro-->
+
+        <div style="color: green; font-weight: bold; text-align:center; margin-bottom: 10px;">
+        <?= htmlspecialchars($_SESSION['mensaje_exito']) ?>
+        </div>
+
+    <?php unset($_SESSION['mensaje_exito']); ?>
+    <?php endif; ?>
+
+
+
         <?php if (!empty($errores['login'])): ?>
+
             <div style="color:red;"><?php echo $errores['login']; ?></div>
         <?php endif; ?>
 

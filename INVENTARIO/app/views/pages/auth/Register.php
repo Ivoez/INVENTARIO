@@ -3,8 +3,8 @@
 
     <?php
     $datos = $data ?? [];
-$data = $datos['data'] ?? [];
-$errores = $datos['errores'] ?? [];
+    $data = $datos['data'] ?? [];          //se deben pasar 
+    $errores = $datos['errores'] ?? [];
     ?>
 
     <title>Registro de Usuarios</title>
@@ -19,12 +19,7 @@ $errores = $datos['errores'] ?? [];
             
             <form method="POST" action="<?= rtrim(RUTA_URL, '/') ?>/AuthController/register">
                 
-                <!-- ✅ Error general -->
-                <?php if (!empty($errores['general'])): ?>
-                    <div style="color: red; text-align:center; margin-bottom:10px; font-weight:bold;">
-                        <?= $errores['general'] ?>
-                    </div>
-                <?php endif; ?>
+             
 
                 <!-- Puedes quitar esto luego, sirve para depuración -->
                 <!-- <pre><?php print_r($errores); ?></pre> -->
