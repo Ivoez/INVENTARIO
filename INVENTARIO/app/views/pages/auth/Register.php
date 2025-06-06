@@ -1,5 +1,5 @@
     <link rel="stylesheet" href="<?php echo RUTA_URL ?>/css/Register.css">
-    <?php require RUTA_APP . '/views/layout/header.php'; ?>
+   <!--?php require RUTA_APP . '/views/layout/header.php'; ?>-->
 
     <?php
     $datos = $data ?? [];
@@ -9,8 +9,8 @@
 
     <title>Registro de Usuarios</title>
 
-    <div class="container-body" style="display: flex; justify-content: flex-start;">
-        <div class="ctn-form" style="width: 400px; margin-left: 50px;">
+    <div class="container-body" style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+        <div class="ctn-form" style="width: 400px;">
             <img src="<?php echo RUTA_URL ?>/imagenes/Icono_simple.png" alt="usuario-login">
             <h1 class="title">Formulario de Registro de Usuario Nuevo</h1>
 
@@ -61,4 +61,4 @@
         </div>
     </div>
 
-    <?php require RUTA_APP . '/views/layout/footer.php'; ?>
+    <!--?php require RUTA_APP . '/views/layout/footer.php'; ?>->
