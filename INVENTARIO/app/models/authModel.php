@@ -10,7 +10,7 @@ class AuthModel {
     public function login($email, $password) {
         $this->db->query("SELECT * FROM usuario WHERE email_usuario = :email");
         $this->db->bind(':email', $email);
-        $usuario = $this->db->single();
+        $usuario = $this->db->register();
 
         if ($usuario && password_verify($password, $usuario->pass_usuario)) {
             return $usuario;
@@ -19,19 +19,17 @@ class AuthModel {
         }
     }
 
-    // Buscar usuario por email 
+    // Buscar usuario por email (útil para validaciones y login)
     public function buscarPorEmail($email) {
         $this->db->query("SELECT * FROM usuario WHERE email_usuario = :email");
         $this->db->bind(':email', $email);
         return $this->db->register();
     }
 
-    // Crear usuario 
+    // Crear usuario usando procedimiento almacenado
     public function crear_usuario($data) {
 
-        
-
-        // contraseña hasheada
+        // contraseña esté hasheada
         $password_hashed = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
 
         $this->db->query("CALL insert_usuario(
@@ -45,23 +43,23 @@ class AuthModel {
         $this->db->bind(':avatar', $data['avatar_usuario']);
         $this->db->bind(':tipo', $data['tipo_usuario']);
         $this->db->bind(':estado', $data['estado_usuario']);
+
         $this->db->execute();
 
-        // Obtener resultado del procedimiento 
+        // Obtener resultado del procedimiento (opcional)
         $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
-        $resultado = $this->db->register();
-        
-        return $resultado;
-    }
+        $resultado = $this->db->register();  // Ejecuta y obtiene resultado
 
+
+        return $resultado; //Asegura que siempre se retorne algo
+        
+    }
 
     public function obtenerUsuarioPorNombre($nombre_usuario) {
     $this->db->query("SELECT * FROM usuario WHERE nombre_usuario = :nombre");
     $this->db->bind(':nombre', $nombre_usuario);
     return $this->db->register(); // 
 }
-
-
 
 
 

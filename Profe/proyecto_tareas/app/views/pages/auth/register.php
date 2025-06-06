@@ -14,6 +14,8 @@
                         </div>
 
                         <form class="user" action="<?php echo RUTA_URL; ?>/AuthController/registrarUsuario/"
+
+                        
                             method="POST" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">

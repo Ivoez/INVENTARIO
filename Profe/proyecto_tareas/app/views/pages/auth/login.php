@@ -1,4 +1,5 @@
 <?php require RUTA_APP . "/views/layout/landing/header.php";?>
+session_start();
 <div class="container">
 
     <!-- Outer Row -->
