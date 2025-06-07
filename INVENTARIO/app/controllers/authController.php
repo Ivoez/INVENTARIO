@@ -11,35 +11,52 @@ class AuthController extends BaseController {
 
     // Procesar login (POST)
     public function loginUsuario() {
-        $errores = [];
-        $data = [
-            'email_usuario' => '',
-            'pass_usuario' => ''
-        ];
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data['email_usuario'] = trim($_POST['email']);
-            $data['pass_usuario'] = trim($_POST['password']);
-
-            // Verificar credenciales
-            $usuario = $this->modelo->login($data['email_usuario'], $data['pass_usuario']);
-
-            if ($usuario) {
-                // Iniciar sesión
-                $_SESSION['id_usuario'] = $usuario->id_usuario;
-                $_SESSION['nombre_usuario'] = $usuario->nombre_usuario;
-                $_SESSION['tipo_usuario'] = $usuario->tipo_usuario;
-
-                // Redirigir al dashboard o página principal
-                header('Location: ' . RUTA_URL . '/DashboardController');
-                exit;
-            } else {
-                $errores['login'] = "Email o contraseña incorrectos";
-            }
+      $data = [
+        'nombre_usuario' => '',
+        'pass_usuario' => ''
+      ];
+      $errores = [];
+      
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $data['nombre_usuario'] = trim($_POST['usuario']);
+        $data['pass_usuario'] = trim($_POST['password']);
+        
+        if (empty($data['nombre_usuario'])) {
+          $errores['usuario'] = 'El nombre de usuario es requerido';
+        } 
+        if (strlen($data['pass_usuario']) < 8) {
+          $errores['password'] = 'La contraseña debe tener al menos 8 caracteres';
         }
+        if (empty($errores)) {
+          // Hashear contraseña
+          //$data['pass_usuario'] = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
+          $res = $this->modelo->login($data);
+          if ($res->resultado_proceso == 1) {
+            $_SESSION['mensaje_exito'] = 'Login exitoso. Por favor inicia sesión.';
+              //header('Location: ' . RUTA_URL . '/views/dashboard/dashboard.php');
+              $this->view('pages/dashboard/dashboard');
+            exit;
+          }
+          else {
+            $mensaje_proceso = $res->mensaje_proceso;
+            switch ($mensaje_proceso) {
+              case "nombre_usuario no existente":
+                $errores['general'] = "Nombre de usuario o contraseña son incorrectos.";
+                break;
+              case "pass_usuario incorrecta":
+                $errores['general'] = "Nombre de usuario o contraseña son incorrectos.";
+                break;
+              default:
+                $errores['general'] = "Error desconocido al intentar logearse.";
+                break;
+            }
+          }
+        }
+      }
 
-        $this->view('pages/auth/login', ['data' => $data, 'errores' => $errores]);
+      $this->view('pages/auth/Login', ['data' => $data, 'errores' => $errores]);
     }
+
 
     // Procesar registro
     public function register() {

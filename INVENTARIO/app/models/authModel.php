@@ -7,16 +7,24 @@ class AuthModel {
     }
 
     // Login: valida email y contraseña
-    public function login($email, $password) {
-        $this->db->query("SELECT * FROM usuario WHERE email_usuario = :email");
-        $this->db->bind(':email', $email);
-        $usuario = $this->db->register();
+    public function login($data) {
+        // contraseña esté hasheada
+        //$password_hashed = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
 
-        if ($usuario && password_verify($password, $usuario->pass_usuario)) {
-            return $usuario;
-        } else {
-            return false;
-        }
+        $this->db->query("CALL login(
+            :nombre, :password, @tipo_usuario, @res, @msg
+        )");
+
+        $this->db->bind(':nombre', $data['nombre_usuario']);
+        $this->db->bind(':password', $data['pass_usuario']);
+
+        $this->db->execute();
+
+        // Obtener resultado del procedimiento (opcional)
+        $this->db->query("SELECT @tipo_usuario AS tipo_usuario, @res AS resultado_proceso, @msg AS mensaje_proceso");
+        $resultado = $this->db->register();  // Ejecuta y obtiene resultado
+
+        return $resultado; //Asegura que siempre se retorne algo
     }
 
     // Buscar usuario por email (útil para validaciones y login)

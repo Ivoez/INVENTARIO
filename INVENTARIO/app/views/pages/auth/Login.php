@@ -20,16 +20,26 @@
             <?php unset($_SESSION['mensaje_exito']); ?>
         <?php endif; ?>
 
-        <?php if (!empty($errores['login'])): ?>
-            <div class="mensaje-error"><?php echo $errores['login']; ?></div>
-        <?php endif; ?>
-
         <form method="POST" action="<?php echo RUTA_URL ?>/AuthController/loginUsuario">
-            <input type="email" name="email" placeholder="Correo electrónico" required value="<?php echo $data['email_usuario'] ?? '' ?>">
-            <input type="password" name="password" placeholder="Contraseña" required>
+
+        <label for="usuario">Nombre de usuario</label>
+          <input type="text" id="usuario" name="usuario" value="<?= htmlspecialchars($data['nombre_usuario'] ?? '') ?>">
+          <?php if (!empty($errores['usuario'])): ?>
+            <div style="color:red; font-size:0.9em; margin-top:2px;"><?= $errores['usuario'] ?></div>
+          <?php endif; ?>
+
+          <label for="password">Contraseña</label>
+            <input type="password" name="password">
+              <?php if (!empty($errores['password'])): ?>
+                <div style="color:red;"><?= $errores['password'] ?></div>
+              <?php endif; ?>
+
+            <?php if (!empty($errores['general'])): ?>
+                <div style="color:red;"><?= $errores['general'] ?></div>
+            <?php endif; ?>
+
             <button type="submit" class="boton-login">Iniciar sesión</button>
         </form>
-
         <div class="registro-link">
             <a href="<?php echo RUTA_URL ?>/AuthController/register">
                 <button class="boton-login">Registrarse</button>

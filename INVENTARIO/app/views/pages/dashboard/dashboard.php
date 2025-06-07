@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Sistema de Inventario</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dash.css">
+    <link rel="stylesheet" href="<?php echo RUTA_URL; ?>/css/dash_style.css">
     <link rel="shortcut icon" href="<?php echo RUTA_URL; ?>/Imagenes/InventarioIcono.ico" type="image/x-icon">
 </head>
 <body>
