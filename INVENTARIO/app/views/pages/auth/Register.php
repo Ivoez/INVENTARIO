@@ -54,7 +54,11 @@
                 <?php endif; ?>
 
                 <label for="avatar">Avatar</label>
-                <input type="text" name="avatar" placeholder="URL o nombre de imagen" value="<?= htmlspecialchars($data['avatar_usuario'] ?? '') ?>">
+                <input type="text" name="avatar" placeholder="URL o nombre de imagen" value="<?= htmlspecialchars($data['avatar_usuario']) ?>">
+
+                <?php if (!empty($errores['general'])): ?>
+                    <div style="color:red;"><?= $errores['general'] ?></div>
+                <?php endif; ?>
 
                 <input type="submit" name="boton" value="Registrarse">
             </form>

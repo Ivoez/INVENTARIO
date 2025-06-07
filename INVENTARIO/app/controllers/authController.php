@@ -44,93 +44,77 @@ class AuthController extends BaseController {
     // Procesar registro
     public function register() {
 
-        
+      $data = [
+          'nombre_usuario' => '',
+          'pass_usuario' => '',
+          'email_usuario' => '',
+          'avatar_usuario' => '',
+          'tipo_usuario' => '',
+          'estado_usuario' => 'Activo'
+      ];
 
-        $data = [
-            'nombre_usuario' => '',
-            'pass_usuario' => '',
-            'email_usuario' => '',
-            'avatar_usuario' => '',
-            'tipo_usuario' => '',
-            'estado_usuario' => 'Activo'
-        ];
+      $errores = [];
 
-        $errores = [];
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-      
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
+          $data['nombre_usuario'] = trim($_POST['usuario']);
+          $data['pass_usuario'] = trim($_POST['password']);
+          $data['email_usuario'] = trim($_POST['email']);
+          $data['avatar_usuario'] = trim($_POST['avatar']);
+          $data['tipo_usuario'] = trim($_POST['tipo_usuario']);
+
+          // Validaciones
+
+          if (empty($data['nombre_usuario'])) {
+            $errores['usuario'] = 'El nombre de usuario es requerido';
+          } 
             
-            $data['nombre_usuario'] = trim($_POST['usuario']);
-            $data['pass_usuario'] = trim($_POST['password']);
-            $data['email_usuario'] = trim($_POST['email']);
-            $data['avatar_usuario'] = trim($_POST['avatar']) ?: 'default.png';
-            $data['tipo_usuario'] = trim($_POST['tipo_usuario']);
+          if (strlen($data['pass_usuario']) < 8) {
+            $errores['password'] = 'La contraseña debe tener al menos 8 caracteres';
+          }
 
-            // Validaciones
+          if (!filter_var($data['email_usuario'], FILTER_VALIDATE_EMAIL)) {
+            $errores['email'] = 'El email no es válido';
+          }
 
+          if (empty($errores)) {
+            // Hashear contraseña
+            $data['pass_usuario'] = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
 
+            $res = $this->modelo->crear_usuario($data);
 
-
-
-
-            if (empty($data['nombre_usuario'])) {
-                $errores['usuario'] = 'El nombre de usuario es requerido';
-            } 
-            else 
-            {
-                $usuarioExistente = $this->modelo->obtenerUsuarioPorNombre($data['nombre_usuario']);
-                if ($usuarioExistente) {
-                $errores['usuario'] = 'El nombre de usuario ya está en uso';
-                 }
+            if ($res->resultado_proceso == 1) {
+              $_SESSION['mensaje_exito'] = 'Registro exitoso. Por favor inicia sesión.';
+              header('Location: ' . RUTA_URL . '/AuthController/login');
+              exit;
             }
-
-
-
-            if (strlen($data['pass_usuario']) < 8) {
-                $errores['password'] = 'La contraseña debe tener al menos 8 caracteres';
+            else {
+              $mensaje_proceso = $res->mensaje_proceso;
+              switch ($mensaje_proceso) {
+                case "nombre_usuario existente":
+                  $errores['general'] = "Nombre de usuario existente.";
+                  break;
+                case "email_usuario existente":
+                  $errores['general'] = "Email existente.";
+                  break;
+                case "avatar_usuario existente":
+                  $errores['general'] = "Avatar existente.";
+                  break;
+                case "nombre_tipo_usuario incorrecto":
+                  $errores['general'] = "Tipo de usuario icorrecto.";
+                  break; 
+                case "nombre_estado_usuario incorrecto":
+                  $errores['general'] = "Estado de usuario icorrecto.";
+                  break;
+                default:
+                  $errores['general'] = "Error desconocido al crear el usuario.";
+                  break;
+              }
             }
-
-            if (!filter_var($data['email_usuario'], FILTER_VALIDATE_EMAIL)) {
-                $errores['email'] = 'El email no es válido';
-            }   else {
-
-    // Valida si el email ya está registrado
-                $emailExistente = $this->modelo->buscarPorEmail($data['email_usuario']);
-                if ($emailExistente) {
-                $errores['email'] = 'Este email ya está registrado';
-            }
-            }
-
-
-
-
-
-
-
-            if (empty($errores)) {
-                // Hashear contraseña
-                $data['pass_usuario'] = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
-
-                $res = $this->modelo->crear_usuario($data);
-
-            if ($res !== null && $res->resultado_proceso == 1) {
-                $_SESSION['mensaje_exito'] = 'Registro exitoso. Por favor inicia sesión.';
-                header('Location: ' . RUTA_URL . '/AuthController/login');
-                exit;
-            }
-             else {
-
-                $errores['general'] = $res ? $res->mensaje_proceso : "Error desconocido al crear el usuario.";
-
-                }
-            }
+          }
         }
 
-        
-        
-        $this->view('pages/auth/Register', ['data' => $data, 'errores' => $errores]);
+      $this->view('pages/auth/Register', ['data' => $data, 'errores' => $errores]);
     }
 
     // Cerrar sesión

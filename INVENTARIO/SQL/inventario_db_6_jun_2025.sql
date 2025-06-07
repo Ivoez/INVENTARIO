@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-05-2025 a las 21:01:23
+-- Tiempo de generación: 07-06-2025 a las 02:59:48
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -68,7 +68,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_u
         SELECT id_estado_usuario INTO id_estado_usuario_param FROM estado_usuario WHERE nombre_estado_usuario = COALESCE(param_estado_usuario, 'Activo');
     
         INSERT INTO usuario (nombre_usuario, pass_usuario, email_usuario, avatar_usuario, tipo_usuario_id, estado_usuario_id)
-        VALUES (param_nombre_usuario, param_pass_usuario, param_email_usuario, param_avatar_usuario, id_tipo_usuario_param, id_estado_usuario_param);
+        VALUES (param_nombre_usuario, param_pass_usuario, param_email_usuario,  COALESCE(NULLIF(param_avatar_usuario, ''), 'default.png'), id_tipo_usuario_param, id_estado_usuario_param);
 
         SET resultado_proceso = 1;
         SET mensaje_proceso = 'Inserción de usuario correcta';
@@ -98,6 +98,40 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `list_tipo_usuario` ()   BEGIN
     SELECT nombre_tipo_usuario FROM tipo_usuario;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `param_nombre_usuario` VARCHAR(20), IN `param_pass_usuario` VARCHAR(255), OUT `param_nombre_tipo_usuario` VARCHAR(15), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+    DECLARE existe_nombre_usuario INT;
+    DECLARE pass_usuario_buscado VARCHAR(255);
+    DECLARE id_tipo_usuario_buscado INT;  
+    DECLARE nombre_tipo_usuario_buscado VARCHAR(20);
+    
+    -- Verificar existencia en base de datos
+    SELECT EXISTS(SELECT 1 FROM usuario WHERE nombre_usuario = param_nombre_usuario) INTO existe_nombre_usuario;
+    
+    -- Validaciones
+    IF existe_nombre_usuario < 1 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_usuario no existente';
+    ELSE
+        SELECT pass_usuario INTO pass_usuario_buscado FROM usuario WHERE nombre_usuario = param_nombre_usuario;
+        IF pass_usuario_buscado <> param_pass_usuario THEN
+        	SET resultado_proceso = 0;
+        	SET mensaje_proceso = 'pass_usuario incorrecta';
+        ELSE
+        	SELECT tipo_usuario_id INTO id_tipo_usuario_buscado 
+            	FROM usuario 
+                	WHERE nombre_usuario = param_nombre_usuario;
+            SELECT IFNULL(nombre_tipo_usuario, 'Desconocido') INTO nombre_tipo_usuario_buscado
+            	FROM tipo_usuario
+                	WHERE id_tipo_usuario = id_tipo_usuario_buscado;
+        	SET resultado_proceso = 1;
+        	SET mensaje_proceso = 'Login correcto';
+            SET param_nombre_tipo_usuario = nombre_tipo_usuario_buscado;
+        END IF; 
+    END IF;
+
 END$$
 
 DELIMITER ;
@@ -339,7 +373,7 @@ CREATE TABLE `usuario` (
   `nombre_usuario` varchar(20) NOT NULL,
   `pass_usuario` varchar(255) NOT NULL,
   `email_usuario` varchar(100) NOT NULL,
-  `avatar_usuario` varchar(150) DEFAULT NULL,
+  `avatar_usuario` varchar(150) DEFAULT '''default.png''',
   `tipo_usuario_id` int(10) NOT NULL,
   `estado_usuario_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -351,7 +385,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `pass_usuario`, `email_usuario`, `avatar_usuario`, `tipo_usuario_id`, `estado_usuario_id`, `created_at`, `updated_at`) VALUES
-(1, 'usuario1', 'contra12345', 'email@email.com', '/ruta/avatar/image.jpg', 2, 1, '2025-05-17 18:51:36', '2025-05-17 18:51:36');
+(1, 'usuario1', 'contra12345', 'email@email.com', '/ruta/avatar/image.jpg', 2, 1, '2025-05-17 18:51:36', '2025-05-17 18:51:36'),
+(2, 'fdgdfgdfgd', '$2y$10$3rbv4pqKfwOk2QsTgI3P3.jL4CKe8rG/EpBl3frNj10nmwPup60OW', 'dfgdfgdfg@sdfsd.com', 'dfgdfgdfgdfg', 2, 1, '2025-05-31 01:52:11', '2025-05-31 01:52:11'),
+(3, 'fsdfsdfsdf', '$2y$10$Lxc67O2mVLEzjRU9AZF5ruQx5nLwDObQ7eZkmqMMHj.ZmCTkaeZsm', 'sdfsdf@sdff.comnisdfsd', 'default.png', 1, 1, '2025-05-31 02:17:07', '2025-05-31 02:17:07'),
+(4, 'ghukhjkhj', '$2y$10$wDNaqftrhQlXtOl05XW74uO.b.P37ZTrtnWZPZ91WSspZl8vrGKXS', 'gilgastonmar@gmail.com', 'gfgggggff', 2, 1, '2025-06-06 22:54:44', '2025-06-06 22:54:44'),
+(5, 'sdfffff', '$2y$10$NjtKk7V6wd5fNNLVngOWfeXYPNKGOqP/.1fZ/K5VEgbW0x4MXA68e', 'df333hjsd@bgud.com', 'wuyiwuywi7826872', 2, 1, '2025-06-06 23:23:56', '2025-06-06 23:23:56'),
+(14, 'xfcbxcbxcbxc', '$2y$10$oHjfu1m0AI5fgNJQUky8cepM5lpGAlttqxRQccmTY6JllF/UJ2PwW', 'vxcv@asedf.com', 'default.png', 2, 1, '2025-06-07 00:11:57', '2025-06-07 00:11:57'),
+(15, 'marceleta', '$2y$10$37llO.AYisKDqW4B3XOFXeJhT27GRmRoQh34Eq/ydyiU306BT4.AS', 'asdasda@sdofjhsd.com', 'default.png', 2, 1, '2025-06-07 00:52:41', '2025-06-07 00:52:41'),
+(16, 'assdasdasd', '$2y$10$BQevAjG0xfJdl1ZnAMhfUu38yrVa3EVZcA686J53QQlWJeaZ8LJC2', 'asdasd@fsedrjnfs.conm', 'default.png', 2, 1, '2025-06-07 00:53:53', '2025-06-07 00:53:53');
 
 --
 -- Índices para tablas volcadas
@@ -547,7 +588,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
