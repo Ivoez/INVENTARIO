@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2025 a las 19:47:56
+-- Tiempo de generación: 07-06-2025 a las 20:15:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -100,30 +100,30 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `list_tipo_usuario` ()   BEGIN
     SELECT nombre_tipo_usuario FROM tipo_usuario;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `param_nombre_usuario` VARCHAR(20), IN `param_pass_usuario` VARCHAR(255), OUT `param_nombre_tipo_usuario` VARCHAR(15), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `param_email_usuario` VARCHAR(100), IN `param_pass_usuario` VARCHAR(255), OUT `param_nombre_tipo_usuario` VARCHAR(15), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
 
-    DECLARE existe_nombre_usuario INT;
+    DECLARE existe_email_usuario INT;
     DECLARE pass_usuario_buscado VARCHAR(255);
     DECLARE id_tipo_usuario_buscado INT;  
     DECLARE nombre_tipo_usuario_buscado VARCHAR(20);
     
     -- Verificar existencia en base de datos
-    SELECT EXISTS(SELECT 1 FROM usuario WHERE nombre_usuario = param_nombre_usuario) INTO existe_nombre_usuario;
+    SELECT EXISTS(SELECT 1 FROM usuario WHERE email_usuario = param_email_usuario) INTO existe_email_usuario;
     
     -- Validaciones
-    IF existe_nombre_usuario < 1 THEN
+    IF existe_email_usuario < 1 THEN
         SET resultado_proceso = 0;
-        SET mensaje_proceso = 'nombre_usuario no existente';
+        SET mensaje_proceso = 'email_usuario no existente';
     ELSE
-        SELECT aes_decrypt(pass_usuario, 'keyword') INTO pass_usuario_buscado FROM usuario WHERE nombre_usuario = param_nombre_usuario;
+        SELECT aes_decrypt(pass_usuario, 'keyword') INTO pass_usuario_buscado FROM usuario WHERE email_usuario = param_email_usuario;
         IF pass_usuario_buscado <> param_pass_usuario THEN
         	SET resultado_proceso = 0;
         	SET mensaje_proceso = 'pass_usuario incorrecta';
         ELSE
         	SELECT tipo_usuario_id INTO id_tipo_usuario_buscado 
             	FROM usuario 
-                	WHERE nombre_usuario = param_nombre_usuario;
-            SELECT IFNULL(nombre_tipo_usuario, 'Desconocido') INTO nombre_tipo_usuario_buscado
+                	WHERE email_usuario = param_email_usuario;
+            SELECT IFNULL(nombre_tipo_usuario, 'nombre_tipo_usuario con error') INTO nombre_tipo_usuario_buscado
             	FROM tipo_usuario
                 	WHERE id_tipo_usuario = id_tipo_usuario_buscado;
         	SET resultado_proceso = 1;

@@ -21,12 +21,11 @@
         <?php endif; ?>
 
         <form method="POST" action="<?php echo RUTA_URL ?>/AuthController/loginUsuario">
-
-        <label for="usuario">Nombre de usuario</label>
-          <input type="text" id="usuario" name="usuario" value="<?= htmlspecialchars($data['nombre_usuario'] ?? '') ?>">
-          <?php if (!empty($errores['usuario'])): ?>
-            <div style="color:red; font-size:0.9em; margin-top:2px;"><?= $errores['usuario'] ?></div>
-          <?php endif; ?>
+          <label for="email">E-mail</label>
+            <input type="email" name="email" value="<?= htmlspecialchars($data['email_usuario'] ?? '') ?>">
+              <?php if (!empty($errores['email'])): ?>
+                  <div style="color:red;"><?= $errores['email'] ?></div>
+              <?php endif; ?>
 
           <label for="password">Contraseña</label>
             <input type="password" name="password">

@@ -12,10 +12,10 @@ class AuthModel {
         //$password_hashed = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
 
         $this->db->query("CALL login(
-            :nombre, :password, @tipo_usuario, @res, @msg
+            :email, :password, @tipo_usuario, @res, @msg
         )");
 
-        $this->db->bind(':nombre', $data['nombre_usuario']);
+        $this->db->bind(':email', $data['email_usuario']);
         $this->db->bind(':password', $data['pass_usuario']);
 
         $this->db->execute();
