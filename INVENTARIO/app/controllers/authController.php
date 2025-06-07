@@ -4,11 +4,6 @@ class AuthController extends BaseController {
         $this->modelo = $this->model('AuthModel');
     }
 
-    // Mostrar formulario de login
-    public function login() {
-        $this->view('pages/auth/login', ['data' => [], 'errores' => []]);
-    }
-
     // Procesar login (POST)
     public function loginUsuario() {
       $data = [
@@ -95,14 +90,12 @@ class AuthController extends BaseController {
           }
 
           if (empty($errores)) {
-            // Hashear contraseña
-            $data['pass_usuario'] = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
 
             $res = $this->modelo->crear_usuario($data);
 
             if ($res->resultado_proceso == 1) {
               $_SESSION['mensaje_exito'] = 'Registro exitoso. Por favor inicia sesión.';
-              header('Location: ' . RUTA_URL . '/AuthController/login');
+              header('Location: ' . RUTA_URL . '/AuthController/loginUsuario');
               exit;
             }
             else {

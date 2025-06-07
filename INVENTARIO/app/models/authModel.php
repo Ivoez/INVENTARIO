@@ -37,9 +37,6 @@ class AuthModel {
     // Crear usuario usando procedimiento almacenado
     public function crear_usuario($data) {
 
-        // contraseña esté hasheada
-        $password_hashed = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
-
         $keyw = "keyword";
 
         $this->db->query("CALL insert_usuario(
@@ -48,7 +45,7 @@ class AuthModel {
         )");
 
         $this->db->bind(':nombre', $data['nombre_usuario']);
-        $this->db->bind(':password', $password_hashed);
+        $this->db->bind(':password', $data['pass_usuario']);
         $this->db->bind(':email', $data['email_usuario']);
         $this->db->bind(':avatar', $data['avatar_usuario']);
         $this->db->bind(':tipo', $data['tipo_usuario']);
