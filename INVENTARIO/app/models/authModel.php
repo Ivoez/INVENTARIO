@@ -40,6 +40,8 @@ class AuthModel {
         // contraseña esté hasheada
         $password_hashed = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
 
+        $keyw = "keyword";
+
         $this->db->query("CALL insert_usuario(
             :nombre, :password, :email, :avatar, :tipo, :estado,
             @res, @msg
