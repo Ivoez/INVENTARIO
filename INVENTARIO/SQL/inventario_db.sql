@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2025 a las 02:59:48
+-- Tiempo de generación: 07-06-2025 a las 18:25:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -68,7 +68,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_u
         SELECT id_estado_usuario INTO id_estado_usuario_param FROM estado_usuario WHERE nombre_estado_usuario = COALESCE(param_estado_usuario, 'Activo');
     
         INSERT INTO usuario (nombre_usuario, pass_usuario, email_usuario, avatar_usuario, tipo_usuario_id, estado_usuario_id)
-        VALUES (param_nombre_usuario, param_pass_usuario, param_email_usuario,  COALESCE(NULLIF(param_avatar_usuario, ''), 'default.png'), id_tipo_usuario_param, id_estado_usuario_param);
+        VALUES (param_nombre_usuario, aes_encrypt(param_pass_usuario, 'keyword'), param_email_usuario,  COALESCE(NULLIF(param_avatar_usuario, ''), 'default.png'), id_tipo_usuario_param, id_estado_usuario_param);
 
         SET resultado_proceso = 1;
         SET mensaje_proceso = 'Inserción de usuario correcta';
@@ -115,7 +115,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `param_nombre_usuario` V
         SET resultado_proceso = 0;
         SET mensaje_proceso = 'nombre_usuario no existente';
     ELSE
-        SELECT pass_usuario INTO pass_usuario_buscado FROM usuario WHERE nombre_usuario = param_nombre_usuario;
+        SELECT aes_decrypt(pass_usuario, 'keyword') INTO pass_usuario_buscado FROM usuario WHERE nombre_usuario = param_nombre_usuario;
         IF pass_usuario_buscado <> param_pass_usuario THEN
         	SET resultado_proceso = 0;
         	SET mensaje_proceso = 'pass_usuario incorrecta';
@@ -392,7 +392,9 @@ INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `pass_usuario`, `email_us
 (5, 'sdfffff', '$2y$10$NjtKk7V6wd5fNNLVngOWfeXYPNKGOqP/.1fZ/K5VEgbW0x4MXA68e', 'df333hjsd@bgud.com', 'wuyiwuywi7826872', 2, 1, '2025-06-06 23:23:56', '2025-06-06 23:23:56'),
 (14, 'xfcbxcbxcbxc', '$2y$10$oHjfu1m0AI5fgNJQUky8cepM5lpGAlttqxRQccmTY6JllF/UJ2PwW', 'vxcv@asedf.com', 'default.png', 2, 1, '2025-06-07 00:11:57', '2025-06-07 00:11:57'),
 (15, 'marceleta', '$2y$10$37llO.AYisKDqW4B3XOFXeJhT27GRmRoQh34Eq/ydyiU306BT4.AS', 'asdasda@sdofjhsd.com', 'default.png', 2, 1, '2025-06-07 00:52:41', '2025-06-07 00:52:41'),
-(16, 'assdasdasd', '$2y$10$BQevAjG0xfJdl1ZnAMhfUu38yrVa3EVZcA686J53QQlWJeaZ8LJC2', 'asdasd@fsedrjnfs.conm', 'default.png', 2, 1, '2025-06-07 00:53:53', '2025-06-07 00:53:53');
+(16, 'assdasdasd', '$2y$10$BQevAjG0xfJdl1ZnAMhfUu38yrVa3EVZcA686J53QQlWJeaZ8LJC2', 'asdasd@fsedrjnfs.conm', 'default.png', 2, 1, '2025-06-07 00:53:53', '2025-06-07 00:53:53'),
+(17, 'marcela123', '$2y$10$owvFHkBTfT0hI0c03Oj6Oe1l/dl3KonojahgC2ORBkUVrJdk.pYSK', 'marce@gmail.com', 'default.png', 2, 1, '2025-06-07 13:53:44', '2025-06-07 13:53:44'),
+(18, 'merli1234', '^#?/??Y?HDm?ŷՒz}?4?\nA?Ňk)J??vŀ??Z??:`u? ??[?Mu?͹1K^??', 'merli@gmail.com', 'default.png', 2, 1, '2025-06-07 16:05:36', '2025-06-07 16:05:36');
 
 --
 -- Índices para tablas volcadas
@@ -588,7 +590,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas
