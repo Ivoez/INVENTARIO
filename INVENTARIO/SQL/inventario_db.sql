@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2025 a las 18:25:17
+-- Tiempo de generación: 07-06-2025 a las 19:47:56
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -371,7 +371,7 @@ INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `nombre_tipo_usuario`, `created_a
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nombre_usuario` varchar(20) NOT NULL,
-  `pass_usuario` varchar(255) NOT NULL,
+  `pass_usuario` varbinary(255) NOT NULL,
   `email_usuario` varchar(100) NOT NULL,
   `avatar_usuario` varchar(150) DEFAULT '''default.png''',
   `tipo_usuario_id` int(10) NOT NULL,
@@ -385,16 +385,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `pass_usuario`, `email_usuario`, `avatar_usuario`, `tipo_usuario_id`, `estado_usuario_id`, `created_at`, `updated_at`) VALUES
-(1, 'usuario1', 'contra12345', 'email@email.com', '/ruta/avatar/image.jpg', 2, 1, '2025-05-17 18:51:36', '2025-05-17 18:51:36'),
-(2, 'fdgdfgdfgd', '$2y$10$3rbv4pqKfwOk2QsTgI3P3.jL4CKe8rG/EpBl3frNj10nmwPup60OW', 'dfgdfgdfg@sdfsd.com', 'dfgdfgdfgdfg', 2, 1, '2025-05-31 01:52:11', '2025-05-31 01:52:11'),
-(3, 'fsdfsdfsdf', '$2y$10$Lxc67O2mVLEzjRU9AZF5ruQx5nLwDObQ7eZkmqMMHj.ZmCTkaeZsm', 'sdfsdf@sdff.comnisdfsd', 'default.png', 1, 1, '2025-05-31 02:17:07', '2025-05-31 02:17:07'),
-(4, 'ghukhjkhj', '$2y$10$wDNaqftrhQlXtOl05XW74uO.b.P37ZTrtnWZPZ91WSspZl8vrGKXS', 'gilgastonmar@gmail.com', 'gfgggggff', 2, 1, '2025-06-06 22:54:44', '2025-06-06 22:54:44'),
-(5, 'sdfffff', '$2y$10$NjtKk7V6wd5fNNLVngOWfeXYPNKGOqP/.1fZ/K5VEgbW0x4MXA68e', 'df333hjsd@bgud.com', 'wuyiwuywi7826872', 2, 1, '2025-06-06 23:23:56', '2025-06-06 23:23:56'),
-(14, 'xfcbxcbxcbxc', '$2y$10$oHjfu1m0AI5fgNJQUky8cepM5lpGAlttqxRQccmTY6JllF/UJ2PwW', 'vxcv@asedf.com', 'default.png', 2, 1, '2025-06-07 00:11:57', '2025-06-07 00:11:57'),
-(15, 'marceleta', '$2y$10$37llO.AYisKDqW4B3XOFXeJhT27GRmRoQh34Eq/ydyiU306BT4.AS', 'asdasda@sdofjhsd.com', 'default.png', 2, 1, '2025-06-07 00:52:41', '2025-06-07 00:52:41'),
-(16, 'assdasdasd', '$2y$10$BQevAjG0xfJdl1ZnAMhfUu38yrVa3EVZcA686J53QQlWJeaZ8LJC2', 'asdasd@fsedrjnfs.conm', 'default.png', 2, 1, '2025-06-07 00:53:53', '2025-06-07 00:53:53'),
-(17, 'marcela123', '$2y$10$owvFHkBTfT0hI0c03Oj6Oe1l/dl3KonojahgC2ORBkUVrJdk.pYSK', 'marce@gmail.com', 'default.png', 2, 1, '2025-06-07 13:53:44', '2025-06-07 13:53:44'),
-(18, 'merli1234', '^#?/??Y?HDm?ŷՒz}?4?\nA?Ňk)J??vŀ??Z??:`u? ??[?Mu?͹1K^??', 'merli@gmail.com', 'default.png', 2, 1, '2025-06-07 16:05:36', '2025-06-07 16:05:36');
+(22, 'usuarioprueba', 0xd4d609dfc180455cdee019900c39c889, 'usuarioprueba@gmail.com', 'default.png', 2, 1, '2025-06-07 17:36:35', '2025-06-07 17:36:35');
 
 --
 -- Índices para tablas volcadas
@@ -590,7 +581,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas

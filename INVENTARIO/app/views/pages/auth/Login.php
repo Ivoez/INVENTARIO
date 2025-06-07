@@ -41,12 +41,12 @@
             <button type="submit" class="boton-login">Iniciar sesión</button>
         </form>
         <div class="registro-link">
-            <a href="<?php echo RUTA_URL ?>/AuthController/register">
-                <button class="boton-login">Registrarse</button>
-            </a>
+          <a href="<?php echo RUTA_URL ?>/AuthController/register">
+            <button class="boton-login">Registrarse</button>
+          </a>
         </div>
+      </div>
 
-    </div>
 
 </body>
 </html>

@@ -28,8 +28,8 @@
                 <input type="text" id="usuario" name="usuario" value="<?= htmlspecialchars($data['nombre_usuario'] ?? '') ?>">
 
                 <?php if (!empty($errores['usuario'])): ?>
-        <div style="color:red; font-size:0.9em; margin-top:2px;"><?= $errores['usuario'] ?></div>
-    <?php endif; ?>
+                  <div style="color:red; font-size:0.9em; margin-top:2px;"><?= $errores['usuario'] ?></div>
+                <?php endif; ?>
 
                 <label for="password">Contraseña</label>
                 <input type="password" name="password">
