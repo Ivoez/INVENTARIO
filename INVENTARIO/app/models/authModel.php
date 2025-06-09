@@ -21,7 +21,7 @@ class AuthModel {
         $this->db->execute();
 
         // Obtener resultado del procedimiento (opcional)
-        $this->db->query("SELECT @nombre_tipo_usuario AS tipo_usuario, @res AS resultado_proceso, @msg AS mensaje_proceso");
+        $this->db->query("SELECT @nombre_tipo_usuario AS nombre_tipo_usuario, @res AS resultado_proceso, @msg AS mensaje_proceso");
         $resultado = $this->db->register();  // Ejecuta y obtiene resultado
 
         return $resultado; //Asegura que siempre se retorne algo
