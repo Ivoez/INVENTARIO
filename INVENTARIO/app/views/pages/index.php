@@ -27,9 +27,7 @@
         Nuestro objetivo es brindarte la mejor experiencia 
         con profesionalismo y atención personalizada.</h2>
 
-
-                        <a class="btn btn-primary" href="<?php echo RUTA_URL; ?>/AuthController/loginUsuario">Iniciar Sesión</a>
-                        <a class="btn btn-secondary" href="<?php echo RUTA_URL; ?>/AuthController/register">Registrarse</a>     
+                        <a class="btn btn-primary" href="<?php echo RUTA_URL; ?>/AuthController/loginUsuario">Iniciar Sesión</a> 
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ class AuthModel {
         //$password_hashed = password_hash($data['pass_usuario'], PASSWORD_DEFAULT);
 
         $this->db->query("CALL login(
-            :email, :password, @tipo_usuario, @res, @msg
+            :email, :password, @nombre_tipo_usuario, @res, @msg
         )");
 
         $this->db->bind(':email', $data['email_usuario']);
@@ -21,7 +21,7 @@ class AuthModel {
         $this->db->execute();
 
         // Obtener resultado del procedimiento (opcional)
-        $this->db->query("SELECT @tipo_usuario AS tipo_usuario, @res AS resultado_proceso, @msg AS mensaje_proceso");
+        $this->db->query("SELECT @nombre_tipo_usuario AS tipo_usuario, @res AS resultado_proceso, @msg AS mensaje_proceso");
         $resultado = $this->db->register();  // Ejecuta y obtiene resultado
 
         return $resultado; //Asegura que siempre se retorne algo

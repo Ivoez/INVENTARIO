@@ -28,8 +28,11 @@ class AuthController extends BaseController {
           $res = $this->modelo->login($data);
           if ($res->resultado_proceso == 1) {
             $_SESSION['mensaje_exito'] = 'Login exitoso. Por favor inicia sesión.';
-
-              $this->view('pages/dashboard/dashboard');
+            if($res->nombre_tipo_usuario == 'Administrador'){
+              $this->view('pages/dashboard/dashboard_admin');
+            } else {
+              $this->view('pages/dashboard/dashboard_empleado');
+            }
             exit;
           }
           else {
