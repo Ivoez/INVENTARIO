@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="<?php echo RUTA_URL ?>/css/Register.css">
+    <link rel="stylesheet" href="<?php echo RUTA_URL ?>/css/style2.css">
    <!--?php require RUTA_APP . '/views/layout/header.php'; ?>-->
 
     <?php
@@ -6,10 +6,13 @@
     $data = $datos['data'] ?? [];          //se deben pasar 
     $errores = $datos['errores'] ?? [];
     ?>
+<body class="bg-register">
 
+        <?php require RUTA_APP . '/views/layout/header.php'; ?>
     <title>Registro de Usuarios</title>
-
+ 
     <div class="container-body" style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+        
         <div class="ctn-form" style="width: 400px;">
             <img src="<?php echo RUTA_URL ?>/imagenes/Icono_simple.png" alt="usuario-login">
             <h1 class="title">Formulario de Registro de Usuario Nuevo</h1>
@@ -65,4 +68,4 @@
         </div>
     </div>
 
-    <!--?php require RUTA_APP . '/views/layout/footer.php'; ?>->
+    <?php require RUTA_APP . '/views/layout/footer.php'; ?>

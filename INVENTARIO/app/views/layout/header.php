@@ -17,20 +17,17 @@
 
 <body> <!-- ✅ El header debe ir dentro del body -->
 
-  <header>
-    <!--barra de navegación-->
-    <nav class="navbar-custom d-flex justify-content-between align-items-center px-4">
-      <div class="d-flex align-items-center">
-        <a href="<?php echo RUTA_URL; ?>/Pages/Landing">
-          <img src="<?php echo RUTA_URL; ?>/Imagenes/InventarioIcono.ico" alt="Icono" class="icono me-4" width="40" height="40">
-        </a>
-        <h1 class="navbar-title text-white m-0" id="logoTitle">Logística RST</h1>
-      </div>
-      <div class="d-flex gap-3">
-        <!-- botones si querés agregar -->
-      </div>
-    </nav>
-  </header>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black px-4 py-2 shadow">
+    <div class="container-fluid d-flex align-items-center">
+      <a class="navbar-brand d-flex align-items-center gap-3" href="<?php echo RUTA_URL; ?>/Pages/Landing">
+        <img src="<?php echo RUTA_URL; ?>/Imagenes/InventarioIconoImagen.png" alt="Icono" width="40" height="40" style="object-fit: contain;">
+        <span class="fs-4 fw-semibold">Logística RST</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
 
 
 
