@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2025 a las 18:06:10
+-- Tiempo de generación: 10-06-2025 a las 23:26:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -295,9 +295,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_proveedor` (IN `param_razon_
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_usuario` VARCHAR(20), IN `param_pass_usuario` VARCHAR(255), IN `param_email_usuario` VARCHAR(100), IN `param_avatar_usuario` VARCHAR(150), IN `param_tipo_usuario` VARCHAR(15), IN `param_estado_usuario` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_usuario` VARCHAR(100), IN `param_apellido_usuario` VARCHAR(100), IN `param_DNI_usuario` VARCHAR(11), IN `param_pass_usuario` VARCHAR(255), IN `param_email_usuario` VARCHAR(100), IN `param_avatar_usuario` VARCHAR(150), IN `param_tipo_usuario` VARCHAR(15), IN `param_estado_usuario` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
 
-    DECLARE existe_nombre_usuario INT DEFAULT 0;
+    DECLARE existe_DNI_usuario INT DEFAULT 0;
     DECLARE existe_email_usuario INT DEFAULT 0;
     DECLARE existe_avatar_usuario INT DEFAULT 0;
     
@@ -308,7 +308,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_u
     DECLARE id_estado_usuario_param INT;
 
     -- Verificar existencia en base de datos
-    SELECT EXISTS(SELECT 1 FROM usuario WHERE nombre_usuario = param_nombre_usuario) INTO existe_nombre_usuario;
+    SELECT EXISTS(SELECT 1 FROM usuario WHERE DNI_usuario = param_DNI_usuario) INTO existe_DNI_usuario;
     SELECT EXISTS(SELECT 1 FROM usuario WHERE email_usuario = param_email_usuario) INTO existe_email_usuario;
     SELECT EXISTS(SELECT 1 FROM usuario WHERE avatar_usuario = param_avatar_usuario) INTO existe_avatar_usuario;
     
@@ -318,9 +318,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_u
 
 
     -- Validaciones
-    IF existe_nombre_usuario > 0 THEN
+    IF existe_DNI_usuario > 0 THEN
         SET resultado_proceso = 0;
-        SET mensaje_proceso = 'nombre_usuario existente';
+        SET mensaje_proceso = 'DNI_usuario existente';
     ELSEIF existe_email_usuario > 0 THEN
         SET resultado_proceso = 0;
         SET mensaje_proceso = 'email_usuario existente';
@@ -337,8 +337,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_u
     	SELECT id_tipo_usuario INTO id_tipo_usuario_param FROM tipo_usuario WHERE nombre_tipo_usuario = COALESCE(param_tipo_usuario, 'Usuario');
         SELECT id_estado_usuario INTO id_estado_usuario_param FROM estado_usuario WHERE nombre_estado_usuario = COALESCE(param_estado_usuario, 'Activo');
     
-        INSERT INTO usuario (nombre_usuario, pass_usuario, email_usuario, avatar_usuario, tipo_usuario_id, estado_usuario_id)
-        VALUES (param_nombre_usuario, aes_encrypt(param_pass_usuario, 'keyword'), param_email_usuario,  COALESCE(NULLIF(param_avatar_usuario, ''), 'default.png'), id_tipo_usuario_param, id_estado_usuario_param);
+        INSERT INTO usuario (nombre_usuario, apellido_usuario, DNI_usuario, pass_usuario, email_usuario, avatar_usuario, tipo_usuario_id, estado_usuario_id)
+        VALUES (param_nombre_usuario, param_apellido_usuario, param_DNI_usuario, aes_encrypt(param_pass_usuario, 'keyword'), param_email_usuario,  COALESCE(NULLIF(param_avatar_usuario, ''), 'default.png'), id_tipo_usuario_param, id_estado_usuario_param);
 
         SET resultado_proceso = 1;
         SET mensaje_proceso = 'Inserción de usuario correcta';
@@ -366,8 +366,190 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `list_estado_usuario` ()   BEGIN
     FROM estado_usuario;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_proveedores` (`param_razon_social` VARCHAR(40), `param_email` VARCHAR(40), `param_estado_proveedor` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+-- Validación de valores a buscar
+    DECLARE existe_razon_social INT DEFAULT 0;
+    DECLARE existe_email INT DEFAULT 0;
+    DECLARE existe_estado INT DEFAULT 0;
+
+    -- Verificar existencia
+    SELECT EXISTS(SELECT 1 FROM proveedor WHERE razon_social_proveedor = param_razon_social) INTO existe_razon_social;
+    SELECT EXISTS(SELECT 1 FROM proveedor WHERE email_personal_proveedor = param_email) INTO existe_email;
+	SELECT EXISTS(SELECT 1 FROM estado_proveedor WHERE nombre_estado_proveedor = param_estado_proveedor) INTO existe_estado;
+
+    -- Validaciones
+    IF param_razon_social IS NOT NULL AND existe_razon_social = 0 THEN  
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'razon_social_proveedor no existente';
+    ELSEIF param_email IS NOT NULL AND existe_email = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'email_personal_proveedor no existente';
+    ELSEIF param_estado_proveedor IS NOT NULL AND existe_estado = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_estado_proveedor no existente';
+        
+    -- Listados
+        ELSEIF param_razon_social IS NOT NULL THEN 
+    	SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Proveedor por razon social devuelto';
+        SELECT  
+            p.razon_social_proveedor,
+        	p.email_personal_proveedor,
+            p.CUIT_proveedor,
+            p.direccion_proveedor,
+            p.telefono_proveedor,
+            ep.nombre_estado_proveedor
+            	FROM proveedor p
+                	INNER JOIN estado_proveedor ep ON p.estado_proveedor_id = ep.nombre_estado_proveedor
+                    	WHERE p.razon_social_proveedor = param_razon_social;
+                        
+    ELSEIF param_email IS NOT NULL THEN 
+    	SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Proveedor por email devuelto';
+        SELECT 
+            p.razon_social_proveedor,
+        	p.email_personal_proveedor,
+            p.CUIT_proveedor,
+            p.direccion_proveedor,
+            p.telefono_proveedor,
+            ep.nombre_estado_proveedor
+            	FROM proveedor p
+                	INNER JOIN estado_proveedor ep ON p.estado_proveedor_id = ep.nombre_estado_proveedor
+                    	WHERE p.email_personal_proveedor = param_email;
+         
+	ELSEIF param_estado_proveedor IS NOT NULL THEN
+    	SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Proveedor por estado de proveedor devueltos';
+        SELECT
+            p.razon_social_proveedor,
+        	p.email_personal_proveedor,
+            p.CUIT_proveedor,
+            p.direccion_proveedor,
+            p.telefono_proveedor,
+            ep.nombre_estado_proveedor
+            	FROM proveedor p
+                	INNER JOIN estado_proveedor ep ON p.estado_proveedor_id = ep.nombre_estado_proveedor
+                    	WHERE ep.nombre_estado_proveedor = param_estado_proveedor;
+                        
+      ELSEIF param_razon_social IS NULL AND param_email IS NULL AND param_estado_proveedor THEN
+      	SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Listado de proveedores devuelto';
+        SELECT
+            p.razon_social_proveedor,
+        	p.email_personal_proveedor,
+            p.CUIT_proveedor,
+            p.direccion_proveedor,
+            p.telefono_proveedor,
+            ep.nombre_estado_proveedor
+            	FROM proveedor p
+                	INNER JOIN estado_proveedor ep ON p.estado_proveedor_id = ep.nombre_estado_proveedor;
+                    
+      ELSE
+      	SET resultado_proceso = 0;
+        SET mensaje_proceso = 'Error desconocido al generar el listado de proveedores';
+      
+    END IF;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `list_tipo_usuario` ()   BEGIN
     SELECT nombre_tipo_usuario FROM tipo_usuario;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_usuarios` (IN `param_email` VARCHAR(100), IN `param_tipo_usuario` VARCHAR(15), IN `param_estado_usuario` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+-- Validación de valores a buscar
+    DECLARE existe_email INT DEFAULT 0;
+    DECLARE existe_tipo INT DEFAULT 0;
+    DECLARE existe_estado INT DEFAULT 0;
+
+    -- Verificar existencia
+    SELECT EXISTS(SELECT 1 FROM usuario WHERE email_usuario = param_email) INTO existe_email;
+    SELECT EXISTS(SELECT 1 FROM tipo_usuario WHERE nombre_tipo_usuario = param_tipo_usuario) INTO existe_tipo;
+	SELECT EXISTS(SELECT 1 FROM estado_usuario WHERE nombre_estado_usuario = param_estado_usuario) INTO existe_estado;
+
+    -- Validaciones
+    IF param_email IS NOT NULL AND existe_email = 0 THEN  
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'email_usuario no existente';
+    ELSEIF param_tipo_usuario IS NOT NULL AND existe_tipo = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_tipo_usuario no existente';
+    ELSEIF param_estado_usuario IS NOT NULL AND existe_estado = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_estado_usuario no existente';
+        
+    -- Listados
+    ELSEIF param_email IS NOT NULL THEN 
+    	SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Usuario por email devuelto';
+        SELECT 
+        	u.email_usuario,
+            u.nombre_usuario,
+            u.apellido_usuario,
+            u.DNI_usuario,
+            u.avatar_usuario,
+            tu.nombre_tipo_usuario,
+            eu.nombre_estado_usuario
+            	FROM usuario u
+                    INNER JOIN tipo_usuario tu ON u.tipo_usuario_id = tu.nombre_tipo_usuario
+                	INNER JOIN estado_usuario eu ON u.estado_usuario_id = eu.nombre_estado_usuario
+                    	WHERE u.email_usuario = param_email;
+                        
+	ELSEIF param_tipo_usuario IS NOT NULL THEN
+    	SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Usuarios por tipo de usuario devueltos';
+        SELECT 
+        	u.email_usuario, 
+            u.nombre_usuario,
+            u.apellido_usuario,
+            u.DNI_usuario,
+            u.avatar_usuario,
+            tu.nombre_tipo_usuario,
+            eu.nombre_estado_usuario
+            	FROM usuario u
+                    INNER JOIN tipo_usuario tu ON u.tipo_usuario_id = tu.nombre_tipo_usuario
+                	INNER JOIN estado_usuario eu ON u.estado_usuario_id = eu.nombre_estado_usuario
+                    	WHERE tu.nombre_tipo_usuario = param_tipo_usuario;
+                        
+	ELSEIF param_estado_usuario IS NOT NULL THEN
+    	SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Usuarios por estado de usuario devueltos';
+        SELECT 
+        	u.email_usuario, 
+            u.nombre_usuario,
+            u.apellido_usuario,
+            u.DNI_usuario,
+            u.avatar_usuario,
+            tu.nombre_tipo_usuario,
+            eu.nombre_estado_usuario
+            	FROM usuario u
+                    INNER JOIN tipo_usuario tu ON u.tipo_usuario_id = tu.nombre_tipo_usuario
+                	INNER JOIN estado_usuario eu ON u.estado_usuario_id = eu.nombre_estado_usuario
+                    	WHERE eu.nombre_estado_usuario = param_estado_usuario;
+                        
+      ELSEIF param_email IS NULL AND param_tipo_usuario IS NULL AND param_estado_usuario THEN
+      	SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Listado de usuarios devuelto';
+        SELECT 
+        	u.email_usuario, 
+            u.nombre_usuario,
+            u.apellido_usuario,
+            u.DNI_usuario,
+            u.avatar_usuario,
+            tu.nombre_tipo_usuario,
+            eu.nombre_estado_usuario
+            	FROM usuario u
+                    INNER JOIN tipo_usuario tu ON u.tipo_usuario_id = tu.nombre_tipo_usuario
+                	INNER JOIN estado_usuario eu ON u.estado_usuario_id = eu.nombre_estado_usuario;
+                    
+      ELSE
+      	SET resultado_proceso = 0;
+        SET mensaje_proceso = 'Error desconocido al generar el listado de usuarios';
+      
+    END IF;
+
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `param_email_usuario` VARCHAR(100), IN `param_pass_usuario` VARCHAR(255), OUT `param_nombre_tipo_usuario` VARCHAR(15), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
@@ -595,7 +777,9 @@ INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `nombre_tipo_usuario`, `created_a
 
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
-  `nombre_usuario` varchar(20) NOT NULL,
+  `nombre_usuario` varchar(100) NOT NULL,
+  `apellido_usuario` varchar(100) NOT NULL,
+  `DNI_usuario` varchar(11) NOT NULL,
   `pass_usuario` varbinary(255) NOT NULL,
   `email_usuario` varchar(100) NOT NULL,
   `avatar_usuario` varchar(150) DEFAULT '''default.png''',
@@ -604,15 +788,6 @@ CREATE TABLE `usuario` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `pass_usuario`, `email_usuario`, `avatar_usuario`, `tipo_usuario_id`, `estado_usuario_id`, `created_at`, `updated_at`) VALUES
-(22, 'usuarioprueba', 0xd4d609dfc180455cdee019900c39c889, 'usuarioprueba@gmail.com', 'default.png', 2, 1, '2025-06-07 17:36:35', '2025-06-07 17:36:35'),
-(23, 'marceleta', 0xa1999e4477387df23790a8aef5c92e07, 'marceleta@gmail.com', 'default.png', 2, 1, '2025-06-09 22:52:42', '2025-06-09 22:52:42'),
-(24, 'elivan', 0x31820c018302727c6ca2c9f460b2c4db, 'elivan@gmail.com', 'default.png', 1, 1, '2025-06-09 23:13:29', '2025-06-09 23:13:29');
 
 --
 -- Índices para tablas volcadas
@@ -706,8 +881,8 @@ ALTER TABLE `tipo_usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `unique_nombre_usuario` (`nombre_usuario`),
   ADD UNIQUE KEY `unique_email_usuario` (`email_usuario`),
+  ADD UNIQUE KEY `unique_dni_usuario` (`DNI_usuario`),
   ADD KEY `FK_usuario_tipo_usuario` (`tipo_usuario_id`),
   ADD KEY `FK_usuario_estado_usuario` (`estado_usuario_id`);
 
