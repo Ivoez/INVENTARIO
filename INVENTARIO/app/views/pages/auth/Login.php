@@ -11,12 +11,6 @@
   <div class="form-container">
     <p class="text">Bienvenido al Sistema Inventario</p>
 
-    <?php if (!empty($_SESSION['mensaje_exito'])): ?> <!--(Session) son variables de sesion temporal ya que no persisten como seria en el registro-->
-      <div class="mensaje-exito">
-        <?= htmlspecialchars($_SESSION['mensaje_exito']) ?>
-      </div>
-      <?php unset($_SESSION['mensaje_exito']); ?>
-    <?php endif; ?>
 
     <form method="POST" action="<?= rtrim(RUTA_URL, '/') ?>/AuthController/loginUsuario">
 

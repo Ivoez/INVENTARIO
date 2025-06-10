@@ -27,7 +27,6 @@ class AuthController extends BaseController {
 
           $res = $this->modelo->login($data);
           if ($res->resultado_proceso == 1) {
-            $_SESSION['mensaje_exito'] = 'Login exitoso. Por favor inicia sesión.';
             if($res->nombre_tipo_usuario == 'Administrador'){
               $this->view('pages/dashboard/dashboard_admin');
             } else {
@@ -97,7 +96,6 @@ class AuthController extends BaseController {
             $res = $this->modelo->crear_usuario($data);
 
             if ($res->resultado_proceso == 1) {
-              $_SESSION['mensaje_exito'] = 'Registro exitoso. Por favor inicia sesión.';
               header('Location: ' . RUTA_URL . '/AuthController/loginUsuario');
               exit;
             }
