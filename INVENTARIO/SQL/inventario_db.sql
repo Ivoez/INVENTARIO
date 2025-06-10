@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2025 a las 01:49:45
+-- Tiempo de generación: 10-06-2025 a las 18:06:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -25,14 +25,284 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_cabecera_oc` (`param_proveedor` VARCHAR(40), `param_email_usuario` VARCHAR(100), `param_nro` VARCHAR(40), `param_fecha` DATE, OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+-- Validación de UNIQUES
+    DECLARE existe_nro INT DEFAULT 0;
+
+-- Validación de FKs
+    DECLARE existe_proveedor INT DEFAULT 0;
+    DECLARE existe_email_usuario INT DEFAULT 0;
+
+-- FKs a insertar
+    DECLARE id_proveedor_param INT;
+    DECLARE id_usuario_param INT;
+
+    -- Verificar existencia
+    SELECT EXISTS(SELECT 1 FROM cabecera_orden_compra WHERE nro_orden_compra = param_nro) INTO existe_nro;
+ 
+    SELECT EXISTS(SELECT 1 FROM proveedor WHERE razon_social_proveedor = param_proveedor) INTO existe_proveedor;
+    SELECT EXISTS(SELECT 1 FROM usuario WHERE email_usuario = param_email_usuario) INTO existe_email_usuario;
+
+
+    -- Validaciones
+    IF existe_nro > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nro_orden_compra existente';
+        
+    ELSEIF existe_proveedor = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'razon_social_proveedor no existente';
+	ELSEIF existe_email_usuario = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'email_usuario no existente'; 
+        
+    ELSE
+        SELECT id_proveedor INTO id_proveedor_param FROM proveedor WHERE razon_social_proveedor = param_proveedor;
+        SELECT id_usuario INTO id_usuario_param FROM usuario WHERE email_usuario = param_email_usuario;  
+    
+        INSERT INTO cabecera_orden_compra (proveedor_id, usuario_responsable_id, nro_orden_compra, fecha_orden_compra)
+        VALUES (id_proveedor_param, id_usuario_param, param_nro, param_fecha);
+
+        SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Inserción de cabecera de orden de compra correcta';
+    END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_categoria_producto` (`param_nombre` VARCHAR(40), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+-- Validación de UNIQUES
+    DECLARE existe_nombre INT DEFAULT 0;
+
+    -- Verificar existencia
+    SELECT EXISTS(SELECT 1 FROM categoria_producto WHERE nombre_categoria_producto = param_nombre) INTO existe_nombre;
+
+    -- Validaciones
+    IF existe_nombre > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_categoria_producto existente';
+        
+    ELSE
+        INSERT INTO categoria_producto (nombre_categoria_producto)
+        VALUES (param_nombre);
+
+        SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Inserción de categoría de producto correcta';
+    END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_detalle_oc` (IN `param_nro_cabecera` VARCHAR(40), IN `param_codigo_producto` VARCHAR(60), IN `param_cantidad` INT, OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+-- Validación de FKs
+    DECLARE existe_cabecera INT DEFAULT 0;
+    DECLARE existe_producto INT DEFAULT 0;
+
+-- FKs a insertar
+    DECLARE id_cabecera_param INT;
+    DECLARE id_producto_param INT;
+
+    -- Verificar existencia
+    SELECT EXISTS(SELECT 1 FROM cabecera_orden_compra WHERE nro_orden_compra = param_nro_cabecera) INTO existe_cabecera;
+    SELECT EXISTS(SELECT 1 FROM producto WHERE codigo_producto = param_codigo_producto) INTO existe_producto;
+
+    -- Validaciones
+    IF existe_cabecera = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nro_orden_compra no existente';
+    ELSEIF existe_producto = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'codigo_producto no existente';
+        
+    ELSEIF param_cantidad IS NULL OR param_cantidad <= 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'cantidad_detalle_orden_compra no válida';      
+    ELSE
+        SELECT id_cabecera_orden_compra INTO id_cabecera_param FROM cabecera_orden_compra WHERE nro_orden_compra = param_nro_cabecera;
+        SELECT id_producto INTO id_producto_param FROM producto WHERE codigo_producto = param_codigo_producto;  
+    
+        INSERT INTO detalle_orden_compra (cabecera_orden_compra_id, producto_id, cantidad)
+        VALUES (id_cabecera_param, id_producto_param, param_codigo, param_cantidad);
+
+        SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Inserción de detalle de orden de compra correcta';
+    END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_movimiento_stock` (`param_codigo_producto` VARCHAR(60), `param_email_usuario` VARCHAR(100), `param_tipo_movimiento` VARCHAR(20), `param_fecha` DATE, `param_cantidad` INT, OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+-- Validación de FKs
+    DECLARE existe_producto INT DEFAULT 0;
+    DECLARE existe_email_usuario INT DEFAULT 0;
+
+-- FKs a insertar
+    DECLARE id_producto_param INT;
+    DECLARE id_usuario_param INT;
+    
+
+    -- Verificar existencia
+    SELECT EXISTS(SELECT 1 FROM producto WHERE codigo_producto = param_codigo_producto) INTO existe_producto;
+    SELECT EXISTS(SELECT 1 FROM usuario WHERE email_usuario = param_email_usuario) INTO existe_email_usuario;
+
+    -- Validaciones
+    IF existe_producto = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'codigo_producto no existente';
+	ELSEIF existe_email_usuario = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'email_usuario no existente'; 
+
+    ELSEIF param_tipo_movimiento NOT IN ('Entrada', 'Salida') THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'tipo de movimiento incorrecto';
+    ELSEIF param_cantidad IS NULL OR param_cantidad <= 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'cantidad no válida';        
+        
+    ELSE
+        SELECT id_producto INTO id_producto_param FROM producto WHERE codigo_producto = param_codigo_producto;
+        SELECT id_usuario INTO id_usuario_param FROM usuario WHERE email_usuario = param_email_usuario;      
+
+        INSERT INTO movimiento_stock (producto_id, usuario_responsable_id, fecha_movimiento, cantidad)
+        VALUES (id_producto_param, id_usuario_param, param_fecha, CASE WHEN param_tipo_movimiento = 'Salida' THEN param_cantidad * -1 ELSE param_cantidad END);
+
+        SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Inserción de movimiento de stock correcta';
+    END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_producto` (IN `param_proveedor` VARCHAR(40), IN `param_categoria` VARCHAR(40), IN `param_codigo` VARCHAR(60), IN `param_nombre` VARCHAR(60), IN `param_cantidad_stock` INT, IN `param_costo` DECIMAL(16,4), IN `param_estado_producto` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+-- Validación de UNIQUES
+    DECLARE existe_codigo INT DEFAULT 0;
+    DECLARE existe_nombre INT DEFAULT 0;
+
+-- Validación de FKs
+    DECLARE existe_proveedor INT DEFAULT 0;
+    DECLARE existe_categoria INT DEFAULT 0;
+    DECLARE existe_estado_producto INT DEFAULT 0;
+
+-- FKs a insertar
+    DECLARE id_proveedor_param INT;
+    DECLARE id_categoria_param INT;
+    DECLARE id_estado_producto_param INT;
+
+    -- Verificar existencia
+    SELECT EXISTS(SELECT 1 FROM producto WHERE codigo_producto = param_codigo) INTO existe_codigo;
+    SELECT EXISTS(SELECT 1 FROM producto WHERE nombre_producto = param_nombre) INTO existe_nombre;
+ 
+    SELECT EXISTS(SELECT 1 FROM proveedor WHERE razon_social_proveedor = param_proveedor) INTO existe_proveedor;
+    SELECT EXISTS(SELECT 1 FROM categoria_producto WHERE nombre_categoria_producto = param_categoria) INTO existe_categoria;
+    SELECT EXISTS(SELECT 1 FROM estado_producto WHERE nombre_estado_producto = param_estado_producto) INTO existe_estado_producto;
+
+    -- Validaciones
+    IF existe_codigo > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'codigo_producto existente';
+    ELSEIF existe_nombre > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_producto existente';
+        
+    ELSEIF existe_proveedor = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'razon_social_proveedor no existente';
+	ELSEIF existe_categoria = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_categoria_producto no existente'; 
+    ELSEIF param_estado_producto IS NOT NULL AND existe_estado_producto = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_estado_producto incorrecto';
+        
+    ELSEIF param_cantidad_stock < 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'cantidad_stock no válida';
+    ELSEIF param_costo IS NULL OR param_costo <= 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'precio_costo_producto no válido';
+        
+    ELSE
+        SELECT id_proveedor INTO id_proveedor_param FROM proveedor WHERE razon_social_proveedor = param_proveedor;
+        SELECT id_categoria_producto INTO id_categoria_param FROM categoria_producto WHERE nombre_categoria_producto = param_categoria;  
+        SELECT id_estado_producto INTO id_estado_producto_param FROM estado_producto WHERE nombre_estado_producto = COALESCE(param_estado_producto, 'Activo');
+    
+        INSERT INTO producto (proveedor_id, categoria_producto_id, codigo_producto, nombre_producto, cantidad_stock_producto, precio_costo_producto, estado_producto_id)
+        VALUES (id_proveedor_param, id_categoria_param, param_codigo, param_nombre, param_cantidad_stock, param_costo, id_estado_producto_param);
+
+        SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Inserción de producto correcta';
+    END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_proveedor` (IN `param_razon_social` VARCHAR(40), IN `param_CUIT` VARCHAR(15), IN `param_direccion` VARCHAR(60), IN `param_telefono` VARCHAR(40), IN `param_email` VARCHAR(40), IN `param_estado_proveedor` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+
+-- Validación UNIQUES
+    DECLARE existe_razon_social INT DEFAULT 0;
+    DECLARE existe_CUIT INT DEFAULT 0;
+    DECLARE existe_direccion INT DEFAULT 0;
+    DECLARE existe_telefono INT DEFAULT 0;
+    DECLARE existe_email INT DEFAULT 0;
+    
+-- Validación FKs    
+    DECLARE existe_estado_proveedor INT DEFAULT 0;
+    
+-- FKS a insertar    
+    DECLARE id_estado_proveedor_param INT;
+
+    -- Verificar existencia en base de datos
+    SELECT EXISTS(SELECT 1 FROM proveedor WHERE razon_social_proveedor = param_razon_social) INTO existe_razon_social;
+    SELECT EXISTS(SELECT 1 FROM proveedor WHERE CUIT_proveedor = param_CUIT) INTO existe_CUIT;
+    SELECT EXISTS(SELECT 1 FROM proveedor WHERE direccion_proveedor = param_direccion) INTO existe_direccion;
+    SELECT EXISTS(SELECT 1 FROM proveedor WHERE telefono_proveedor = param_telefono) INTO existe_telefono;
+    SELECT EXISTS(SELECT 1 FROM proveedor WHERE email_personal_proveedor = param_email) INTO existe_email;
+ 
+    SELECT EXISTS(SELECT 1 FROM estado_proveedor WHERE nombre_estado_proveedor = param_estado_proveedor) INTO existe_estado_proveedor;
+
+
+
+    -- Validaciones
+    IF existe_razon_social > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'razon_social_proveedor existente';
+    ELSEIF existe_CUIT > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'CUIT_proveedor existente';
+    ELSEIF existe_direccion > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'direccion_proveedor existente';
+	ELSEIF existe_telefono > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'telefono_proveedor existente';
+	ELSEIF existe_email > 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'email_personal_proveedor existente';
+        
+    ELSEIF param_estado_proveedor IS NOT NULL AND existe_estado_proveedor = 0 THEN
+        SET resultado_proceso = 0;
+        SET mensaje_proceso = 'nombre_estado_proveedor incorrecto';
+    ELSE
+        SELECT id_estado_proveedor INTO id_estado_proveedor_param FROM estado_proveedor WHERE nombre_estado_proveedor = COALESCE(param_estado_proveedor, 'Activo');
+    
+        INSERT INTO proveedor (razon_social_proveedor, CUIT_proveedor, direccion_proveedor, telefono_proveedor, email_personal_proveedor, estado_proveedor_id)
+        VALUES (param_razon_social, param_CUIT, param_direccion, param_telefono, param_email, id_estado_proveedor_param);
+
+        SET resultado_proceso = 1;
+        SET mensaje_proceso = 'Inserción de proveedor correcta';
+    END IF;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_usuario` VARCHAR(20), IN `param_pass_usuario` VARCHAR(255), IN `param_email_usuario` VARCHAR(100), IN `param_avatar_usuario` VARCHAR(150), IN `param_tipo_usuario` VARCHAR(15), IN `param_estado_usuario` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
 
-    DECLARE existe_nombre_usuario INT;
-    DECLARE existe_email_usuario INT;
-    DECLARE existe_avatar_usuario INT;
+    DECLARE existe_nombre_usuario INT DEFAULT 0;
+    DECLARE existe_email_usuario INT DEFAULT 0;
+    DECLARE existe_avatar_usuario INT DEFAULT 0;
     
-    DECLARE existe_tipo_usuario INT;
-    DECLARE existe_estado_usuario INT;
+    DECLARE existe_tipo_usuario INT DEFAULT 0;
+    DECLARE existe_estado_usuario INT DEFAULT 0;
     
     DECLARE id_tipo_usuario_param INT;
     DECLARE id_estado_usuario_param INT;
@@ -183,50 +453,6 @@ CREATE TABLE `detalle_orden_compra` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empleado`
---
-
-CREATE TABLE `empleado` (
-  `id_empleado` int(11) NOT NULL,
-  `nombre_empleado` varchar(30) NOT NULL,
-  `apellido_empleado` varchar(30) NOT NULL,
-  `fecha_nacimiento_empleado` date NOT NULL,
-  `DNI_empleado` varchar(10) NOT NULL,
-  `email_personal_empleado` varchar(40) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  `estado_empleado_id` int(11) NOT NULL,
-  `fecha_alta_empleado` date DEFAULT NULL,
-  `fecha_baja_empleado` date DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `estado_empleado`
---
-
-CREATE TABLE `estado_empleado` (
-  `id_estado_empleado` int(11) NOT NULL,
-  `nombre_estado_empleado` varchar(20) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `estado_empleado`
---
-
-INSERT INTO `estado_empleado` (`id_estado_empleado`, `nombre_estado_empleado`, `created_at`, `updated_at`) VALUES
-(1, 'Activo', '2025-05-17 00:39:54', '2025-05-17 00:39:54'),
-(2, 'Inactivo', '2025-05-17 00:39:54', '2025-05-17 00:39:54'),
-(3, 'Suspendido', '2025-05-17 00:39:54', '2025-05-17 00:39:54'),
-(4, 'En Licencia', '2025-05-17 00:39:54', '2025-05-17 00:39:54');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `estado_producto`
 --
 
@@ -295,7 +521,7 @@ INSERT INTO `estado_usuario` (`id_estado_usuario`, `nombre_estado_usuario`, `cre
 
 CREATE TABLE `movimiento_stock` (
   `id_movimiento_stock` int(11) NOT NULL,
-  `fecha_movimiento` datetime NOT NULL,
+  `fecha_movimiento` date NOT NULL,
   `producto_id` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `usuario_responsable_id` int(11) NOT NULL,
@@ -315,8 +541,7 @@ CREATE TABLE `producto` (
   `categoria_producto_id` int(11) NOT NULL,
   `codigo_producto` varchar(60) NOT NULL,
   `nombre_producto` varchar(60) NOT NULL,
-  `cantidad_stock_producto` int(11) NOT NULL,
-  `precio_venta_producto` decimal(16,4) NOT NULL,
+  `cantidad_stock_producto` int(11) NOT NULL DEFAULT 0,
   `precio_costo_producto` decimal(16,4) NOT NULL,
   `estado_producto_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -418,23 +643,6 @@ ALTER TABLE `detalle_orden_compra`
   ADD KEY `FK_detalle_producto` (`producto_id`);
 
 --
--- Indices de la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`id_empleado`),
-  ADD UNIQUE KEY `unique_dni_empleado` (`DNI_empleado`),
-  ADD UNIQUE KEY `unique_email_personal_empleado` (`email_personal_empleado`),
-  ADD KEY `FK_empleado_usuario` (`usuario_id`),
-  ADD KEY `FK_empleado_estado_empleado` (`estado_empleado_id`);
-
---
--- Indices de la tabla `estado_empleado`
---
-ALTER TABLE `estado_empleado`
-  ADD PRIMARY KEY (`id_estado_empleado`),
-  ADD UNIQUE KEY `unique_nombre_estado_empleado` (`nombre_estado_empleado`);
-
---
 -- Indices de la tabla `estado_producto`
 --
 ALTER TABLE `estado_producto`
@@ -526,18 +734,6 @@ ALTER TABLE `detalle_orden_compra`
   MODIFY `id_detalle_orden_compra` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `empleado`
---
-ALTER TABLE `empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `estado_empleado`
---
-ALTER TABLE `estado_empleado`
-  MODIFY `id_estado_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT de la tabla `estado_producto`
 --
 ALTER TABLE `estado_producto`
@@ -602,13 +798,6 @@ ALTER TABLE `cabecera_orden_compra`
 ALTER TABLE `detalle_orden_compra`
   ADD CONSTRAINT `FK_detalle_cabecera` FOREIGN KEY (`cabecera_orden_compra_id`) REFERENCES `cabecera_orden_compra` (`id_cabecera_orden_compra`) ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_detalle_producto` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD CONSTRAINT `FK_empleado_estado_empleado` FOREIGN KEY (`estado_empleado_id`) REFERENCES `estado_empleado` (`id_estado_empleado`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_empleado_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `movimiento_stock`
