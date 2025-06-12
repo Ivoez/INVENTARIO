@@ -130,9 +130,12 @@ class AuthController extends BaseController {
 
     // Cerrar sesión
     public function logout() {
-        session_destroy();
-        header('Location: ' . RUTA_URL . '/AuthController/login');
-        exit;
-    }
+    session_start();
+    session_unset();      // Limpia todas las variables de sesión
+    session_destroy();  
+    header('Location: ' . RUTA_URL . '/AuthController/loginUsuario');
+    exit;
+}
+
 }
 ?>
