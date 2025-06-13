@@ -1,18 +1,16 @@
-<link rel="stylesheet" href="<?php echo RUTA_URL ?>/css/style2.css">
-
-  <?php
-    $datos = $data ?? [];
-    $tipos_usuario = $datos['tipos_usuario'] ?? [];
-    $datas = $datos['datas'] ?? [];
-    $errores = $datos['errores'] ?? [];
-  ?>
+<?php
+  $datos = $data ?? [];
+  $tipos_usuario = $datos['tipos_usuario'] ?? [];
+  $datas = $datos['datas'] ?? [];
+  $errores = $datos['errores'] ?? [];
+?>
 
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
 
 <section class="bg-register">
   <div class="form-container">
     <img src="<?php echo RUTA_URL ?>/imagenes/Icono_simple.png" alt="usuario-login">
-    <h1 class="title">Formulario de Registro de Usuario Nuevo</h1>
+    <p class="title">Formulario de Registro de Usuario Nuevo</p>
     
     <form method="POST" action="<?= rtrim(RUTA_URL, '/') ?>/AuthController/register">
 
@@ -68,11 +66,8 @@
         <?php endif; ?>
 
         <button type="submit" class="boton-login">Registrarse</button>
-
     </form>
-
   </div>
-
 </section>
 
 <?php require RUTA_APP . '/views/layout/footer.php'; ?>

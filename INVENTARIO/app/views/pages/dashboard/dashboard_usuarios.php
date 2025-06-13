@@ -1,3 +1,11 @@
+<?php
+  $datos = $data ?? [];
+  $tipos_usuario = $datos['tipos_usuario'] ?? [];
+  $estados_usuario = $datos['tipos_usuario'] ?? [];
+
+  $datas = $datos['datas'] ?? [];
+  $errores = $datos['errores'] ?? [];
+?>
 
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
 
@@ -26,7 +34,7 @@
             </a>
             <div class="collapse" id="collapseUsuarios" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="http://localhost/INVENTARIO/INVENTARIO/app/views/pages/dashboard/dashboard_usuarios">✅Listado</a>
+                <a class="nav-link" href="layout-static.html">✅Listado</a>
                 <a class="nav-link" href="<?php echo RUTA_URL ?>/AuthController/register">✅Agregar</a>
               </nav>
             </div>
@@ -71,15 +79,43 @@
     </div>
   <div id="layoutSidenav_content">
   <main class="masthead">
-    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-      <div class="d-flex justify-content-center">
-        <div class="text-center">
-          <p class="text-white-50 mx-auto mt-2 mb-5">Logística RST</p>
-          <p class="text-white-50 mx-auto mt-2 mb-5">Ofrecemos un servicio de alta calidad enfocado en tus necesidades. Nuestro objetivo es brindarte la mejor experiencia con profesionalismo y atención personalizada.</p>
-        </div>
-      </div>
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+              <tr>
+                  <th>Título</th>
+                  <th>Descripción</th>
+                  <th>Fecha de Alta</th>
+                  <th>Vencimiento</th>
+                  <th>Estado</th>
+                  <th class="text-center" colspan="2">Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              <?php if (!empty($data['tareas'])):?>
+              <?php foreach($data['tareas'] as $tarea):?>
+              <tr>
+                  <td><?php echo $tarea->titulo;?></td>
+                  <td><?php echo $tarea->descripcion;?></td>
+                  <td><?php echo date('d/m/Y',strtotime($tarea->created_at));?></td>
+                  <td><?php echo date('d/m/Y',strtotime($tarea->expired_at));?></td>
+                  <td style="color:<?php echo $tarea->color;?>"><strong><?php echo $tarea->tipoEstado;?></strong></td>
+                  <td><span class="text-info"><a
+                              href="<?php echo RUTA_URL;?>/TareaController/editarTarea/<?php echo $tarea->id_tarea;?>"
+                              class="btn btn-outline-success btn-sm"><i
+                                  class="fas fa-pen mr-2"></i>
+                              Editar</a></span></td>
+                  <td><span class="text-danger"><a
+                              href="<?php echo RUTA_URL;?>/TareaController/borrarTarea/<?php echo $tarea->id_tarea;?>"
+                              class="btn btn-outline-danger btn-sm "><i
+                                  class="fas fa-trash-alt mr-2"></i>Eliminar</a></span></td>
+              </tr>
+              <?php endforeach;?>
+              <?php else:?>
+              <tr><h4 class="text-secondary">NO HAY TAREAS CARGADAS</h4></tr>
+              <?php endif;?>
+          </tbody>
+      </table>
     </div>
   </main>
 <?php require RUTA_APP . '/views/layout/footer.php'; ?>
-
-

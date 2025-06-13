@@ -1,5 +1,5 @@
 <?php
-class AuthModel {
+class usuariosModel {
     private $db;
 
     public function __construct() {

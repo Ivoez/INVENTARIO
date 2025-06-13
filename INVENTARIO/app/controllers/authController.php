@@ -7,21 +7,21 @@ class AuthController extends BaseController {
     // Procesar login (POST)
     public function loginUsuario() {
       $datas = [
-        'email_usuario' => '',
-        'pass_usuario' => ''
+        'email' => NULL,
+        'pass' => NULL
       ];
       $errores = [];
       
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $datas['email_usuario'] = trim($_POST['email']);
-        $datas['pass_usuario'] = trim($_POST['password']);
+        $datas['email'] = trim($_POST['email']);
+        $datas['pass'] = trim($_POST['pass']);
         
-        if (!filter_var($datas['email_usuario'], FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($datas['email'], FILTER_VALIDATE_EMAIL)) {
           $errores['email'] = 'El email no es válido';
         }
 
-        if (strlen($datas['pass_usuario']) < 8) {
-          $errores['password'] = 'La contraseña debe tener al menos 8 caracteres';
+        if (strlen($datas['pass']) < 8) {
+          $errores['pass'] = 'La contraseña debe tener al menos 8 caracteres';
         }
         if (empty($errores)) {
 
@@ -37,11 +37,11 @@ class AuthController extends BaseController {
           else {
             $mensaje_proceso = $res->mensaje_proceso;
             switch ($mensaje_proceso) {
-              case "'email_usuario no existente":
-                $errores['general'] = "El email o contraseña no cohinciden.";
+              case "email_usuario no existente":
+                $errores['general'] = "El email o contraseña incorrecta.";
                 break;
               case "pass_usuario incorrecta":
-                $errores['general'] = "El email o contraseña no cohinciden.";
+                $errores['general'] = "El email o contraseña incorrecta.";
                 break;
               default:
                 $errores['general'] = "Error desconocido al intentar logearse.";
@@ -107,7 +107,7 @@ class AuthController extends BaseController {
 
         if ($datas['tipo'] == 'Seleccione un tipo de usuario.') {
           $errores['tipo'] = 'Debe seleccionar un tipo de usuario';
-      }
+        }
 
         if (empty($errores)) {
           $res = $this->modelo->crear_usuario($datas);
