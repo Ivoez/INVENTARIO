@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="<?php echo RUTA_URL?>/css/style.css">
   <link rel="shortcut icon" type="image/x-icon" href="<?php echo RUTA_URL; ?>/Imagenes/InventarioIcono.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap">
+  <script src="<?php echo RUTA_URL ?>/public/js/main.js" defer></script>
   <!--ENLACE A JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
   <!--ENLACE A BS-->

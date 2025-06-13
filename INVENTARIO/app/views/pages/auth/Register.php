@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="<?php echo RUTA_URL ?>/css/style2.css">
-  <!--?php require RUTA_APP . '/views/layout/header.php'; ?>-->
+
   <?php
     $datos = $data ?? [];
-    $data = $datos['data'] ?? [];          //se deben pasar 
+    $tipos_usuario = $datos['tipos_usuario'] ?? [];
+    $datas = $datos['datas'] ?? [];
     $errores = $datos['errores'] ?? [];
   ?>
 
@@ -15,36 +16,52 @@
     
     <form method="POST" action="<?= rtrim(RUTA_URL, '/') ?>/AuthController/register">
 
-      <label for="usuario">Nombre de usuario</label>
-        <input type="text" id="usuario" name="usuario" value="<?= htmlspecialchars($data['nombre_usuario'] ?? '') ?>">
-          <?php if (!empty($errores['usuario'])): ?>
-            <div style="color:red; font-size:0.9em; margin-top:2px;"><?= $errores['usuario'] ?></div>
+      <label for="nombre">Nombre de usuario</label>
+        <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($datas['nombre'] ?? '') ?>">
+          <?php if (!empty($errores['nombre'])): ?>
+            <div style="color:red; font-size:0.9em; margin-top:2px;"><?= $errores['nombre'] ?></div>
           <?php endif; ?>
 
-        <label for="password">Contraseña</label>
-          <input type="password" name="password">
-            <?php if (!empty($errores['password'])): ?>
-              <div style="color:red;"><?= $errores['password'] ?></div>
+        <label for="apellido">Apellido de usuario</label>
+          <input type="text" id="apellido" name="apellido" value="<?= htmlspecialchars($datas['apellido'] ?? '') ?>">
+            <?php if (!empty($errores['apellido'])): ?>
+              <div style="color:red; font-size:0.9em; margin-top:2px;"><?= $errores['apellido'] ?></div>
+            <?php endif; ?>
+
+        <label for="DNI">DNI de usuario</label>
+          <input type="text" id="DNI" name="DNI" pattern="[0-9]+"  minlength="8" maxlength="10" onkeypress="return soloNumeros(event)">
+            <?php if (!empty($errores['DNI'])): ?>
+              <div style="color:red; font-size:0.9em; margin-top:2px;"><?= $errores['DNI'] ?></div>
+            <?php endif; ?>
+
+        <label for="pass">Contraseña</label>
+          <input type="password" name="pass">
+            <?php if (!empty($errores['pass'])): ?>
+              <div style="color:red;"><?= $errores['pass'] ?></div>
             <?php endif; ?>
 
         <label for="email">E-mail</label>
-          <input type="email" name="email" value="<?= htmlspecialchars($data['email_usuario'] ?? '') ?>">
+          <input type="email" name="email" value="<?= htmlspecialchars($datas['email'] ?? '') ?>">
           <?php if (!empty($errores['email'])): ?>
             <div style="color:red;"><?= $errores['email'] ?></div>
           <?php endif; ?>
 
-        <label for="tipo_usuario">Tipo de usuario</label>
-          <select name="tipo_usuario">
+        <label for="tipo">Tipo de usuario</label>
+          <select name="tipo">
             <option value="">Seleccione un tipo</option>
-            <option value="Administrador" <?= ($data['tipo_usuario'] ?? '') === 'Administrador' ? 'selected' : '' ?>>Administrador</option>
-            <option value="Usuario" <?= ($data['tipo_usuario'] ?? '') === 'Usuario' ? 'selected' : '' ?>>Usuario</option>
+            <?php foreach ($tipos_usuario as $tipo): ?>
+              <option value="<?= htmlspecialchars($tipo->nombre_tipo_usuario) ?>">
+                <?= htmlspecialchars($tipo->nombre_tipo_usuario) ?>
+              </option>
+            <?php endforeach; ?>
           </select>
-        <?php if (!empty($errores['tipo_usuario'])): ?>
-            <div style="color:red;"><?= $errores['tipo_usuario'] ?></div>
+
+        <?php if (!empty($errores['tipo'])): ?>
+            <div style="color:red;"><?= $errores['tipo'] ?></div>
         <?php endif; ?>
 
         <label for="avatar">Avatar</label>
-          <input type="text" name="avatar" placeholder="URL o nombre de imagen" value="<?= htmlspecialchars($data['avatar_usuario']) ?>">
+          <input type="text" name="avatar" placeholder="URL o nombre de imagen" value="<?= htmlspecialchars($datas['avatar']) ?>">
 
         <?php if (!empty($errores['general'])): ?>
             <div style="color:red;"><?= $errores['general'] ?></div>

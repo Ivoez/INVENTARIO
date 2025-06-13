@@ -34,32 +34,38 @@ class AuthModel {
         return $this->db->register();
     }
 
+    // Listado de estados de usuarios
+    public function obtener_estados_usuario() {
+      $this->db->query("CALL list_estado_usuario()");
+      return $this->db->registers(); // Devuelve todos los registros obtenidos
+    }
+
+    // Listado de tipos de usuarios
+    public function obtener_tipos_usuario() {
+      $this->db->query("CALL list_tipo_usuario()");
+      return $this->db->registers(); // Devuelve todos los registros obtenidos
+    }
+
     // Crear usuario usando procedimiento almacenado
     public function crear_usuario($data) {
-
-        $keyw = "keyword";
-
-        $this->db->query("CALL insert_usuario(
-            :nombre, :password, :email, :avatar, :tipo, :estado,
-            @res, @msg
-        )");
-
-        $this->db->bind(':nombre', $data['nombre_usuario']);
-        $this->db->bind(':password', $data['pass_usuario']);
-        $this->db->bind(':email', $data['email_usuario']);
-        $this->db->bind(':avatar', $data['avatar_usuario']);
-        $this->db->bind(':tipo', $data['tipo_usuario']);
-        $this->db->bind(':estado', $data['estado_usuario']);
-
-        $this->db->execute();
-
-        // Obtener resultado del procedimiento (opcional)
-        $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
-        $resultado = $this->db->register();  // Ejecuta y obtiene resultado
-
-
-        return $resultado; //Asegura que siempre se retorne algo
-        
+      $keyw = "keyword";
+      $this->db->query("CALL insert_usuario(
+          :nombre, :apellido, :DNI, :pass, :email, :avatar, :tipo, :estado,
+          @res, @msg
+      )");
+      $this->db->bind(':nombre', $data['nombre']);
+      $this->db->bind(':apellido', $data['apellido']);
+      $this->db->bind(':DNI', $data['DNI']);
+      $this->db->bind(':pass', $data['pass']);
+      $this->db->bind(':email', $data['email']);
+      $this->db->bind(':avatar', $data['avatar']);
+      $this->db->bind(':tipo', $data['tipo']);
+      $this->db->bind(':estado', $data['estado']);
+      $this->db->execute();
+      // Obtener resultado del procedimiento (opcional)
+      $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
+      $resultado = $this->db->register();  // Ejecuta y obtiene resultado
+      return $resultado; //Asegura que siempre se retorne algo
     }
 
     public function obtenerUsuarioPorNombre($nombre_usuario) {

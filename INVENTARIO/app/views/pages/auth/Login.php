@@ -1,8 +1,7 @@
 <link rel="stylesheet" href="<?php echo RUTA_URL ?>/css/style2.css">
   <?php
-    $datos = $data ?? [];
-    $data = $datos['data'] ?? [];          //se deben pasar 
-    $errores = $datos['errores'] ?? [];
+    $data = [];          //se deben pasar 
+    $errores = [];
   ?>
 
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
