@@ -1,4 +1,5 @@
 <?php
+
 class AuthController extends BaseController {
     public function __construct() {
         $this->modelo = $this->model('AuthModel');
@@ -27,6 +28,8 @@ class AuthController extends BaseController {
 
           $res = $this->modelo->login($datas);
           if ($res->resultado_proceso == 1) {
+            // Guardar el email en la sesión
+            $_SESSION['email_usuario'] = $datas['email'];
             if($res->nombre_tipo_usuario == 'Administrador'){
               $this->view('pages/dashboard/dashboard_admin');
             } else {
@@ -105,7 +108,7 @@ class AuthController extends BaseController {
           $errores['email'] = 'El email no es válido';
         }
 
-        if ($datas['tipo'] == 'Seleccione un tipo de usuario.') {
+        if ($datas['tipo'] == 'Seleccione un tipo de usuario') {
           $errores['tipo'] = 'Debe seleccionar un tipo de usuario';
         }
 
@@ -142,14 +145,13 @@ class AuthController extends BaseController {
       $this->view('pages/auth/Register', ['datas' => $datas, 'errores' => $errores, 'tipos_usuario' => $tipos_usuario]);
     }
 
-    // Cerrar sesión
-    public function logout() {
-    session_start();
+  // Cerrar sesión
+  public function logout() {
     session_unset();      // Limpia todas las variables de sesión
     session_destroy();  
     header('Location: ' . RUTA_URL . '/AuthController/loginUsuario');
     exit;
-}
+  }
 
 }
 ?>

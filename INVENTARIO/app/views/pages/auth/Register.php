@@ -33,20 +33,20 @@
             <?php endif; ?>
 
         <label for="pass">Contraseña</label>
-          <input type="password" name="pass">
+          <input type="password" id="pass" name="pass">
             <?php if (!empty($errores['pass'])): ?>
               <div style="color:red;"><?= $errores['pass'] ?></div>
             <?php endif; ?>
 
         <label for="email">E-mail</label>
-          <input type="email" name="email" value="<?= htmlspecialchars($datas['email'] ?? '') ?>">
+          <input type="email" id="email" name="email" value="<?= htmlspecialchars($datas['email'] ?? '') ?>">
           <?php if (!empty($errores['email'])): ?>
             <div style="color:red;"><?= $errores['email'] ?></div>
           <?php endif; ?>
 
         <label for="tipo">Tipo de usuario</label>
-          <select name="tipo">
-            <option value="">Seleccione un tipo</option>
+          <select id="tipo" name="tipo">
+            <option value="Seleccione un tipo de usuario">Seleccione un tipo de usuario</option>
             <?php foreach ($tipos_usuario as $tipo): ?>
               <option value="<?= htmlspecialchars($tipo->nombre_tipo_usuario) ?>">
                 <?= htmlspecialchars($tipo->nombre_tipo_usuario) ?>
@@ -54,9 +54,9 @@
             <?php endforeach; ?>
           </select>
 
-        <?php if (!empty($errores['tipo'])): ?>
+          <?php if (!empty($errores['tipo'])): ?>
             <div style="color:red;"><?= $errores['tipo'] ?></div>
-        <?php endif; ?>
+          <?php endif; ?>
 
         <label for="avatar">Avatar</label>
           <input type="text" name="avatar" placeholder="URL o nombre de imagen" value="<?= htmlspecialchars($datas['avatar']) ?>">

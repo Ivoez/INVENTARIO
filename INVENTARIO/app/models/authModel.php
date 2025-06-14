@@ -1,28 +1,27 @@
 <?php
 class AuthModel {
-    private $db;
+  private $db;
 
-    public function __construct() {
-        $this->db = new Database();
-    }
+  public function __construct() {
+    $this->db = new Database();
+  }
 
-    // Login: valida email y contraseña
-    public function login($data) {
+  // Login: valida email y contraseña
+  public function login($data) {
+    $this->db->query("CALL login(
+      :email, :password, @nombre_tipo_usuario, @res, @msg
+    )");
 
-        $this->db->query("CALL login(
-            :email, :password, @nombre_tipo_usuario, @res, @msg
-        )");
+    $this->db->bind(':email', $data['email']);
+    $this->db->bind(':password', $data['pass']);
 
-        $this->db->bind(':email', $data['email']);
-        $this->db->bind(':password', $data['pass']);
+    $this->db->execute();
 
-        $this->db->execute();
+    $this->db->query("SELECT @nombre_tipo_usuario AS nombre_tipo_usuario, @res AS resultado_proceso, @msg AS mensaje_proceso");
+    $resultado = $this->db->register();  // Ejecuta y obtiene resultado
 
-        $this->db->query("SELECT @nombre_tipo_usuario AS nombre_tipo_usuario, @res AS resultado_proceso, @msg AS mensaje_proceso");
-        $resultado = $this->db->register();  // Ejecuta y obtiene resultado
-
-        return $resultado; //Asegura que siempre se retorne algo
-    }
+    return $resultado; //Asegura que siempre se retorne algo
+  }
 
     // Buscar usuario por email (útil para validaciones y login)
     public function buscarPorEmail($email) {
@@ -37,42 +36,42 @@ class AuthModel {
       return $this->db->registers(); // Devuelve todos los registros obtenidos
     }
 
-    // Listado de tipos de usuarios
-    public function obtener_tipos_usuario() {
-      $this->db->query("CALL list_tipo_usuario()");
-      return $this->db->registers(); // Devuelve todos los registros obtenidos
-    }
+  // Listado de tipos de usuarios
+  public function obtener_tipos_usuario() {
+    $this->db->query("CALL list_tipo_usuario()");
+    return $this->db->registers(); // Devuelve todos los registros obtenidos
+  }
 
-    // Crear usuario usando procedimiento almacenado
-    public function crear_usuario($data) {
-      $keyw = "keyword";
-      $this->db->query("CALL insert_usuario(
-          :nombre, :apellido, :DNI, :pass, :email, :avatar, :tipo, :estado,
-          @res, @msg
-      )");
-      $this->db->bind(':nombre', $data['nombre']);
-      $this->db->bind(':apellido', $data['apellido']);
-      $this->db->bind(':DNI', $data['DNI']);
-      $this->db->bind(':pass', $data['pass']);
-      $this->db->bind(':email', $data['email']);
-      $this->db->bind(':avatar', $data['avatar']);
-      $this->db->bind(':tipo', $data['tipo']);
-      $this->db->bind(':estado', $data['estado']);
-      $this->db->execute();
-      // Obtener resultado del procedimiento (opcional)
-      $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
-      $resultado = $this->db->register();  // Ejecuta y obtiene resultado
-      return $resultado; //Asegura que siempre se retorne algo
-    }
+  //Registrar usuario
+  public function crear_usuario($data) {
+    $this->db->query("CALL insert_usuario(
+      :nombre, :apellido, :DNI, :pass, :email, :avatar, :tipo, :estado,
+      @res, @msg
+    )");
 
-    public function obtenerUsuarioPorNombre($nombre_usuario) {
-    $this->db->query("SELECT * FROM usuario WHERE nombre_usuario = :nombre");
-    $this->db->bind(':nombre', $nombre_usuario);
-    return $this->db->register(); // 
+    $this->db->bind(':nombre', $data['nombre']);
+    $this->db->bind(':apellido', $data['apellido']);
+    $this->db->bind(':DNI', $data['DNI']);
+    $this->db->bind(':pass', $data['pass']);
+    $this->db->bind(':email', $data['email']);
+    $this->db->bind(':avatar', $data['avatar']);
+    $this->db->bind(':tipo', $data['tipo']);
+    $this->db->bind(':estado', $data['estado']);
+
+    $this->db->execute();
+
+    $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
+
+    $resultado = $this->db->register();  // Ejecuta y obtiene resultado
+    
+    return $resultado; //Asegura que siempre se retorne algo
+  }
+
+  public function obtenerUsuarioPorNombre($nombre_usuario) {
+  $this->db->query("SELECT * FROM usuario WHERE nombre_usuario = :nombre");
+  $this->db->bind(':nombre', $nombre_usuario);
+  return $this->db->register(); // 
 }
-
-
-
 
 }
 ?>

@@ -37,7 +37,7 @@ class AuthController extends BaseController {
           $res = $this->modelo->listadoUsuarios($datas);
 
           if ($res->resultado_proceso == 1) {
-            $this->view('pages/dashboard/dashboard_usuarios');
+            $this->view('pages/dashboard/dashboard_admin', 1);
             exit;
           }
           else {

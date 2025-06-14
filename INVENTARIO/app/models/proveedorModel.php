@@ -1,34 +1,32 @@
 <?php
+class proveedorModel {
+  private $db;
 
-class ProveedorModel {
+  public function __construct() {
+    $this->db = new Database();
+  }
 
-    private $db;
+  // Crear proveedor
+  public function agregar_proveedor($data) {
+    $this->db->query("CALL insert_proveedor(
+        :razon_social, :CUIT, :direccion, :telefono, :email, :estado,
+        @res, @msg
+    )");
+    $this->db->bind(':razon_social', $data['razon_social']);
+    $this->db->bind(':CUIT', $data['CUIT']);
+    $this->db->bind(':direccion', $data['direccion']);
+    $this->db->bind(':telefono', $data['telefono']);
+    $this->db->bind(':email', $data['email']);
+    $this->db->bind(':estado', $data['estado']);
 
-    public function __construct() {
+    $this->db->execute();
 
+    $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
 
-        //nueva instancia de la conexión a la base de datos
-        $this->db = new Database;
+    $resultado = $this->db->register();  // Ejecuta y obtiene resultado
+
+    return $resultado; //Asegura que siempre se retorne algo
     }
-
-
-    // carga proveedor en la bdd
-    public function insertar($data) {
-        $this->db->query("INSERT INTO proveedor 
-            (razon_social_proveedor, CUIT_proveedor, direccion_proveedor, telefono_proveedor, email_personal_proveedor, estado_proveedor_id)
-            VALUES (:razon, :cuit, :direccion, :telefono, :email, :estado)");
-
-        //asigna valores a los parámetros de la consulta
-        $this->db->bind(':razon', $data['razon_social_proveedor']);
-        $this->db->bind(':cuit', $data['CUIT_proveedor']);
-        $this->db->bind(':direccion', $data['direccion_proveedor']);
-        $this->db->bind(':telefono', $data['telefono_proveedor']);
-        $this->db->bind(':email', $data['email_personal_proveedor']);
-        $this->db->bind(':estado', $data['estado_proveedor_id']);
-
-        return $this->db->execute(); 
-
-        }
 
 
     //mostar proveedores con estado 
