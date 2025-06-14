@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2025 a las 23:26:23
+-- Tiempo de generación: 14-06-2025 a las 03:12:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -131,7 +131,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_detalle_oc` (IN `param_nro_c
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_movimiento_stock` (`param_codigo_producto` VARCHAR(60), `param_email_usuario` VARCHAR(100), `param_tipo_movimiento` VARCHAR(20), `param_fecha` DATE, `param_cantidad` INT, OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_movimiento_stock` (IN `param_codigo_producto` VARCHAR(60), IN `param_email_usuario` VARCHAR(100), IN `param_tipo_movimiento` VARCHAR(20), IN `param_fecha` DATE, IN `param_cantidad` INT, OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
 
 -- Validación de FKs
     DECLARE existe_producto INT DEFAULT 0;
@@ -160,7 +160,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_movimiento_stock` (`param_co
     ELSEIF param_cantidad IS NULL OR param_cantidad <= 0 THEN
         SET resultado_proceso = 0;
         SET mensaje_proceso = 'cantidad no válida';        
-        
+    ELSEIF param_fecha > CURDATE() THEN
+    	SET resultado_proceso = 0;
+        SET mensaje_proceso = 'La fecha no puede ser posterior a hoy';
     ELSE
         SELECT id_producto INTO id_producto_param FROM producto WHERE codigo_producto = param_codigo_producto;
         SELECT id_usuario INTO id_usuario_param FROM usuario WHERE email_usuario = param_email_usuario;      
@@ -299,7 +301,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_u
 
     DECLARE existe_DNI_usuario INT DEFAULT 0;
     DECLARE existe_email_usuario INT DEFAULT 0;
-    DECLARE existe_avatar_usuario INT DEFAULT 0;
     
     DECLARE existe_tipo_usuario INT DEFAULT 0;
     DECLARE existe_estado_usuario INT DEFAULT 0;
@@ -310,7 +311,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_u
     -- Verificar existencia en base de datos
     SELECT EXISTS(SELECT 1 FROM usuario WHERE DNI_usuario = param_DNI_usuario) INTO existe_DNI_usuario;
     SELECT EXISTS(SELECT 1 FROM usuario WHERE email_usuario = param_email_usuario) INTO existe_email_usuario;
-    SELECT EXISTS(SELECT 1 FROM usuario WHERE avatar_usuario = param_avatar_usuario) INTO existe_avatar_usuario;
     
     SELECT EXISTS(SELECT 1 FROM tipo_usuario WHERE nombre_tipo_usuario = param_tipo_usuario) INTO existe_tipo_usuario;
     SELECT EXISTS(SELECT 1 FROM estado_usuario WHERE nombre_estado_usuario = param_estado_usuario) INTO existe_estado_usuario;
@@ -324,9 +324,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_u
     ELSEIF existe_email_usuario > 0 THEN
         SET resultado_proceso = 0;
         SET mensaje_proceso = 'email_usuario existente';
-    ELSEIF existe_avatar_usuario > 0 THEN
-        SET resultado_proceso = 0;
-        SET mensaje_proceso = 'avatar_usuario existente';
     ELSEIF param_tipo_usuario IS NOT NULL AND existe_tipo_usuario = 0 THEN
         SET resultado_proceso = 0;
         SET mensaje_proceso = 'nombre_tipo_usuario incorrecto';   
@@ -338,12 +335,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_usuario` (IN `param_nombre_u
         SELECT id_estado_usuario INTO id_estado_usuario_param FROM estado_usuario WHERE nombre_estado_usuario = COALESCE(param_estado_usuario, 'Activo');
     
         INSERT INTO usuario (nombre_usuario, apellido_usuario, DNI_usuario, pass_usuario, email_usuario, avatar_usuario, tipo_usuario_id, estado_usuario_id)
-        VALUES (param_nombre_usuario, param_apellido_usuario, param_DNI_usuario, aes_encrypt(param_pass_usuario, 'keyword'), param_email_usuario,  COALESCE(NULLIF(param_avatar_usuario, ''), 'default.png'), id_tipo_usuario_param, id_estado_usuario_param);
+        VALUES (param_nombre_usuario, param_apellido_usuario, param_DNI_usuario, aes_encrypt(param_pass_usuario, 'keyword'), param_email_usuario,  COALESCE(param_avatar_usuario, 'default.png'), id_tipo_usuario_param, id_estado_usuario_param);
 
         SET resultado_proceso = 1;
         SET mensaje_proceso = 'Inserción de usuario correcta';
     END IF;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_codigo_producto` ()   BEGIN
+    SELECT DISTINCT codigo_producto
+    FROM producto;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `list_estado_empleado` ()   BEGIN
@@ -366,7 +368,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `list_estado_usuario` ()   BEGIN
     FROM estado_usuario;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `list_proveedores` (`param_razon_social` VARCHAR(40), `param_email` VARCHAR(40), `param_estado_proveedor` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `list_proveedores` (IN `param_razon_social` VARCHAR(40), IN `param_email` VARCHAR(40), IN `param_estado_proveedor` VARCHAR(20), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
 
 -- Validación de valores a buscar
     DECLARE existe_razon_social INT DEFAULT 0;
@@ -432,7 +434,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `list_proveedores` (`param_razon_soc
                 	INNER JOIN estado_proveedor ep ON p.estado_proveedor_id = ep.nombre_estado_proveedor
                     	WHERE ep.nombre_estado_proveedor = param_estado_proveedor;
                         
-      ELSEIF param_razon_social IS NULL AND param_email IS NULL AND param_estado_proveedor THEN
+      ELSEIF param_razon_social IS NULL AND param_email IS NULL AND param_estado_proveedor IS NULL THEN
       	SET resultado_proceso = 1;
         SET mensaje_proceso = 'Listado de proveedores devuelto';
         SELECT
@@ -529,7 +531,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `list_usuarios` (IN `param_email` VA
                 	INNER JOIN estado_usuario eu ON u.estado_usuario_id = eu.nombre_estado_usuario
                     	WHERE eu.nombre_estado_usuario = param_estado_usuario;
                         
-      ELSEIF param_email IS NULL AND param_tipo_usuario IS NULL AND param_estado_usuario THEN
+      ELSEIF param_email IS NULL AND param_tipo_usuario IS NULL AND param_estado_usuario IS NULL THEN
       	SET resultado_proceso = 1;
         SET mensaje_proceso = 'Listado de usuarios devuelto';
         SELECT 
@@ -554,7 +556,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `param_email_usuario` VARCHAR(100), IN `param_pass_usuario` VARCHAR(255), OUT `param_nombre_tipo_usuario` VARCHAR(15), OUT `resultado_proceso` INT, OUT `mensaje_proceso` VARCHAR(255))   BEGIN
 
-    DECLARE existe_email_usuario INT;
+    DECLARE existe_email_usuario INT DEFAULT 0;
     DECLARE pass_usuario_buscado VARCHAR(255);
     DECLARE id_tipo_usuario_buscado INT;  
     DECLARE nombre_tipo_usuario_buscado VARCHAR(20);
@@ -616,6 +618,16 @@ CREATE TABLE `categoria_producto` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `categoria_producto`
+--
+
+INSERT INTO `categoria_producto` (`id_categoria_producto`, `nombre_categoria_producto`, `created_at`, `updated_at`) VALUES
+(1, 'Heladeras', '2025-06-14 01:03:05', '2025-06-14 01:03:05'),
+(2, 'Cocinas', '2025-06-14 01:03:05', '2025-06-14 01:03:05'),
+(3, 'TVs', '2025-06-14 01:03:05', '2025-06-14 01:03:05'),
+(4, 'Impresoras y Escáneres', '2025-06-14 01:03:05', '2025-06-14 01:03:05');
 
 -- --------------------------------------------------------
 
@@ -711,6 +723,13 @@ CREATE TABLE `movimiento_stock` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `movimiento_stock`
+--
+
+INSERT INTO `movimiento_stock` (`id_movimiento_stock`, `fecha_movimiento`, `producto_id`, `cantidad`, `usuario_responsable_id`, `created_at`, `updated_at`) VALUES
+(1, '2025-06-05', 1, 2, 26, '2025-06-14 01:05:24', '2025-06-14 01:05:24');
+
 -- --------------------------------------------------------
 
 --
@@ -730,6 +749,17 @@ CREATE TABLE `producto` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `proveedor_id`, `categoria_producto_id`, `codigo_producto`, `nombre_producto`, `cantidad_stock_producto`, `precio_costo_producto`, `estado_producto_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 'A123', 'Cocina 1', 50, 750.0000, 1, '2025-06-14 01:04:58', '2025-06-14 01:04:58'),
+(2, 1, 3, 'B456', 'TV 1', 200, 25.9900, 1, '2025-06-14 01:04:58', '2025-06-14 01:04:58'),
+(3, 2, 1, 'C789', 'Heladera 1', 150, 45.5000, 1, '2025-06-14 01:04:58', '2025-06-14 01:04:58'),
+(4, 2, 2, 'D012', 'Cocina 2', 30, 180.7500, 1, '2025-06-14 01:04:58', '2025-06-14 01:04:58'),
+(5, 1, 4, 'E345', 'Impresora HP', 20, 120.0000, 1, '2025-06-14 01:04:58', '2025-06-14 01:04:58');
+
 -- --------------------------------------------------------
 
 --
@@ -747,6 +777,14 @@ CREATE TABLE `proveedor` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id_proveedor`, `razon_social_proveedor`, `CUIT_proveedor`, `direccion_proveedor`, `telefono_proveedor`, `email_personal_proveedor`, `estado_proveedor_id`, `created_at`, `updated_at`) VALUES
+(1, 'Proveedor1', '20384045570', 'calle falsa 123', '1231213123123123', 'proveedor1@proveedor.com', 1, '2025-06-13 22:34:01', '2025-06-13 22:34:01'),
+(2, 'drsgdfgdf', '453453453445', 'dfgdf', 'dfgdfg', 'dgfgdf@sdfsd.com', 1, '2025-06-14 00:44:45', '2025-06-14 00:44:45');
 
 -- --------------------------------------------------------
 
@@ -788,6 +826,14 @@ CREATE TABLE `usuario` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `apellido_usuario`, `DNI_usuario`, `pass_usuario`, `email_usuario`, `avatar_usuario`, `tipo_usuario_id`, `estado_usuario_id`, `created_at`, `updated_at`) VALUES
+(25, 'fsdfsdfsdfsd', 'sdfsdfsdfsdf', '2342345523', 0xa1999e4477387df23790a8aef5c92e07, 'marceleta@gmail.com', '', 1, 1, '2025-06-13 16:07:40', '2025-06-13 16:07:40'),
+(26, 'gaston', 'gil', '38404557', 0x364ce9b0bd3ff205057ef9a2b31046c0, 'gaston@gaston.com', '', 1, 1, '2025-06-13 17:06:13', '2025-06-13 17:06:13');
 
 --
 -- Índices para tablas volcadas
@@ -900,7 +946,7 @@ ALTER TABLE `cabecera_orden_compra`
 -- AUTO_INCREMENT de la tabla `categoria_producto`
 --
 ALTER TABLE `categoria_producto`
-  MODIFY `id_categoria_producto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden_compra`
@@ -930,19 +976,19 @@ ALTER TABLE `estado_usuario`
 -- AUTO_INCREMENT de la tabla `movimiento_stock`
 --
 ALTER TABLE `movimiento_stock`
-  MODIFY `id_movimiento_stock` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_movimiento_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
@@ -954,7 +1000,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Restricciones para tablas volcadas
