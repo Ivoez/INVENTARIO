@@ -3,10 +3,9 @@
   $datas = $datos['datas'] ?? [];
   $errores = $datos['errores'] ?? [];
 ?>
-
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
 
-<section class="bg-register">
+<section class="bg-login">
   <div class="form-container">
     <img src="<?php echo RUTA_URL ?>/imagenes/Icono_simple.png" alt="usuario-login">
     <p class="title">Formulario de Login</p>

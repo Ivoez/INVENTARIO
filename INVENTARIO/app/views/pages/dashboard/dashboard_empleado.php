@@ -14,10 +14,8 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-        <img src="<?php echo RUTA_URL; ?>/Imagenes/InventarioIconoImagen.png" alt="Icono" width="40" height="40" style="object-fit: contain;">
+        <img src="<?php echo RUTA_URL; ?>/Imagenes/InventarioIconoImagen.png" alt="Icono" width="40" height="40" style="object-fit: contain; margin-left: 35px;">
             <a class="navbar-brand ps-3" href="Dashboard.html">Logistica RST</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
@@ -43,6 +41,7 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
+                            <div class="container-fluid px-4 mt-4"> </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseClientes" aria-expanded="false" aria-controls="collapseClientes">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users-rectangle"></i></div>
                                 Clientes
@@ -82,10 +81,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -96,7 +91,7 @@
 
                         </ol>
                         <div class="row">
-                        <div class="col-xl-4 col-md-6">
+                        <div class="col-xl-6 col-md-6">
                             <div class="card card-proveedores text-white mb-4">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <span class="fs-4">Proveedores</span>
@@ -105,7 +100,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-4 col-md-6">
+                        <div class="col-xl-6 col-md-6">
                             <div class="card card-productos text-white mb-4">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <span class="fs-4">Productos en stock</span>
@@ -114,7 +109,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-4 col-md-6">
+                        <div class="col-xl-6 col-md-6">
                             <div class="card card-ordenes text-white mb-4">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <span class="fs-4">Órdenes de compra</span>
@@ -122,7 +117,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-6">
+                        <div class="col-xl-6 col-md-6">
                             <div class="card card-clientes text-white mb-4">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <span class="fs-4">Clientes</span>
@@ -130,7 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-6">
+                        <div class="col-xl-6 col-md-6">
                             <div class="card card-movimientos text-white mb-4">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <span class="fs-4">Movimientos de stock</span>
@@ -138,7 +133,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-6">
+                        <div class="col-xl-6 col-md-6">
                             <div class="card card-reportes text-white mb-4">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <span class="fs-4">Reportes</span>
@@ -147,16 +142,11 @@
                             </div>
                         </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
+                <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 bg-black bottom-0 w-100">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <span class="mb-3 mb-md-0 text-white ps-3">
+                            Logistica RST | <?php echo date('d-m-Y');?> <!-- Imprime la fecha del día actual -->
+                        </span>
                     </div>
                 </footer>
             </div>

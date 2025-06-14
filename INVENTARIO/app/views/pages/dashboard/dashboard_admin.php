@@ -1,12 +1,13 @@
 
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
 
-<div id="layoutSidenav">
+<div id="layoutSidenav" class="dashboard-admin">
   <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
       <div class="sb-sidenav-menu">
         <div class="nav">                          
           <!--  -->
+        <div class="container-fluid px-4 mt-4"> </div>
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
             <div class="sb-nav-link-icon"><i class="fas fa-cubes"></i></div>
               Gestión de productos

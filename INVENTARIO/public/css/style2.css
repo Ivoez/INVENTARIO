@@ -11227,7 +11227,7 @@ body {
 /* EMPIEZA ////// LOGIN ////// */
 
 /* Fondo */
-body.bg-login {
+.bg-login {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -11241,7 +11241,7 @@ body.bg-login {
 }
 
 /* Capa oscura encima del fondo */
-body.bg-login::before {
+.bg-login::before {
     content: "";
     position: absolute;
     top: 0; left: 0;
@@ -11341,12 +11341,17 @@ input[type="password"] {
 
 /* EMPIEZA ////// REGISTER ////// */
 
-body.bg-register {
+.bg-register {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
     background-image: url("../Imagenes/FondoInventario.png");
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     min-height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
 .container-body {
@@ -11421,6 +11426,10 @@ boton{
 /* ////// REGISTER ////// TERMINA */
 
 /* EMPIEZA ////// DASHBOARD ////// */
+
+
+
+
 
 body.sb-nav-fixed .sb-sidenav {
     width: 280px !important;

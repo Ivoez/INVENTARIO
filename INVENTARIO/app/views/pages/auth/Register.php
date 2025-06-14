@@ -4,7 +4,6 @@
   $datas = $datos['datas'] ?? [];
   $errores = $datos['errores'] ?? [];
 ?>
-
 <?php require RUTA_APP . '/views/layout/header.php'; ?>
 
 <section class="bg-register">
