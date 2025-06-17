@@ -10,5 +10,7 @@
    // Ruta url
 
    define('RUTA_URL','http://localhost/INVENTARIO/INVENTARIO'); 
+    // Rutas que se usan para guardar imágenes
+    define('RUTA_AVATAR','/INVENTARIO/INVENTARIO/public/imgagenes/');
    define('NOMBRESITIO','Logistica RST');
 ?>

@@ -17,14 +17,10 @@
 <body> <!-- ✅ El header debe ir dentro del body -->
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-black px-4 py-2 shadow">
-    <div class="container-fluid d-flex align-items-center">
-      <a class="navbar-brand d-flex align-items-center gap-3" href="<?php echo RUTA_URL; ?>/Pages/Landing">
-        <img src="<?php echo RUTA_URL; ?>/Imagenes/InventarioIconoImagen.png" alt="Icono" width="40" height="40" style="object-fit: contain;">
-        <span class="fs-4 fw-semibold">Logística RST</span>
-      </a>
-    </div>
-  </nav>
+  
+  
+
+  
 </header>
 
 

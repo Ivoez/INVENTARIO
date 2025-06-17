@@ -68,7 +68,7 @@
           <div class="collapse" id="collapseMovimientos" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
               <a class="nav-link" href="layout-static.html">✅Listado</a>
-              <a class="nav-link" href="<?php echo RUTA_URL ?>/movimientoStockController/agregar_movimiento">✅Agregar</a>
+              <a class="nav-link" href="<?php echo RUTA_URL ?>/movmientoStockController/agregar_movimiento">✅Agregar</a>
             </nav>
           </div>
         </div>

@@ -12,7 +12,7 @@
     
     <form method="POST" action="<?= rtrim(RUTA_URL, '/') ?>/AuthController/loginUsuario">
       <label for="email">E-mail</label>
-        <input type="email" name="email" value="<?= htmlspecialchars($datas['email'] ?? '') ?>">
+        <input type="email" name="email" value="<?= htmlspecialchars($datas['email_usuario'] ?? '') ?>">
         <?php if (!empty($errores['email'])): ?>
           <div style="color:red;"><?= $errores['email'] ?></div>
         <?php endif; ?>

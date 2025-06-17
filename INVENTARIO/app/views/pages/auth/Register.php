@@ -11,7 +11,7 @@
     <img src="<?php echo RUTA_URL ?>/imagenes/Icono_simple.png" alt="usuario-login">
     <p class="title">Formulario de Registro de Usuario Nuevo</p>
     
-    <form method="POST" action="<?= rtrim(RUTA_URL, '/') ?>/AuthController/register">
+    <form method="POST" action="<?= rtrim(RUTA_URL, '/') ?>/AuthController/register" enctype="multipart/form-data">
 
       <label for="nombre">Nombre de usuario</label>
         <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($datas['nombre'] ?? '') ?>">
@@ -57,8 +57,14 @@
             <div style="color:red;"><?= $errores['tipo'] ?></div>
           <?php endif; ?>
 
-        <label for="avatar">Avatar</label>
-          <input type="text" name="avatar" placeholder="URL o nombre de imagen" value="<?= htmlspecialchars($datas['avatar']) ?>">
+          <label for="formFile">Avatar</label>
+          <input name="avatar" type="file" id="formFile">
+          <?php if (!empty($errores['error_tipo'])): ?>
+            <div style="color:red;"><?= $errores['error_tipo'] ?></div>
+          <?php endif; ?>
+          <?php if (!empty($errores['error_megas'])): ?>
+            <div style="color:red;"><?= $errores['error_megas'] ?></div>
+          <?php endif; ?>
 
         <?php if (!empty($errores['general'])): ?>
             <div style="color:red;"><?= $errores['general'] ?></div>

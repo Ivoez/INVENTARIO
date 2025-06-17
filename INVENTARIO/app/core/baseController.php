@@ -13,16 +13,14 @@
          return new $model();
       }
       // Cargar view 
-      public function view($view, $data =[]){
-         //chequear si existe el archivo view
-         if (file_exists('../app/views/'.$view.'.php')){
-             require_once '../app/views/'.$view.'.php';
-         }else{
-            //Si el archivo de la vista no existe
-            die("La vista no existe");
-         }
-         
-      }
+    public function view($view, $data = []){
+    if (file_exists('../app/views/' . $view . '.php')) {
+        extract($data); // <-- convierte 'productos' => $productos en $productos
+        require_once '../app/views/' . $view . '.php';
+    } else {
+        die("La vista no existe");
+    }
+}
 
    }
 ?>

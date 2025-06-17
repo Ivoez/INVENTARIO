@@ -79,5 +79,11 @@
          return $this->stmt->rowCount();
       }
 
+          public function lastInsertId() {  //devuelve el ultimo id ingresado en la base de datos 
+        return $this->dbh->lastInsertId();
+    }
+
+
+
    }
 ?>

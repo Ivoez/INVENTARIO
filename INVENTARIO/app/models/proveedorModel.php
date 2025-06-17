@@ -2,82 +2,79 @@
 class proveedorModel {
   private $db;
 
-  public function __construct() {
-    $this->db = new Database();
+  public function __construct(){
+    $this->db = new Database;
   }
 
-  // Crear proveedor
-  public function agregar_proveedor($data) {
-    $this->db->query("CALL insert_proveedor(
-        :razon_social, :CUIT, :direccion, :telefono, :email, :estado,
-        @res, @msg
-    )");
-    $this->db->bind(':razon_social', $data['razon_social']);
-    $this->db->bind(':CUIT', $data['CUIT']);
-    $this->db->bind(':direccion', $data['direccion']);
-    $this->db->bind(':telefono', $data['telefono']);
-    $this->db->bind(':email', $data['email']);
-    $this->db->bind(':estado', $data['estado']);
+  public function buscar_estados(){
+    $this->db->query("SELECT * FROM estado_proveedor");
+		
+		$result = $this->db->registers();
+		return $result;
+	}
 
-    $this->db->execute();
+  public function devolver_estado_por_nombre($nombre){
+		$this->db->query("SELECT * FROM estado_proveedor WHERE nombre_estado_proveedor = :nombre_estado_proveedor");
+		
+    $this->db->bind('nombre_estado_proveedor', $nombre);
+		$result = $this->db->register();
+		return $result;
+	}
 
-    $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
+  public function buscar_proveedores(){
+    $this->db->query("SELECT * FROM proveedor");
+		
+		$result = $this->db->registers();
+		return $result;
+	}
 
-    $resultado = $this->db->register();  // Ejecuta y obtiene resultado
+  public function crear_proveedor($data){
+		
+		$this->db->query("INSERT INTO proveedor
+      (razon_social_proveedor, CUIT_proveedor ,direccion_proveedor ,telefono_proveedor ,email_personal_proveedor ,estado_proveedor_id) 
+			VALUES 
+			(:razon_social_proveedor, :CUIT_proveedor, :direccion_proveedor, :telefono_proveedor, :email_personal_proveedor, :estado_proveedor_id)");
+    $this->db->bind('razon_social_proveedor', $data['razon_social_proveedor']);
+    $this->db->bind('CUIT_proveedor', $data['CUIT_proveedor']);
+    $this->db->bind('direccion_proveedor', $data['direccion_proveedor']);                  
+		$this->db->bind('telefono_proveedor', $data['telefono_proveedor']);
+		$this->db->bind('email_personal_proveedor', $data['email_personal_proveedor']);
+		$this->db->bind('estado_proveedor_id', $data['estado_proveedor_id']);
 
-    return $resultado; //Asegura que siempre se retorne algo
-    }
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
+	public function buscar_por_mail($data){
+		$this->db->query("SELECT p.id_proveedor, p.razon_social_proveedor, p.CUIT_proveedor, p.direccion_proveedor, p.telefono_proveedor, p.email_personal_proveedor,
+      pe.nombre_estado_proveedor
+			FROM proveedor p
+        INNER JOIN estado_proveedor pe ON p.estado_proveedor_id = pe.id_estado_proveedor
+				WHERE p.email_personal_proveedor = :email_proveedor
+					AND pe.nombre_estado_proveedor = 'Activo'");
+		$this->db->bind('email_proveedor', $data['email_personal_proveedor']);
+		
+		$result = $this->db->register();
+		return $result;
+	}
 
-    //mostar proveedores con estado 
-    public function obtenerTodos() {
-        $this->db->query("SELECT p.*, ep.nombre_estado_proveedor 
-                          FROM proveedor p
-                          INNER JOIN estado_proveedor ep ON p.estado_proveedor_id = ep.id_estado_proveedor");
+  public function buscar_por_estado($data){
+		$this->db->query("SELECT p.id_proveedor, p.razon_social_proveedor, p.CUIT_proveedor, p.direccion_proveedor, p.telefono_proveedor, p.email_personal_proveedor,
+      pe.nombre_estado_proveedor
+			FROM proveedor p
+        INNER JOIN estado_proveedor pe ON p.estado_proveedor_id = pe.id_estado_proveedor
+				  WHERE p.estado_proveedor_id = :estado_proveedor_id");
+		$this->db->bind('estado_proveedor_id', $data['estado_proveedor_id']);
+		
+		$result = $this->db->register();
+		return $result;
+	}
 
-        return $this->db->registros(); 
-    }
-
-
-    // traer proveedor por  id
-    public function obtenerPorId($id) {
-        $this->db->query("SELECT * FROM proveedor WHERE id_proveedor = :id");
-        $this->db->bind(':id', $id); 
-        return $this->db->registro(); 
-    }
-
-
-    
-
-    // actualizar un proveedor por id
-    public function actualizar($id, $data) {
-        $this->db->query("UPDATE proveedor SET 
-            razon_social_proveedor = :razon,
-            CUIT_proveedor = :cuit,
-            direccion_proveedor = :direccion,
-            telefono_proveedor = :telefono,
-            email_personal_proveedor = :email,
-            estado_proveedor_id = :estado
-            WHERE id_proveedor = :id");
-
-        // asigna valores a parámetros
-        $this->db->bind (':razon', $data['razon_social_proveedor']);
-        $this->db->bind (':cuit', $data['CUIT_proveedor']);
-        $this->db->bind (':direccion', $data['direccion_proveedor']);
-        $this->db->bind (':telefono', $data['telefono_proveedor']);
-        $this->db->bind (':email', $data['email_personal_proveedor']);
-        $this->db->bind (':estado', $data['estado_proveedor_id']);
-        $this->db->bind( ':id', $id);
-
-        return $this->db->execute();
-    }
-    
-
-    // desactiva proveedor por id
-    public function cambioEstado ($id) {
-        $this->db->query ("UPDATE proveedor SET estado_proveedor_id = :estado WHERE id_proveedor = :id");
-        $this->db->bind (':estado', 2); //es 2 no?
-        $this->db->bind (':id', $id);
-        return $this->db->execute ();
-    }
+	public function obtenerProveedores() {
+    $this->db->query("SELECT id_proveedor, razon_social_proveedor FROM proveedor");
+    return $this->db->registers();
+}
 }

@@ -7,33 +7,23 @@ class movimientoStockModel {
     $this->db = new Database();
   }
 
-  // Listado de codigos de producto
-  public function obtener_codigos_producto() {
-    $this->db->query("CALL list_codigo_producto()");
-    return $this->db->registers(); // Devuelve todos los registros obtenidos
-  }
+  public function crear_movimiento($data){
+		
+		$this->db->query("INSERT INTO movimiento_stock
+      (fecha_movimiento, producto_id, cantidad, usuario_responsable_id) 
+			VALUES 
+			(:fecha_movimiento, :producto_id, :cantidad, :usuario_responsable_id)");
+    $this->db->bind('fecha_movimiento', $data['fecha_movimiento']);
+    $this->db->bind('producto_id', $data['producto_id']);
+    $this->db->bind('cantidad', $data['cantidad']);                  
+		$this->db->bind('usuario_responsable_id', $data['usuario_responsable_id']);
 
-  //Registrar usuario
-  public function agregar_movimiento($data) {
-    $this->db->query("CALL insert_movimiento_stock(
-      :codigo_producto, :email_usuario, :tipo, :fecha, :cantidad,
-      @res, @msg
-    )");
-
-    $this->db->bind(':codigo_producto', $data['codigo_producto']);
-    $this->db->bind(':email_usuario', $data['email_usuario']);
-    $this->db->bind(':tipo', $data['tipo']);
-    $this->db->bind(':fecha', $data['fecha']);
-    $this->db->bind(':cantidad', $data['cantidad']);
-
-    $this->db->execute();
-
-    $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
-
-    $resultado = $this->db->register();  // Ejecuta y obtiene resultado
-
-    return $resultado; //Asegura que siempre se retorne algo
-  }
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
 ?>

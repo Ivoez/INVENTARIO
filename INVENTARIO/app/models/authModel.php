@@ -1,77 +1,126 @@
 <?php
 class AuthModel {
-  private $db;
-
-  public function __construct() {
-    $this->db = new Database();
+  public function __construct(){
+    $this->db = new Database;
   }
 
-  // Login: valida email y contraseña
-  public function login($data) {
-    $this->db->query("CALL login(
-      :email, :password, @nombre_tipo_usuario, @res, @msg
-    )");
+  public function buscar_estados(){
+		$this->db->query("SELECT * FROM estado_usuario");
+		
+		$result = $this->db->registers();
+		return $result;
+	}
 
-    $this->db->bind(':email', $data['email']);
-    $this->db->bind(':password', $data['pass']);
+  public function devolver_estado_por_nombre($nombre){
+		$this->db->query("SELECT * FROM estado_usuario WHERE nombre_estado_usuario = :nombre_estado_usuario");
+		
+    $this->db->bind('nombre_estado_usuario', $nombre);
+		$result = $this->db->register();
+		return $result;
+	}
 
-    $this->db->execute();
+  public function buscar_tipos(){
+		$this->db->query("SELECT * FROM tipo_usuario");
+		
+		$result = $this->db->registers();
+		return $result;
+	}
 
-    $this->db->query("SELECT @nombre_tipo_usuario AS nombre_tipo_usuario, @res AS resultado_proceso, @msg AS mensaje_proceso");
-    $resultado = $this->db->register();  // Ejecuta y obtiene resultado
+  public function devolver_tipo_por_nombre($nombre){
+		$this->db->query("SELECT * FROM tipo_usuario WHERE nombre_tipo_usuario = :nombre_tipo_usuario");
+		
+    $this->db->bind('nombre_tipo_usuario', $nombre);
+		$result = $this->db->register();
+		return $result;
+	}
 
-    return $resultado; //Asegura que siempre se retorne algo
-  }
+  public function buscar_usuarios(){
+    $this->db->query("SELECT * FROM usuarios");
+		
+		$result = $this->db->registers();
+		return $result;
+	}
 
-    // Buscar usuario por email (útil para validaciones y login)
-    public function buscarPorEmail($email) {
-        $this->db->query("SELECT * FROM usuario WHERE email_usuario = :email");
-        $this->db->bind(':email', $email);
-        return $this->db->register();
-    }
+  public function crear_usuario($data){
+		
+		$keyw = "keyword";
+		$this->db->query("INSERT INTO usuario
+      (nombre_usuario, apellido_usuario, DNI_usuario, pass_usuario, email_usuario , avatar_usuario, tipo_usuario_id, estado_usuario_id) 
+			VALUES( 
+			:nombre_usuario, :apellido_usuario, :DNI_usuario, aes_encrypt(:pass_usuario, :keyword), :email_usuario, :avatar_usuario, :tipo_usuario_id, :estado_usuario_id)");
+    $this->db->bind('nombre_usuario', $data['nombre_usuario']);
+    $this->db->bind('apellido_usuario', $data['apellido_usuario']);
+    $this->db->bind('DNI_usuario', $data['DNI_usuario']);                  
+		$this->db->bind('email_usuario', $data['email_usuario']);
+    $this->db->bind('avatar_usuario', $data['avatar_usuario']);
+    $this->db->bind('tipo_usuario_id', $data['tipo_usuario_id']);
+    $this->db->bind('estado_usuario_id', $data['estado_usuario_id']);
+		$this->db->bind('pass_usuario', $data['pass_usuario']);
+    $this->db->bind('keyword', $keyw);
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    // Listado de estados de usuarios
-    public function obtener_estados_usuario() {
-      $this->db->query("CALL list_estado_usuario()");
-      return $this->db->registers(); // Devuelve todos los registros obtenidos
-    }
+    	/* Método para buscar el mail y la contraseña para comprobar si existe y poder loguear*/
 
-  // Listado de tipos de usuarios
-  public function obtener_tipos_usuario() {
-    $this->db->query("CALL list_tipo_usuario()");
-    return $this->db->registers(); // Devuelve todos los registros obtenidos
-  }
+	public function buscar_por_mail($data){
+		$this->db->query("SELECT u.id_usuario, u.nombre_usuario, u.apellido_usuario, u.DNI_usuario, u.email_usuario, u.avatar_usuario, aes_decrypt(u.pass_usuario, 'keyword') AS pass,
+      eu.nombre_estado_usuario, tp.nombre_tipo_usuario
+			FROM usuario u
+        INNER JOIN estado_usuario eu ON u.estado_usuario_id = eu.id_estado_usuario
+        INNER JOIN tipo_usuario tp ON u.tipo_usuario_id = tp.id_tipo_usuario
+				  WHERE u.email_usuario =:email_usuario
+					  AND eu.nombre_estado_usuario = 'Activo'");
+		$this->db->bind('email_usuario', $data['email_usuario']);
+		
+		$result = $this->db->register();
+		return $result;
+	}
 
-  //Registrar usuario
-  public function crear_usuario($data) {
-    $this->db->query("CALL insert_usuario(
-      :nombre, :apellido, :DNI, :pass, :email, :avatar, :tipo, :estado,
-      @res, @msg
-    )");
+  public function buscar_por_estado($data){
+		$this->db->query("SELECT u.id_usuario, u.nombre_usuario, u.apellido_usuario, u.DNI_usuario, u.email_usuario, u.avatar_usuario, u.aes_decrypt(pass_usuario, 'keyword') AS pass,
+      eu.nombre_estado_usuario, tp.nombre_tipo_usuario
+			FROM usuario u
+        INNER JOIN estado_usuario ue ON u.estado_usuario_id = eu.id_estado_usuario
+        INNER JOIN tipo_usuario tp ON u.tipo_usuario_id = tp.id_tipo_usuario
+				  WHERE u.estado_usuario_id =:estado_usuario_id");
+		$this->db->bind('estado_usuario_id', $data['estado_usuario_id']);
+		
+		$result = $this->db->register();
+		return $result;
+	}
 
-    $this->db->bind(':nombre', $data['nombre']);
-    $this->db->bind(':apellido', $data['apellido']);
-    $this->db->bind(':DNI', $data['DNI']);
-    $this->db->bind(':pass', $data['pass']);
-    $this->db->bind(':email', $data['email']);
-    $this->db->bind(':avatar', $data['avatar']);
-    $this->db->bind(':tipo', $data['tipo']);
-    $this->db->bind(':estado', $data['estado']);
+  public function buscar_por_tipo($data){
+		$this->db->query("SELECT u.id_usuario, u.nombre_usuario, u.apellido_usuario, u.DNI_usuario, u.email_usuario, u.avatar_usuario, u.aes_decrypt(pass_usuario, 'keyword') AS pass,
+      eu.nombre_estado_usuario, tp.nombre_tipo_usuario
+			FROM usuario u
+        INNER JOIN estado_usuario ue ON u.estado_usuario_id = eu.id_estado_usuario
+        INNER JOIN tipo_usuario tp ON u.tipo_usuario_id = tp.id_tipo_usuario
+				  WHERE u.tipo_usuario_id = :tipo_usuario_id");
+		$this->db->bind('tipo_usuario_id', $data['tipo_usuario_id']);
+		
+		$result = $this->db->register();
+		return $result;
+	}
 
-    $this->db->execute();
-
-    $this->db->query("SELECT @res AS resultado_proceso, @msg AS mensaje_proceso");
-
-    $resultado = $this->db->register();  // Ejecuta y obtiene resultado
-    
-    return $resultado; //Asegura que siempre se retorne algo
-  }
-
-  public function obtenerUsuarioPorNombre($nombre_usuario) {
-  $this->db->query("SELECT * FROM usuario WHERE nombre_usuario = :nombre");
-  $this->db->bind(':nombre', $nombre_usuario);
-  return $this->db->register(); // 
-}
+	public function change_pass($pass, $email){
+		
+		$keyw = 'keyword';
+		$this->db->query("UPDATE usuario SET
+			pass_usuario = aes_encrypt(:new_pass,:keyword)
+        WHERE email_usuario=:email_usuario");
+		$this->db->bind('new_pass', $pass);
+		$this->db->bind('keyword', $keyw);
+		$this->db->bind('email_usuario', $email);
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
 ?>
