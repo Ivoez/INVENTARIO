@@ -10,9 +10,9 @@ class OrdenCompraController extends BaseController {
         $this->modeloCategoria = $this->model('ProductoModel');
     }
 
-    // Formulario para cargar una orden de compra
+    // Mostrar formulario para crear una nueva orden
     public function crear() {
-        // Verificar si está logueado
+        // Verificar sesión
         if (!isset($_SESSION['email_usuario'])) {
             $_SESSION['mensaje_error'] = "Inicie sesión para generar una Orden de Compra.";
             redireccionar('/auth/login');
@@ -27,19 +27,19 @@ class OrdenCompraController extends BaseController {
         $this->view('ordencompra/crear', $data);
     }
 
-    // Procesar la orden de compra completa - cabecera + detalles
+    // Guardar la orden (cabecera + múltiples detalles)
     public function guardar() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // Validar sesión
+            // Verificar sesión
             $email = $_SESSION['email_usuario'] ?? null;
             if (!$email) {
-                $_SESSION['mensaje_error'] = "Inicie sesión para cargar una Orden de Compra Nueva.";
+                $_SESSION['mensaje_error'] = "Inicie sesión para cargar una Orden de Compra.";
                 redireccionar('/auth/login');
                 return;
             }
 
-            // Cabecera
+            // Datos cabecera
             $cabecera = [
                 'proveedor' => $_POST['proveedor'],
                 'email_usuario' => $email,
@@ -50,10 +50,17 @@ class OrdenCompraController extends BaseController {
             $resultadoCabecera = $this->modelo->registrarCabecera($cabecera);
 
             if ($resultadoCabecera['resultado'] == 1) {
-                // Registrar cada producto del detalle
-                $productos = $_POST['productos'];
-                $cantidades = $_POST['cantidades'];
+                // Registrar detalles
+                $productos = $_POST['productos'] ?? [];
+                $cantidades = $_POST['cantidades'] ?? [];
                 $erroresDetalle = [];
+
+                // Validación básica
+                if (!is_array($productos) || !is_array($cantidades) || count($productos) !== count($cantidades)) {
+                    $_SESSION['mensaje_error'] = "Datos de productos mal formados.";
+                    redireccionar('/ordencompra/crear');
+                    return;
+                }
 
                 for ($i = 0; $i < count($productos); $i++) {
                     $detalle = [
@@ -76,7 +83,6 @@ class OrdenCompraController extends BaseController {
                 }
 
                 redireccionar('/ordencompra/crear');
-
             } else {
                 $_SESSION['mensaje_error'] = $resultadoCabecera['mensaje'];
                 redireccionar('/ordencompra/crear');
@@ -84,7 +90,7 @@ class OrdenCompraController extends BaseController {
         }
     }
 
-    // Listar órdenes emitidas
+    // Mostrar listado de órdenes
     public function listadoOrdenes() {
         if (!isset($_SESSION['email_usuario'])) {
             $_SESSION['mensaje_error'] = "Inicie sesión para ver las órdenes generadas.";

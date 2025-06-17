@@ -15,7 +15,7 @@ class OrdenCompraModel {
         $this->db->execute();
 
         $this->db->query("SELECT @resultado AS resultado, @mensaje AS mensaje");
-        return $this->db->single();
+        return $this->db->registro();
     }
 
     public function registrarDetalle($datos) {
@@ -26,16 +26,28 @@ class OrdenCompraModel {
         $this->db->execute();
 
         $this->db->query("SELECT @resultado AS resultado, @mensaje AS mensaje");
-        return $this->db->single();
+        return $this->db->registro();
     }
 
     public function obtenerProveedores() {
-        $this->db->query("SELECT razon_social_proveedor FROM proveedor");
-        return $this->db->resultSet();
+        $this->db->query("SELECT id_proveedor, razon_social_proveedor FROM proveedor");
+        return $this->db->registros();
     }
 
     public function obtenerProductos() {
-        $this->db->query("SELECT codigo_producto, nombre_producto FROM producto");Add commentMore actions
-        return $this->db->resultSet();
+        $this->db->query("SELECT codigo_producto, nombre_producto FROM producto");
+        return $this->db->registros();
+    }
+
+    public function obtenerOrdenesConDetalle() {
+        $this->db->query("
+            SELECT oc.nro, oc.fecha, p.razon_social_proveedor, pr.nombre_producto, d.cantidad
+            FROM orden_compra oc
+            JOIN detalle_orden_compra d ON oc.nro = d.nro_oc
+            JOIN proveedor p ON oc.id_proveedor = p.id_proveedor
+            JOIN producto pr ON d.codigo_producto = pr.codigo_producto
+            ORDER BY oc.fecha DESC
+        ");
+        return $this->db->registros();
     }
 }
