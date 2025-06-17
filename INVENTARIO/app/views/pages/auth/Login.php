@@ -28,6 +28,7 @@
         <?php endif; ?>
 
         <button type="submit" class="boton-login">Iniciar Sesión</button>
+        <a href="<?= RUTA_URL ?>/AuthController/recuperarContrasena" class="boton-login" style="display: inline-block; text-align: center;">Olvidé la contraseña</a>
     </form>
   </div>
 </section>

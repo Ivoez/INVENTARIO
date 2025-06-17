@@ -1,5 +1,6 @@
 <?php
-
+        use PHPMailer\PHPMailer\PHPMailer;
+        use PHPMailer\PHPMailer\Exception;
 class AuthController extends BaseController {
   public function __construct() {
       $this->modelo = $this->model('authModel');
@@ -53,9 +54,6 @@ class AuthController extends BaseController {
    
     return $this->view('pages/auth/Login', ['datas' => $datas, 'errores' => $errores]);  //primer inicio en el login 
 }
-
-
-
   // Procesar registro
   public function register() {
 
@@ -153,8 +151,6 @@ class AuthController extends BaseController {
     $this->view('formularios/formListadoUsuario', $data);
 }
 
-
-
   // Cerrar sesión
   public function logout() {
     session_unset();      // Limpia todas las variables de sesión
@@ -163,5 +159,64 @@ class AuthController extends BaseController {
     exit;
   }
 
+ public function recuperarContrasena() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $email = trim($_POST['email']);
+
+        $usuario = $this->modelo->buscar_por_mail(['email_usuario' => $email]);
+
+        if (!$usuario) {
+            $this->view('pages/auth/forgotPassword', [
+                'mensaje' => 'El correo no está registrado.'
+            ]);
+            return;
+        }
+
+        $nuevaPass = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), 0, 8);
+        $this->modelo->change_pass($nuevaPass, $email);
+
+        include(RUTA_APP."/external/Mailer/src/PHPMailer.php");
+        include(RUTA_APP."/external/Mailer/src/SMTP.php");
+        include(RUTA_APP."/external/Mailer/src/Exception.php");
+
+       
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'noreply.inventariorst@gmail.com';
+            $mail->Password = 'zmau dmyg jhkk vnqo';
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            $mail->setFrom('noreply.inventariorst@gmail.com', 'Administrador Inventario');
+            $mail->addAddress($email);
+            $mail->isHTML(true);
+            $mail->Subject = 'Reseteo de password';
+            $mail->Body = "
+                <p>Hola,</p>
+                <p>Tu nueva contraseña temporal es: <strong>$nuevaPass</strong></p>
+                <p>Usala para ingresar al sistema. Luego podrás cambiarla.</p>
+            ";
+
+            $mail->send();
+            $mensaje = "Revisá tu correo. Te enviamos una nueva contraseña.";
+        } catch (Exception $e) {
+            $mensaje = "No se pudo enviar el correo: " . $mail->ErrorInfo;
+        }
+
+        $this->view('pages/auth/forgotPassword', [
+            'mensaje' => $mensaje
+        ]);
+    } else {
+        $this->view('pages/auth/forgotPassword', ['mensaje' => '']);
+    }
 }
+
+}
+
+
 ?>
