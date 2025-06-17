@@ -159,7 +159,7 @@ class AuthController extends BaseController {
   public function logout() {
     session_unset();      // Limpia todas las variables de sesión
     session_destroy();  
-    header('Location: ' . RUTA_URL . '/AuthController/loginUsuario');
+    $this->view('pages/auth/Login');
     exit;
   }
 

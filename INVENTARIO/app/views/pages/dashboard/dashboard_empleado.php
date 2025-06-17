@@ -31,7 +31,7 @@
                         <li><a class="dropdown-item" href="#!">Ajustes</a></li>
                         <li><a class="dropdown-item" href="#!">Registro de actividad</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="<?php echo RUTA_URL; ?>/pages/auth/Login">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
