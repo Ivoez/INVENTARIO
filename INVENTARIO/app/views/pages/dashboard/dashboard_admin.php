@@ -133,61 +133,87 @@
                         <ol class="breadcrumb mb-4">
 
                         </ol>
+<div class="row" id="tarjetasDashboard"> <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card card-proveedores text-white mb-4">
+            <div class="card-body d-flex flex-column align-items-start"> 
+                
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span class="fs-4">Proveedores</span>
+                    <i class="fas fa-users fs-1"></i> </div>
+                
+                <div class="fs-1 fw-bold mt-2 ms-3">
+                    123
+                </div>
+            </div>
+        </div>
+    </div>
 
-                       <div class="row" id="tarjetasDashboard"> <!--div para ocultar las tarjetas-->
+    <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card card-productos text-white mb-4">
+            <div class="card-body d-flex flex-column align-items-start"> 
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span class="fs-4">Productos en stock</span>
+                    <i class="fas fa-cubes fs-1"></i> </div>
+                <div class="fs-1 fw-bold mt-2 ms-3">
+                    123
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-proveedores text-white mb-4">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <span class="fs-4">Proveedores</span>
-                                    <i class="fa-solid fa-users fs-1"></i> <!-- ícono -->
-                                </div>
-                            </div>
-                        </div>
+    <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card card-ordenes text-white mb-4">
+            <div class="card-body d-flex flex-column align-items-start"> 
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span class="fs-4">Órdenes de compra</span>
+                    <i class="fa-solid fa-file-invoice-dollar fs-1"></i> </div>
+                <div class="fs-1 fw-bold mt-2 ms-3">
+                    123
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-productos text-white mb-4">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <span class="fs-4">Productos en stock</span>
-                                    <i class="fas fa-cubes fs-1"></i> <!-- ícono -->
-                                </div>
-                            </div>
-                        </div>
+    <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card card-clientes text-white mb-4"> 
+            <div class="card-body d-flex flex-column align-items-start"> 
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span class="fs-4">Clientes</span>
+                    <i class="fa-solid fa-users-rectangle fs-1"></i> </div>
+                <div class="fs-1 fw-bold mt-2 ms-3">
+                    123
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-ordenes text-white mb-4">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <span class="fs-4">Órdenes de compra</span>
-                                    <i class="fa-solid fa-file-invoice-dollar fs-1"></i> <!-- ícono -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-clientes text-white mb-4">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <span class="fs-4">Clientes</span>
-                                    <i class="fa-solid fa-users-rectangle fs-1"></i> <!-- ícono -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-movimientos text-white mb-4">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <span class="fs-4">Movimientos de stock</span>
-                                    <i class="fa-solid fa-dolly fs-1"></i> <!-- ícono -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-reportes text-white mb-4">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <span class="fs-4">Reportes</span>
-                                    <i class="fa-solid fa-file-contract fs-1"></i> <!-- ícono -->
-                                </div>
-                            </div>
-                        </div>
-                      </div>
+    <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card card-movimientos text-white mb-4"> 
+            <div class="card-body d-flex flex-column align-items-start"> 
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span class="fs-4">Movimientos de stock</span>
+                    <i class="fa-solid fa-dolly fs-1"></i> </div>
+                <div class="fs-1 fw-bold mt-2 ms-3">
+                    123
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card card-reportes text-white mb-4"> 
+            <div class="card-body d-flex flex-column align-items-start"> 
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span class="fs-4">Reportes</span>
+                    <i class="fas fa-chart-line fs-1"></i> </div>
+                <div class="fs-1 fw-bold mt-2 ms-3">
+                    123
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
                         <div id="formularioDinamico" class="mt-4"></div> <!-- js va insertar el formulario aca sin tener que recargar la pagina -->
 
                 </main>

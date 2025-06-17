@@ -121,4 +121,6 @@ public function listarProductos() {
     public function confirmacion() {
         echo "<div class='alert alert-success'>Producto guardado con éxito.</div>";
     }
+
+    
 }
