@@ -1,5 +1,5 @@
 <?php
-class AuthModel {
+class authModel {
   public function __construct(){
     $this->db = new Database;
   }
@@ -34,13 +34,16 @@ class AuthModel {
 		return $result;
 	}
 
-  public function buscar_usuarios(){
-    $this->db->query("SELECT * FROM usuarios");
-		
-		$result = $this->db->registers();
-		return $result;
-	}
 
+	//iner join para convertir el  1 o 2 de estado y tipo a su nombre correspondiente
+ public function buscar_usuarios() {
+  $this->db->query("SELECT u.*, t.nombre_tipo_usuario, e.nombre_estado_usuario
+    FROM usuario u
+    INNER JOIN tipo_usuario t ON u.tipo_usuario_id = t.id_tipo_usuario
+    INNER JOIN estado_usuario e ON u.estado_usuario_id = e.id_estado_usuario");
+
+  return $this->db->registers();
+}
   public function crear_usuario($data){
 		
 		$keyw = "keyword";
@@ -121,6 +124,10 @@ class AuthModel {
 			return false;
 		}
 	}
+
+	
+
+
 
 }
 ?>

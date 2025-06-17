@@ -145,6 +145,16 @@ class AuthController extends BaseController {
 
   }
 
+    public function listarUsuarios() {
+    $modelo = $this->model('authModel');
+    $usuarios = $modelo->buscar_usuarios();
+
+    $data = ['usuarios' => $usuarios];
+    $this->view('formularios/formListadoUsuario', $data);
+}
+
+
+
   // Cerrar sesión
   public function logout() {
     session_unset();      // Limpia todas las variables de sesión

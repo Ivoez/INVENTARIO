@@ -11,6 +11,8 @@ function soloNumeros(event) {
 document.addEventListener('DOMContentLoaded', function () {
   const btnAgregar = document.getElementById('sidebarAgregarProducto');
   const btnListado = document.getElementById('sidebarListadoProducto');
+  const btnUsuariosListado = document.getElementById('sidebarUsuariosListado');
+
   const contenedor = document.getElementById('formularioDinamico');
   const tarjetas = document.getElementById('tarjetasDashboard');
 
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
-//comportamiento del click en el boton listado de productos
+//comportamiento del boton listado de productos
 
   if (btnListado) {
     btnListado.addEventListener('click', function(e) {
@@ -51,4 +53,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
   }
+
+  // comportamiento del botón "Listado de usuarios"
+  if (btnUsuariosListado) {
+    btnUsuariosListado.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      fetch(RUTA_URL + "/AuthController/listarUsuarios")
+        .then(res => res.text())
+        .then(html => mostrarContenido(html))
+        .catch(err => {
+          mostrarContenido("<div class='alert alert-danger'>Error al cargar el listado de usuarios</div>");
+        });
+    });
+  }
+
+
+
+
+
+
+
+
 });

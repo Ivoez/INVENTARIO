@@ -41,7 +41,10 @@
           </a>
           <div class="collapse" id="collapseUsuarios" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
-              <a class="nav-link" href="">✅Listado</a>
+
+              <a class="nav-link" href="#" id="sidebarUsuariosListado"> ✅Listado</a>
+
+
               <a class="nav-link" href="<?php echo RUTA_URL ?>/AuthController/register">✅Agregar</a>
             </nav>
           </div>
