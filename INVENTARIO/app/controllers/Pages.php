@@ -31,7 +31,25 @@
             $this->view('pages/inicio',$data);
         }
 
+        /* FUNCION PARA IR AL DASHBOARD ADMIN */
+        public function dashboardAdmin(){
+            
+            $data = [
+                "title" => "Dashboard"
+            ];
+            $this->view('pages/dashboard/dashboard_admin',$data);
+        }
 
+        /* FUNCION PARA IR AL DASHBOARD EMPLEADO */
+        public function dashboardEmpleado(){
+            
+            $data = [
+                "title" => "Dashboard"
+            ];
+            $this->view('pages/dashboard/dashboard_empleado',$data);
+        }
+
+        
 
 
    }

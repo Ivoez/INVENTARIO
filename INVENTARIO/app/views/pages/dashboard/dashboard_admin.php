@@ -15,12 +15,14 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
         <img src="<?php echo RUTA_URL; ?>/Imagenes/InventarioIconoImagen.png" alt="Icono" width="40" height="40" style="object-fit: contain; margin-left: 35px;">
-            <a class="navbar-brand ps-3" href="Dashboard.html">Logistica RST</a>
+            <a class="navbar-brand ps-3" href="<?php echo RUTA_URL; ?>/Pages/dashboardAdmin">Logistica RST</a>
             <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <form class="d-none d-md-inline-block ms-auto me-0 me-md-3 my-2 my-md-0" role="search">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                    <input class="form-control" type="search" placeholder="Buscar..." aria-label="Buscar" />
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </form>
             <!-- Navbar-->
