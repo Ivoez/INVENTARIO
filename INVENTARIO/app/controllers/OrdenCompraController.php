@@ -10,7 +10,7 @@ class OrdenCompraController extends BaseController {
         $this->modeloCategoria = $this->model('ProductoModel');
     }
 
-    // Mostrar formulario para crear una nueva orden
+    // muestra formulario 
     public function crear() {
         // Verificar sesión
         if (!isset($_SESSION['email_usuario'])) {
@@ -24,22 +24,14 @@ class OrdenCompraController extends BaseController {
             'productos' => $this->modeloCategoria->obtenerProductos(),
         ];
 
-        $this->view('ordencompra/crear', $data);
+        $this->view('ordenDeCompra/crear', $data);
     }
 
-    // Guardar la orden (cabecera + múltiples detalles)
+    // crea la orden con detalles
     public function guardar() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // Verificar sesión
-            $email = $_SESSION['email_usuario'] ?? null;
-            if (!$email) {
-                $_SESSION['mensaje_error'] = "Inicie sesión para cargar una Orden de Compra.";
-                redireccionar('/auth/login');
-                return;
-            }
-
-            // Datos cabecera
+            //  cabecera
             $cabecera = [
                 'proveedor' => $_POST['proveedor'],
                 'email_usuario' => $email,
@@ -50,12 +42,12 @@ class OrdenCompraController extends BaseController {
             $resultadoCabecera = $this->modelo->registrarCabecera($cabecera);
 
             if ($resultadoCabecera['resultado'] == 1) {
-                // Registrar detalles
+                //  detalles
                 $productos = $_POST['productos'] ?? [];
                 $cantidades = $_POST['cantidades'] ?? [];
                 $erroresDetalle = [];
 
-                // Validación básica
+                // validación
                 if (!is_array($productos) || !is_array($cantidades) || count($productos) !== count($cantidades)) {
                     $_SESSION['mensaje_error'] = "Datos de productos mal formados.";
                     redireccionar('/ordencompra/crear');
@@ -90,7 +82,7 @@ class OrdenCompraController extends BaseController {
         }
     }
 
-    // Mostrar listado de órdenes
+    // listado de ordenes
     public function listadoOrdenes() {
         if (!isset($_SESSION['email_usuario'])) {
             $_SESSION['mensaje_error'] = "Inicie sesión para ver las órdenes generadas.";
@@ -101,4 +93,6 @@ class OrdenCompraController extends BaseController {
         $ordenes = $this->modelo->obtenerOrdenesConDetalle();
         $this->view('ordencompra/listado', ['ordenes' => $ordenes]);
     }
+
+
 }
