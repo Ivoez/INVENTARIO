@@ -32,9 +32,13 @@ class OrdenCompraController extends BaseController {
     public function guardar() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            i$email = $_SESSION['email_usuario']?? null;
-            if(!email){
-                $data = [error => "Inicie sesión para cargar una orden de compra."];
+            $email = $_SESSION['email_usuario']?? null;
+            if(!$email){
+                $data = [
+                    error => "Inicie sesión para cargar una orden de compra.",
+                    'proveedores' => $this  -> modelo-> obtenerProveedores(),
+                    'productos' => $this  -> modelo-> obtenerProductos()
+                ];
                 $this -> view ('/pages/Login', $data);
                 return;
             }
@@ -57,12 +61,12 @@ class OrdenCompraController extends BaseController {
                 return;
             }
 
-            $nro_orden = uniquid();
+            $nro_orden = uniqid();
             $datosCabecera = [
                 'proveedor' => $proveedor,
                 'email_usuario' => $email, 
                 'nro' => $nro_orden, 
-                'fecha' => fecha
+                'fecha' => $fecha
             ];
 
             $resultado =$this -> modelo -> registrarCabecera($datosCabecera);
@@ -75,8 +79,16 @@ class OrdenCompraController extends BaseController {
                 ];
                 $this -> view ('/formularios/formOrdenCompra', $data);
                 return;
-                
+            }
 
+            for ($i=0; $i<count($productos); $i++){
+                if(!enpty($productos[$i]) && $cantidades[$i] > 0){
+                    $this -> modelo -> registrarDetalle([
+                        'nro_cabecera' => $nro_orden,
+                        'codigo_producto' => $productos[$i],
+                        'cantidad' => $cantidades[$i]
+                    ]);
+                }
             }
             
             $data = [
