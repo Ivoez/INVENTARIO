@@ -94,7 +94,9 @@
           </a>
           <div class="collapse" id="collapseProveedores" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
-              <a class="nav-link" href="layout-static.html">✅Listado</a>
+
+              <a class="nav-link" href="#" id="sidebarListadoProveedores"> ✅Listado</a> <!--agregado 18:14 20/6-->
+
               <a class="nav-link" href="<?php echo RUTA_URL ?>/proveedorController/agregar_proveedor">✅Agregar</a>
             </nav>
           </div>

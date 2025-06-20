@@ -57,4 +57,14 @@ class proveedorController extends BaseController {
       $this->view('pages/dashboard/dashboard_agregar_proveedor', ['datas' => $datas, 'errores' => $errores]);
     }
 
+
+public function listarProveedores() { //agregado 18:10 20/6
+    $proveedores = $this->model('ProveedorModel')->obtenerProveedores();
+    $this->view('formularios/formListadoProveedores', ['proveedores' => $proveedores]);
+}
+
+
+
+
+
 }

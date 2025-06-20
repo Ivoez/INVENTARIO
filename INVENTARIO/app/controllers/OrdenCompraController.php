@@ -35,7 +35,7 @@ class OrdenCompraController extends BaseController {
             $email = $_SESSION['email_usuario']?? null;
             if(!$email){
                 $data = [
-                    error => "Inicie sesión para cargar una orden de compra.",
+                    'error' => "Inicie sesión para cargar una orden de compra.",
                     'proveedores' => $this  -> modelo-> obtenerProveedores(),
                     'productos' => $this  -> modelo-> obtenerProductos()
                 ];
@@ -82,7 +82,7 @@ class OrdenCompraController extends BaseController {
             }
 
             for ($i=0; $i<count($productos); $i++){
-                if(!enpty($productos[$i]) && $cantidades[$i] > 0){
+                if(!empty($productos[$i]) && $cantidades[$i] > 0){
                     $this -> modelo -> registrarDetalle([
                         'nro_cabecera' => $nro_orden,
                         'codigo_producto' => $productos[$i],
@@ -118,4 +118,3 @@ class OrdenCompraController extends BaseController {
 
 
 
-}

@@ -73,8 +73,8 @@ class proveedorModel {
 		return $result;
 	}
 
-	public function obtenerProveedores() {
-    $this->db->query("SELECT id_proveedor, razon_social_proveedor FROM proveedor");
+public function obtenerProveedores() { //modificado 18:18 20/6 traiga todos los proveedores 
+    $this->db->query("SELECT * FROM proveedor");
     return $this->db->registers();
 }
 }

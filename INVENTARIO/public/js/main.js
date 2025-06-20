@@ -11,6 +11,7 @@ function soloNumeros(event) {
 document.addEventListener('DOMContentLoaded', function () {
   const btnAgregar = document.getElementById('sidebarAgregarProducto');
   const btnListado = document.getElementById('sidebarListadoProducto');
+  const btnListadoProveedores = document.getElementById('sidebarListadoProveedores'); //agregado 18:13 20/6 
   const btnUsuariosListado = document.getElementById('sidebarUsuariosListado');
 
   const btnAgregarOrden = document.getElementById('sidebarAgregarOrden');
@@ -71,12 +72,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+//comportamiento boton listado de proveedores agregado 18:15 20/6
+if (btnListadoProveedores) {
+  btnListadoProveedores.addEventListener('click', function (e) {
+    e.preventDefault();
 
+    fetch(RUTA_URL + "/ProveedorController/listarProveedores")
+      .then(res => res.text())
+      .then(html => mostrarContenido(html))
+      .catch(err => {
+        mostrarContenido("<div class='alert alert-danger'>Error al cargar el listado de proveedores</div>");
+      });
+  });
+}
+
+
+
+
+
+  
 
 
   // boton agregar orden
   if (btnAgregarOrden) {
-    btnAgregar.addEventListener('click', function(e) {
+    btnAgregar.addEventListener('click', function(e) { //error aca 1 
       e.preventDefault();
 
       fetch(RUTA_URL + "/OrdenCompraController/crear")
@@ -91,8 +110,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // boton listar ordenes
 
-  if (btnListadoOrdenes) {
-    btnListado.addEventListener('click', function(e) {
+  if (btnListadoOrdenes) { 
+    btnListado.addEventListener('click', function(e) {  //error aca 2 
       e.preventDefault();
 
       fetch(RUTA_URL + "/OrdenCompraController/listadoOrdenes")

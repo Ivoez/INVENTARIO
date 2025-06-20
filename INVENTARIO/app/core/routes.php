@@ -52,7 +52,7 @@
 
 
         //llamar callback con params
-        call_user_func_array([$this->actualController, $this->actualMethod],  $this->params);
+        call_user_func_array([$this->actualController, $this->actualMethod],  $this->param);
 
 
     }
