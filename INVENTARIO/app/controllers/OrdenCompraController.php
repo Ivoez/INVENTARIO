@@ -10,6 +10,12 @@ class OrdenCompraController extends BaseController {
         $this->modeloCategoria = $this->model('ProductoModel');
     }
 
+   public function index() {
+    $this->view('formularios/formOrdenCompra');
+}
+
+
+
     // muestra formulario 
     public function crear() {
         // Verificar sesión
@@ -24,7 +30,7 @@ class OrdenCompraController extends BaseController {
             'productos' => $this->modeloCategoria->obtenerProductos(),
         ];
 
-        $this->view('ordenDeCompra/crear', $data);
+        $this->view('formularios/formOrdenCompra', $data);
     }
 
     // crea la orden con detalles
@@ -50,7 +56,7 @@ class OrdenCompraController extends BaseController {
                 // validación
                 if (!is_array($productos) || !is_array($cantidades) || count($productos) !== count($cantidades)) {
                     $_SESSION['mensaje_error'] = "Datos de productos mal formados.";
-                    redireccionar('/ordencompra/crear');
+                    redireccionar('/formularios/formOrdenCompra');
                     return;
                 }
 
@@ -74,10 +80,10 @@ class OrdenCompraController extends BaseController {
                     $_SESSION['mensaje_error'] = "Error al cargar:<br>" . implode("<br>", $erroresDetalle);
                 }
 
-                redireccionar('/ordencompra/crear');
+                redireccionar('/formularios/formOrdenCompra');
             } else {
                 $_SESSION['mensaje_error'] = $resultadoCabecera['mensaje'];
-                redireccionar('/ordencompra/crear');
+                redireccionar('/formularios/formOrdenCompra');
             }
         }
     }
@@ -91,7 +97,7 @@ class OrdenCompraController extends BaseController {
         }
 
         $ordenes = $this->modelo->obtenerOrdenesConDetalle();
-        $this->view('ordencompra/listado', ['ordenes' => $ordenes]);
+        $this->view('formularios/listadoOC', ['ordenes' => $ordenes]);
     }
 
 
