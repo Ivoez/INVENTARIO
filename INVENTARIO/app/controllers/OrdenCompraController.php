@@ -10,11 +10,6 @@ class OrdenCompraController extends BaseController {
         $this->modeloCategoria = $this->model('ProductoModel');
     }
 
-   public function index() {
-    $this->view('formularios/formOrdenCompra');
-}
-
-
 
     // muestra formulario 
     public function crear() {
@@ -37,56 +32,67 @@ class OrdenCompraController extends BaseController {
     public function guardar() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            //  cabecera
-            $cabecera = [
-                'proveedor' => $_POST['proveedor'],
-                'email_usuario' => $email,
-                'nro' => $_POST['nro'],
-                'fecha' => $_POST['fecha']
+            i$email = $_SESSION['email_usuario']?? null;
+            if(!email){
+                $data = [error => "Inicie sesión para cargar una orden de compra."];
+                $this -> view ('/pages/Login', $data);
+                return;
+            }
+            
+            $proveedor = $_POST['proveedor'] ?? '';
+            $fecha = $_POST['fecha'] ?? '';
+            $productos = $_POST['productos'] ?? [];
+            $cantidades = $_POST['cantidades'] ?? [];
+            //habría que agregar un apartado para notas, ej. solicitar un producto del cual no se posea código/no este cargado en productos
+            //$nota = $_POST ['nota'] ?? ''; 
+            
+            if (empty($proveedor) || empty($productos) || count($productos) !== count($cantidades)){
+                $data = [
+                    'error' => 'Datos mal cargados.',
+                    'proveedores' => $this  -> modelo-> obtenerProveedores(),
+                    'productos' => $this  -> modelo-> obtenerProductos()
+
+                ];
+                $this -> view ('/formularios/formOrdenCompra', $data);
+                return;
+            }
+
+            $nro_orden = uniquid();
+            $datosCabecera = [
+                'proveedor' => $proveedor,
+                'email_usuario' => $email, 
+                'nro' => $nro_orden, 
+                'fecha' => fecha
             ];
 
-            $resultadoCabecera = $this->modelo->registrarCabecera($cabecera);
+            $resultado =$this -> modelo -> registrarCabecera($datosCabecera);
 
-            if ($resultadoCabecera['resultado'] == 1) {
-                //  detalles
-                $productos = $_POST['productos'] ?? [];
-                $cantidades = $_POST['cantidades'] ?? [];
-                $erroresDetalle = [];
+            if ($resultado['resultado'] != 1){
+                $data = [
+                    'error' => 'Error.'.$resultado['mensaje'],
+                    'proveedores' => $this  -> modelo-> obtenerProveedores(),
+                    'productos' => $this  -> modelo-> obtenerProductos()
+                ];
+                $this -> view ('/formularios/formOrdenCompra', $data);
+                return;
+                
 
-                // validación
-                if (!is_array($productos) || !is_array($cantidades) || count($productos) !== count($cantidades)) {
-                    $_SESSION['mensaje_error'] = "Datos de productos mal formados.";
-                    redireccionar('/formularios/formOrdenCompra');
-                    return;
-                }
-
-                for ($i = 0; $i < count($productos); $i++) {
-                    $detalle = [
-                        'nro_cabecera' => $_POST['nro'],
-                        'codigo_producto' => $productos[$i],
-                        'cantidad' => $cantidades[$i]
-                    ];
-
-                    $resDetalle = $this->modelo->registrarDetalle($detalle);
-
-                    if ($resDetalle['resultado'] != 1) {
-                        $erroresDetalle[] = $resDetalle['mensaje'];
-                    }
-                }
-
-                if (empty($erroresDetalle)) {
-                    $_SESSION['mensaje_exito'] = "Orden registrada correctamente.";
-                } else {
-                    $_SESSION['mensaje_error'] = "Error al cargar:<br>" . implode("<br>", $erroresDetalle);
-                }
-
-                redireccionar('/formularios/formOrdenCompra');
-            } else {
-                $_SESSION['mensaje_error'] = $resultadoCabecera['mensaje'];
-                redireccionar('/formularios/formOrdenCompra');
             }
-        }
+            
+            $data = [
+
+                'mensaje_ok' => 'Orden de Compra generada exitosamente.',
+                'proveedores' => $this  -> modelo-> obtenerProveedores(),
+                'productos' => $this  -> modelo-> obtenerProductos()
+            ];
+
+            $this -> view ('/formularios/formOrdenCompra', $data);
+            return;
+
+
+            }
     }
+
 
     // listado de ordenes
     public function listadoOrdenes() {
