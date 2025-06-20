@@ -12,7 +12,7 @@ class OrdenCompraController extends BaseController {
 
 
     // muestra formulario 
-    public function crear() {
+    public function crear() : void {
         // Verificar sesión
         if (!isset($_SESSION['email_usuario'])) {
             $_SESSION['mensaje_error'] = "Inicie sesión para generar una Orden de Compra.";
@@ -29,7 +29,7 @@ class OrdenCompraController extends BaseController {
     }
 
     // crea la orden con detalles
-    public function guardar() {
+    public function guardar() : void {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $email = $_SESSION['email_usuario']?? null;
@@ -107,16 +107,15 @@ class OrdenCompraController extends BaseController {
 
 
     // listado de ordenes
-    public function listadoOrdenes() {
-        if (!isset($_SESSION['email_usuario'])) {
-            $_SESSION['mensaje_error'] = "Inicie sesión para ver las órdenes generadas.";
-            redireccionar('/auth/login');
-            return;
-        }
-
+    public function listadoOrdenes() : void {
         $ordenes = $this->modelo->obtenerOrdenesConDetalle();
+
         $this->view('formularios/listadoOC', ['ordenes' => $ordenes]);
     }
+
+}
+
+
 
 
 }
