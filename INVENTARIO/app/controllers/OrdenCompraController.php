@@ -16,7 +16,7 @@ class OrdenCompraController extends BaseController {
         // Verificar sesión
         if (!isset($_SESSION['email_usuario'])) {
             $_SESSION['mensaje_error'] = "Inicie sesión para generar una Orden de Compra.";
-            redireccionar('/auth/login');
+            $this->view('pages/Login', ['data' => []]);
             return;
         }
 

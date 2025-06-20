@@ -98,7 +98,9 @@
               <a class="nav-link" href="<?php echo RUTA_URL ?>/proveedorController/agregar_proveedor">✅Agregar</a>
             </nav>
           </div>
-          <!--  -->
+
+
+          <!--Gestión de Ordenes de Compra -->
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOrdenes" aria-expanded="false" aria-controls="collapseOrdenes">
             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
               Gestión de Ordenes de Compra
@@ -106,10 +108,14 @@
           </a>
           <div class="collapse" id="collapseOrdenes" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
-              <a class="nav-link" href="layout-static.html">✅Listado</a>
-              <a class="nav-link" href="layout-sidenav-light.html">✅Emitir una orden de compra</a>
+
+            <a href="#" class="nav-link" id="sidebarListadoOrdenes">✅Listado</a>
+
+            <a href="#" class="nav-link" id="sidebarAgregarOrden">✅Emitir una orden de compra</a>
             </nav>
           </div>
+
+          
           <!--  -->
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMovimientos" aria-expanded="false" aria-controls="collapseMovimientos">
             <div class="sb-nav-link-icon"><i class="fa-solid fa-dolly"></i></div>

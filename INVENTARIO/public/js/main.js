@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnListado = document.getElementById('sidebarListadoProducto');
   const btnUsuariosListado = document.getElementById('sidebarUsuariosListado');
 
+  const btnAgregarOrden = document.getElementById('sidebarAgregarOrden');
+  const btnListadoOrdenes = document.getElementById('sidebarListadoOrdenes');
+
   const contenedor = document.getElementById('formularioDinamico');
   const tarjetas = document.getElementById('tarjetasDashboard');
 
@@ -70,6 +73,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+  // boton agregar orden
+  if (btnAgregarOrden) {
+    btnAgregar.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      fetch(RUTA_URL + "/OrdenCompraController/crear")
+        .then(res => res.text())
+        .then(html => mostrarContenido(html))
+        .catch(err => {
+          mostrarContenido("<div class='alert alert-danger'>Error al cargar la Orden de Compra</div>");
+        });
+    });
+  }
+
+
+// boton listar ordenes
+
+  if (btnListadoOrdenes) {
+    btnListado.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      fetch(RUTA_URL + "/OrdenCompraController/listadoOrdenes")
+        .then(res => res.text())
+        .then(html => mostrarContenido(html))
+        .catch(err => {
+          mostrarContenido("<div class='alert alert-danger'>Error al cargar el listado de ordenes.</div>");
+        });
+    });
+  }
 
 
 
