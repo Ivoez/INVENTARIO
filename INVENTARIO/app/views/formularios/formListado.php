@@ -10,6 +10,8 @@
             <th>Código</th>
             <th>Stock</th>
             <th>Precio</th>
+            <th>Categoría</th> 
+            <th>Proveedor</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +23,8 @@
                     <td><?php echo $producto->codigo_producto; ?></td>
                     <td><?php echo $producto->cantidad_stock_producto; ?></td>
                     <<td>$<?php echo number_format($producto->precio_costo_producto, 2, '.', ''); ?></td>
+                    <td><?php echo $producto->nombre_categoria; ?></td>  <!--para poder mostrar categoria y nombre en el listado de productos como se pide-->
+                    <td><?php echo $producto->nombre_proveedor; ?></td> 
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>

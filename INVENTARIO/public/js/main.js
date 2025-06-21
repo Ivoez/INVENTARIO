@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnListado = document.getElementById('sidebarListadoProducto');
   const btnListadoProveedores = document.getElementById('sidebarListadoProveedores'); //agregado 18:13 20/6 
   const btnUsuariosListado = document.getElementById('sidebarUsuariosListado');
-
-
   const contadorClientes = document.getElementById("cantidadClientes");
   const contadorProductos = document.getElementById("cantidadProductos");
   const contadorProveedores = document.getElementById("cantidadProveedores");
@@ -36,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // Mostrar cantidad real de usuarios en la tarjeta "Clientes"
-  
+ 
   if (contadorClientes) {
     fetch(RUTA_URL + "/AuthController/contarUsuarios")
       .then(response => response.json())
@@ -79,22 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error("Error al cargar la cantidad de proveedores:", error);
       });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -187,7 +169,7 @@ if (btnListadoProveedores) {
 // boton listar ordenes
 
   if (btnListadoOrdenes) { 
-    btnListadoOrdenes.addEventListener('click', function(e) {  //error aca 2 
+    btnListadoOrdenes.addEventListener('click', function(e) {  
       e.preventDefault();
 
       fetch(RUTA_URL + "/OrdenCompraController/listadoOrdenes")

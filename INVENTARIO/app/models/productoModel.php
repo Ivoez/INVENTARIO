@@ -99,16 +99,21 @@ class productoModel {
     return $this->db->execute();
 }
 
-  public function obtenerProductos() {
-        $this->db->query("SELECT * FROM producto");
-        return $this->db->registers(); 
-  }
-	public function contarProductos()
-	{
-		$this->db->query("SELECT COUNT(*) as total FROM producto");
-		return $this->db->register()->total;
-	}
-
-
-
+public function obtenerProductos() {
+    $this->db->query("
+        SELECT 
+            p.id_producto,
+            p.nombre_producto,
+            p.codigo_producto,
+            p.cantidad_stock_producto,
+            p.precio_costo_producto,
+            c.nombre_categoria_producto AS nombre_categoria,
+			pr.razon_social_proveedor AS nombre_proveedor
+			
+        FROM producto p
+        INNER JOIN categoria_producto c ON p.categoria_producto_id = c.id_categoria_producto
+        INNER JOIN proveedor pr ON p.proveedor_id = pr.id_proveedor
+    ");
+    return $this->db->registers(); 
+}
 }

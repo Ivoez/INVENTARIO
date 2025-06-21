@@ -20,7 +20,7 @@ class productoController extends BaseController {
             'categorias' => $this->modeloCategoria->obtenerCategorias(),
             'proveedores' => $this->modeloProveedor->obtenerProveedores()
         ];
-        $this->view('formularios/formProductos', $data);
+        $this->view('formularios/formProductos', $data); 
     }
 
     public function insertarProducto() {

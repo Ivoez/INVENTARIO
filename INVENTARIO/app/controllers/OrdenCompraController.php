@@ -12,10 +12,10 @@ class OrdenCompraController extends BaseController {
 
 
     // muestra formulario 
-    public function crear() : void {
+    public function crear() : void { 
         // Verificar sesión
         if (!isset($_SESSION['email_usuario'])) {
-            $_SESSION['mensaje_error'] = "Inicie sesión para generar una Orden de Compra.";
+            $_SESSION['mensaje_error'] = "Inicie sesión para generar una Orden de Compra."; ///////////////// no muestra formulario
             $this->view('pages/Login', ['data' => []]);
             return;
         }
@@ -25,7 +25,7 @@ class OrdenCompraController extends BaseController {
             'productos' => $this->modeloCategoria->obtenerProductos(),
         ];
 
-        $this->view('formularios/formOrdenCompra', $data);
+        $this->view('formularios/formProductos', $data);
     }
 
     // crea la orden con detalles
@@ -108,9 +108,10 @@ class OrdenCompraController extends BaseController {
 
     // listado de ordenes
     public function listadoOrdenes() : void {
+        $modelo = $this->model('ordenCompraModel');
         $ordenes = $this->modelo->obtenerOrdenesConDetalle();
 
-        $this->view('formularios/listadoOC', ['ordenes' => $ordenes]);
+        $this->view('/formularios/formProductos', ['ordenes' => $ordenes]);
     }
 
 }
