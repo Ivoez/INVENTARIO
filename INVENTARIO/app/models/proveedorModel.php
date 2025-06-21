@@ -77,4 +77,10 @@ public function obtenerProveedores() { //modificado 18:18 20/6 traiga todos los 
     $this->db->query("SELECT * FROM proveedor");
     return $this->db->registers();
 }
+
+public function contarProveedores()
+	{
+		$this->db->query("SELECT COUNT(*) as total FROM proveedor");
+		return $this->db->register()->total;
+	}
 }

@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   const contadorClientes = document.getElementById("cantidadClientes");
-
+  const contadorProductos = document.getElementById("cantidadProductos");
+  const contadorProveedores = document.getElementById("cantidadProveedores");
   const btnAgregarOrden = document.getElementById('sidebarAgregarOrden');
   const btnListadoOrdenes = document.getElementById('sidebarListadoOrdenes');
 
@@ -46,6 +47,36 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .catch(error => {
         console.error("Error al cargar la cantidad de usuarios:", error);
+      });
+  }
+
+      // Mostrar cantidad real de Productos en la tarjeta "Productos en stock"
+  
+  if (contadorProductos) {
+    fetch(RUTA_URL + "/ProductoController/contarProductos")
+      .then(response => response.json())
+      .then(data => {
+        if (data.total !== undefined) {
+          contadorProductos.textContent = data.total;
+        }
+      })
+      .catch(error => {
+        console.error("Error al cargar la cantidad de productos:", error);
+      });
+  }
+
+        // Mostrar cantidad real de Proveedores en la tarjeta "Proveedores"
+  
+  if (contadorProveedores) {
+    fetch(RUTA_URL + "/proveedorController/contarProveedores")
+      .then(response => response.json())
+      .then(data => {
+        if (data.total !== undefined) {
+          contadorProveedores.textContent = data.total;
+        }
+      })
+      .catch(error => {
+        console.error("Error al cargar la cantidad de proveedores:", error);
       });
   }
 

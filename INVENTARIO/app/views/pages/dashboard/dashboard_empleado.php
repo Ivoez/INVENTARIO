@@ -7,22 +7,20 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard</title>
+        <link rel="shortcut icon" type="image/x-icon" href="<?php echo RUTA_URL; ?>/Imagenes/InventarioIcono.ico">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?php echo RUTA_URL ?>/css/style2.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-black">
             <!-- Navbar Brand-->
         <img src="<?php echo RUTA_URL; ?>/Imagenes/InventarioIconoImagen.png" alt="Icono" width="40" height="40" style="object-fit: contain; margin-left: 35px;">
             <a class="navbar-brand ps-3" href="<?php echo RUTA_URL; ?>/Pages/dashboardEmpleado">Logistica RST</a>
-            <!-- Navbar Search-->
+            <!-- -->
             <form class="d-none d-md-inline-block ms-auto me-0 me-md-3 my-2 my-md-0" role="search">
                 <div class="input-group">
-                    <input class="form-control" type="search" placeholder="Buscar..." aria-label="Buscar" />
-                    <button class="btn btn-outline-light" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
+
                 </div>
             </form>
             <!-- Navbar-->
@@ -45,8 +43,8 @@
                         <div class="nav">
                             <div class="container-fluid px-4 mt-4"> </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseClientes" aria-expanded="false" aria-controls="collapseClientes">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-users-rectangle"></i></div>
-                                Clientes
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                                Usuarios
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseClientes" aria-labelledby="headingClientes" data-bs-parent="#sidenavAccordion">
@@ -137,8 +135,8 @@
                     <div class="card card-clientes text-white mb-4"> 
                         <div class="card-body d-flex flex-column align-items-start"> 
                             <div class="d-flex justify-content-between align-items-center w-100">
-                                <span class="fs-4">Clientes</span>
-                                <i class="fa-solid fa-users-rectangle fs-1"></i> </div>
+                                <span class="fs-4">Usuarios</span>
+                                <i class="fa-solid fa-user fs-1"></i> </div>
                             <div class="fs-1 fw-bold mt-2 ms-3">
                                 123
                             </div>

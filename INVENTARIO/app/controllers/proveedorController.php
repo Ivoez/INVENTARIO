@@ -63,7 +63,12 @@ public function listarProveedores() { //agregado 18:10 20/6
     $this->view('formularios/formListadoProveedores', ['proveedores' => $proveedores]);
 }
 
-
+    public function contarProveedores()
+{
+    $modelo = $this->model('proveedorModel');
+    $cantidad = $modelo->contarProveedores();
+    echo json_encode(['total' => $cantidad]);
+}
 
 
 

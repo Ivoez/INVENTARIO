@@ -9,6 +9,7 @@ class movimientoStockController extends BaseController {
     public function agregar_movimiento() {
 
       $errores = [];
+      $datas = [];
       $codigos_producto = $this->modeloProducto->buscar_productos();
 
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {            

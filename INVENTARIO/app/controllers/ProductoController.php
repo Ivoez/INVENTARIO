@@ -122,5 +122,10 @@ public function listarProductos() {
         echo "<div class='alert alert-success'>Producto guardado con éxito.</div>";
     }
 
-    
+    public function contarProductos()
+{
+    $modelo = $this->model('productoModel');
+    $cantidad = $modelo->contarProductos();
+    echo json_encode(['total' => $cantidad]);
+}
 }

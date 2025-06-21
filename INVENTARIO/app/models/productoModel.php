@@ -102,10 +102,13 @@ class productoModel {
   public function obtenerProductos() {
         $this->db->query("SELECT * FROM producto");
         return $this->db->registers(); 
+  }
+	public function contarProductos()
+	{
+		$this->db->query("SELECT COUNT(*) as total FROM producto");
+		return $this->db->register()->total;
+	}
 
 
 
-
-
-}
 }

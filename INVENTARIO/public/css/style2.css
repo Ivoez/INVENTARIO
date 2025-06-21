@@ -95,6 +95,10 @@
   }
 }
 
+nav.navbar.bg-black {
+  background-color: #000 !important;
+}
+
 .icono {
   width: 40px;
   height: 40px;
