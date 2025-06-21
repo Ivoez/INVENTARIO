@@ -216,7 +216,35 @@ class AuthController extends BaseController {
     }
 }
 
+
+public function contarUsuarios()
+{
+    $modelo = $this->model('authModel');
+    $cantidad = $modelo->contarUsuarios();
+    echo json_encode(['total' => $cantidad]);
 }
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 ?>

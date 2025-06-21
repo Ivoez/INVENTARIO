@@ -190,9 +190,10 @@
                 <div class="d-flex justify-content-between align-items-center w-100">
                     <span class="fs-4">Clientes</span>
                     <i class="fa-solid fa-users-rectangle fs-1"></i> </div>
-                <div class="fs-1 fw-bold mt-2 ms-3">
-                    123
-                </div>
+
+                <div class="fs-1 fw-bold mt-2 ms-3" id="cantidadClientes">
+    
+</div>
             </div>
         </div>
     </div>

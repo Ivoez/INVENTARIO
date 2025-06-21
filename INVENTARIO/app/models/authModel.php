@@ -125,9 +125,11 @@ class authModel {
 		}
 	}
 
-	
-
-
+public function contarUsuarios()
+{
+    $this->db->query("SELECT COUNT(*) as total FROM usuario");
+    return $this->db->register()->total;
+}
 
 }
 ?>
