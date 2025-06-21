@@ -116,4 +116,10 @@ public function obtenerProductos() {
     ");
     return $this->db->registers(); 
 }
+
+public function contarProductos()
+	{
+		$this->db->query("SELECT COUNT(*) as total FROM producto");
+		return $this->db->register()->total;
+	}
 }
