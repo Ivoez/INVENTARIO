@@ -70,6 +70,8 @@ public function listarProveedores() { //agregado 18:10 20/6
     echo json_encode(['total' => $cantidad]);
 }
 
-
+public function index() {
+    echo "ProveedorController funcionando correctamente.";
+}
 
 }

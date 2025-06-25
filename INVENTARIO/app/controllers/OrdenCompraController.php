@@ -25,7 +25,7 @@ class OrdenCompraController extends BaseController {
             'productos' => $this->modeloCategoria->obtenerProductos(),
         ];
 
-        $this->view('formularios/formProductos', $data);
+        $this->view('formularios/formOrdenCompra', $data);
     }
 
     // crea la orden con detalles
@@ -39,7 +39,7 @@ class OrdenCompraController extends BaseController {
                     'proveedores' => $this  -> modelo-> obtenerProveedores(),
                     'productos' => $this  -> modelo-> obtenerProductos()
                 ];
-                $this -> view ('/pages/Login', $data);
+                $this -> view ('pages/Login', $data);
                 return;
             }
             
@@ -57,7 +57,7 @@ class OrdenCompraController extends BaseController {
                     'productos' => $this  -> modelo-> obtenerProductos()
 
                 ];
-                $this -> view ('/formularios/formOrdenCompra', $data);
+                $this -> view ('formularios/formOrdenCompra', $data);
                 return;
             }
 
@@ -77,7 +77,7 @@ class OrdenCompraController extends BaseController {
                     'proveedores' => $this  -> modelo-> obtenerProveedores(),
                     'productos' => $this  -> modelo-> obtenerProductos()
                 ];
-                $this -> view ('/formularios/formOrdenCompra', $data);
+                $this -> view ('formularios/formOrdenCompra', $data);
                 return;
             }
 
@@ -98,7 +98,7 @@ class OrdenCompraController extends BaseController {
                 'productos' => $this  -> modelo-> obtenerProductos()
             ];
 
-            $this -> view ('/formularios/formOrdenCompra', $data);
+            $this -> view ('formularios/formOrdenCompra', $data);
             return;
 
 
@@ -111,7 +111,7 @@ class OrdenCompraController extends BaseController {
         $modelo = $this->model('ordenCompraModel');
         $ordenes = $this->modelo->obtenerOrdenesConDetalle();
 
-        $this->view('/formularios/formProductos', ['ordenes' => $ordenes]);
+        $this->view('formularios/formOrdenCompra', ['ordenes' => $ordenes]);
     }
 
 }
