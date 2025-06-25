@@ -8,7 +8,7 @@
 
       
 <div class="row mb-3">
-  <!-- Proveedor -->
+  
   <div class="col-md-6">
     <label for="proveedor" class="form-label">Proveedor</label>
     <select class="form-select" id="proveedor" name="proveedor" required onchange="cargarProductos()">
@@ -21,13 +21,13 @@
     </select>
   </div>
 
-  <!-- Fecha -->
   <div class="col-md-6">
     <label for="fecha" class="form-label">Fecha</label>
     <input type="date" class="form-control" id="fecha" name="fecha" value="<?= date('Y-m-d') ?>" readonly>
   </div>
 </div>
-      <!-- Encabezado Producto/Cantidad -->
+     
+
 
 <div class="row g-3 align-items-end mb-2">
   <div class="col-md-5">
@@ -41,7 +41,7 @@
   </div>
 </div>
 
-<!-- 10 Productos -->
+
 <div id="productos">
   <?php for ($i = 0; $i < 10; $i++): ?>
     <div class="row g-3 align-items-end producto-item mb-2">
@@ -65,13 +65,14 @@
   <?php endfor; ?>
 </div>
 
-      <!-- Nota -->
+     
       <div class="mb-3 mt-4">
         <label for="nota" class="form-label">Notas adicionales</label>
         <textarea class="form-control" name="nota" id="nota" rows="3"></textarea>
       </div>
 
-      <!-- Botón -->
+
+      
       <div class="text-center">
         <button type="submit" class="btn btn-primary">Emitir Orden de Compra</button>
       </div>
