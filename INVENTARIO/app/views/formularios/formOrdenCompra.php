@@ -1,53 +1,69 @@
-<div class="card">
+<div class="card"> 
   <div class="card-header bg-primary text-white">
     Generar nueva Orden de Compra
   </div>
 
   <div class="card-body">
-    <form method="POST" action="<?php echo RUTA_URL ?>/ordencompra/guardar">
+    <form method="POST" action="<?= RUTA_URL ?>/ordencompra/guardar">
 
-      <!-- Proveedor -->
-      <div class="mb-3">
-        <label for="proveedor" class="form-label">Proveedor</label>
-        <select class="form-select" id="proveedor" name="proveedor" required>
-          <option value="">Seleccionar proveedor</option>
-          <?php foreach ($data['proveedores'] as $proveedor): ?>
-            <option value="<?php echo $proveedor['id_proveedor']; ?>">
-              <?php echo $proveedor['nombre_proveedor']; ?>
+      
+<div class="row mb-3">
+  <!-- Proveedor -->
+  <div class="col-md-6">
+    <label for="proveedor" class="form-label">Proveedor</label>
+    <select class="form-select" id="proveedor" name="proveedor" required onchange="cargarProductos()">
+      <option value="">Seleccionar proveedor</option>
+      <?php foreach ($data['proveedores'] as $proveedor): ?>
+        <option value="<?= $proveedor->id_proveedor ?>">
+          <?= $proveedor->razon_social_proveedor ?>
+        </option>
+      <?php endforeach; ?>
+    </select>
+  </div>
+
+  <!-- Fecha -->
+  <div class="col-md-6">
+    <label for="fecha" class="form-label">Fecha</label>
+    <input type="date" class="form-control" id="fecha" name="fecha" value="<?= date('Y-m-d') ?>" readonly>
+  </div>
+</div>
+      <!-- Encabezado Producto/Cantidad -->
+
+<div class="row g-3 align-items-end mb-2">
+  <div class="col-md-5">
+    <label class="form-label">Producto</label>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Cantidad</label>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label">Confirmar</label>
+  </div>
+</div>
+
+<!-- 10 Productos -->
+<div id="productos">
+  <?php for ($i = 0; $i < 10; $i++): ?>
+    <div class="row g-3 align-items-end producto-item mb-2">
+      <div class="col-md-5">
+        <select class="form-select" name="productos[]">
+          <option value="">Seleccione un producto</option>
+          <?php foreach ($data['productos'] as $producto): ?>
+            <option value="<?= $producto->codigo_producto ?>">
+              <?= $producto->codigo_producto ?> - <?= $producto->nombre_producto ?>
             </option>
           <?php endforeach; ?>
         </select>
       </div>
-
-      <!-- Fecha -->
-      <div class="mb-3">
-        <label for="fecha" class="form-label">Fecha</label>
-        <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo date('Y-m-d'); ?>" readonly>
+      <div class="col-md-3">
+        <input type="number" class="form-control" name="cantidades[]" min="1">
       </div>
-
-      <!-- Productos (bloque dinámico) -->
-      <div id="productos">
-        <div class="row g-3 align-items-end producto-item">
-          <div class="col-md-6">
-            <label class="form-label">Producto</label>
-            <select class="form-select" name="productos[]" required>
-              <option value="">Seleccione un producto</option>
-              <?php foreach ($data['productos'] as $producto): ?>
-                <option value="<?php echo $producto['id_producto']; ?>">
-                  <?php echo $producto['nombre_producto']; ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Cantidad</label>
-            <input type="number" class="form-control" name="cantidades[]" min="1" required>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-success" onclick="agregarProducto()">+</button>
-          </div>
-        </div>
+      <div class="col-md-2 text-center">
+        <input type="checkbox" class="form-check-input" name="confirmados[]" value="<?= $i ?>">
       </div>
+    </div>
+  <?php endfor; ?>
+</div>
 
       <!-- Nota -->
       <div class="mb-3 mt-4">
@@ -56,24 +72,10 @@
       </div>
 
       <!-- Botón -->
-      <button type="submit" class="btn btn-primary">Emitir Orden de Compra</button>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Emitir Orden de Compra</button>
+      </div>
+
     </form>
   </div>
 </div>
-
-<!-- Script para clonar filas -->
-<script>
-function agregarProducto() {
-  const contenedor = document.getElementById('productos');
-  const clon = contenedor.querySelector('.producto-item').cloneNode(true);
-  clon.querySelector('input').value = '';
-  clon.querySelector('select').selectedIndex = 0;
-  clon.querySelector('button').outerHTML = '<button type="button" class="btn btn-danger" onclick="eliminarProducto(this)">–</button>';
-  contenedor.appendChild(clon);
-}
-
-function eliminarProducto(boton) {
-  const item = boton.closest('.producto-item');
-  item.remove();
-}
-</script>

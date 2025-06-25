@@ -30,7 +30,7 @@ class OrdenCompraModel {
     }
 
     public function obtenerProveedores() {
-        $this->db->query("SELECT id_proveedor, razon_social_proveedor FROM proveedor");
+        $this->db->query("SELECT razon_social_proveedor FROM proveedor");
         return $this->db->register();
     }
 
@@ -41,12 +41,17 @@ class OrdenCompraModel {
 
     public function obtenerOrdenesConDetalle() {
         $this->db->query("
-            SELECT oc.nro, oc.fecha, p.razon_social_proveedor, pr.nombre_producto, d.cantidad
-            FROM orden_compra oc
-            JOIN detalle_orden_compra d ON oc.nro = d.nro_oc
-            JOIN proveedor p ON oc.id_proveedor = p.id_proveedor
-            JOIN producto pr ON d.codigo_producto = pr.codigo_producto
-            ORDER BY oc.fecha DESC
+            SELECT 
+                c.nro_orden_compra AS nro,
+                c.fecha_orden_compra AS fecha,
+                p.razon_social_proveedor,
+                pr.nombre_producto,
+                d.cantidad_detalle_orden_compra AS cantidad
+            FROM cabecera_orden_compra c
+            JOIN detalle_orden_compra d ON c.id_cabecera_orden_compra = d.cabecera_orden_compra_id
+            JOIN proveedor p ON c.proveedor_id = p.id_proveedor
+            JOIN producto pr ON d.producto_id = pr.id_producto
+            ORDER BY c.fecha_orden_compra DESC
         ");
         return $this->db->register();
     }
