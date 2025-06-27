@@ -17,8 +17,8 @@
           <tr>
             <td><?= htmlspecialchars($orden->nro) ?></td>
             <td><?= htmlspecialchars($orden->fecha) ?></td>
-            <td><?= htmlspecialchars($orden->razon_social_proveedor) ?></td>
-            <td><?= htmlspecialchars($orden->nombre_producto) ?></td>
+            <td><?= htmlspecialchars($orden->proveedor) ?>
+            <td><?= htmlspecialchars($orden->producto) ?>
             <td><?= htmlspecialchars($orden->cantidad) ?></td>
           </tr>
         <?php endforeach; ?>

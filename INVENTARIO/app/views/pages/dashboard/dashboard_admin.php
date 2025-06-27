@@ -44,7 +44,7 @@
               <a class="nav-link" href="#" id="sidebarUsuariosListado"> ✅Listado</a>
 
 
-              <a class="nav-link" href="<?php echo RUTA_URL ?>/AuthController/register">✅Agregar</a>
+              <a href="#" id="sidebarAgregarUsuario" class="nav-link">✅Agregar Usuario</a>
             </nav>
           </div>
           <!--  -->

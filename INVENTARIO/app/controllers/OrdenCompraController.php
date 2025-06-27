@@ -55,7 +55,7 @@ public function guardar(): void {
             $cantidad = (int)$cantidades[$index];
 
             if ($producto_id && $cantidad > 0) {
-                $this->model->registrarDetalle($cabecera_id, $producto_id, $cantidad);
+                $this->modelo->registrarDetalle($cabecera_id, $producto_id, $cantidad);
             }
         }
 
@@ -67,7 +67,7 @@ public function guardar(): void {
 
     // Listado de ordenes
     public function listadoOrdenes(): void {
-        $ordenes = $this->model->obtenerOrdenesConDetalle();
+        $ordenes = $this->modelo->obtenerOrdenesConDetalle();
 
         $data = [
             'ordenes' => $ordenes

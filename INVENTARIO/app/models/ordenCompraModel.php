@@ -47,21 +47,21 @@ class OrdenCompraModel {
     }
 
     public function obtenerOrdenesConDetalle() {
-        $this->db->query("
-            SELECT 
-                c.nro_orden_compra,
-                c.fecha_orden_compra,
-                p.razon_social_proveedor,
-                pr.nombre_producto,
-                d.cantidad_detalle_orden_compra
-            FROM cabecera_orden_compra c
-            INNER JOIN detalle_orden_compra d ON c.id_cabecera_orden_compra = d.cabecera_orden_compra_id
-            INNER JOIN proveedor p ON c.proveedor_id = p.id_proveedor
-            INNER JOIN producto pr ON d.producto_id = pr.id_producto
-            ORDER BY c.fecha_orden_compra DESC
-        ");
-        return $this->db->registerS();
-    }
+    $this->db->query("
+        SELECT 
+            c.nro_orden_compra AS nro,
+            c.fecha_orden_compra AS fecha,
+            p.razon_social_proveedor AS proveedor,
+            pr.nombre_producto AS producto,
+            d.cantidad_detalle_orden_compra AS cantidad
+        FROM cabecera_orden_compra c
+        INNER JOIN detalle_orden_compra d ON c.id_cabecera_orden_compra = d.cabecera_orden_compra_id
+        INNER JOIN proveedor p ON c.proveedor_id = p.id_proveedor
+        INNER JOIN producto pr ON d.producto_id = pr.id_producto
+        ORDER BY c.fecha_orden_compra DESC
+    ");
+    return $this->db->registers();
+}
 
     public function generarNroOrdenCompra($proveedor_id) {
         // dos letras de razón social

@@ -19,19 +19,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnAgregarOrden = document.getElementById('sidebarAgregarOrden');
   const btnListadoOrdenes = document.getElementById('sidebarListadoOrdenes');
 
+ const btnAgregarUsuario = document.getElementById('sidebarAgregarUsuario');
+
+
+  
+
   const contenedor = document.getElementById('formularioDinamico');
   const tarjetas = document.getElementById('tarjetasDashboard');
 
   // Función para ocultar tarjetas y mostrar contenedor
   function mostrarContenido(html) {
-    if (tarjetas) {
-      tarjetas.style.display = 'none';
-    }
+  const tarjetas = document.getElementById('tarjetasDashboard');
+  const contenedor = document.getElementById('formularioDinamico');
+  if (tarjetas) tarjetas.style.display = 'none';
+  if (contenedor) {
     contenedor.innerHTML = html;
     contenedor.style.display = 'block';
+  } else {
+    console.error("No existe el contenedor formularioDinamico");
   }
-
-
+}
 
   // Mostrar cantidad real de usuarios en la tarjeta "Clientes"
  
@@ -127,6 +134,45 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
   }
+    
+  // comportamiento del boton agregar ususario
+  if (btnAgregarUsuario) {
+  btnAgregarUsuario.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    fetch(RUTA_URL + "/AuthController/registerForm")
+      .then(res => res.text())
+      .then(html => mostrarContenido(html))
+      .catch(err => {
+        mostrarContenido("<div class='alert alert-danger'>Error al cargar el formulario de usuario</div>");
+      });
+  });
+}
+
+
+
+   function cargarFormularioRegistro() {
+  fetch(RUTA_URL + '/AuthController/register')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('formularioDinamico').innerHTML = html;
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //comportamiento boton listado de proveedores agregado 18:15 20/6
 if (btnListadoProveedores) {
