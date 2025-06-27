@@ -10,7 +10,7 @@ class OrdenCompraController extends BaseController {
         $this->modeloCategoria = $this->model('ProductoModel');
     }
 
-    // formulario crear una orden
+    // formulario crear orden
     public function crear(): void {
 
         $data = [
@@ -22,78 +22,52 @@ class OrdenCompraController extends BaseController {
     }
 
     
-    // guarda la orden con cabecera y detalles
-    public function guardar(): void {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_SESSION['email_usuario'] ?? null;
-            if (!$email) {
-                $data = [
-                    'error' => "Inicie sesión para cargar una orden de compra.",
-                    'proveedores' => $this->modelo->obtenerProveedores(),
-                    'productos' => $this->modelo->obtenerProductos()
-                ];
-                $this->view('pages/Login', $data);
-                return;
-            }
+    // guardar la orden
+public function guardar(): void {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $proveedor = $_POST['proveedor'] ?? '';
-            $fecha = $_POST['fecha'] ?? '';
-            $productos = $_POST['productos'] ?? [];
-            $cantidades = $_POST['cantidades'] ?? [];
-
-            if (empty($proveedor) || empty($productos) || count($productos) !== count($cantidades)) {
-                $data = [
-                    'error' => 'Datos mal cargados.',
-                    'proveedores' => $this->modelo->obtenerProveedores(),
-                    'productos' => $this->modelo->obtenerProductos()
-                ];
-                $this->view('formularios/formOrdenCompra', $data);
-                return;
-            }
-
-            $nro_orden = uniqid();
-            $datosCabecera = [
-                'proveedor' => $proveedor,
-                'email_usuario' => $email,
-                'nro' => $nro_orden,
-                'fecha' => $fecha
-            ];
-
-            $resultado = $this->modelo->registrarCabecera($datosCabecera);
-
-            if ($resultado['resultado'] != 1) {
-                $data = [
-                    'error' => 'Error: ' . $resultado['mensaje'],
-                    'proveedores' => $this->modelo->obtenerProveedores(),
-                    'productos' => $this->modelo->obtenerProductos()
-                ];
-                $this->view('formularios/formOrdenCompra', $data);
-                return;
-            }
-
-            for ($i = 0; $i < count($productos); $i++) {
-                if (!empty($productos[$i]) && $cantidades[$i] > 0) {
-                    $this->modelo->registrarDetalle([
-                        'nro_cabecera' => $nro_orden,
-                        'codigo_producto' => $productos[$i],
-                        'cantidad' => $cantidades[$i]
-                    ]);
-                }
-            }
-
-            $data = [
-                'mensaje_ok' => 'Orden de Compra generada exitosamente.',
-                'proveedores' => $this->modelo->obtenerProveedores(),
-                'productos' => $this->modelo->obtenerProductos()
-            ];
-
-            $this->view('formularios/formOrdenCompra', $data);
+        $usuario_id = $_SESSION['id_usuario'] ?? null;
+        if (!$usuario_id) {
+            echo "Debe iniciar sesión.";
+            $this->view('pages/Login', []);
+            return;
         }
+
+        $proveedor = $_POST['proveedor'] ?? null;
+        $fecha = $_POST['fecha'] ?? '';
+        $nota = $_POST['nota'] ?? '';
+        $productos = $_POST['productos'] ?? [];
+        $cantidades = $_POST['cantidades'] ?? [];
+
+        if (empty($proveedor) || empty($productos) || empty($cantidades)) {
+            echo "Datos mal cargados.";
+            return;
+        }
+
+        // número de orden único
+        $nro_orden = generarNroOC($proveedor);
+
+        // insertar cabecera
+        $cabecera_id = $this->modelo->registrarCabecera($nro_orden, $usuario_id, $proveedor, $fecha, $nota);
+
+        // insertar detalle
+        foreach ($productos as $index => $producto_id) {
+            $cantidad = (int)$cantidades[$index];
+
+            if ($producto_id && $cantidad > 0) {
+                $this->model->registrarDetalle($cabecera_id, $producto_id, $cantidad);
+            }
+        }
+
+        // mensaje de éxito
+        echo "<div class='alert alert-success'>Orden generada correctamente.</div>";
     }
+}
+    
 
     // Listado de ordenes
     public function listadoOrdenes(): void {
-        $ordenes = $this->modelo->obtenerOrdenesConDetalle();
+        $ordenes = $this->model->obtenerOrdenesConDetalle();
 
         $data = [
             'ordenes' => $ordenes
@@ -102,5 +76,3 @@ class OrdenCompraController extends BaseController {
         $this->view('formularios/listadoOrdenCompra', $data);
     }
 }
-
-
