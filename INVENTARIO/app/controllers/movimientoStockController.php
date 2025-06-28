@@ -1,78 +1,71 @@
 <?php
+
 class movimientoStockController extends BaseController {
+  private $modelo;
+  private $modeloProducto;
+
+
   public function __construct() {
-      $this->modelo = $this->model('movimientoStockModel');
-      $this->modeloProducto = $this->model('productoModel');
+    $this->modelo = $this->model('movimientoStockModel');
+    $this->modeloProducto = $this->model('productoModel');
   }
 
-    // formulario para crear un nuevo proveedor
-    public function agregar_movimiento() {
-
-      $errores = [];
-      $datas = [];
-      $codigos_producto = $this->modeloProducto->buscar_productos();
-
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') {            
-        $codigo_producto = trim($_POST['codigo_producto']);
-        $tipo = trim($_POST['tipo']);
-        $fecha = trim($_POST['fecha']);
-        $cantidad = trim($_POST['cantidad']);
-        $usuario = $_SESSION['id_usuario'];
   
-        // Validaciones
-        if ($codigo_producto == 'Seleccione un código de producto') {
-          $errores['codigo_producto'] = 'Debe seleccionar un código de producto';
-        }
-  
-        if (empty($cantidad) OR $cantidad == 0) {
-          $errores['cantidad'] = 'La cantidad debe ser distinta a 0';
-        }
-
-        if (empty($fecha)) {
-          $errores['fecha'] = 'La fecha es requerida';
-        }
-
-        if ($tipo == 'Seleccione un tipo de movimiento') {
-          $errores['tipo'] = 'Debe seleccionar un tipo de movimiento';
-        }
-  
-        if (empty($errores)) {
-          if ($tipo == 'Salida') {
-            $cantidad = $cantidad * -1;
-          }
-          $producto_id = $this->modeloProducto->buscar_por_codigo($codigo_producto)->id_producto;
-          $datas = [
-            'fecha_movimiento' => $fecha,
-            'cantidad' => $cantidad,
-            'usuario_responsable_id' => $usuario,
-            'producto_id' => $producto_id
-          ];
-  
-          if($this->modelo->crear_movimiento($datas)){
-              $this->view('pages/dashboard/dashboard_agregar_mov_stock');
-          }else{
-              $errores['general'] = 'No se pudo crear el movimiento.';
-          }
-      }
-    }
-    $this->view('pages/dashboard/dashboard_agregar_mov_stock', ['datas' => $datas, 'errores' => $errores, 'codigos_producto' => $codigos_producto]);
-  }
-
   public function cargarFormulario() {
-    $modeloCategoria = $this->model('categoriaModel');
-    $modeloProveedor = $this->model('proveedorModel');
-    $modeloEstado = $this->model('estadoProductoModel');
+    $productos = $this->modeloProducto->obtenerProductos();
 
-    $datos = [
-        'categorias' => $modeloCategoria->obtenerCategorias(),
-        'proveedores' => $modeloProveedor->obtenerProveedores(),
-        'estados' => $modeloEstado->obtenerEstados()
-    ];
+    $this->view('formularios/formMovimientoStock', ['productos' => $productos]);
+  }
 
-    $this->view('formularios/formProductos', $datos);
-}
+  
+  public function insertarMovimiento() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+      $producto_id = trim($_POST['producto_id']);
+      $tipo = trim($_POST['tipo']);
+      $cantidad = trim($_POST['cantidad']);
+      $fecha = trim($_POST['fecha']);
+
+      
+    if (empty($producto_id) || empty($tipo) || empty($cantidad) || $cantidad <= 0 || empty($fecha)) {
+    echo "Datos mal cargados.";
+      return;
+    }
+
+    $exito = $this->modelo->insertarMovimiento($producto_id, $usuario_id, $fecha, $tipo, $cantidad);
+    // mensaje de éxito
+    echo "<div class='alert alert-success'>Orden generada correctamente.</div>";
+
+    }
+
+  }
 
 
+  ///////////////////////////////////////////////////////probar sino simplificar
+  public function listarMovimientos():void {
+
+    $movimientos = $this->modelo->listarMovimientos();
+
+    $this->view('formularios/formListadoMovimientos', ['movimientos' => $movimientos]);  //?
+
+    /*
+    $producto_id = $_GET['producto_id'] ?? null;
+    $fecha_desde = $_GET['fecha_desde'] ?? null;
+    $fecha_hasta = $_GET['fecha_hasta'] ?? null;
+
+    $movimientos = $this->modelo->obtenerMovimientos($producto_id, $fecha_desde, $fecha_hasta);
+    $productos = $this->modeloProducto->obtenerProductos();
+
+    $this->view('formularios/formListadoMovimientos', [
+      'movimientos' => $movimientos,
+      'productos' => $productos,
+      'filtros' => [
+        'producto_id' => $producto_id,
+        'fecha_desde' => $fecha_desde,
+        'fecha_hasta' => $fecha_hasta
+      ]
+    ]);*/
 
 
+  }
 }
