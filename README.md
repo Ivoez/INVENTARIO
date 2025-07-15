@@ -27,7 +27,13 @@ La aplicación ofrece una experiencia organizada al permitir que cada usuario in
 5. **Configurar la base de datos:** Accede a phpMyAdmin desde el botón Admin en MySQL e importa el archivo SQL que se encuentra en C:\xampp\htdocs\INVENTARIO\INVENTARIO\SQL
 6. **Ejecutar el proyecto:** Abre en tu navegador la siguiente ruta: http://localhost/INVENTARIO/ (El proyecto está dentro de la carpeta INVENTARIO/).
 --- 
-
+## Testing realizado  
+- Casos de prueba de login (credenciales válidas e inválidas).  
+- Pruebas de carga de productos con datos correctos e incorrectos.  
+- Validación de reportes por categoría.  
+- Registro de errores.
+- [Casos de prueba en Excel](./Testing/Casos_de_Prueba_Inventario.xlsx)
+---
 ## Créditos
 Este proyecto fue desarrollado por Alan Guerra, Ivan Alanis, Marcela Tronchin y Gastón Gil.
 
