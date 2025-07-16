@@ -16,7 +16,7 @@ La aplicación ofrece una experiencia organizada al permitir que cada usuario in
 - **Frontend:** HTML, CSS, Bootstrap, JavaScript  
 - **Backend:** PHP  
 - **Base de datos:** MySQL  
-- **Herramientas:** phpMyAdmin  
+- **Herramientas:** phpMyAdmin, Jira  
 ---
 ## Instrucciones de Instalación
 
@@ -31,8 +31,9 @@ La aplicación ofrece una experiencia organizada al permitir que cada usuario in
 - Casos de prueba de login (credenciales válidas e inválidas).  
 - Pruebas de carga de productos con datos correctos e incorrectos.  
 - Validación de reportes por categoría.  
-- Registro de errores.
+- Registro y seguimiento de errores en **Jira Software**, incluyendo severidad, prioridad y validación de fixes
 - [Casos de prueba en Excel](./Testing/Casos_de_Prueba_Inventario.xlsx)
+- [Capturas de los bugs en Jira](./Testing/JiraCapturas.pdf)
 ---
 ## Créditos
 Este proyecto fue desarrollado por Alan Guerra, Ivan Alanis, Marcela Tronchin y Gastón Gil.
