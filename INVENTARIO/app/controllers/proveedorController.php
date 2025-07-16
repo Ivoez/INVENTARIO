@@ -25,6 +25,11 @@ class proveedorController extends BaseController {
         if (strlen($CUIT) < 8) {
           $errores['CUIT'] = 'El CUIT debe tener un mínimo de 11 caracterés.';
         }
+
+        if (empty($direccion)) {
+          $errores['direccion'] = 'La dirección es requerida';
+        }
+
   
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
           $errores['email'] = 'El email no es válido';
